@@ -75,6 +75,8 @@ cd awesome-agentic-ai-zh
 
 ## 🗺️ Learning Map (Two Tracks)
 
+![AI Agent Learning Map](resources/diagrams/learning-map.en.png)
+
 After **Stages 0-2 (shared foundations)**, pick a track based on your goal:
 
 - **Track A — CLI Power User**: you want to **USE** existing CLI agents (Claude Code, Codex, OpenCode, Gemini CLI, etc.) to get work done — not build agents from scratch. 3 sub-stages (A1-A3).

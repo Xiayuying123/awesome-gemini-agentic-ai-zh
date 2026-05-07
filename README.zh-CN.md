@@ -61,6 +61,8 @@ cd awesome-agentic-ai-zh
 
 ## 🗺️ 学习地图（两条学习路径）
 
+![AI Agent 学习地图](resources/diagrams/learning-map.zh-CN.png)
+
 走完 **Stage 0-2（共用基础）** 之后，依你的目的选一条学习路径：
 
 - **Track A — CLI Power User**：你想**用**现成的 CLI agent（Claude Code、Codex、OpenCode、Gemini CLI 等）把工作做顺、效率拉高，不打算自己从零写 agent。3 个 sub-stage（A1-A3）。
