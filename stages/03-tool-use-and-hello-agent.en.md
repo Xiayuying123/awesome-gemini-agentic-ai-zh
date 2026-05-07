@@ -49,6 +49,15 @@ A task that requires 3-5 tool calls in sequence. E.g., "Find the population of T
 ### 練習 5：Error Handling
 Make a tool fail (network error, invalid input). Watch how the agent recovers (or doesn't). Add retry logic.
 
+### 練習 6: Function schema design (fix a bad schema)
+**Start with a deliberately bad schema** — vague `description` ("processes data"), all params typed as `string`, no required/optional split, missing `enum` where it should exist. Watch the LLM pick the wrong tool / pass wrong args. Then fix it piece by piece:
+- Rewrite `description` so the LLM understands *when* to call this tool (not docstring style)
+- Use proper types (number / boolean / enum / array); be explicit about required
+- Collapse fuzzy fields with `enum` (e.g. `unit: "celsius" | "fahrenheit"` instead of `unit: string`)
+- Make errors recoverable: return `{"error": "...", "retry_hint": "..."}` so the LLM can retry intelligently
+
+> 💡 Detailed cheatsheet: [`resources/schema-design-cheatsheet.en.md`](../resources/schema-design-cheatsheet.en.md) — 5 golden rules + 5 common anti-patterns.
+
 ## 🎯 Curated Projects
 
 ### [Anthropic — Tool Use Cookbook](https://github.com/anthropics/anthropic-cookbook/tree/main/tool_use)

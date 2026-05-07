@@ -56,6 +56,7 @@ A system that lets the LLM **call external functions, see results, and decide wh
 Lets the LLM call functions you defined (DB lookup, math, browser, …). Instead of plain text, the LLM returns `{"function": "search", "args": {…}}`. Your code executes it and feeds the result back to the LLM.
 
 📍 Detail: [Stage 3](../stages/03-tool-use-and-hello-agent.en.md)
+📍 How to write good schemas: [Function Schema Design cheatsheet](schema-design-cheatsheet.en.md)
 
 ### ReAct (Reasoning + Acting)
 

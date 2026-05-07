@@ -48,6 +48,15 @@
 ### 練習 5：錯誤處理
 讓某個工具失敗（網路錯誤、輸入無效）。看看 agent 會怎麼處理錯誤、能不能恢復，再加上 retry 機制。
 
+### 練習 6：Function schema 設計（壞 schema 修到好）
+**先給 LLM 一份故意寫爛的 schema**——`description` 模糊（「處理資料」）、參數全用 `type: string`、沒分 required / optional、enum 該用沒用。觀察 LLM 怎麼選錯 tool、傳錯參數。然後逐項修：
+- description 寫到 LLM 一眼就懂這個 tool 適用情境（不是寫給人讀的 docstring）
+- parameters 用對 type（number / boolean / enum / array），required 列清楚
+- 模糊邊界用 enum 強制收斂（例如 `unit: "celsius" | "fahrenheit"` 而不是 `unit: string`）
+- error 回傳要包 `{"error": "...", "retry_hint": "..."}` 讓 LLM 能恢復
+
+> 💡 詳細 cheatsheet 看 [`resources/schema-design-cheatsheet.md`](../resources/schema-design-cheatsheet.md)——5 條黃金規則 + 5 個常見 anti-pattern。
+
 ## 🎯 精選 Projects
 
 ### [Anthropic — Tool Use Cookbook](https://github.com/anthropics/anthropic-cookbook/tree/main/tool_use)
