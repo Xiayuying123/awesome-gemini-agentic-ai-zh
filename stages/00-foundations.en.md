@@ -67,3 +67,7 @@ If you can't, work through this stage. Don't skip — every later stage assumes 
 ## Why this stage exists
 
 Most "AI agent" tutorials assume you already have these. If you don't, you'll get blocked at random places (tools requires async; configs are YAML; SDK setup needs git). One week investing here saves 10+ weeks of frustration later.
+
+---
+
+> ✅ **Done with Stage 0?** Next, [**Stage 1 — LLM Fundamentals**](01-llm-basics.en.md) takes 5-8 hours to walk you through your first LLM API call, the meaning of token / context window / temperature, and how to estimate real task cost via per-token pricing. **Keep going →**

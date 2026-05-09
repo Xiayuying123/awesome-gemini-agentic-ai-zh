@@ -66,3 +66,7 @@
 ## 为什么有这个阶段
 
 大多数“AI agent”教学都预设你已经会这些。如果你还没，就会在奇怪的地方卡关（tool 需要 async、配置文件是 YAML、SDK 安装要用 git）。在这里花一周的投资，可以省下后面 10 周以上的挫折。
+
+---
+
+> ✅ **走完 Stage 0 了？** 接下来 [**Stage 1 — LLM 基础**](01-llm-basics.zh-CN.md) 会用 5-8 小时带你做完第一次 LLM API 调用、认识 token / context window / temperature，以及用 per-token 计价估算实际任务成本。**继续往下走 →**

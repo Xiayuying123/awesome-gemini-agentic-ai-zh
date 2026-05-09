@@ -4,6 +4,8 @@
 
 ⏱ **時間估算**：1 週（約 5-8 小時）
 
+> 👋 **從 [Stage 0](00-foundations.md) 來的**：好，環境已經夠用——這 5-8 小時你會做出第一次能跑的 LLM API 呼叫、學會用 token 數估成本。**直接從這裡開始的**：先確認你能跑 Python script、有任一家供應商的 API key——做不到請先回 [Stage 0](00-foundations.md)。
+
 > 💡 **看不懂某個詞**（LLM / token / context window / temperature / RAG / agent⋯）→ 先翻 [`resources/glossary.md`](../resources/glossary.md) 查 30 秒再回來。
 
 ## 📌 學習目標
