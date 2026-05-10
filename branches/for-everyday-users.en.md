@@ -2,6 +2,8 @@
 
 > [繁體中文](./for-everyday-users.md) | [简体中文](./for-everyday-users.zh-Hans.md) | **English**
 
+> 🚀 **Never written code or installed Python before?** Start with [`resources/setup-guide.en.md` §A-C](../resources/setup-guide.en.md) (about 30 minutes from zero), then come back. If you already know Python and have an API key, skip it.
+
 > [← Back to main path README](../README.en.md) · You **don't have to walk the full main path** to start here — this branch is for people who **just want to USE AI, not build agents**.
 
 ## Use Cases

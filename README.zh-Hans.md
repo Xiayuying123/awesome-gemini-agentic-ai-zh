@@ -145,6 +145,10 @@ cd awesome-agentic-ai-zh
 
 ## 📚 相关资源
 
+常用入口：
+
+- 🚀 **完全没写过 code、第一次接触 AI agent？** → [`resources/setup-guide.zh-Hans.md`](resources/setup-guide.zh-Hans.md)（30-45 分钟从零装好）
+
 ### 三个核心用语：MCP / Skills / Plugins
 
 README 跟各 stage 会频繁提到这三个 Claude Code 生态的关键词，先快速说明：

@@ -2,6 +2,8 @@
 
 > **繁體中文** | [简体中文](./for-teacher.zh-Hans.md) | [English](./for-teacher.en.md)
 
+> 🚀 **第一次接觸 AI agent / 沒寫過 code？** 先看 [`resources/setup-guide.md` §A-C](../resources/setup-guide.md)（30 分鐘從零裝好需要的東西）。Tier 0 跟 Tier 1 不需要寫 code，可以先跳過；Tier 2 之後會用到。
+
 > [← 回主路線 README](../README.md) · 走完 **Track A 的 A3** 或 **Track B 的 Stage 7** 後從這裡接續。把 agentic AI 應用到教學流程上。
 
 ## 使用情境

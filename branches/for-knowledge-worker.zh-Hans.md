@@ -2,6 +2,8 @@
 
 > [繁體中文](./for-knowledge-worker.md) | **简体中文** | [English](./for-knowledge-worker.en.md)
 
+> 🚀 **完全没有开发背景？** 先看 [`resources/setup-guide.zh-Hans.md` §A-D](../resources/setup-guide.zh-Hans.md)（30-45 分钟从零）。本分支后面提到的“Claude Code”“MCP”“Skills”都会用到 §D 那个 setup。
+
 > [← 回主路线 README](../README.zh-Hans.md) · 走完 **Track A 的 A3** 或 **Track B 的 Stage 7** 后从这里接续。把 agentic AI 应用到办公室 / 知识工作上。
 
 ## 使用场景

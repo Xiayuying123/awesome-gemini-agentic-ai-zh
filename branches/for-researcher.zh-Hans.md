@@ -2,6 +2,8 @@
 
 > [繁體中文](./for-researcher.md) | **简体中文** | [English](./for-researcher.en.md)
 
+> 🚀 **第一次装 Python / 申请 API key？** 先看 [`resources/setup-guide.zh-Hans.md` §A-C](../resources/setup-guide.zh-Hans.md)。本分支默认你会跑 Python script、有 API key、会用 git。
+
 > [← 回主路线 README](../README.zh-Hans.md) · 走完 **Track A 的 A3** 或 **Track B 的 Stage 7** 后从这里接续。把 agentic AI 应用到研究流程上。
 
 ## 使用场景

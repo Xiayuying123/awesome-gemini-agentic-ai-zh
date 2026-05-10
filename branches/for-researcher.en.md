@@ -2,6 +2,7 @@
 
 > [繁體中文](./for-researcher.md) | [简体中文](./for-researcher.zh-Hans.md) | **English**
 
+> 🚀 **First time installing Python or creating an API key?** Start with [`resources/setup-guide.en.md` §A-C](../resources/setup-guide.en.md). This branch assumes you can run Python scripts, have an API key, and can use git.
 
 > [← Back to main path README](../README.en.md) · Continue here after **Track A's A3** or **Track B's Stage 7**. Apply agentic AI to research workflows.
 

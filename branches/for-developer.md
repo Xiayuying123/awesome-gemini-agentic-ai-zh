@@ -2,6 +2,8 @@
 
 > **繁體中文** | [简体中文](./for-developer.zh-Hans.md) | [English](./for-developer.en.md)
 
+> 🚀 **第一次裝 Claude Code / 寫 `CLAUDE.md` / `SKILL.md`？** 快速 setup 指南在 [`resources/setup-guide.md` §D-E](../resources/setup-guide.md)。已經熟可以跳過。
+
 > [← 回主路線 README](../README.md) · 走完 **Track A 的 A3** 或 **Track B 的 Stage 7** 後從這裡接續。把 agentic AI 應用到開發流程上。
 
 ## 使用情境

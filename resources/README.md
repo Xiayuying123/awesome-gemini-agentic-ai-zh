@@ -1,10 +1,14 @@
 # `resources/` 索引
 
+<div align="right">
+  <strong>繁體中文</strong> | <a href="./README.zh-Hans.md">简体中文</a> | <a href="./README.en.md">English</a>
+</div>
+
 > 本 repo 的「**reference 區**」——非主路線、需要時來查的補充材料。每份檔案有明確角色，不重複。
 
 ---
 
-## 6 份 reference + 各自的「什麼時候看」
+## 7 份 reference + 各自的「什麼時候看」
 
 | 檔案 | 角色 | 什麼時候看 | 行數 |
 |---|---|---|---|
@@ -13,13 +17,18 @@
 | [`mcp-skills-catalog.md`](mcp-skills-catalog.md) | **62 個整合 catalog** | 想把 Claude Code 接 Notion / Obsidian / Excel / Postgres / Slack / 等等實際工具 | ~775 |
 | [`schema-design-cheatsheet.md`](schema-design-cheatsheet.md) | **function schema 設計 5 規則 + 5 anti-pattern** | 寫 tool schema / MCP server schema / function calling，發現 LLM 選錯 tool / 傳錯參數 | ~159 |
 | [`cookbook.md`](cookbook.md) | **6 個 step-by-step recipe** | 想 30-50 分鐘做出第一個 Skill / MCP server / 接 Office / 接 NotebookLM / 接 Zotero / 接本機 LLM | ~620 |
+| [`setup-guide.md`](setup-guide.md) | **從零開始的 setup 指南** | 完全沒 dev 背景、第一次申請 API key / 裝 Python / 用 Claude Code | ~400 |
 | [`style-guide.md`](style-guide.md) | **送 PR 前的格式 / 用詞規範** | 要對 repo 貢獻、寫 entry / 翻譯 | ~338 |
 
-合計 ~2100 行 reference。看起來不少，但**每份檔案讀的時機不同**——你不會一次全讀，只在對應情境查 30 秒到 5 分鐘。
+合計 ~2500 行 reference。看起來不少，但**每份檔案讀的時機不同**——你不會一次全讀，只在對應情境查 30 秒到 45 分鐘。
 
 ---
 
 ## 怎麼進來：以「我現在要做什麼」分類
+
+### 🆕 我完全沒寫過 code / 第一次接觸 AI agent
+
+→ [`setup-guide.md`](setup-guide.md)（30-45 分鐘從零裝好）
 
 ### 🆕 我剛開始學 AI agent
 
@@ -71,6 +80,7 @@
 | mcp-skills-catalog | ✅ | ✅ | ✅ |
 | schema-design-cheatsheet | ✅ | ✅ | ✅ |
 | cookbook | ✅ | ✅ | ✅ |
+| setup-guide | ✅ | ✅ | ✅ |
 | style-guide | ✅ | ✅ | ✅ |
 
 ---

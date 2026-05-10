@@ -2,6 +2,8 @@
 
 > [繁體中文](./for-everyday-users.md) | **简体中文** | [English](./for-everyday-users.en.md)
 
+> 🚀 **完全没写过 code / 没装过 Python？** 先看 [`resources/setup-guide.zh-Hans.md` §A-C](../resources/setup-guide.zh-Hans.md)（30 分钟从零装好）再回来。已经会 Python 和有 API key 就跳过。
+
 > [← 回主路线 README](../README.zh-Hans.md) · 你**不一定要走完主干**才能从这里开始——这条分支是给「**只想 USE AI、不一定要 BUILD agent**」的人。
 
 ## 使用场景

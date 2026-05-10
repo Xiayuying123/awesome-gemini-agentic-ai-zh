@@ -2,6 +2,7 @@
 
 > [繁體中文](./for-knowledge-worker.md) | [简体中文](./for-knowledge-worker.zh-Hans.md) | **English**
 
+> 🚀 **No development background at all?** Start with [`resources/setup-guide.en.md` §A-D](../resources/setup-guide.en.md) (30-45 minutes from zero). Later mentions of "Claude Code", "MCP", and "Skills" in this branch all rely on the §D setup.
 
 > [← Back to main path README](../README.en.md) · Continue here after **Track A's A3** or **Track B's Stage 7**. Apply agentic AI to office / knowledge work.
 
