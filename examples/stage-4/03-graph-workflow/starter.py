@@ -53,7 +53,12 @@ def classify_node(state: State) -> dict:
 
 
 def search_node(state: State) -> dict:
-    db = {"taipei": "Taipei population ~2.6M (2024)", "weather": "sunny 25°C"}
+    db = {
+        "taipei": "Taipei population ~2.6M (2024)",
+        "台北": "Taipei population ~2.6M (2024)",
+        "weather": "sunny 25°C",
+        "天氣": "sunny 25°C",
+    }
     q = state["query"].lower()
     for k, v in db.items():
         if k in q:

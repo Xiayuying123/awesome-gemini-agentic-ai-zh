@@ -52,20 +52,24 @@ def test_eval_llm_as_judge_fail():
 
 
 def test_run_eval_aggregates_correctly():
-    """Mock agent 給 3 對 + 2 錯、確認 pass_count + pass_rate 正確。"""
+    """Mock agent 答對 4/5、ground_1（fake word）故意 hallucinate fail、驗 aggregation。"""
     def fake_agent(question, instruction="", **kw):
-        # 假設 input 含「math」就答對，否則答錯
-        if "math" in question.lower() or "what is" in question.lower() and "+" in question:
-            return "4 or 50"
+        if "2 + 2" in question:
+            return "The answer is 4."
+        if "10 * 5" in question:
+            return "50"
         if "Japan" in question:
             return "Tokyo"
         if "France" in question:
             return "Paris"
-        return "wrong answer"
+        # ground_1: fake agent hallucinates instead of saying "don't know" — fail
+        return "I made something up"
 
     out = run_eval(EVAL_CASES, fake_agent, eval_substring)
     assert out["total"] == 5
-    assert out["pass_count"] >= 4, f"預期 ≥4 pass、得到 {out['pass_count']}"
+    assert out["pass_count"] == 4, f"預期 4 pass（4 個有 substring）+ 1 fail（ground_1）、得到 {out['pass_count']}"
+    failed = [r for r in out["results"] if not r["passed"]]
+    assert len(failed) == 1 and failed[0]["id"] == "ground_1"
     print("✅ test_run_eval_aggregates_correctly")
 
 

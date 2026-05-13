@@ -28,7 +28,7 @@ def test_classify_needs_search():
 
 
 def test_search_node():
-    out = search_node({"query": "台北 人口"})
+    out = search_node({"query": "taipei population"})
     assert "2.6M" in out["search_result"]
     out2 = search_node({"query": "unknown topic"})
     assert "no data" in out2["search_result"]

@@ -39,7 +39,11 @@ OLLAMA_BASE = os.environ.get("OLLAMA_API_BASE", "http://localhost:11434/v1")
 
 @tool
 def calculator(expression: str) -> str:
-    """Safe arithmetic calculator (whitelist + - * / parentheses)."""
+    """Safe arithmetic calculator (whitelist + - * / parentheses).
+
+    Args:
+        expression: Arithmetic expression to evaluate, e.g. '2 + 3 * (4 - 1)'.
+    """
     allowed = set("0123456789.+-*/() ")
     if any(c not in allowed for c in expression):
         return "error: only basic arithmetic allowed"
@@ -51,7 +55,11 @@ def calculator(expression: str) -> str:
 
 @tool
 def lookup_fact(query: str) -> str:
-    """Look up a fact (population / physical constants, etc.)."""
+    """Look up a fact (population / physical constants, etc.).
+
+    Args:
+        query: Fact key to look up, e.g. 'taipei population' or 'speed of light'.
+    """
     db = {
         "taipei population": "2602000",
         "new york population": "8336000",

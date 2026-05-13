@@ -63,7 +63,7 @@ def chunk_doc(text: str) -> list[str]:
 def build_kb(doc: str) -> Any:
     client = chromadb.EphemeralClient()
     embed_fn = embedding_functions.SentenceTransformerEmbeddingFunction(model_name=EMBED_MODEL)
-    collection = client.get_or_create_collection(name="kb", embedding_function=embed_fn)
+    collection = client.get_or_create_collection(name="knowledge_base", embedding_function=embed_fn)
     chunks = chunk_doc(doc)
     collection.add(
         ids=[f"chunk_{i}" for i in range(len(chunks))],

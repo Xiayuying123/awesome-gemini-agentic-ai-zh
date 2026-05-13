@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import sys
+import uuid
 from types import SimpleNamespace
 from unittest.mock import MagicMock
 
@@ -11,6 +12,11 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 from starter import MemoryStore, chat, maybe_remember_fact
+
+
+def fresh_memory():
+    """每個 test 用獨立 collection 避免 EphemeralClient 跨 test 共享 state。"""
+    return MemoryStore(collection_name=f"test_{uuid.uuid4().hex[:8]}")
 
 
 def make_mock_llm(answer: str = "ok"):
@@ -23,7 +29,7 @@ def make_mock_llm(answer: str = "ok"):
 
 
 def test_memory_remember_and_recall():
-    mem = MemoryStore()
+    mem = fresh_memory()
     mem.remember("User prefers Python over JavaScript.")
     mem.remember("User lives in Taipei.")
     mem.remember("Bananas are yellow.")  # unrelated
@@ -34,13 +40,13 @@ def test_memory_remember_and_recall():
 
 
 def test_memory_empty_recall():
-    mem = MemoryStore()
+    mem = fresh_memory()
     assert mem.recall("anything") == []
     print("✅ test_memory_empty_recall")
 
 
 def test_maybe_remember_fact_triggers_on_self_statements():
-    mem = MemoryStore()
+    mem = fresh_memory()
     fid = maybe_remember_fact("I live in Taipei", mem)
     assert fid is not None
     assert mem.collection.count() == 1
@@ -48,7 +54,7 @@ def test_maybe_remember_fact_triggers_on_self_statements():
 
 
 def test_maybe_remember_fact_skips_non_self_statements():
-    mem = MemoryStore()
+    mem = fresh_memory()
     fid = maybe_remember_fact("What's the weather?", mem)
     assert fid is None
     assert mem.collection.count() == 0
@@ -57,7 +63,7 @@ def test_maybe_remember_fact_skips_non_self_statements():
 
 def test_chat_uses_memory_in_prompt():
     """chat 應該把 recalled memory 塞進 system prompt。"""
-    mem = MemoryStore()
+    mem = fresh_memory()
     mem.remember("User prefers Python over JavaScript.")
 
     llm = make_mock_llm("I recommend Python.")
