@@ -75,6 +75,14 @@ Mirror still has the OLD structure (22 H4 detail blocks, 7 components, "Producti
 
 **Estimated translation**: 3 line diffs × 2 locales.
 
+### 🟢 LOW — Anchor cleanup + enable `--strict` in anchor-validator
+
+`anchor-validator.yml` currently runs in **warn-only** mode. Local run found ~38 legacy broken anchors (Stage 5 sub-headings gained ⭐ extras during this session's template refactor, but cross-references in glossary / cookbook / examples / tracks didn't all sync to the new slugs).
+
+**Action**: one-time anchor cleanup PR to fix the legacy ~38 broken anchors, then flip workflow line from `python scripts/check-anchors.py` to `python scripts/check-anchors.py --strict` to enforce on future PRs. Without this tracker entry the upgrade would silently linger in the workflow YAML's TODO comment.
+
+**Estimated effort**: ~30-50 line diffs across ~10 files, mostly one-line anchor URL fixes.
+
 ---
 
 ## 📋 Suggested delegation prompt template

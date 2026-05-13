@@ -145,11 +145,11 @@ cd awesome-agentic-ai-zh
 
 上面有缺的就从 Stage 0 补齐；都会了就直接跳 Stage 1。
 
-主干分 4 部分：
+主干分 5 部分：
 
 - **Part 1（Stage 0-2）：基础与 LLM 入门** — Python / git / API、什么是 LLM、怎么设计 prompt
 - **Part 2（Stage 3-4）：构建你的 Agent** — 从 tool use 进化到 agent，学主流 framework
-- **Part 3（Stage 5）：Claude Code 生态** — MCP / Skills / Plugins，这是整条路线的核心
+- **Part 3（Stage 5）🔄 共用 hub** — Claude Code 生态系（MCP / Skills / Plugins / Subagents、Track A + B 都会用到）
 - **Part 4（Stage 6-7）：进阶集成** — memory / RAG / multi-agent 协作 / harness engineering
 - **Part 5（Stage 8）🔄 共用 hub** — Agent Interfaces（Computer Use / Browser Use / Code Sandbox、2024-2026 frontier、两条 track 都会用到）
 

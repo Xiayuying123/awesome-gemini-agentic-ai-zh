@@ -254,7 +254,7 @@ The toolchain design for wrapping an agent into a production system — permissi
 
 ---
 
-## 7. Agent Interfaces
+## 8. Agent Interfaces
 
 ### Computer Use (screen-level agent)
 

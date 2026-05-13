@@ -431,7 +431,9 @@ Can you:
 - [ ] Package skills into a plugin and publish via `marketplace.json`
 - [ ] Distinguish MCP / Skills / Plugins / SDK by their roles
 
-If yes → proceed to [Stage 6 — Memory & RAG](06-memory-rag.md).
+If yes → proceed to [Stage 6 — Memory & RAG](06-memory-rag.en.md).
+
+> 💡 **Stage 5 is the first of two shared hubs** — both Track A and Track B use it. The second shared hub is [**Stage 8 — Agent Interfaces**](08-agent-interfaces.en.md) (Computer Use / Browser Use / Sandbox), which you can do after the main path, or preview early if you're interested in Computer Use / Browser MCP.
 
 ## 💡 Bonus: After this Stage
 

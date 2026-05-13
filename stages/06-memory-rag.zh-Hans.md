@@ -318,4 +318,4 @@ results = collection.query(query_texts=["query"], n_results=1)
 - [ ] 在某个规模下，能在 Chroma、Qdrant、pgvector 之间做出选择
 - [ ] 区分“给 agent memory”跟“用 RAG”这两件事
 
-如果都可以 → 前往 [Stage 7 — Multi-Agent · Production](./07-multi-agent-production.zh-Hans.md)。
+如果都可以 → 前往 [Stage 7 — Multi-Agent · 进阶应用](./07-multi-agent-production.zh-Hans.md)、再到 [Stage 8 — Agent Interfaces（共用 hub）](./08-agent-interfaces.zh-Hans.md)。

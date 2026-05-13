@@ -315,4 +315,4 @@ Can you:
 - [ ] Pick between Chroma, Qdrant, pgvector for a given scale
 - [ ] Distinguish "give the agent memory" from "use RAG"
 
-If yes → proceed to [Stage 7 — Multi-Agent · Production](07-multi-agent-production.md).
+If yes → proceed to [Stage 7 — Multi-Agent · Advanced Application](07-multi-agent-production.en.md), then [Stage 8 — Agent Interfaces (Shared Hub)](08-agent-interfaces.en.md).

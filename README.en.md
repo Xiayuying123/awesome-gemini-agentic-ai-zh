@@ -106,7 +106,7 @@ The two tracks are **not mutually exclusive** — most people start with A to ge
 
 | Stage | Topic | Key Content | Time |
 |---|---|---|---|
-| **A1** | [CLI Agent Intro & Selection](tracks/cli/A1-cli-intro.en.md) | 6-CLI comparison · install · first run | 1 wk |
+| **A1** | [CLI Agent Intro & Selection](tracks/cli/A1-cli-intro.en.md) | 7-CLI comparison · install · first run | 1 wk |
 | **A2** | [CLI Workflow Patterns](tracks/cli/A2-cli-workflow.en.md) | CLAUDE.md · slash commands · multi-step decomposition | 1-2 wks |
 | **A3** | [Integration & Production](tracks/cli/A3-cli-production.en.md) | MCP-into-CLI · CI automation · cost / observability | 1-2 wks |
 | **+5** 🔄 | [Stage 5 — Claude Code Ecosystem](stages/05-claude-code-ecosystem.en.md) (**Shared Hub**) | MCP · Skills · Plugins · Subagents; Track A reads 5.1-5.4 (5.5-5.6 optional) | 1-2 wks (Track A view) |
@@ -161,11 +161,11 @@ This roadmap balances concepts with hands-on work, helping you **transform from 
 
 If anything's missing, do Stage 0; if not, **start at Stage 1**.
 
-The main path has 4 parts:
+The main path has 5 parts:
 
 - **Part 1 (Stages 0-2): Foundations & LLM Basics** — Python / git / API, what's an LLM, prompt design
 - **Part 2 (Stages 3-4): Build Your Agent** — from tool use to agents, learn the major frameworks
-- **Part 3 (Stage 5): Claude Code Ecosystem** — MCP / Skills / Plugins, the heart of the path
+- **Part 3 (Stage 5) 🔄 Shared Hub** — Claude Code Ecosystem (MCP / Skills / Plugins / Subagents; used by both Track A + B)
 - **Part 4 (Stages 6-7): Advanced Integration** — memory / RAG / multi-agent collaboration / harness engineering
 - **Part 5 (Stage 8) 🔄 Shared Hub** — Agent Interfaces (Computer Use / Browser Use / Code Sandbox, 2024-2026 frontier; used by both tracks)
 
