@@ -35,6 +35,19 @@
 
 ## 🤔 什麼是 multi-agent framework？
 
+### 兩個維度先分清楚（workflow vs agent / single vs multi）
+
+要看懂 multi-agent framework 之前、先把兩個正交維度釐清——Anthropic「Building Effective Agents」最重要的洞察是**先區分這兩個維度、再談 single/multi**：
+
+|  | **Workflow**<br>（你寫好的 code path） | **Agent**<br>（LLM 動態決定下一步） |
+|---|---|---|
+| **Single LLM** | 線性 pipeline、無分支判斷 | 一個 LLM + ReAct loop、自己 plan + adapt<br>（**Stage 3 寫的就是這個**） |
+| **Multi LLM** | 預設 routing（譬如「銷售問題 → agent A、技術問題 → agent B」） | 2+ agent 互相 handoff、orchestrator 動態分配<br>（**本 stage 主題**） |
+
+**為什麼這個區分比「single vs multi」更重要**：production 場景大多落在「single agent workflow」象限（Anthropic：**90% 用 single agent + tool use 就夠**）。**真正需要 multi-agent framework 的是右下角象限**——LLM 自主性高 + 多角色協作。
+
+→ 本 stage 後續討論都假設你已經知道：**multi-agent framework 解決的是右下角象限的 orchestration boilerplate**。
+
 ### Single-agent vs multi-agent — 一張對照表先看清楚差異
 
 | 維度 | **Single-agent**（你 Stage 3 寫過了） | **Multi-agent system** |
@@ -60,15 +73,38 @@
 
 **4 個信號都不在？** → single agent + 好 prompt + tool use 就夠。**硬上 multi-agent 會付 3-10x token、debug 痛苦、其實不會比較準**。
 
-### Multi-agent 5 個經典 pattern
+### Multi-agent 經典 pattern（按複雜度排序）
 
-| Pattern | 什麼樣 | 經典場景 | 代表 framework / paper |
-|---|---|---|---|
-| **Supervisor-Worker**<br>（hub-spoke） | 1 主 agent + N worker、主分配 + 整合 | 任務拆解、報告整合 | LangGraph、AutoGen GroupChat |
-| **Swarm / Handoff** | agent 之間 1:1 handoff、無中央 orchestrator | customer support routing、context switch | [OpenAI Swarm](https://github.com/openai/swarm)、[OpenAI Agents SDK](https://github.com/openai/openai-agents-python) |
-| **Debate / Peer review** | 2+ agent 互相 critique、收斂答案 | research、judgment task、code review | AutoGen GroupChat、CrewAI |
-| **Planner-Executor** | planner 規劃多步驟 + executor 執行 | 多步驟自動化、code generation | LangGraph、[ChatDev paper](https://arxiv.org/abs/2307.07924) |
-| **Role-play / Society** | 多 agent 各持角色互動、模擬社會 | simulation、社會行為研究 | [CAMEL paper](https://arxiv.org/abs/2303.17760)、[Generative Agents paper](https://arxiv.org/abs/2304.03442) |
+> 📝 **跟 Stage 3 §經典範式怎麼分**：[Stage 3 的 4 個 paradigm](03-tool-use-and-hello-agent.md#agent-的經典範式thinking-patterns)（CoT / ReAct / Reflection / Planning）是**單一 agent 內部怎麼想**；本節這 5 個 pattern 是**多個 agent 之間怎麼協作**——正交的兩個層。
+
+| Pattern | 複雜度 | 什麼樣 | 經典場景 | 代表 framework / paper |
+|---|---|---|---|---|
+| **1. Routing / Handoff** | ⭐ | agent 之間 1:1 handoff、無中央 orchestrator | customer support routing、context switch | [OpenAI Swarm](https://github.com/openai/swarm)、[OpenAI Agents SDK](https://github.com/openai/openai-agents-python) |
+| **2. Sequential**<br>（Planner → Executor） | ⭐⭐ | planner 規劃多步驟 + executor 執行 | 多步驟自動化、code generation | LangGraph、[ChatDev paper](https://arxiv.org/abs/2307.07924) |
+| **3. Parallel**<br>（平行加速） | ⭐⭐ | N 個 agent 同時跑、結果 aggregate | research / map-reduce 任務、wall-clock 1/N | LangGraph parallel branches、CrewAI parallel tasks |
+| **4. Supervisor-Worker**<br>（hub-spoke） | ⭐⭐⭐ | 1 主 + N worker、主分配 + 整合 | 任務拆解、報告整合 | LangGraph、AutoGen GroupChat |
+| **5. Debate / Society**<br>（多視角收斂） | ⭐⭐⭐⭐ | 2+ agent 互相 critique 或角色扮演 | research、judgment task、social simulation | AutoGen GroupChat、[CAMEL paper](https://arxiv.org/abs/2303.17760)、[Generative Agents paper](https://arxiv.org/abs/2304.03442) |
+
+### Claude Code subagent — 另一條 orchestration 路線
+
+**Multi-agent 不只有 framework 這條路**。Anthropic 自家的 Claude Code 提供另一個 abstraction 層：[subagent](05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制) — 寫一個 `.claude/agents/<name>.md` 檔就是一個 subagent，**不需要 framework**。
+
+跟 framework 路線的根本差異：
+
+| 維度 | Framework 路線（本 stage 主題） | Claude Code subagent |
+|---|---|---|
+| **跑哪** | 跨 LLM provider 都可以 | 只在 Claude Code runtime 內 |
+| **怎麼寫** | Python code + `langgraph.graph()` / `Crew(agents=...)` 之類 | `.claude/agents/X.md` markdown + frontmatter |
+| **適合誰** | 跨 LLM provider production system | 已 commit Claude Code 的工程團隊 |
+| **核心 benefit** | 完整 orchestration 控制 + 跨 provider 可攜 | context preservation + 角色 specialization + tool constraint + cost control（routing 到便宜 model）|
+
+**何時選 subagent 而非 framework**：
+- 你已經在用 Claude Code 跑日常工作
+- 任務 context 大、會吃光主 session window（讀整個 codebase 之類）
+- 多 subagent 平行（research / write / critic）省 wall-clock 時間
+- 不需要跨 provider migration
+
+詳細寫法 + 動手練習見 [Stage 5.5](05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制)。
 
 ### Framework 的工作
 
@@ -84,7 +120,7 @@ Framework 把上面這 5 個 pattern 的 orchestration boilerplate（roles、han
 5. [**Generative Agents paper (Park et al. 2023)**](https://arxiv.org/abs/2304.03442) — 25 個 agent 在 The Sims 互動、社會 simulation
 
 **🀄 中文系統教材**：
-1. [**hello-agents Ch4「智能體經典範式構建」**](https://github.com/datawhalechina/hello-agents) ⭐ — 中文圈最完整 multi-agent paradigm 章節（單 agent / multi-agent / role-based / sub-agents 都涵蓋）
+1. [**hello-agents Ch6「框架開發實踐」+ Ch7「構建你的 Agent 框架」**](https://github.com/datawhalechina/hello-agents) ⭐ — 中文圈完整講 framework 開發 + 從零構建。**注意：Ch4「智能體經典範式構建」是 single-agent paradigm（ReAct / Plan-and-Solve / Reflection），不是 multi-agent**
 2. [**李宏毅 — 生成式 AI 導論**](https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php) — 中後段有 AI agent / multi-agent 相關集數
 
 **Framework 官方 multi-agent docs**：
@@ -92,11 +128,14 @@ Framework 把上面這 5 個 pattern 的 orchestration boilerplate（roles、han
 - [**Anthropic Cookbook — `customer_service_agent.ipynb`**](https://github.com/anthropics/anthropic-cookbook/tree/main/tool_use) — multi-agent orchestration canonical 範例（routing + handoff）
 - [**Microsoft AutoGen — Examples**](https://microsoft.github.io/autogen/) — group-chat / debate / peer review pattern 完整範例
 
-> 💡 **建議框架學習流程**：先讀 Anthropic Building Effective Agents 建立 mental model（30 分鐘）→ 跑 LangGraph multi-agent quickstart 感受 supervisor pattern → 跑 CrewAI 感受 role-based handoff → 對照看 Anthropic Cookbook 的 customer_service_agent → 想深入學術側再翻 AutoGen / CAMEL paper。**不必把 5 個 paper 全讀完**、挑跟你場景最近的 1-2 個。
-
-> 📚 **想要 chapter-length 深入版（中文）**：[`datawhalechina/hello-agents`](https://github.com/datawhalechina/hello-agents)（**16 production 能力含 multi-agent collaboration / role-based / sub-agents**）。
+> 💡 **建議框架學習流程**（5 步）：
+> 1. **建立 mental model**（30 min）— 讀 Anthropic Building Effective Agents、把 workflow vs agent 跟 single vs multi 兩維度搞清楚
+> 2. **跑 1 個 framework quickstart**（2-3 hr）— LangGraph 或 CrewAI 二選一、跑官方多 agent 教學
+> 3. **對照 Anthropic Cookbook `customer_service_agent`**（1 hr）— production-style routing + handoff 範例
+> 4. *(可選)* **深入學術側**：挑 paper 1-2 篇看（AutoGen / CAMEL / ChatDev / Generative Agents）
+> 5. *(Claude 用戶可選)* **寫一個 subagent 對照**：見 [Stage 5.5](05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制)、跟 framework 路線比較
 >
-> 🌳 **Claude 生態另一條路**：[Claude Code 原生 subagent](05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制)（寫 `.claude/agents/X.md` 就是一個 subagent、不需 framework）。**framework 適合跨 LLM provider production；Claude subagent 適合已 commit Claude Code 的團隊**。
+> **不必把 5 個 paper 全讀完**、挑跟你場景最近的 1-2 個。
 
 ## 🛠 進階 tool patterns（framework 替你處理掉的東西）⭐ Track B 必看
 
