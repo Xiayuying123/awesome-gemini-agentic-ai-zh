@@ -8,7 +8,7 @@
 > 💡 Term-dense stage (agent / tool use / function calling / ReAct / structured output / …) → see [`resources/glossary.en.md` §2](../resources/glossary.en.md#2-agents--tool-use).
 > 🗺️ **Before committing to Track A (CLI Power User) or Track B (Agent Builder)**, read [`resources/agent-paradigms.en.md`](../resources/agent-paradigms.en.md) — the 5-paradigm map of the agent landscape that helps you pick a track.
 
-This is the most important stage. **You don't understand agents until you've built one.** No skipping the hello-X demos.
+This is the most important stage. **You don't understand agents until you've built one** — we recommend writing the foundational exercises by hand at least once, then visiting [hello-agents](https://github.com/datawhalechina/hello-agents) or this stage's curated projects for chapter-length depth.
 
 ## 📌 Learning Goals
 
@@ -33,7 +33,7 @@ You should already:
 3. [**OpenAI — Function Calling**](https://platform.openai.com/docs/guides/function-calling) — function-calling format reference
 4. [**Build an agent from scratch**](https://shafiqulai.github.io/blogs/blog_3.html) — narrative walkthrough
 
-## 🛠 Hands-on Exercises (5 to do)
+## 🛠 Hands-on Exercises (foundational, illustrative)
 
 > 🦙 **This stage defaults to Ollama qwen2.5:3b** (cost-driven; reliable tool-use support). Once you enter Stage 3 — tool calling and the ReAct loop — `gemma4:e4b` no longer suffices; switch to `qwen2.5:3b` (1.9 GB; install with `ollama pull qwen2.5:3b`). Every exercise has Path A (Ollama, default) + Path B (Anthropic, optional — when you want to see cloud-quality tool use).
 >

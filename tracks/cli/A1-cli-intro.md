@@ -31,7 +31,7 @@
 3. [**Anthropic — Claude Code Quickstart**](https://docs.anthropic.com/en/docs/claude-code/quickstart) — 官方安裝指南
 4. [**OpenAI — Codex Quickstart**](https://github.com/openai/codex/blob/main/README.md) — Codex 安裝跟認證流程
 
-## 🛠 動手練習（必跑、不是看就好）
+## 🛠 動手練習（基礎 illustrative 練習）
 
 ### 動手練習 CLI-1：安裝 + 第一次跑
 照你選的 CLI 的 quickstart 安裝。第一個 prompt 不要寫「hello world」——直接給它一個你今天本來就要做的事，譬如：「整理我 Downloads 資料夾，把 PDF 全部 move 到 ~/Documents/PDFs」。觀察它怎麼分解任務、要哪些確認。

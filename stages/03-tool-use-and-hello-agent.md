@@ -7,7 +7,7 @@
 > 💡 用語密集（agent / tool use / function calling / ReAct / structured output⋯）→ 翻 [`resources/glossary.md` §2](../resources/glossary.md#2-agent--工具使用)。
 > 🗺️ **進 Track A（CLI Power User）還是 Track B（Agent Builder）前**，先看 [`resources/agent-paradigms.md`](../resources/agent-paradigms.md) — 5 種 agent 型態的全景圖，幫你選軌。
 
-這是整個學習路線最關鍵的一站。**你建過一個 agent 才算真懂 agent — 動手練習 不能跳。**
+這是整個學習路線最關鍵的一站。**你建過一個 agent 才算真懂 agent**——本 stage 的基礎練習建議至少實際手寫一次、再依需求往 [hello-agents](https://github.com/datawhalechina/hello-agents) 或本 stage 精選 projects 找深度教材。
 
 ## 📌 學習目標
 
@@ -32,7 +32,7 @@
 3. [**OpenAI — Function Calling**](https://platform.openai.com/docs/guides/function-calling) — function calling 格式參考
 4. [**Build an agent from scratch**](https://shafiqulai.github.io/blogs/blog_3.html) — 從零打造 agent 的故事式導覽
 
-## 🛠 動手練習（不是看過就好）
+## 🛠 動手練習（基礎 illustrative 練習）
 
 > 🦙 **本 stage 默認用 Ollama qwen2.5:3b**（成本考量、tool-use 支援穩定）。Stage 3 進到 tool calling / ReAct loop、`gemma4:e4b` 不夠、改用 `qwen2.5:3b`（1.9 GB、`ollama pull qwen2.5:3b` 即裝）。每個練習都有 Path A（Ollama、默認）+ Path B（Anthropic、選擇性、想看 cloud 高品質 tool-use 時用）。
 >

@@ -29,7 +29,7 @@ You should already:
 3. [**Anthropic — Claude Code Quickstart**](https://docs.anthropic.com/en/docs/claude-code/quickstart) — official install
 4. [**OpenAI — Codex Quickstart**](https://github.com/openai/codex/blob/main/README.md) — Codex install + auth
 
-## 🛠 Hands-on Exercises (do them, not just read)
+## 🛠 Hands-on Exercises (foundational, illustrative)
 
 ### Exercise CLI-1: Install + first run
 Follow your chosen CLI's quickstart. **Don't write "hello world"** — give it a real task you were going to do today, e.g. "organize my Downloads folder, move all PDFs to ~/Documents/PDFs". Watch how it decomposes the task and what confirmations it asks for.

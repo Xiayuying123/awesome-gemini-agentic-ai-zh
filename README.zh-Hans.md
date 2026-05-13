@@ -10,7 +10,7 @@
 
 ### 🤖 AI Agent 学习地图 — 从基础 LLM 概念到自己构建多 agent 系统
 
-<p><em>结构化 7 阶段学习路径，从「LLM 是什么、token 怎么算」一路到 multi-agent 编排、本地部署，<br/>每阶段都有必做的 動手練習 练习、必修阅读、精选 project</em></p>
+<p><em><b>学习路线图 + 145+ 资源 curation + 简单 illustrative 案例</b><br/>结构化 7 阶段、从「LLM 是什么、token 怎么算」走到 multi-agent 编排、本地部署</em></p>
 
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat)](LICENSE)
 [![繁中](https://img.shields.io/badge/語言-繁體中文-red?style=flat)](README.md)
@@ -25,13 +25,19 @@
 
 ## 🎯 项目介绍
 
-这个项目是为“想学习 AI 或 AI agent 的人”设计的。
+**本 repo 角色定位**：**学习路线图 + 145+ 资源 curation + 简单 illustrative 案例**——三件事为核心、帮想学 AI / AI agent 的人从「不知道从哪开始」走到「能设计多 agent 系统」。
 
-本 repo 把网上散落各处的高质量项目、教材、動手練習、必修阅读收集起来，按“从零开始、循序渐进”的顺序整理成 7 个阶段——每阶段都会清楚指出“该学什么、必做哪些 動手練習 练习、推荐哪几个 project、进入下一阶段前该检查什么”。
+具体做法：
 
-走完这条路线，你会从“LLM 用户”进阶到“agent 系统构建者”——能看懂 framework 在做什么、能设计多 agent 协作、能写自己的 MCP server。
+| 核心 | 做什么 | 规模 |
+|---|---|---|
+| **学习路线图** | 把网上散落的高质量项目、教材、必修阅读，按**从零开始、循序渐进**整理成 **7 个阶段** + 2 条学习路线 + 5 条延伸路径 | 7 stages、2 tracks |
+| **资源 curation** | 每阶段精选 **145+** 个 project（含星等、适合谁、教什么、怎么跑），加上中文社群 MCP / Skill 完整 catalog | 145+ projects、62 MCP/Skill |
+| **简单 illustrative 案例** | 每阶段附 1-5 个**基础练习**（70-150 行 starter + dual-path Ollama/Anthropic SDK 对照 + mock-based test） | 27 个练习 folder |
 
-> 🙏 **特别感谢 [`datawhalechina/hello-agents`](https://github.com/datawhalechina/hello-agents)**：中文圈最完整的 chapter-length agent 教材（16 种 production 能力、特别是 **memory / RAG 那段**写得最完整）。本 repo 角色是**学习路线图 + 资源 curation**、把你送到适合的深度教材去。每个 stage / 练习 folder 都有 📚 callout 点过去。
+走完这条路线，你会从「**LLM 用户**」进阶到「**agent 系统构建者**」——能看懂 framework 在做什么、能设计多 agent 协作、能写自己的 MCP server。
+
+> 🙏 **特别感谢 [`datawhalechina/hello-agents`](https://github.com/datawhalechina/hello-agents)**：中文圈最完整的 chapter-length agent 教材（16 种 production 能力、特别是 **memory / RAG 那段**写得最完整）。本 repo 是**路线图 + 入门练习**、hello-agents 是**深度章节教材**——两个角色互补、不重做。每个 stage / 练习 folder 都有 📚 callout 点过去。
 
 ---
 
@@ -56,7 +62,7 @@ cd awesome-agentic-ai-zh
 
 - 📖 **完全免费** — MIT 授权，所有内容开放共学
 - 🗺️ **两条学习路径** — Track A（CLI Power User）给“想 USE 现成 CLI agent”的人；Track B（Agent Builder）给“想 BUILD 自己 agent”的人。共用 Stage 0-2 基础
-- 🛠️ **必做 動手練習 练习** — 每阶段都有 1-5 个 mini project（题目 + 成功标准，**自己动手写**），光看不练不算学会
+- 🛠️ **基础动手练习** — 每阶段附 1-5 个 illustrative 练习（题目 + dual-path SDK 对照 + success criteria）。定位是**基础入门 + 路线确认**——chapter-length 深度练习见对应 stage 的 hello-agents / Anthropic Cookbook callout
 - 🎯 **精选 145+ 个 projects** — 每个都附星等推荐、适合谁、教什么、怎么跑（含本地 LLM 执行：Ollama、llama.cpp、LocalAI、MLX）
 - 🌏 **中文 / 英文双语** — 简体中文为主、英文版完整对照
 - 🎓 **不只「框架」、还有「Claude Code 生态」** — MCP / Skills / Plugins 完整堆叠

@@ -19,19 +19,25 @@
 
 > **English companion. The zh-TW [README.md](README.md) is canonical** — content is curated in zh-TW first; this page mirrors it for English readers.
 
-A learning roadmap for agentic AI — **from LLM fundamentals to building multi-agent systems**. Structured 7-stage path: from "what is an LLM, how do tokens work" all the way to multi-agent orchestration and local deployment. Each stage has must-run demos, required reading, and curated projects.
+**Learning roadmap + 145+ curated resources + simple illustrative cases** — three pillars helping you go from "I don't know where to start" to "I can design multi-agent systems". Structured 7-stage path from LLM fundamentals to multi-agent orchestration and local deployment.
 
 ---
 
 ## 🎯 Why this exists
 
-If you want to learn AI applications or grow from basics into multi-agent systems — **the most common problem isn't lack of resources, it's not knowing where to start**. Awesome lists in English and Chinese have hundreds of repos but no path; people learning Claude Code, LangGraph, or RAG end up scattered across communities, using different terms, recommending different starter projects.
+**What this repo is**: **a learning roadmap + 145+ curated resources + simple illustrative cases** — three pillars helping AI / AI-agent learners go from "I don't know where to start" to "I can design multi-agent systems."
 
-So we curated **134 high-quality projects** into a "from zero to advanced multi-agent" learning roadmap, organized as **7 stages**. Each stage tells you exactly **what to learn, which exercises to run, which projects to study, and what self-check to pass before advancing**.
+Concretely:
+
+| Pillar | What it does | Scale |
+|---|---|---|
+| **Learning roadmap** | Organizes scattered high-quality projects, tutorials, and required reading into **7 stages** + 2 tracks + 5 specialized branches, from zero to advanced | 7 stages, 2 tracks |
+| **Resource curation** | Each stage curates **145+** projects (star rating, audience, what they teach, how to run) plus an MCP/Skill catalog for the Chinese-language community | 145+ projects, 62 MCP/Skill |
+| **Simple illustrative cases** | Each stage ships 1-5 **foundational exercises** (70-150 line starter + dual-path Ollama/Anthropic SDK comparison + mock-based tests) | 27 exercise folders |
 
 After the main path, you go from "**LLM user**" to "**agent system builder**" — capable of designing multi-agent collaboration, writing your own MCP server, and shipping real agent systems.
 
-> 🙏 **Special thanks to [`datawhalechina/hello-agents`](https://github.com/datawhalechina/hello-agents)** — the most thorough chapter-length agent tutorial in the Chinese-language ecosystem (16 production capabilities; the **memory / RAG section in particular** is the best treatment available). This repo's role is **learning roadmap + curation** — we route you to the right depth source. Every stage / exercise folder includes a 📚 callout pointing there.
+> 🙏 **Special thanks to [`datawhalechina/hello-agents`](https://github.com/datawhalechina/hello-agents)** — the most thorough chapter-length agent tutorial in the Chinese-language ecosystem (16 production capabilities; **memory / RAG section in particular** is the best treatment available). This repo is **roadmap + foundational exercises**, hello-agents is **chapter-length depth tutorial** — complementary roles, no duplication. Every stage / exercise folder has a 📚 callout pointing there.
 
 ---
 
@@ -70,7 +76,7 @@ cd awesome-agentic-ai-zh
 
 - 📖 **Fully free** — MIT-licensed, all content open
 - 🗺️ **Two learning tracks** — Track A (CLI Power User) for "use existing CLIs"; Track B (Agent Builder) for "build your own". Shared Stages 0-2 foundation.
-- 🛠️ **Must-do hands-on exercises** — 1-5 mini projects per stage (specs + success criteria, **you write the code**, not turnkey demos); reading-only doesn't count
+- 🛠️ **Foundational hands-on exercises** — 1-5 illustrative exercises per stage (specs + dual-path SDK comparison + success criteria). Positioned as **foundational + roadmap verification** — for chapter-length depth exercises see the hello-agents / Anthropic Cookbook callout in each stage
 - 🎯 **145+ curated projects** — each with star rating, audience, what it teaches, how to run (incl. local LLM runners: Ollama, llama.cpp, LocalAI, MLX)
 - 🌏 **Bilingual** — zh-TW canonical, English mirror
 - 🎓 **Beyond frameworks: Claude Code ecosystem** — MCP / Skills / Plugins / SDK full stack

@@ -25,7 +25,7 @@
 5. [**ai-boost/awesome-harness-engineering**](https://github.com/ai-boost/awesome-harness-engineering)（★ 780+）— agent harness 的工具 / pattern / eval / memory / MCP / observability 全集合。**framework 把 LLM 包成 agent；harness 把 agent 包成 production system**——這個 stage 學的就是 harness。
 6. [**ZhangHanDong/harness-engineering-from-cc-to-ai-coding**](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding)（★ 1.3k+）— 從 Claude Code 原始碼學 harness 設計（中文）
 
-## 🛠 動手練習（必跑、不是看就好）
+## 🛠 動手練習（基礎 illustrative 練習）
 
 ### 練習 1：Multi-Agent 辯論
 兩個 agent 辯論一個題目（例如「該用 Python 還是 Rust 寫 backend」），第三個 agent 當裁判。觀察辯論收斂或分歧的 pattern。

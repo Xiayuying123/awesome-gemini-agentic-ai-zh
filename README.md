@@ -10,7 +10,7 @@
 
 ### 🤖 AI Agent 學習地圖 — 從基本 LLM 概念到自己打造多 agent 系統
 
-<p><em>結構化 7 階段學習路徑，從「LLM 是什麼、token 怎麼算」一路到 multi-agent 編排、本地部署，<br/>每階段都有必做的 動手練習、必修閱讀、精選 project</em></p>
+<p><em><b>學習路線圖 + 145+ 資源 curation + 簡單 illustrative 案例</b><br/>結構化 7 階段、從「LLM 是什麼、token 怎麼算」走到 multi-agent 編排、本地部署</em></p>
 
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat)](LICENSE)
 [![繁中](https://img.shields.io/badge/語言-繁體中文-red?style=flat)](README.md)
@@ -25,13 +25,19 @@
 
 ## 🎯 專案介紹
 
-這個專案是為**想學習 AI 或 AI agent 的人**設計的。
+**本 repo 角色定位**：**學習路線圖 + 145+ 資源 curation + 簡單 illustrative 案例**——三件事為核心、幫想學 AI / AI agent 的人從「不知道從哪開始」走到「能設計多 agent 系統」。
 
-本 repo 把網路上散落各處的高品質專案、教材、動手練習、必修閱讀蒐集起來，按**從零開始、循序漸進**的順序整理成 **7 個階段**——每階段都會清楚指出**該學什麼、必做哪些 動手練習、推薦哪幾個 project、進入下一階段前該檢查什麼**。
+具體做法：
+
+| 核心 | 做什麼 | 規模 |
+|---|---|---|
+| **學習路線圖** | 把網路散落的高品質專案、教材、必修閱讀，按**從零開始、循序漸進**整理成 **7 個階段** + 2 條學習路線 + 5 條延伸路徑 | 7 stages、2 tracks |
+| **資源 curation** | 每階段精選 **145+** 個 project（含星等、適合誰、教什麼、怎麼跑），加上中文社群 MCP / Skill 完整 catalog | 145+ projects、62 MCP/Skill |
+| **簡單 illustrative 案例** | 每階段附 1-5 個**基礎練習**（70-150 行 starter + dual-path Ollama/Anthropic SDK 對照 + mock-based test） | 27 個練習 folder |
 
 走完整條路線，你會從「**LLM 使用者**」進階到「**agent 系統建構者**」——能看懂 framework 在做什麼、能設計多 agent 協作、能寫自己的 MCP server。
 
-> 🙏 **特別感謝 [`datawhalechina/hello-agents`](https://github.com/datawhalechina/hello-agents)**：中文圈最完整的 chapter-length agent 教材（16 種 production 能力、特別是 **memory / RAG 那段**寫得最完整）。本 repo 角色是**學習路線圖 + 資源 curation**、把你送到適合的深度教材去。每個 stage / 練習 folder 都有 📚 callout 點過去。
+> 🙏 **特別感謝 [`datawhalechina/hello-agents`](https://github.com/datawhalechina/hello-agents)**：中文圈最完整的 chapter-length agent 教材（16 種 production 能力、特別是 **memory / RAG 那段**寫得最完整）。本 repo 是**路線圖 + 入門練習**、hello-agents 是**深度章節教材**——兩個角色互補、不重做。每個 stage / 練習 folder 都有 📚 callout 點過去。
 
 ---
 
@@ -73,7 +79,7 @@ cd awesome-agentic-ai-zh
 
 - 📖 **完全免費** — MIT 授權，所有內容開放共學
 - 🗺️ **兩條學習路徑** — Track A（CLI Power User）給「想 USE 現成 CLI agent」的人；Track B（Agent Builder）給「想 BUILD 自己 agent」的人。共用 Stage 0-2 基礎
-- 🛠️ **必做動手練習** — 每階段都有 1-5 個 mini project（題目 + 成功標準，**自己動手寫**，不是現成 demo），光看不練不算學會
+- 🛠️ **基礎動手練習** — 每階段附 1-5 個 illustrative 練習（題目 + dual-path SDK 對照 + success criteria）。定位是**基礎入門 + 路線確認**——chapter-length 深度練習見對應 stage 的 hello-agents / Anthropic Cookbook callout
 - 🎯 **精選 145+ 個 projects** — 每個都附星等推薦、適合誰、教什麼、怎麼跑（含本地 LLM 執行：Ollama、llama.cpp、LocalAI、MLX）
 - 🌏 **中文 / 英文雙語** — 繁中為主、英文版完整對照
 - 🎓 **不只「框架」、還有「Claude Code 生態」** — MCP / Skills / Plugins / SDK 完整堆疊
