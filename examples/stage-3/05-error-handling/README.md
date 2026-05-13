@@ -5,6 +5,11 @@
 對應 [Stage 3 — Tool Use & Agent 入門](../../../stages/03-tool-use-and-hello-agent.md) 練習 5。
 > 🎓 **學習模式**：這份 `starter.py` 是**完整解答**、不是 TODO skeleton。建議用**主動模式**——`mv starter.py starter_reference.py`、看 signature 不看 body、自己重寫一份 `starter.py`、跑 `python test.py` 驗證；卡 20 分鐘再回去對照 reference。完整方法論看 [`docs/HOW_TO_USE.md`](../../../docs/HOW_TO_USE.md)。
 
+> 📚 **想要 chapter-length 深入版？** 本 folder 的 starter 是 70-150 行 illustrative 版、聚焦 `核心 pattern + 兩條 SDK path`，不是 production-grade tutorial。深度教材推薦：
+> - [`datawhalechina/hello-agents`](https://github.com/datawhalechina/hello-agents) ⭐ 中文圈最完整、章節式 + 16 種 production 能力。**本練習對應 hello-agents 的 Extra Chapter 錯誤處理 / circuit breaker**
+> - [ §5 結構化錯誤回傳](../../../resources/schema-design-cheatsheet.md)（本 repo 既有 cheatsheet）
+> - 完整 references 見 [Stage 3 § 精選 Projects](../../../stages/03-tool-use-and-hello-agent.md#-精選-projects)
+
 
 ## 為什麼這題重要
 

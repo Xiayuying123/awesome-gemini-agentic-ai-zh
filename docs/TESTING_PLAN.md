@@ -43,26 +43,42 @@ Shipped in commits [`d598e37`](https://github.com/WenyuChiou/awesome-agentic-ai-
 
 5. **Pilot exercise drift** (pre-session, still open) — `examples/stage-3/03-react-from-scratch/README.en.md` + `.zh-Hans.md` are pre-dual-path; the zh-TW canonical is current. Stage 3 polish pass should fix.
 
-## 🔵 Stage 5 + Track A — still pending
+## 🔵 Stage 5 + Track A — current coverage
 
-23 exercises remaining (Stage 5 sub-§ 5.1-5.4 + Track A1-A3 CLI-1 through CLI-12). **Not started.** Different shape — they're mostly bash / MCP / markdown / SKILL.md authoring, not Python SDK code. The Ollama-vs-Anthropic dual-path framing doesn't apply directly.
+### Track A1-A3 CLI track — **outline complete, no `examples/` folder by design**
 
-Framing decisions needed before writing:
+12 hands-on exercises documented across `tracks/cli/A{1,2,3}-*.md` × 3 langs (zh-TW canonical ~367 lines):
 
-| Stage 5 sub-§ | Likely framing |
+| File | Lines (zh-TW) | Exercises |
+|---|---|---|
+| `tracks/cli/A1-cli-intro.md` | 107 | CLI-1 安裝 + 第一次跑 / CLI-2 CLAUDE.md / CLI-3 第二個 CLI 並用 / CLI-4 認證細節 |
+| `tracks/cli/A2-cli-workflow.md` | 126 | CLI-5 production CLAUDE.md / CLI-6 slash command / CLI-7 多步驟拆解 / CLI-8 portable prompt |
+| `tracks/cli/A3-cli-production.md` | 134 | CLI-9 MCP server 接 CLI / CLI-10 GitHub Actions / CLI-11 cost tracking / CLI-12 plugin 跨 team 分享 |
+
+**No `examples/track-a/` folder built — and this is intentional**. CLI exercises are:
+- Bash commands (`ollama pull`, `claude` install, MCP-server install)
+- Markdown authoring (CLAUDE.md, slash command `.md` files, SKILL.md)
+- YAML / JSON config (GitHub Actions `.yml`, `plugin.json`, `marketplace.json`)
+- **Not Python SDK code**, so the dual-path Ollama/Anthropic `starter.py` + `test.py` pattern doesn't apply.
+
+What learners do for Track A: follow each numbered exercise in the outline doc, on their own real repo (their work codebase, not a sample). The `tracks/cli/A*.md` files contain success criteria for self-check.
+
+**Core reference**: [`resources/cli-agents-guide.md`](../resources/cli-agents-guide.md) (148 lines) — 7-CLI comparison + decision rubric + common pitfalls.
+
+**Potential v2** (not committed): could ship `examples/track-a/` containing sample CLAUDE.md / `.claude/commands/review.md` / sample GHA workflow yml. Low priority — current outline is self-contained.
+
+### Stage 5 — partial coverage
+
+Stage 5 (`stages/05-claude-code-ecosystem.md`) has 4 sub-stages with hands-on exercises:
+
+| Sub-stage | Status |
 |---|---|
-| 5.1 Claude Code 基礎 | CLI walkthrough only, no dual-path |
-| 5.2 MCP | Python MCP SDK example (single path) |
-| 5.3 Skills | SKILL.md authoring tutorial; the `tool-calling-tutor` we shipped is the canonical example |
-| 5.4 Plugins | plugin.json + marketplace.json walkthrough |
+| 5.1 Claude Code 基礎 | Outline only (in `stages/05-...md` §動手練習) |
+| 5.2 MCP (Model Context Protocol) | Outline only; cookbook §2 covers building first MCP server |
+| 5.3 Skills | Outline + **1 shipped meta-example**: [`examples/stage-5/tool-calling-tutor/`](../examples/stage-5/tool-calling-tutor/) (full SKILL.md + 3 references + evals.json, used as the Stage 5.3 authoring exemplar) |
+| 5.4 Plugins & Marketplaces | Outline only |
 
-| Track A | Likely framing |
-|---|---|
-| A1 CLI intro | Compare 7 CLIs (Claude Code / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes) — already structured in the outline |
-| A2 CLI workflow | `CLAUDE.md` authoring + slash command + portable prompt patterns |
-| A3 CLI production | MCP + GitHub Actions + cost tracking + plugin sharing |
-
-These should be scoped in a follow-up session.
+For v2, sub-stages 5.1 / 5.2 / 5.4 could ship sample artifacts (sample `CLAUDE.md`, MCP server skeleton, plugin.json). Similar to Track A v2 — low priority.
 
 ## v2 path (deferred)
 
