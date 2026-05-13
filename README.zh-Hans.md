@@ -152,6 +152,7 @@ cd awesome-agentic-ai-zh
 常用入口：
 
 - 🚀 **完全没写过 code、第一次接触 AI agent？** → [`resources/setup-guide.zh-Hans.md`](resources/setup-guide.zh-Hans.md)（30-45 分钟从零装好）
+- 🗺️ **想搞懂为什么有的 agent 在 terminal、有的在 Telegram、有的在 Jetson 板子？** → [`resources/agent-paradigms.zh-Hans.md`](resources/agent-paradigms.zh-Hans.md) — Agent 5 种型态 mental model（含 Hermes Agent + OpenClaw 具体例子）
 
 ### 三个核心用语：MCP / Skills / Plugins
 

@@ -171,6 +171,7 @@ Common quick links:
 
 - 🚀 **Never written code, or first time with AI agents?** → [`resources/setup-guide.en.md`](resources/setup-guide.en.md) (30-45 minutes from zero)
 - 📖 **Don't know a term?** (LLM, agent, RAG, token, MCP, Skill, vector DB, …) → [`resources/glossary.en.md`](resources/glossary.en.md) — 30+ common terms, 30–80-word definition each + which stage covers it
+- 🗺️ **Why does one agent live in a terminal, another in Telegram, another on a Jetson board?** → [`resources/agent-paradigms.en.md`](resources/agent-paradigms.en.md) — 5 agent paradigms as a mental model (concrete examples for Hermes Agent + OpenClaw)
 - 🔑 **What MCP / Skills / Plugins mean** → [RESOURCES.en.md §three core terms](RESOURCES.en.md#three-core-terms-mcp--skills--plugins)
 - 🔌 **Connect to Notion / Obsidian / Excel / GitHub / etc.** → [RESOURCES.en.md §daily-tool integrations](RESOURCES.en.md#daily-tool-integrations-mcp-servers--skills) or full 62-entry catalog [`resources/mcp-skills-catalog.en.md`](resources/mcp-skills-catalog.en.md)
 - 🔬 **Research workflow + multi-LLM delegation pair** → [RESOURCES.en.md §research workflow](RESOURCES.en.md#research-workflow-by-the-repo-maintainer)

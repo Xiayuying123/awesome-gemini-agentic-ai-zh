@@ -172,6 +172,7 @@ cd awesome-agentic-ai-zh
 
 - 🚀 **完全沒寫過 code、第一次接觸 AI agent？** → [`resources/setup-guide.md`](resources/setup-guide.md)（30-45 分鐘從零裝好）
 - 📖 **不懂某個詞？**（LLM、agent、RAG、token、MCP、Skill、向量資料庫⋯）→ [`resources/glossary.md`](resources/glossary.md) — 30 多個常出現的詞，每個 30-80 字解釋 + 哪 stage 講細的
+- 🗺️ **想搞懂為什麼有的 agent 在 terminal、有的在 Telegram、有的在 Jetson 板子？** → [`resources/agent-paradigms.md`](resources/agent-paradigms.md) — Agent 5 種型態 mental model（含 Hermes Agent + OpenClaw 具體例子）
 - 🍳 **想動手做出來**（寫 Skill / 寫 MCP server / 接 Word / 接 NotebookLM / 接 Zotero / 接本機 LLM）→ [`resources/cookbook.md`](resources/cookbook.md) — 6 個 step-by-step recipe（每個 30-50 分鐘）
 - 🔑 **MCP / Skills / Plugins 用語怎麼解釋** → [RESOURCES.md §三個核心用語](RESOURCES.md#三個核心用語mcp--skills--plugins)
 - 🔌 **接 Notion / Obsidian / Excel / GitHub 等日常工具** → [RESOURCES.md §接日常工具](RESOURCES.md#接日常工具常用-mcp-server--skill) 或完整 62 條目錄 [`resources/mcp-skills-catalog.md`](resources/mcp-skills-catalog.md)
