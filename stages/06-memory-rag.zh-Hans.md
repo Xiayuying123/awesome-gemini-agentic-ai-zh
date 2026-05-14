@@ -547,7 +547,7 @@ OpenAI **o1**（2024-09）开启、DeepSeek **R1**（2025-01）开源化、**Dee
 
 ### 两条路怎么选
 
-| 你情况 | 建议 |
+| 你的情况 | 建议 |
 |---|---|
 | 用一般 chat model base、想加 reasoning | Path 1（prompt-based）—— ToT / Self-Consistency / CoVe |
 | 预算 / latency 允许、要最强 reasoning | Path 2 —— **GPT-5.5 / Opus 4.7 / Gemini 3.1 Pro / V4-Pro** 任挑一个 |
