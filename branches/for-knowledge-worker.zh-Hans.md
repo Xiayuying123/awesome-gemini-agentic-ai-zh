@@ -6,13 +6,21 @@
 
 > [← 回主路线 README](../README.zh-Hans.md) · 走完 **Track A 的 A3** 或 **Track B 的 Stage 7** 后从这里接续。把 agentic AI 应用到办公室 / 知识工作上。
 
-## 使用场景
+## 使用场景（办公场景 × AI 怎么帮）
 
-- Email 分流与草拟回信
-- 会议笔记 → 行动项目
-- 多来源报告集成
-- 研究 / 市场情报收集
-- 决策辅助流程
+下表把知识工作者一天会遇到的 7 个场景拆开——多数场景在 Claude Desktop + MCP（Tier 1）就能搞定：
+
+| 场景 | 你常遇到的痛点 | AI 能帮的部分 | 推荐工具 |
+|---|---|---|---|
+| **Email 分流** | 每天 100 封看不完、优先顺序错 | 分类 + 草拟回信让你 review | Claude Desktop + Gmail MCP |
+| **会议 → 行动项目** | 听完 30 分钟忘一半、action item 没记 | 逐字稿 → 主要决策 + 行动项目 | Otter / Zoom 逐字稿 + Claude |
+| **跨工具报告集成** | Slack / Gmail / Notion 各一块、要手动拉 | 自动拉指标 + 整合 + email summary | n8n / Make / Langflow |
+| **研究 / 市场情报** | 不知道问什么问题、不知道该信谁 | 多源搜索 + 交叉验证 + 备忘录 | Perplexity + Claude |
+| **Slack / 消息** | 拿捏不准语气、敏感场景 | 改写 + 调语气 + 多版本 | Claude.ai |
+| **Notion / 知识库整理** | 杂乱、没架构、找不到旧笔记 | 重 tag + 分类 + 自动摘要 | Claude Desktop + Notion MCP |
+| **文件 / 提案草稿** | spec / proposal 卡关 | 大纲 → 段落 → 润色 | Claude.ai |
+
+> 💡 **MCP 是知识工作者的关键**：第一次接触 MCP？看 [Stage 5.2 — MCP 基础](../stages/05-claude-code-ecosystem.zh-Hans.md#52--mcpmodel-context-protocol-基础)；想知道有哪些 MCP server → [`resources/mcp-skills-catalog.zh-Hans.md`](../resources/mcp-skills-catalog.zh-Hans.md)。
 
 ## 精选 Projects
 
@@ -105,24 +113,30 @@ Slack / Gmail / Discord 等。Anthropic 原本维护的 reference server 已于 
 
 ---
 
-## 可以建的流程
+## 可以建的流程（按使用频率）
 
-- **每日 email 分流**：扫 inbox → 分类 → 草拟回信让你 review → 标已读
-- **会议 → 行动项目**：逐字稿 → 主要决策 + 行动项目 → 指派 + 公告
-- **每周报告集成**：从 N 个工具拉指标 → 整理 → email summary
-- **研究 / 市场情报**：问题 → 多来源搜索 → 交叉验证 → 备忘录
+| 频率 | 流程 | 怎么做（≤ 3 步） | 推荐工具 | 适合谁 |
+|---|---|---|---|---|
+| **每天** | Email 分流 | (1) 扫 inbox<br>(2) 分类成“立即 / 今天 / 这周 / 不用回”<br>(3) 草拟回信让你 review | Claude Desktop + Gmail MCP | 全知识工作者 |
+| **每次会议** | 会议 → 行动项目 | (1) 逐字稿（Otter / Zoom）<br>(2) Claude 抓“主要决策 + 行动项目”<br>(3) 指派 + Slack / email 公告 | Claude.ai + 逐字稿工具 | 主管 / PM |
+| **每周** | 跨工具报告 | (1) 从 N 个工具拉指标<br>(2) Claude / n8n 整理<br>(3) email summary 寄出 | n8n / Make / Langflow | 要定期 update 老板的人 |
+| **不定期** | 研究 / 市场情报 | (1) 想清楚问题<br>(2) 多来源搜索 + 交叉验证<br>(3) 写成 1-2 页备忘录 | Perplexity + Claude | 分析 / 策略职 |
+| **不定期** | Notion / 知识库重整 | (1) 把散落笔记贴进 Claude<br>(2) 请它重新 tag + 分类<br>(3) 输出 Notion 结构化格式 | Claude Desktop + Notion MCP | 有 Notion / Obsidian 习惯的人 |
+
+> 💡 **新手起手式**：先把“每天 Email 分流”做一个月，养成“inbox 开 Claude”的习惯，再加其他流程。一次装太多会养不起来。
 
 ## 层级建议
 
-大多数知识工作者应该从 **Tier 0**（Claude.ai 网页版）开始，当你需要对本机 / 云端文件重复跑的流程时，再升级到 **Tier 1**（Claude Desktop 加 MCP）。
+下表是建议的进阶路径：
 
-**Tier 对照**：
-- **Tier 0** = 网页（Claude.ai / ChatGPT / Gemini / Perplexity）
-- **Tier 1** = Desktop App + MCP（Claude Desktop 接 Gmail / Notion / 日历）
-- **Tier 2** = 自动化平台（n8n / Make / Langflow）
-- **Tier 3** = CLI / SDK（Claude Code / Codex / 自己写 Python）
+| Tier | 工具 | 适合谁 | 学习成本 |
+|---|---|---|---|
+| **Tier 0** | Claude.ai / ChatGPT / Gemini / Perplexity（网页版） | 大多数知识工作者从这里开始 | 0（会用浏览器就行） |
+| **Tier 1** | Claude Desktop + MCP（Gmail / Notion / 日历） | 要对本机 / 云端文件重复跑流程 | 半天装好 |
+| **Tier 2** | n8n / Make / Langflow（自动化平台） | 要把多个 SaaS 工具串起来、不写 code | 1 周 setup |
+| **Tier 3** | Claude Code / Codex / 自己写 Python | 有 dev 背景或团队有 dev 支援、要 production-grade | 数周、跟 Track A 重叠 |
 
-**Tier 3+（CLI / SDK）对大多数知识工作者任务来说太重。** 不要被别人怂恿过去。
+**Tier 3+（CLI / SDK）对多数知识工作者任务来说太重**——不要被别人怂恿过去。多数人停在 Tier 1-2 就够。
 
 ## 阅读
 

@@ -6,13 +6,21 @@
 
 > [← Back to main path README](../README.en.md) · Continue here after **Track A's A3** or **Track B's Stage 7**. Apply agentic AI to coding workflows.
 
-## Use Cases
+## Use Cases (Developer Scenarios × How AI Helps)
 
-- AI pair programming (Cursor, Aider, Claude Code, Cline, Continue)
-- Code review automation
-- Test generation
-- Multi-agent coding tasks (planning + execution)
-- IDE integration and CI governance
+The table below splits a developer's day into 7 common scenarios. Each has a different pain point, and each calls for a different level of AI tooling:
+
+| Scenario | Pain point | How AI helps | Recommended tools (light → heavy) |
+|---|---|---|---|
+| **AI pair programming** | You forget syntax mid-flow or cannot recall a method name | Autocomplete + rewrite + explanation | Cursor / Copilot → Claude Code |
+| **Multi-file refactoring** | Changing one class risks missed references; cross-file rename is error-prone | Batch refactors while keeping style consistent across many files | Cursor → Claude Code → codex-delegate |
+| **Code review (your own PR)** | Reviewing your own diff makes it easy to miss problems | Find bugs / smells and check edge cases | Claude Code / Cline → Continue (CI) |
+| **Writing tests** | TDD cases are easy to miss; coverage falls short | Generate pytest cases from signatures / specs | Claude Code + Aider |
+| **Debugging** | Logs are thin; stack traces are hard to interpret | Explain traces, generate hypotheses, run minimal repros | Claude Code |
+| **Docs** | Docstrings / READMEs lag behind refactors | Generate docs from code and update docs alongside PRs | Claude Code |
+| **CI / team automation** | Manual review is repetitive; style varies across people | Run automated review / lint in GitHub Actions | Claude Code Action + Continue |
+
+> 💡 **Individual vs team**: the first 6 rows are personal daily workflows. The final row (CI) is team governance. For teams under 5 people, AI automation in CI often has low ROI; you can defer it.
 
 ## Curated Projects
 
@@ -57,13 +65,17 @@ Editor-integrated AI pair-programming tool. Widely adopted in AI editor tools an
 
 - [**yamadashy/repomix**](https://github.com/yamadashy/repomix) ⭐⭐⭐⭐⭐ ★ 24k+ — **Typical developer use case: package the whole codebase for a reviewer / refactor agent**. Outputs a single AI-friendly file (XML / Markdown / JSON) for Claude Code / Codex code review / refactoring. See the official README for technical details such as MCP server mode, tree-sitter compression, and secretlint filtering. **A must-have, daily-driver-grade tool for Track A.**
 
-## Workflows To Master
+## Workflows to Master (by frequency)
 
-- **AI pair programming**: pick one of Claude Code / Cursor / Cline for daily work
-- **Git-native AI editing**: run Aider for a week, get used to the "AI edits → commit → review" rhythm
-- **AI checks in CI**: use Continue to wire AI checks into your PR pipeline
-- **Test generation**: write a skill / prompt that generates pytest tests from a function signature
-- **Code review automation**: GitHub Action calling Claude API on every PR
+| Frequency | Workflow | Steps (≤3) | Recommended tools | Best for |
+|---|---|---|---|---|
+| **Daily** | AI pair programming | (1) Open a branch<br>(2) Give the task to Claude Code and **ask for a plan first** (no code yet)<br>(3) Review plan → approve → code → review your own diff | Claude Code / Cursor / Cline | All developers |
+| **Daily** | Git-native AI editing | (1) `aider`<br>(2) Ask in natural language<br>(3) review + commit / `/undo` | Aider | People who want a clean git flow |
+| **Per PR** | Automated code review | (1) `.github/workflows/claude-review.yml`<br>(2) Capture git diff → run prompt → post back to PR<br>(3) human + AI review | Claude Code Action + Continue | Teams |
+| **Per feature** | Test generation | (1) Provide function signature + docstring<br>(2) Ask AI for pytest cases, including edge cases<br>(3) Run coverage + intentionally break a bug to verify tests catch it | Claude Code / Aider | Test-writing phase |
+| **Occasional** | Multi-file batch edits | (1) Claude writes a plan<br>(2) codex-delegate handles mechanical refactors<br>(3) Claude reviews the diff | Claude + codex-delegate | Refactors across 30+ files |
+
+> 💡 **Starter habit**: run "daily AI pairing" and "test generation" for a month first, then add automated PR review.
 
 ### 3 Concrete Workflow Recipes
 
@@ -119,14 +131,18 @@ Reference: official [`anthropics/claude-code-action`](https://github.com/anthrop
 | Take AI-generated tests at face value | Run coverage + intentionally break a unit to see if tests catch it |
 | Discover wrong direction after many commits | **Plan-first** mode: review the plan before any coding |
 
-## Tier Upgrade Path
+## Tier Progression
 
-- **Tier 0**: Cursor / Claude Desktop — IDE chat, no agents
-- **Tier 1**: Claude Code / Cline / OpenCode — CLI with file-system access and CLAUDE.md, still human-in-the-loop
-- **Tier 2**: Author your own Skills + MCP servers — package your dev workflow as shared team skills
-- **Tier 3**: Auto-running agents in CI + production observability — graduates to [Stage 7](../stages/07-multi-agent-production.en.md) territory
+Recommended progression:
 
-> Most individual developers can stay at Tier 0-1 first. **Validate ROI before going Tier 2+**: only worth the investment if your team is large, flows are repetitive, and incidents are irreversible.
+| Tier | Tools | Best for | Learning cost |
+|---|---|---|---|
+| **Tier 0** | Cursor / Copilot / Claude.ai | IDE chat, autocomplete, no custom agents | 0 (if you can use an editor) |
+| **Tier 1** | Claude Code / Cline / OpenCode + `CLAUDE.md` | CLI with file-system access, human-in-the-loop | 1-2 days |
+| **Tier 2** | Custom Skills + MCP server | Packaging dev workflows as shared team skills | 1 week of setup |
+| **Tier 3** | Auto-running agents in CI + production observability | [Stage 7](../stages/07-multi-agent-production.en.md) territory | Several weeks, governance required |
+
+> **Most individual developers can stay at Tier 0-1**. **Validate ROI before going Tier 2+**: it is only worth the investment if the team is large, the workflows repeat often, and failures are hard to reverse.
 
 ## Other Branches Also Apply
 

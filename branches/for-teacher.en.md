@@ -132,15 +132,19 @@ General writing / brainstorming skills. Adaptable for lesson prep.
 #### [The Effortless Academic — Beginner Guides](https://effortlessacademic.com/claude-code-and-cowork-for-academics-beginner-guide-part-1/)
 Multi-part guide for academics adopting Claude Code, applicable to teachers.
 
-## Workflows To Build
+## Workflows You Can Build (by teaching stage)
 
-These are templates — adapt to your subject:
+Use these 5 templates as starting points and adapt them to your subject:
 
-- **Lesson plan generator**: Prompt with curriculum + topic → outline → slides → assessment
-- **Rubric creation**: Sample student work + learning objective → rubric draft
-- **Personalized feedback**: Student submission + rubric → individualized written feedback (with human review)
-- **Scenario simulation activity**: learning goal + role setup → dialogue script → class practice → reflection questions
-- **Remediation material generator**: common errors + student level → short practice → hints → extension challenge
+| Stage | Workflow | Steps (≤3) | Recommended tools | Caveat |
+|---|---|---|---|---|
+| **Before prep** | Lesson plan generator | (1) Curriculum + topic prompt → outline<br>(2) Outline → slides<br>(3) Slides → assessment items | Claude.ai / NotebookLM | Teacher final review |
+| **During prep** | Rubric creation | (1) Provide student work samples + learning goals<br>(2) Ask AI for a 4-level rubric draft<br>(3) Teacher adjusts level boundaries | Claude.ai | Avoid vague terms like "high quality" |
+| **Grading work** | Personalized feedback | (1) Student work + rubric → AI feedback draft<br>(2) Teacher reviews and edits each one<br>(3) Send back | Claude.ai | **AI assistance ≠ AI grading**; final grades must be human |
+| **Class activity** | Scenario simulation | (1) Learning goal + role setup → dialogue script<br>(2) Run class practice<br>(3) Ask reflection questions | Claude.ai | Socratic follow-up, no direct answers; student input must contain **no PII** |
+| **After class** | Personalized remediation material | (1) Summarize common student errors<br>(2) Generate short practice + hints by student level<br>(3) Add extension challenges | Claude.ai | Anonymize student data |
+
+> 💡 **Starter habit**: run the "before-prep lesson plan generator" for one semester first, then add rubric / feedback workflows. ⚠️ Any step involving student data or grading should be checked against the §Privacy + Ethics (Important) section below.
 
 ### 3 Copy-Paste Prompt Templates
 
@@ -192,19 +196,15 @@ If your school / institution has an AI policy, **that takes priority** over this
 
 ## Tier Recommendations for Teachers
 
-Most teachers should stay at **Tier 0 (browser chat)** or **Tier 1 (Claude Desktop)**:
+Recommended progression. Most teachers should stay at Tier 0-1:
 
-- **Tier 0**: Claude.ai web chat — copy/paste prompts, no install
-  - Good for: occasional lesson prep, one-off tasks, item generation, writing emails
-  - Example: copy the lesson-outline prompt above, fill in topic, run
-- **Tier 1**: Claude Desktop / [NotebookLM](https://notebooklm.google.com/) — file uploads, conversation history
-  - Good for: grading / organizing a semester's data, course mapping, bulk-importing reading list PDFs and querying them
-  - Example: upload your full course reading list to NotebookLM; query throughout the semester
-- **Tier 2+ (CLI / SDK)**: only if you're **automating a recurring flow**
-  - Example: every week 30 student submissions → auto-generated draft feedback
-  - Non-coder teachers: **ask the school IT or a student RA** to set up; you only use the output
+| Tier | Tools | Best for | Learning cost |
+|---|---|---|---|
+| **Tier 0** | Claude.ai web chat | Occasional lesson prep, one-off tasks, item generation, writing emails. Copy the prompt template above and fill in the topic. | 0 (if you can use a browser) |
+| **Tier 1** | Claude Desktop / [NotebookLM](https://notebooklm.google.com/) | Grading / organizing a semester's data, course mapping, bulk-importing reading list PDFs and querying them | 30 minutes |
+| **Tier 2+** | Claude Code / CLI / SDK | Repeated automation, such as 30 student submissions every week → auto-generated draft feedback | 1 week; non-coders can ask school IT / a student RA to set it up |
 
-> Once you're at Tier 2+, follow [Track A — CLI Power User](../tracks/cli/A1-cli-intro.en.md).
+> **Most teachers can stop at Tier 0-1**. Once you're at Tier 2+, follow [Track A — CLI Power User](../tracks/cli/A1-cli-intro.en.md).
 
 ## Other Branches Also Apply
 

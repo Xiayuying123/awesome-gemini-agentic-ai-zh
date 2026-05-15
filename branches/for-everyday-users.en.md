@@ -6,13 +6,21 @@
 
 > [← Back to main path README](../README.en.md) · You **don't have to walk the full main path** to start here — this branch is for people who **just want to USE AI, not build agents**.
 
-## Use Cases
+## Use Cases (Life Scenarios × How AI Helps)
 
-- Writing email, organizing notes, polishing a cover letter
-- Learning new skills (reading English articles, picking up a language, reviewing material)
-- Research and comparison (travel, products, schools)
-- Daily life flow (recipes, schedules, todo lists)
-- Privacy-sensitive scenarios: medical records, personal finance (→ local LLM)
+The table below splits everyday AI use into 7 common scenarios. Most of them are fully covered by web apps at Tier 0:
+
+| Scenario | Pain point | How AI helps | Recommended tools |
+|---|---|---|---|
+| **Writing email / cover letters** | Getting stuck on how to start | Drafting + tone edits + version comparison | Claude.ai / ChatGPT |
+| **Learning new skills** | Materials feel formal; nobody is there to ask | Personalized tutoring, interruptible at any time | Claude.ai / ChatGPT |
+| **Language practice** | No conversation partner; unclear grammar mistakes | Voice conversation and instant correction | ChatGPT Voice / Gemini |
+| **Research / comparison** | Hard to know which source to trust | Multi-source search with citations | Perplexity |
+| **Organizing life workflows** | Recipes / trips / todo lists are scattered | Consolidation + structure | Claude.ai / ChatGPT |
+| **Batch file cleanup** | 100 PDFs / images with no clear grouping | Rename + classify + summarize | Claude Desktop / Claude Code |
+| **Privacy-sensitive chat** | Medical / legal / financial notes should not go to the cloud | Run a local LLM | Ollama + qwen2.5 |
+
+> 💡 **Do not rush upgrades**: the first 5 scenarios can stay at Tier 0 (web). You only need Tier 1-3 when you repeat the same flow often or data absolutely cannot leave your machine.
 
 ## Where to Start: 4 Tiers by "How Hands-On Are You?"
 
@@ -130,25 +138,32 @@ Closed-source but the most beginner-friendly option — drag-and-drop UI, no com
 
 If you want to go deeper, see [Stage 2 — Prompt Engineering](../stages/02-prompt-engineering.en.md), which has a more systematic treatment.
 
-## Workflows You Can Build
+## Workflows You Can Build (by frequency)
 
-These are templates — adapt to your situation:
+Use these 5 templates as starting points and adapt them to your own context:
 
-- **Weekly journal**: tell Claude.ai what you did this week, ask it to organize into a journal + key items for next week
-- **Email triage**: paste pending emails into Claude every morning, ask it to categorize as "reply now / today / this week / skip"
-- **Language learning**: voice-mode conversation with ChatGPT in your target language; have it flag grammar mistakes
-- **Batch file cleanup**: have Claude Code rename and reorganize all files in your Downloads folder by date + topic
-- **Local privacy chat**: Ollama running qwen2.5:7b — **organize personal medical / legal / financial notes** without sending data to the cloud. Important distinction: a local model protects **privacy**, not **correctness**. Specific medical diagnoses, legal judgments, and investment decisions still require professionals or official sources; don't rely only on AI answers
+| Frequency | Workflow | Steps (≤3) | Recommended tools |
+|---|---|---|---|
+| **Daily** | Email triage | (1) Paste pending emails into Claude in the morning<br>(2) Ask it to classify "reply now / today / this week / skip"<br>(3) Draft replies for your review | Claude.ai / ChatGPT |
+| **Daily** | Speaking practice | (1) Open ChatGPT Voice<br>(2) Practice English / Japanese conversation<br>(3) Ask it to flag grammar mistakes | ChatGPT Voice / Gemini |
+| **Weekly** | Weekly journal | (1) Tell Claude what you did this week<br>(2) Ask for a journal + next week's priorities<br>(3) Save it to Obsidian / Notion | Claude.ai |
+| **Occasional** | Batch file cleanup | (1) Run Claude Code in your Downloads folder<br>(2) Rename by date + topic<br>(3) Sort into subfolders | Claude Code |
+| **Privacy scenario** | Local medical / legal / financial notes | (1) Run qwen2.5:7b in Ollama<br>(2) Organize personal notes without sending data to the cloud<br>(3) ⚠️ It protects **privacy**, not **correctness**: specific diagnoses / legal judgments / investment decisions still require professionals | Ollama + qwen2.5 |
+
+> 💡 **Starter habit**: run "daily email triage" and "speaking practice" for a month first, then add other workflows.
 
 ## Tier Recommendations for Everyday Users
 
-90% of scenarios: **stay at Tier 0** — Claude.ai or ChatGPT web. No install, no payment needed (free tiers are rate-limited but enough for daily use).
+Recommended progression:
 
-5% upgrade to Tier 1: handling local files, retaining long conversation history, connecting MCP servers.
+| Tier | Tools | Best for | Learning cost |
+|---|---|---|---|
+| **Tier 0** | Claude.ai / ChatGPT / Gemini / Perplexity (web) | 90% of scenarios: no install, no payment required | 0 (if you can use a browser) |
+| **Tier 1** | Claude Desktop / ChatGPT Desktop + MCP | Local files, retained conversation history, Gmail / Notion integrations | 30 minutes |
+| **Tier 2** | Claude Code / opencode (CLI) | Repeated automation needs, such as doing the same task 100 times daily | 1-2 days |
+| **Tier 3** | Ollama local LLM | Privacy-sensitive data that cannot go to the cloud, API-cost sensitivity, offline use | Half a day |
 
-5% upgrade to Tier 2-3: real automation needs (e.g. doing the same thing 100 times daily) or privacy-sensitive data that can't go to the cloud.
-
-**Don't let anyone push you to upgrade prematurely** — Tier 0 is enough for most people. Tiers 2-3 are tools, not status symbols.
+> **Do not let anyone push you to upgrade prematurely**. Tier 0 is enough for most people. Tiers 2-3 are tools, not status symbols.
 
 ## Community Notes
 

@@ -6,13 +6,21 @@
 
 > [← Back to main path README](../README.en.md) · Continue here after **Track A's A3** or **Track B's Stage 7**. Apply agentic AI to office / knowledge work.
 
-## Use Cases
+## Use Cases (Office Scenarios × How AI Helps)
 
-- Email triage and drafting
-- Meeting notes → action items
-- Report aggregation from multiple sources
-- Research / market intelligence gathering
-- Decision-support workflows
+The table below splits a knowledge worker's day into 7 common scenarios. Most of them are covered by Claude Desktop + MCP at Tier 1:
+
+| Scenario | Pain point | How AI helps | Recommended tools |
+|---|---|---|---|
+| **Email triage** | 100 messages a day; priority is hard to judge | Categorize + draft replies for your review | Claude Desktop + Gmail MCP |
+| **Meetings → action items** | You forget half of a 30-minute meeting; action items are not captured | Transcript → key decisions + action items | Otter / Zoom transcript + Claude |
+| **Cross-tool report aggregation** | Slack / Gmail / Notion each hold part of the picture | Pull metrics + synthesize + email summary | n8n / Make / Langflow |
+| **Research / market intelligence** | Hard to know what to ask or who to trust | Multi-source search + cross-validation + memo | Perplexity + Claude |
+| **Slack / messaging** | Tone is hard to calibrate in sensitive situations | Rewrite + adjust tone + produce alternatives | Claude.ai |
+| **Notion / knowledge-base cleanup** | Notes are messy, unstructured, and hard to find | Retag + classify + auto-summarize | Claude Desktop + Notion MCP |
+| **Documents / proposal drafts** | Specs and proposals get stuck | Outline → sections → polish | Claude.ai |
+
+> 💡 **MCP is central for knowledge workers**: new to MCP? Read [Stage 5.2 — MCP Foundation](../stages/05-claude-code-ecosystem.en.md#52--mcpmodel-context-protocol--foundation). Looking for available MCP servers? See [`resources/mcp-skills-catalog.en.md`](../resources/mcp-skills-catalog.en.md).
 
 ## Curated Projects
 
@@ -105,24 +113,30 @@ Slack / Gmail / Discord etc. The original Anthropic-hosted reference servers wer
 
 ---
 
-## Workflows To Build
+## Workflows You Can Build (by frequency)
 
-- **Daily email triage**: scan inbox → categorize → draft replies for review → mark read
-- **Meeting → action items**: transcript → key decisions + action items → assign + post
-- **Weekly report aggregation**: pull metrics from N tools → synthesize → email summary
-- **Research / market intel**: question → search multiple sources → cross-validate → memo
+| Frequency | Workflow | Steps (≤3) | Recommended tools | Best for |
+|---|---|---|---|---|
+| **Daily** | Email triage | (1) Scan inbox<br>(2) Categorize into "now / today / this week / no reply"<br>(3) Draft replies for your review | Claude Desktop + Gmail MCP | All knowledge workers |
+| **Per meeting** | Meetings → action items | (1) Capture transcript (Otter / Zoom)<br>(2) Have Claude extract "key decisions + action items"<br>(3) Assign + announce in Slack / email | Claude.ai + transcript tool | Managers / PMs |
+| **Weekly** | Cross-tool report | (1) Pull metrics from N tools<br>(2) Synthesize with Claude / n8n<br>(3) Send email summary | n8n / Make / Langflow | People who send regular updates |
+| **Occasional** | Research / market intelligence | (1) Clarify the question<br>(2) Search multiple sources + cross-validate<br>(3) Write a 1-2 page memo | Perplexity + Claude | Analysts / strategy roles |
+| **Occasional** | Notion / knowledge-base cleanup | (1) Paste scattered notes into Claude<br>(2) Ask it to retag + classify<br>(3) Output structured Notion format | Claude Desktop + Notion MCP | Notion / Obsidian users |
+
+> 💡 **Starter habit**: run "daily email triage" for a month first so "open inbox, open Claude" becomes natural. Adding too many automations at once is hard to sustain.
 
 ## Tier Recommendations
 
-Most knowledge workers should start at **Tier 0** (Claude.ai web), upgrade to **Tier 1** (Claude Desktop with MCP) when you need repeat workflows over local/cloud files.
+Recommended progression:
 
-**Tier mapping**:
-- **Tier 0** = Web (Claude.ai / ChatGPT / Gemini / Perplexity)
-- **Tier 1** = Desktop App + MCP (Claude Desktop connected to Gmail / Notion / calendar)
-- **Tier 2** = Automation platform (n8n / Make / Langflow)
-- **Tier 3** = CLI / SDK (Claude Code / Codex / your own Python)
+| Tier | Tools | Best for | Learning cost |
+|---|---|---|---|
+| **Tier 0** | Claude.ai / ChatGPT / Gemini / Perplexity (web) | Most knowledge workers start here | 0 (if you can use a browser) |
+| **Tier 1** | Claude Desktop + MCP (Gmail / Notion / calendar) | Repeat workflows over local / cloud files | Half a day |
+| **Tier 2** | n8n / Make / Langflow (automation platforms) | Connecting several SaaS tools without writing code | 1 week of setup |
+| **Tier 3** | Claude Code / Codex / your own Python | Dev background or dev support, production-grade workflows | Several weeks, overlaps with Track A |
 
-**Tier 3+ (CLI / SDK) is overkill for most knowledge worker tasks.** Don't be talked into it.
+**Tier 3+ (CLI / SDK) is too heavy for most knowledge worker tasks**. Most people can stop at Tier 1-2.
 
 ## Reading
 

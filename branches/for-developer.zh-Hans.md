@@ -6,13 +6,21 @@
 
 > [← 回主路线 README](../README.zh-Hans.md) · 走完 **Track A 的 A3** 或 **Track B 的 Stage 7** 后从这里接续。把 agentic AI 应用到开发流程上。
 
-## 使用场景
+## 使用场景（开发场景 × AI 怎么帮）
 
-- AI 结对编程（Cursor、Aider、Claude Code、Cline、Continue）
-- Code review 自动化
-- 测试生成
-- Multi-agent coding 任务（规划 + 执行）
-- IDE 集成与 CI 规范
+下表把开发者一天会遇到的 7 个场景拆开——每个场景有不同的痛点，AI 工具也不同：
+
+| 场景 | 你常遇到的痛点 | AI 能帮的部分 | 推荐工具（从轻到重） |
+|---|---|---|---|
+| **AI 结对编程** | 写到一半忘 syntax / 想不到 method 名 | 自动补全 + 改写 + 解释 | Cursor / Copilot → Claude Code |
+| **多文件重构** | 改一个 class 怕漏改、跨文件 rename 容易错 | batch refactor、改 50 个文件仍保持风格一致 | Cursor → Claude Code → codex-delegate |
+| **Code review（自己 PR）** | review 自己的 diff 看不出问题 | 找 bug / smell、检查 edge case | Claude Code / Cline → Continue（CI） |
+| **写 test** | TDD 常忘加 case、coverage 不足 | 从 signature / spec 生成 pytest | Claude Code + Aider |
+| **Debug** | log 不够、stack trace 看不懂 | 解释 trace、生成 hypothesis、跑 minimal repro | Claude Code |
+| **Doc** | docstring / README 没人写、refactor 后过期 | 从 code 生成 doc、PR 对应改 doc | Claude Code |
+| **CI / 团队自动化** | 重复手动跑 review、跨人风格不一 | GitHub Action 自动跑 review / lint | Claude Code Action + Continue |
+
+> 💡 **个人 vs 团队**：表中前 6 个是个人 daily workflow；最后 1 个（CI）是团队规范。团队规模 < 5 人时 CI 自动化的 ROI 不高，可以先不上。
 
 ## 精选 Projects
 
@@ -57,13 +65,17 @@
 
 - [**yamadashy/repomix**](https://github.com/yamadashy/repomix) ⭐⭐⭐⭐⭐ ★ 24k+ — **典型开发者用途：打包整个 codebase 给 reviewer / refactor agent**。输出单个 AI-friendly 文件（XML / Markdown / JSON），方便 Claude Code / Codex 做 code review / refactoring。技术细节（MCP server mode、tree-sitter 压缩、secretlint 过滤）见官方 README。**Track A 的必备 daily-driver 工具。**
 
-## 必练流程
+## 必练流程（按使用频率）
 
-- **AI 结对编程**：日常工作用 Claude Code、Cursor、或 Cline 任意一个
-- **Git-native AI 编辑**：用 Aider 跑一周，习惯「AI 编辑 → commit → review」这个节奏
-- **CI 上的 AI check**：用 Continue 把 AI 检查接到 PR pipeline
-- **测试生成**：写一个 skill / prompt，从 function signature 生成 pytest 测试
-- **Code review 自动化**：在每一个 PR 上调用 Claude API 的 GitHub Action
+| 频率 | 流程 | 怎么做（≤ 3 步） | 推荐工具 | 适合谁 |
+|---|---|---|---|---|
+| **每天** | AI 结对写 code | (1) 开 branch<br>(2) 任务丢给 Claude Code、**先 plan**（不写 code）<br>(3) Review plan → approve → 写 code → 自己 review diff | Claude Code / Cursor / Cline | 全开发者 |
+| **每天** | Git-native AI 编辑 | (1) `aider`<br>(2) 自然语言请求<br>(3) review + commit / `/undo` | Aider | 想要干净 git 流程的人 |
+| **Per PR** | 自动 code review | (1) `.github/workflows/claude-review.yml`<br>(2) 抓 git diff → 跑 prompt → post 回 PR<br>(3) human + AI 双审 | Claude Code Action + Continue | 团队 |
+| **Per feature** | 测试生成 | (1) 给 function signature + docstring<br>(2) 请 AI 生成 pytest case（含 edge case）<br>(3) 跑覆盖率 + 故意改 bug 看 test 抓不抓得到 | Claude Code / Aider | 写 test 阶段 |
+| **不定期** | 多文件批量修改 | (1) Claude 写 plan<br>(2) codex-delegate 跑机械式 refactor<br>(3) Claude review diff | Claude + codex-delegate | refactor 30+ 文件的时候 |
+
+> 💡 **新手起手式**：先做“每天 AI 结对”+“测试生成”两条一个月，习惯后再上 PR 自动 review。
 
 ### 3 个具体 workflow recipe
 
@@ -121,12 +133,16 @@ jobs:
 
 ## Tier 升级路径
 
-- **Tier 0**：Cursor / Claude Desktop——IDE 内 chat、不写 agent
-- **Tier 1**：Claude Code / Cline / OpenCode——CLI 接 file system、有 CLAUDE.md，但仍 human-in-the-loop
-- **Tier 2**：自写 Skills + MCP server——把你的 dev workflow 包成 skill team 共用
-- **Tier 3**：CI 自动跑 agent + production observability——进到 [Stage 7](../stages/07-multi-agent-production.zh-Hans.md) 领域
+下表是建议的进阶路径：
 
-> 多数个人开发者可先停在 Tier 0-1。**升级到 Tier 2+ 要先确认 ROI**——团队够大、流程够重复、事故不可逆、才值得 invest。
+| Tier | 工具 | 适合谁 | 学习成本 |
+|---|---|---|---|
+| **Tier 0** | Cursor / Copilot / Claude.ai | IDE 内 chat、autocomplete、不自己写 agent | 0（会用编辑器就行） |
+| **Tier 1** | Claude Code / Cline / OpenCode + `CLAUDE.md` | CLI 接 file system、human-in-the-loop | 1-2 天上手 |
+| **Tier 2** | 自写 Skills + MCP server | 把 dev workflow 包成 skill 给团队共用 | 1 周 setup |
+| **Tier 3** | CI 自动跑 agent + production observability | 进到 [Stage 7](../stages/07-multi-agent-production.zh-Hans.md) 领域 | 数周、需 governance |
+
+> **多数个人开发者可先停在 Tier 0-1**。**升级到 Tier 2+ 要先确认 ROI**——团队够大、流程够重复、事故不可逆，才值得 invest。
 
 ## 也适用其他分支
 
