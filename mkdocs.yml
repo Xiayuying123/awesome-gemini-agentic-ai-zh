@@ -81,6 +81,12 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.emoji
 
+# Build-time hooks. mkdocs_hooks.on_page_markdown strips the README's
+# GitHub-only inline language switcher (its ./README.*.md links 404
+# on the rendered site; Material's header selector is the in-site one).
+hooks:
+  - scripts/mkdocs_hooks.py
+
 nav:
   - 首頁 / Home: README.md
   - 怎麼用 / How to use: docs/HOW_TO_USE.md

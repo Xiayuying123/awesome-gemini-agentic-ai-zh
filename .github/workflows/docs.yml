@@ -30,6 +30,7 @@ on:
       - 'requirements-docs.txt'
       - 'scripts/build-docs-tree.py'
       - 'scripts/build-mdbook.sh'
+      - 'scripts/mkdocs_hooks.py'
       - 'book.toml'
       - '.github/workflows/docs.yml'
   workflow_dispatch:
