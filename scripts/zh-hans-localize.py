@@ -129,7 +129,7 @@ def main() -> int:
 
     files = sorted(
         p for p in REPO.rglob("*.zh-Hans.md")
-        if ".ai" not in p.parts and "node_modules" not in p.parts
+        if ".ai" not in p.parts and "node_modules" not in p.parts and "_build" not in p.parts
         and p.relative_to(REPO).as_posix() not in PROTECT
     )
     total = 0
