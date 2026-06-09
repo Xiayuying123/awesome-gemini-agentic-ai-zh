@@ -15,7 +15,7 @@ Research days break into stages, and AI plays a different role at each stage. Us
 | **Literature exploration** | You do not know the classic papers in a field | Recommendations + summaries + comparison | NotebookLM → paper-qa → gpt-researcher |
 | **Close reading** | You lose the thread halfway through a PDF / miss the claim | Extract claims, figures, citations, and notes | Zotero + zotero-gpt → zotero-skills |
 | **Research design** | The RQ is fuzzy, or the method choice is unclear | Clarifying dialogue and trade-off mapping | Claude.ai chat → ai-research-skills |
-| **Experiments / coding** | Boilerplate repeats and plotting eats time | Write / edit code and batch refactor | Claude Code → codex-delegate |
+| **Experiments / coding** | Boilerplate repeats and plotting eats time | Write / edit code and batch refactor | Antigravity CLI → codex-delegate |
 | **Manuscript writing** | Drafts stall or sentences do not land | Outline → paragraphs → polishing | Claude.ai → gemini-delegate (long drafts) |
 | **Revision / submission** | Journal requirements are easy to miss | banned-word / figure-text / submission checklist | academic-writing-skills |
 | **Cross-paper synthesis** | Five papers need to talk to each other and context explodes | Read 1M tokens at once and organize the synthesis | gemini-delegate |
@@ -24,13 +24,13 @@ Research days break into stages, and AI plays a different role at each stage. Us
 
 ## Curated Projects
 
-> 💡 **Want to wire Claude Code into NotebookLM, Obsidian, Notion, Excel, PDF, Excalidraw, and other research tools?** 62 integrations in [`resources/mcp-skills-catalog.en.md`](../resources/mcp-skills-catalog.en.md) (grouped by use case). The section below keeps research-specific tools and marketplaces.
+> 💡 **Want to wire Antigravity CLI into NotebookLM, Obsidian, Notion, Excel, PDF, Excalidraw, and other research tools?** 62 integrations in [`resources/mcp-skills-catalog.en.md`](../resources/mcp-skills-catalog.en.md) (grouped by use case). The section below keeps research-specific tools and marketplaces.
 
 ### Research Workflow Marketplaces
 
 #### [flonat/claude-research](https://github.com/flonat/claude-research) ⭐⭐⭐
 
-Claude Code infrastructure for PhD researchers — skills, agents, hooks, rules for academic workflows. Strong LaTeX/bibliography focus.
+Antigravity CLI infrastructure for PhD researchers — skills, agents, hooks, rules for academic workflows. Strong LaTeX/bibliography focus.
 
 ---
 
@@ -175,7 +175,7 @@ Some research tasks only need Claude (dialogue, design, review). Others waste Cl
 
 ## Required Reading
 
-1. [The Effortless Academic — Claude Code beginner guides](https://effortlessacademic.com/claude-code-and-cowork-for-academics-beginner-guide-part-1/)
+1. [The Effortless Academic — Antigravity CLI beginner guides](https://effortlessacademic.com/claude-code-and-cowork-for-academics-beginner-guide-part-1/)
 2. [Pedro Sant'Anna — Researcher setup guide](https://paulgp.substack.com/p/getting-started-with-claude-code)
 
 ## Workflows to Master
@@ -196,13 +196,13 @@ The biggest mistake researchers make with AI is opening ChatGPT only when they g
 
 ## Tier Recommendations
 
-Researchers do not need to install Claude Code on day one. This is the recommended progression:
+Researchers do not need to install Antigravity CLI on day one. This is the recommended progression:
 
 | Tier | Tools | Best for | Learning cost |
 |---|---|---|---|
 | **Tier 0** | Claude.ai web + NotebookLM | Non-programming researchers, humanities / social sciences, clinical research | 0 (browser skills are enough) |
 | **Tier 1** | Claude Desktop + Zotero MCP / Obsidian MCP | Researchers already using Zotero / Obsidian | Half-day setup |
-| **Tier 2** | Claude Code + ai-research-skills | Computational researchers who mostly write / edit code | 1-2 days to get started |
-| **Tier 3** | Claude Code + codex-delegate + gemini-delegate + research-hub | People building a multi-LLM research pipeline across multiple tools | 1 week setup + ongoing tuning |
+| **Tier 2** | Antigravity CLI + ai-research-skills | Computational researchers who mostly write / edit code | 1-2 days to get started |
+| **Tier 3** | Antigravity CLI + codex-delegate + gemini-delegate + research-hub | People building a multi-LLM research pipeline across multiple tools | 1 week setup + ongoing tuning |
 
 **Most researchers can stop at Tier 1-2**. Tier 3 is worth it only when you have a lot of repeated workflows, such as running the same paper synthesis every week.

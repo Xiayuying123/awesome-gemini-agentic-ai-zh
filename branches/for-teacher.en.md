@@ -74,8 +74,8 @@ These use cases may not happen directly inside a lesson, but they shape teacher 
 #### [obra/superpowers](https://github.com/obra/superpowers) ⭐⭐⭐⭐
 General writing / brainstorming skills. Adaptable for lesson prep.
 
-#### Advanced automation: [Claude Code](https://github.com/anthropics/claude-code) (with custom CLAUDE.md) ⭐⭐⭐⭐⭐
-★ 120k+ — **The basic teacher stack is Claude.ai (web) + NotebookLM + Google Classroom / LMS integrations**; start there. **Upgrade to Claude Code only when you already have repeatable batch workflows** (such as generating 50 parent letters every week or analyzing student feedback every semester), and expect to learn some CLI.
+#### Advanced automation: [Antigravity CLI](https://github.com/anthropics/claude-code) (with custom GEMINI.md) ⭐⭐⭐⭐⭐
+★ 120k+ — **The basic teacher stack is Claude.ai (web) + NotebookLM + Google Classroom / LMS integrations**; start there. **Upgrade to Antigravity CLI only when you already have repeatable batch workflows** (such as generating 50 parent letters every week or analyzing student feedback every semester), and expect to learn some CLI.
 
 ### Teaching Course Materials (for teachers preparing classes)
 
@@ -130,7 +130,7 @@ General writing / brainstorming skills. Adaptable for lesson prep.
 ### Reading Material
 
 #### [The Effortless Academic — Beginner Guides](https://effortlessacademic.com/claude-code-and-cowork-for-academics-beginner-guide-part-1/)
-Multi-part guide for academics adopting Claude Code, applicable to teachers.
+Multi-part guide for academics adopting Antigravity CLI, applicable to teachers.
 
 ## Workflows You Can Build (by teaching stage)
 
@@ -202,7 +202,7 @@ Recommended progression. Most teachers should stay at Tier 0-1:
 |---|---|---|---|
 | **Tier 0** | Claude.ai web chat | Occasional lesson prep, one-off tasks, item generation, writing emails. Copy the prompt template above and fill in the topic. | 0 (if you can use a browser) |
 | **Tier 1** | Claude Desktop / [NotebookLM](https://notebooklm.google.com/) | Grading / organizing a semester's data, course mapping, bulk-importing reading list PDFs and querying them | 30 minutes |
-| **Tier 2+** | Claude Code / CLI / SDK | Repeated automation, such as 30 student submissions every week → auto-generated draft feedback | 1 week; non-coders can ask school IT / a student RA to set it up |
+| **Tier 2+** | Antigravity CLI / CLI / SDK | Repeated automation, such as 30 student submissions every week → auto-generated draft feedback | 1 week; non-coders can ask school IT / a student RA to set it up |
 
 > **Most teachers can stop at Tier 0-1**. Once you're at Tier 2+, follow [Track A — CLI Power User](../tracks/cli/A1-cli-intro.en.md).
 

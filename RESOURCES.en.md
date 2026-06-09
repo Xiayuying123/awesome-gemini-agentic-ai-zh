@@ -12,26 +12,26 @@ This file collects: term definitions, daily-tool MCP/Skill highlights, topic-bas
 
 ## Three core terms: MCP / Skills / Plugins
 
-The README and stages reference these three Claude Code ecosystem terms a lot. Quick definitions:
+The README and stages reference these three Antigravity CLI ecosystem terms a lot. Quick definitions:
 
-- **MCP (Model Context Protocol)** — Anthropic's open protocol that lets any LLM host (Claude Code, other IDEs, your own agent) talk to any external tool server (filesystem, DB, API, your service) through one interface. Think "USB for LLMs". See [Stage 5.2](stages/05-claude-code-ecosystem.en.md#52--mcp-model-context-protocol--foundation).
-- **Skills** — Claude Code's "behavior bundles". A Skill is a `SKILL.md` describing "in what context, do what, can call which MCP tools". Claude Code auto-discovers them. See [Stage 5.3](stages/05-claude-code-ecosystem.en.md#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem).
-- **Plugins / Marketplaces** — package Skills, slash commands, hooks, and MCP configs into a distribution unit installable by your team or community. A marketplace is a catalog of plugins. See [Stage 5.4](stages/05-claude-code-ecosystem.en.md#54--plugins--marketplaces).
+- **MCP (Model Context Protocol)** — Anthropic's open protocol that lets any LLM host (Antigravity CLI, other IDEs, your own agent) talk to any external tool server (filesystem, DB, API, your service) through one interface. Think "USB for LLMs". See [Stage 5.2](stages/05-gemini-skills-ecosystem.en.md#52--mcp-model-context-protocol--foundation).
+- **Skills** — Antigravity CLI's "behavior bundles". A Skill is a `SKILL.md` describing "in what context, do what, can call which MCP tools". Antigravity CLI auto-discovers them. See [Stage 5.3](stages/05-gemini-skills-ecosystem.en.md#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem).
+- **Plugins / Marketplaces** — package Skills, slash commands, hooks, and MCP configs into a distribution unit installable by your team or community. A marketplace is a catalog of plugins. See [Stage 5.4](stages/05-gemini-skills-ecosystem.en.md#54--plugins--marketplaces).
 
-Hands-on exercises live in [Stage 5](stages/05-claude-code-ecosystem.en.md), with Track A's [A3](tracks/cli/A3-cli-production.en.md) covering production integration.
+Hands-on exercises live in [Stage 5](stages/05-gemini-skills-ecosystem.en.md), with Track A's [A3](tracks/cli/A3-cli-production.en.md) covering production integration.
 
 ---
 
 ## Daily-tool integrations: MCP servers + Skills
 
-Connect Claude Code (or any other CLI agent) to the apps you already use, without window-hopping. Mature picks below:
+Connect Antigravity CLI (or any other CLI agent) to the apps you already use, without window-hopping. Mature picks below:
 
 ### Notes / Knowledge Base
 
 - [**MarkusPfundstein/mcp-obsidian**](https://github.com/MarkusPfundstein/mcp-obsidian) ★ 3.9k+ — Obsidian REST API plugin lets the LLM read/write your vault
 - [**makenotion/notion-mcp-server**](https://github.com/makenotion/notion-mcp-server) ★ 4.4k+ — Notion **official** MCP, query/create pages, manipulate databases
 - [**PleasePrompto/notebooklm-skill**](https://github.com/PleasePrompto/notebooklm-skill) ★ 6.6k+ — NotebookLM Skill, citation-backed answers from your uploaded docs
-- [**teng-lin/notebooklm-py**](https://github.com/teng-lin/notebooklm-py) ★ 15k+ — unofficial NotebookLM Python API + CLI, plays well with Claude Code / Codex
+- [**teng-lin/notebooklm-py**](https://github.com/teng-lin/notebooklm-py) ★ 15k+ — unofficial NotebookLM Python API + CLI, plays well with Antigravity CLI / Codex
 
 ### Office Documents (Word / Excel / PowerPoint / PDF)
 
@@ -76,9 +76,9 @@ This repo **doesn't replace** flat awesome lists. When you already know which to
 - [**wong2/awesome-mcp-servers**](https://github.com/wong2/awesome-mcp-servers) — community MCP server catalog, by category (150+)
 - [**punkpeye/awesome-mcp-servers**](https://github.com/punkpeye/awesome-mcp-servers) — another MCP server catalog
 
-### Claude Code / Skills / Plugins-related
+### Antigravity CLI / Skills / Plugins-related
 
-- [**hesreallyhim/awesome-claude-code**](https://github.com/hesreallyhim/awesome-claude-code) — Claude Code resources (currently restructuring)
+- [**hesreallyhim/awesome-claude-code**](https://github.com/hesreallyhim/awesome-claude-code) — Antigravity CLI resources (currently restructuring)
 - [**travisvn/awesome-claude-skills**](https://github.com/travisvn/awesome-claude-skills) — Claude Skills catalog
 - [**anthropics/claude-plugins-official**](https://github.com/anthropics/claude-plugins-official) — Anthropic's official plugin marketplace template; start here when packaging your own plugin
 

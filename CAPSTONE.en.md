@@ -21,7 +21,7 @@ After finishing a track, **build something yourself** — this file is not a tut
 **Brief**: Assemble a CLI-agent workflow **you will reuse**, automating something you currently do by hand.
 
 **Requirements** (all mandatory):
-- A CLI agent (Claude Code or equivalent) at the core
+- A CLI agent (Antigravity CLI or equivalent) at the core
 - At least **1** MCP server **or** a skill / command you wrote yourself
 - A clear input → a usable artifact out (not "chatting with it")
 - **Reproducible by someone else**: include `how to run` (install, configure, run, expected output)

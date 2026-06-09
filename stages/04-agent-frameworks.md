@@ -94,23 +94,23 @@
 | **4. Supervisor-Worker**<br>（hub-spoke） | ⭐⭐⭐ | 1 主 + N worker、主分配 + 整合 | 任務拆解、報告整合 | LangGraph、AutoGen GroupChat |
 | **5. Debate / Society**<br>（多視角收斂） | ⭐⭐⭐⭐ | 2+ agent 互相 critique 或角色扮演 | research、judgment task、social simulation | AutoGen GroupChat、[CAMEL paper](https://arxiv.org/abs/2303.17760)、[Generative Agents paper](https://arxiv.org/abs/2304.03442) |
 
-### Claude Code subagent — 另一條 orchestration 路線
+### Antigravity CLI subagent — 另一條 orchestration 路線
 
-> **這節跟上面的 5 個 pattern 不同層**：上面 5 個 pattern 是 framework / 自己 code 都能實作的設計選擇；本節介紹的 **Claude Code subagent 是另一個 execution model**（runtime 內建的 orchestration、不寫 framework code）。讀完 5 個 pattern 後、本節讓你知道「multi-agent 還有第二條路」。
+> **這節跟上面的 5 個 pattern 不同層**：上面 5 個 pattern 是 framework / 自己 code 都能實作的設計選擇；本節介紹的 **Antigravity CLI subagent 是另一個 execution model**（runtime 內建的 orchestration、不寫 framework code）。讀完 5 個 pattern 後、本節讓你知道「multi-agent 還有第二條路」。
 
-**Multi-agent 不只有 framework 這條路**。Anthropic 自家的 Claude Code 提供另一個 abstraction 層：[subagent](05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能) — 寫一個 `.claude/agents/<name>.md` 檔就是一個 subagent，**不需要 framework**。
+**Multi-agent 不只有 framework 這條路**。Anthropic 自家的 Antigravity CLI 提供另一個 abstraction 層：[subagent](05-gemini-skills-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能) — 寫一個 `.claude/agents/<name>.md` 檔就是一個 subagent，**不需要 framework**。
 
-跟 framework 路線的根本差異（一句話）：**framework 路線**跨 LLM provider、寫 Python orchestration code、checkpointing / audit trail 完整；**Claude Code subagent** 只在 Claude Code runtime 內、寫 markdown 不寫 code、天生 context 隔離。
+跟 framework 路線的根本差異（一句話）：**framework 路線**跨 LLM provider、寫 Python orchestration code、checkpointing / audit trail 完整；**Antigravity CLI subagent** 只在 Antigravity CLI runtime 內、寫 markdown 不寫 code、天生 context 隔離。
 
-> 📌 **完整逐維度對照表（啟動方式 / runtime / context 隔離 / provider lock-in / 學習曲線）的 canonical 在 [Stage 5.5 開頭](05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能)**——本 stage 只需知道「multi-agent 還有 Claude Code 原生這第二條路」、逐項實作差異到 5.5 再看。
+> 📌 **完整逐維度對照表（啟動方式 / runtime / context 隔離 / provider lock-in / 學習曲線）的 canonical 在 [Stage 5.5 開頭](05-gemini-skills-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能)**——本 stage 只需知道「multi-agent 還有 Antigravity CLI 原生這第二條路」、逐項實作差異到 5.5 再看。
 
 **何時選 subagent 而非 framework**：
-- 你已經在用 Claude Code 跑日常工作
+- 你已經在用 Antigravity CLI 跑日常工作
 - 任務 context 大、會吃光主 session window（讀整個 codebase 之類）
 - 多 subagent 平行（research / write / critic）省 wall-clock 時間
 - 不需要跨 provider migration
 
-詳細寫法 + 動手練習見 [Stage 5.5](05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能)（**建議先完成 Stage 5.1 Claude Code 基礎再回來看 5.5**——subagent 是 Claude Code 生態的進階功能、需要先熟悉基礎用法）。
+詳細寫法 + 動手練習見 [Stage 5.5](05-gemini-skills-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能)（**建議先完成 Stage 5.1 Antigravity CLI 基礎再回來看 5.5**——subagent 是 Antigravity CLI 生態的進階功能、需要先熟悉基礎用法）。
 
 ### Framework 的工作
 
@@ -139,7 +139,7 @@ Framework 把上面這 5 個 pattern 的 orchestration boilerplate（roles、han
 > 2. **跑 1 個 framework quickstart**（2-3 hr）— LangGraph 或 CrewAI 二選一、跑官方多 agent 教學
 > 3. **對照 Anthropic Cookbook `customer_service_agent`**（1 hr）— production-style routing + handoff 範例
 > 4. *(可選)* **深入學術側**：挑 paper 1-2 篇看（AutoGen / CAMEL / ChatDev / Generative Agents）
-> 5. *(Claude 使用者可選)* **寫一個 subagent 對照**：見 [Stage 5.5](05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能)、跟 framework 路線比較
+> 5. *(Claude 使用者可選)* **寫一個 subagent 對照**：見 [Stage 5.5](05-gemini-skills-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能)、跟 framework 路線比較
 >
 > **不必把 5 個 paper 全讀完**、挑跟你場景最近的 1-2 個。
 
@@ -213,7 +213,7 @@ Stage 3 教你寫 single tool / multi-tool selection（手寫 `if/elif/else` 路
 - [ ] 看出什麼時候 CodeAct（Smolagents）比 JSON-tool 更好
 - [ ] 判斷什麼時候該丟掉 framework、直接用 raw API
 
-如果可以 → 進 [Stage 5 — Claude Code Ecosystem](05-claude-code-ecosystem.md)。
+如果可以 → 進 [Stage 5 — Antigravity CLI Ecosystem](05-gemini-skills-ecosystem.md)。
 
 ## 💡 策略提示 + 過程中可能踩到的坑
 

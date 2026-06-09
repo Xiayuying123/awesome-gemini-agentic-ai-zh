@@ -12,26 +12,26 @@
 
 ## 三个核心用语：MCP / Skills / Plugins
 
-主 README 跟各 stage 会频繁提到这三个 Claude Code 生态的关键词，先快速说明：
+主 README 跟各 stage 会频繁提到这三个 Antigravity CLI 生态的关键词，先快速说明：
 
-- **MCP（Model Context Protocol）** — Anthropic 推的开放协定，让任何 LLM host（Claude Code、其他 IDE、自写 agent）都能用同一套接口去调用外部 tool server（文件、DB、API、自家系统）。把它想成“LLM 的 USB 接口”。详见 [Stage 5.2](stages/05-claude-code-ecosystem.zh-Hans.md#52--mcpmodel-context-protocol-基础)。
-- **Skills** — Claude Code 的“行为包”。一个 Skill 就是一份 `SKILL.zh-Hans.md`，描述“在什么场景要做什么、可以调用哪些 MCP tool”。写好之后 Claude Code 会自动 discover。详见 [Stage 5.3](stages/05-claude-code-ecosystem.zh-Hans.md#53--skillsclaude-code-的行为层-claude-code-生态最关键的一层)。
-- **Plugins / Marketplaces** — 把 Skills、slash commands、hooks、MCP 设置打包成一个发布单位给 team 或社群安装。Marketplace 就是 plugin 的 catalog。详见 [Stage 5.4](stages/05-claude-code-ecosystem.zh-Hans.md#54--plugins-与-marketplaces)。
+- **MCP（Model Context Protocol）** — Anthropic 推的开放协定，让任何 LLM host（Antigravity CLI、其他 IDE、自写 agent）都能用同一套接口去调用外部 tool server（文件、DB、API、自家系统）。把它想成“LLM 的 USB 接口”。详见 [Stage 5.2](stages/05-gemini-skills-ecosystem.zh-Hans.md#52--mcpmodel-context-protocol-基础)。
+- **Skills** — Antigravity CLI 的“行为包”。一个 Skill 就是一份 `SKILL.zh-Hans.md`，描述“在什么场景要做什么、可以调用哪些 MCP tool”。写好之后 Antigravity CLI 会自动 discover。详见 [Stage 5.3](stages/05-gemini-skills-ecosystem.zh-Hans.md#53--skillsclaude-code-的行为层-claude-code-生态最关键的一层)。
+- **Plugins / Marketplaces** — 把 Skills、slash commands、hooks、MCP 设置打包成一个发布单位给 team 或社群安装。Marketplace 就是 plugin 的 catalog。详见 [Stage 5.4](stages/05-gemini-skills-ecosystem.zh-Hans.md#54--plugins-与-marketplaces)。
 
-对应的 **动手练习都在 [Stage 5](stages/05-claude-code-ecosystem.zh-Hans.md)，Track A 的 [A3](tracks/cli/A3-cli-production.zh-Hans.md) 也会用到。
+对应的 **动手练习都在 [Stage 5](stages/05-gemini-skills-ecosystem.zh-Hans.md)，Track A 的 [A3](tracks/cli/A3-cli-production.zh-Hans.md) 也会用到。
 
 ---
 
 ## 接日常工具：常用 MCP server / Skill
 
-把 Claude Code（或其他 CLI agent）接到你已经在用的 app，省掉手动切换的成本。下面几个是社群 / 官方比较成熟的：
+把 Antigravity CLI（或其他 CLI agent）接到你已经在用的 app，省掉手动切换的成本。下面几个是社群 / 官方比较成熟的：
 
 ### 笔记 / 知识库
 
 - [**MarkusPfundstein/mcp-obsidian**](https://github.com/MarkusPfundstein/mcp-obsidian) ★ 3.9k+ — 透过 Obsidian REST API plugin 让 LLM 读写你的 Obsidian vault
 - [**makenotion/notion-mcp-server**](https://github.com/makenotion/notion-mcp-server) ★ 4.4k+ — Notion **官方** MCP server，可查询／建立 page、database
-- [**PleasePrompto/notebooklm-skill**](https://github.com/PleasePrompto/notebooklm-skill) ★ 6.6k+ — NotebookLM Skill（浏览器自动化），用 Claude Code 直接查你 NotebookLM 里的文件，回答带 citation
-- [**teng-lin/notebooklm-py**](https://github.com/teng-lin/notebooklm-py) ★ 15k+ — 非官方 NotebookLM Python API + CLI，支持 Claude Code / Codex 等 agent 集成
+- [**PleasePrompto/notebooklm-skill**](https://github.com/PleasePrompto/notebooklm-skill) ★ 6.6k+ — NotebookLM Skill（浏览器自动化），用 Antigravity CLI 直接查你 NotebookLM 里的文件，回答带 citation
+- [**teng-lin/notebooklm-py**](https://github.com/teng-lin/notebooklm-py) ★ 15k+ — 非官方 NotebookLM Python API + CLI，支持 Antigravity CLI / Codex 等 agent 集成
 
 ### 办公文件（Word / Excel / PowerPoint / PDF）
 
@@ -76,9 +76,9 @@
 - [**wong2/awesome-mcp-servers**](https://github.com/wong2/awesome-mcp-servers) — 社群 MCP server 清单，按分类整理（150+ 个）
 - [**punkpeye/awesome-mcp-servers**](https://github.com/punkpeye/awesome-mcp-servers) — 另一份 MCP server 清单
 
-### Claude Code / Skills / Plugins 相关
+### Antigravity CLI / Skills / Plugins 相关
 
-- [**hesreallyhim/awesome-claude-code**](https://github.com/hesreallyhim/awesome-claude-code) — Claude Code 相关资源清单（整理中）
+- [**hesreallyhim/awesome-claude-code**](https://github.com/hesreallyhim/awesome-claude-code) — Antigravity CLI 相关资源清单（整理中）
 - [**travisvn/awesome-claude-skills**](https://github.com/travisvn/awesome-claude-skills) — Claude Skills 清单
 - [**anthropics/claude-plugins-official**](https://github.com/anthropics/claude-plugins-official) — Anthropic 官方 plugin 范本，要打包自己的 plugin 从这份开始
 

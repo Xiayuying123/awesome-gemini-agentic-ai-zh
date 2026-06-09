@@ -9,7 +9,7 @@
 > 想先理解「為什麼有的 agent 在 terminal、有的在 Telegram、有的在 Jetson」這層 mental model → 看 [`resources/agent-paradigms.md`](agent-paradigms.md)（5 種 agent 型態）。
 > 已經在用、想決定 / 比較 / 升級 → 留在這份。
 
-跨 5 個 branch + Track A 共用的參考——**Claude Code / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent 之間怎麼挑？** Track A（A1-A3）的 CLI workflow 設計、5 條 branch 內的 CLI 引用都連到這份；每個 branch 都會用到 CLI agent，但沒有一個 branch 真的「擁有」這份比較，所以放在 `resources/`。
+跨 5 個 branch + Track A 共用的參考——**Antigravity CLI / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent 之間怎麼挑？** Track A（A1-A3）的 CLI workflow 設計、5 條 branch 內的 CLI 引用都連到這份；每個 branch 都會用到 CLI agent，但沒有一個 branch 真的「擁有」這份比較，所以放在 `resources/`。
 
 ---
 
@@ -19,7 +19,7 @@
 
 | 工具 | 提供者 | License | 主推 LLM | 認證 / 計費 | Stars |
 |---|---|---|---|---|---|
-| [Claude Code](https://github.com/anthropics/claude-code) | Anthropic（官方） | NOASSERTION | Claude | Claude 訂閱 **或** Anthropic Console API key | ★ 120k+ |
+| [Antigravity CLI](https://github.com/anthropics/claude-code) | Anthropic（官方） | NOASSERTION | Claude | Claude 訂閱 **或** Anthropic Console API key | ★ 120k+ |
 | [Codex](https://github.com/openai/codex) | OpenAI（官方） | Apache-2.0 | GPT 系列 | ChatGPT 帳號登入 **或** OpenAI API key | ★ 89k+ |
 | [OpenCode](https://github.com/sst/opencode) | 社群（repo 已遷至 `anomalyco/opencode`） | MIT | 任意（多 provider） | BYO API key 或 OpenCode Zen 內建 hosted | ★ 171k+ |
 | [Gemini CLI](https://github.com/google-gemini/gemini-cli) | Google（官方） | Apache-2.0 | Gemini | 免費額度寬，超出收費 | ★ 103k+ |
@@ -32,10 +32,10 @@
 ## 🎯 該選哪個？依 use case 決定
 
 ### 寫 paper / 文獻 / 研究
-**首推**：Claude Code（長 context、reasoning 強、擋幻覺扎實）。Gemini CLI 是備選——它的百萬 token 適合丟整本 PDF / dataset 進去問。
+**首推**：Antigravity CLI（長 context、reasoning 強、擋幻覺扎實）。Gemini CLI 是備選——它的百萬 token 適合丟整本 PDF / dataset 進去問。
 
 ### 寫 code / 改 codebase
-**首推**：Aider（git-native——每次改完自動 commit，方便 revert）或 Claude Code。OpenCode 適合需要在多 LLM 間切的場景。
+**首推**：Aider（git-native——每次改完自動 commit，方便 revert）或 Antigravity CLI。OpenCode 適合需要在多 LLM 間切的場景。
 
 ### 隱私 / offline / 不送雲端
 **首推**：goose 或 OpenCode + 本地 Ollama。兩個都支援 BYO LLM，可以接 `http://localhost:11434/v1`（Ollama 預設）。
@@ -50,7 +50,7 @@
 **首推**：OpenCode > goose > Aider。三個都不綁特定 provider，模型可換。
 
 ### 第一次裝 CLI agent，先試手感
-**首推**：Claude Code。生態廣泛、CLAUDE.md 機制讓 prompt 可以版本控制、出問題時社群資源多。
+**首推**：Antigravity CLI。生態廣泛、GEMINI.md 機制讓 prompt 可以版本控制、出問題時社群資源多。
 
 ### 想跑在 cloud VM、用 Telegram / Slack 等多平台跟它聊 + 用中國大陸 LLM
 **首推**：Hermes Agent。差異化在三件事：
@@ -67,8 +67,8 @@
 
 1. **明確指定檔案路徑**——「修改 `src/auth.py`」比「修改那個 auth 檔」好
 2. **要求多步驟拆解**——`先列 plan、確認後再動手`，所有 CLI 都吃這個結構
-3. **避免依賴特定 CLI 的 magic 指令**——`/init` `/compact` 是 Claude Code 專屬，OpenCode 沒有
-4. **用 `.cursorrules` / `CLAUDE.md` / `AGENTS.md` 記持續性偏好**——Claude Code 用 `CLAUDE.md`，Codex 用 `AGENTS.md`，OpenCode 用 `OPENCODE.md`，**內容可以一樣**
+3. **避免依賴特定 CLI 的 magic 指令**——`/init` `/compact` 是 Antigravity CLI 專屬，OpenCode 沒有
+4. **用 `.cursorrules` / `GEMINI.md` / `AGENTS.md` 記持續性偏好**——Antigravity CLI 用 `GEMINI.md`，Codex 用 `AGENTS.md`，OpenCode 用 `OPENCODE.md`，**內容可以一樣**
 5. **明確要 review 的 scope**——「只 review 我這次的 diff」vs 「review 整個 repo」
 
 跨 CLI 寫的 prompt 通常會比 CLI-specific prompt 麻煩 5-10%，但好處是切換工具時不用重寫。
@@ -83,10 +83,10 @@
 
 ### git 整合差異
 - **Aider** 自動 commit 每次改動（這是它的設計，不是 bug）
-- **Claude Code / Codex / OpenCode / goose** 預設不自動 commit，需要手動或 prompt 要求
+- **Antigravity CLI / Codex / OpenCode / goose** 預設不自動 commit，需要手動或 prompt 要求
 
 ### Sandbox 預設值（每個 CLI 文件略有差異，使用前請對照官方文件）
-- **Claude Code**：bash 寫入預設限定 cwd，讀取範圍較廣（被 deny rule 排除的除外）
+- **Antigravity CLI**：bash 寫入預設限定 cwd，讀取範圍較廣（被 deny rule 排除的除外）
 - **Codex**：版本控制目錄建議 `Auto`（workspace-write + on-request 提權）；非 git 目錄建議 `read-only`
 - **goose / OpenCode**：相對寬鬆——建議自己加 sandbox / approval 設定，不要靠預設
 
@@ -96,7 +96,7 @@
 - 建議：每次操作前估 cost；訂 monthly cap
 
 ### 多 CLI session 互相干擾
-- 同一個 repo 開兩個 CLI（譬如 Claude Code + Aider），改檔可能 race condition
+- 同一個 repo 開兩個 CLI（譬如 Antigravity CLI + Aider），改檔可能 race condition
 - 建議：一個 repo 一個 CLI（除非真的有並行需求）
 
 ---
@@ -105,8 +105,8 @@
 
 下面 3 個常見搭配，挑一個合的場景：
 
-### Setup A：Claude Code 主推 + OpenCode 備援
-- Claude Code 處理日常 90%（寫 code、寫 doc、debug）
+### Setup A：Antigravity CLI 主推 + OpenCode 備援
+- Antigravity CLI 處理日常 90%（寫 code、寫 doc、debug）
 - OpenCode 接 Ollama，處理隱私資料（醫療紀錄、財務分析）
 - 一個 prompt 寫一次，兩邊都能跑
 

@@ -15,7 +15,7 @@
 
 完成這一節後你會：
 
-- 知道 7 個主流 CLI agent（Claude Code / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent）的差別
+- 知道 7 個主流 CLI agent（Antigravity CLI / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent）的差別
 - 依自己的場景挑出第一個 CLI 工具
 - 完成安裝 + 認證 + 第一個真正的任務（不是 hello world）
 - 知道什麼時候該換 / 加第二個 CLI
@@ -31,7 +31,7 @@
 
 1. [**`resources/agent-paradigms.md`**](../../resources/agent-paradigms.md) ⭐ — 5 種 agent 型態的全景圖；先讀這份知道 CLI agent 在整個 agent 生態中的位置（Type 2 + Type 3）
 2. [**`resources/cli-agents-guide.md`**](../../resources/cli-agents-guide.md) ⭐ — 本軌的核心參考。7 個主流 CLI agent 並列比較、依 use case 推薦、實用搭配
-3. [**Anthropic — Claude Code Quickstart**](https://docs.anthropic.com/en/docs/claude-code/quickstart) — 官方安裝指南
+3. [**Anthropic — Antigravity CLI Quickstart**](https://docs.anthropic.com/en/docs/claude-code/quickstart) — 官方安裝指南
 4. [**OpenAI — Codex Quickstart**](https://github.com/openai/codex/blob/main/README.md) — Codex 安裝跟認證流程
 
 ## 🛠 動手練習（基礎 illustrative 練習）
@@ -47,7 +47,7 @@
 → 用真任務跑、才能感受 agent 跟 chatbot 的差別。
 
 ### 動手練習 CLI-2：CLI 內建的 system prompt 檔
-- Claude Code → 寫一個 `CLAUDE.md` 在 repo 根目錄
+- Antigravity CLI → 寫一個 `GEMINI.md` 在 repo 根目錄
 - Codex → 寫 `AGENTS.md`
 - Gemini CLI → 寫 `GEMINI.md`
 - goose / OpenCode → 看各自的設定
@@ -66,7 +66,7 @@
 
 | 分類 | Project | ⭐ | 適合誰 | 為什麼推薦 / 備註 |
 |---|---|---|---|---|
-| **7 個主流 CLI agent** | [anthropics/claude-code](https://github.com/anthropics/claude-code) | ⭐⭐⭐⭐⭐ | **推薦作為第一個 CLI agent** | 內建 SKILL / plugin 生態、CLAUDE.md prompt 系統、最完整的中文社群資源（★ 120k+） |
+| **7 個主流 CLI agent** | [anthropics/claude-code](https://github.com/anthropics/claude-code) | ⭐⭐⭐⭐⭐ | **推薦作為第一個 CLI agent** | 內建 SKILL / plugin 生態、GEMINI.md prompt 系統、最完整的中文社群資源（★ 120k+） |
 | | [openai/codex](https://github.com/openai/codex) | ⭐⭐⭐⭐⭐ | 已訂 ChatGPT Plus / Pro 的人 | 用同一帳號就能在終端機跑（★ 89k+） |
 | | [sst/opencode](https://github.com/sst/opencode) | ⭐⭐⭐⭐⭐ | 要 self-host / 不想 vendor lock-in | 開源、不綁 LLM provider、社群迭代最快（★ 171k+） |
 | | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) | ⭐⭐⭐⭐ | 處理大 codebase / 大 PDF | 1M token 長 context（★ 103k+） |
@@ -76,14 +76,14 @@
 | **進階：互補工具**<br>（不是 CLI、但常搭配） | [LM Studio](https://lmstudio.ai/) | ⭐⭐⭐ | Windows / Mac 不想學 command line、想跑本機 LLM | 非開源 desktop app、拖拉介面跑本地 LLM |
 | | [Ollama](https://github.com/ollama/ollama) | ⭐⭐⭐⭐⭐ | 想本機跑 LLM 給 CLI agent 用 | 本地 LLM runner、跟 OpenCode / goose 搭配（★ 170k+）。詳見 [Stage 1 — Local LLM 執行](../../stages/01-llm-basics.md#-精選-projects) |
 
-> 💡 **建議入手路徑**：第一個 CLI 選 Claude Code（生態最完整）→ 試裝第二個（Codex / OpenCode）感受風格差異 → 想跑本機就加 Ollama → 想 cloud-deployed 跨平台用 Hermes Agent。
+> 💡 **建議入手路徑**：第一個 CLI 選 Antigravity CLI（生態最完整）→ 試裝第二個（Codex / OpenCode）感受風格差異 → 想跑本機就加 Ollama → 想 cloud-deployed 跨平台用 Hermes Agent。
 
 ## ✅ 進 A2 前的自我檢查
 
 你能不能：
 - [ ] 講得出 7 個主流 CLI 的核心差別（不查表就答得出 3-4 個）
 - [ ] 你已經選定一個主用 CLI，並有 working setup（裝好、認證好、跑過至少 5 個非 hello-world 任務）
-- [ ] 寫過你自己的 `CLAUDE.md` / `AGENTS.md` / `GEMINI.md`
+- [ ] 寫過你自己的 `GEMINI.md` / `AGENTS.md` / `GEMINI.md`
 - [ ] 至少跑過第二個 CLI 一次，知道兩個的風格差異
 
 如果可以 → 進 [A2 — CLI Workflow Patterns](A2-cli-workflow.md)。

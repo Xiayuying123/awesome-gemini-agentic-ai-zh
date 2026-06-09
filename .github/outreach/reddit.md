@@ -26,7 +26,7 @@ none gave an ORDER to actually learn in. So I built a sequenced roadmap
 and I'd like this sub to poke holes in the sequencing.
 
 - 8 stages: LLM basics → prompt design → tool use → frameworks →
-  Claude Code ecosystem (MCP/Skills) → memory/RAG → multi-agent →
+  Antigravity CLI ecosystem (MCP/Skills) → memory/RAG → multi-agent →
   Computer/Browser Use. Each stage has entry conditions + an end self-check.
 - 2 tracks: "use existing CLI agents" vs "build your own".
 - 5 audience branches (researcher / dev / teacher / knowledge worker /
@@ -59,9 +59,9 @@ wanted" tail as r/AI_Agents)
 
 ## r/ClaudeAI (variant — lead with the ecosystem depth)
 
-**Title**: `A learning path that actually covers the Claude Code ecosystem (MCP / Skills / Plugins / SDK), staged`
+**Title**: `A learning path that actually covers the Antigravity CLI ecosystem (MCP / Skills / Plugins / SDK), staged`
 
-**Body**: lead paragraph emphasising Stage 5/8 (Claude Code ecosystem +
+**Body**: lead paragraph emphasising Stage 5/8 (Antigravity CLI ecosystem +
 Agent Interfaces) as the differentiator vs framework-only tutorials;
 same tail.
 

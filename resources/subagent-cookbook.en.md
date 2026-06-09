@@ -2,9 +2,9 @@
 
 > [繁體中文](./subagent-cookbook.md) | [简体中文](./subagent-cookbook.zh-Hans.md) | **English**
 
-> 📋 **What this is**: [Stage 5.5](../stages/05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature) teaches the concept of subagents. This cookbook teaches you how to **use them today**: 15 scenarios, each with “which subagent to use + a complete prompt template you can copy-paste + when not to use it.”
+> 📋 **What this is**: [Stage 5.5](../stages/05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature) teaches the concept of subagents. This cookbook teaches you how to **use them today**: 15 scenarios, each with “which subagent to use + a complete prompt template you can copy-paste + when not to use it.”
 >
-> ⚠️ **First time here? Read Stage 5.5’s “Which subagents can you dispatch?” and “decision table” sections first**. Once you understand what a subagent is and which ones Claude Code includes, come back and pick a recipe.
+> ⚠️ **First time here? Read Stage 5.5’s “Which subagents can you dispatch?” and “decision table” sections first**. Once you understand what a subagent is and which ones Antigravity CLI includes, come back and pick a recipe.
 
 ---
 
@@ -15,27 +15,27 @@ Each recipe uses the same 4-part structure:
 | Section | Content | Why it exists |
 |---|---|---|
 | **Scenario** | A concrete situation you might run into today | Find a recipe from “I have X problem,” not from “I want to use a subagent” |
-| **Subagent** | Which one to use (Claude Code’s built-in name) | Copy the name directly; no guessing |
+| **Subagent** | Which one to use (Antigravity CLI’s built-in name) | Copy the name directly; no guessing |
 | **Prompt Template** | Copy-paste-ready instruction text | No need to invent the prompt yourself |
 | **When Not to Use It** | A better alternative than using a subagent | Avoid overkill |
 
-> 💡 **How to actually dispatch a subagent**: in your Claude Code terminal conversation, **type or paste the prompt template directly**. That is all. Claude sees the instruction, automatically uses the Task tool (Claude Code’s internal dispatch mechanism) to find the right subagent, runs it, and returns a short summary to the main session. **No slash command or special syntax is required**.
+> 💡 **How to actually dispatch a subagent**: in your Antigravity CLI terminal conversation, **type or paste the prompt template directly**. That is all. Claude sees the instruction, automatically uses the Task tool (Antigravity CLI’s internal dispatch mechanism) to find the right subagent, runs it, and returns a short summary to the main session. **No slash command or special syntax is required**.
 >
-> 📌 **Subagent vs slash command**: `/agents` is a list command, **not how you invoke a subagent**. To dispatch a subagent, type ordinary prompt text directly. For complete comparison tables (subagent vs skill / vs slash command / description router), see [Stage 5.5 §Common Confusing Concepts Clarified](../stages/05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature).
+> 📌 **Subagent vs slash command**: `/agents` is a list command, **not how you invoke a subagent**. To dispatch a subagent, type ordinary prompt text directly. For complete comparison tables (subagent vs skill / vs slash command / description router), see [Stage 5.5 §Common Confusing Concepts Clarified](../stages/05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature).
 
 ---
 
 ## First, Check Which Subagents You Have Available
 
-Run `/agents` inside your Claude Code session. It lists every subagent currently available to you: built-in, plugin-provided, and custom.
+Run `/agents` inside your Antigravity CLI session. It lists every subagent currently available to you: built-in, plugin-provided, and custom.
 
-**The 7 built-in Claude Code subagents**: `general-purpose` / `code-reviewer` / `Explore` / `Plan` / `frontend-developer` / `claude-code-guide` / `statusline-setup` (as of 2025-11; this may change).
+**The 7 built-in Antigravity CLI subagents**: `general-purpose` / `code-reviewer` / `Explore` / `Plan` / `frontend-developer` / `claude-code-guide` / `statusline-setup` (as of 2025-11; this may change).
 
-> 📌 **Each built-in subagent's purpose + the "task X → use subagent Y" decision table live canonically at [Stage 5.5 §Which subagents can you dispatch?](../stages/05-claude-code-ecosystem.en.md#which-subagents-can-you-dispatch)** — this cookbook focuses on the 15 dispatch recipes; treat Stage 5.5 as the source of truth for the built-in list and selection logic.
+> 📌 **Each built-in subagent's purpose + the "task X → use subagent Y" decision table live canonically at [Stage 5.5 §Which subagents can you dispatch?](../stages/05-gemini-skills-ecosystem.en.md#which-subagents-can-you-dispatch)** — this cookbook focuses on the 15 dispatch recipes; treat Stage 5.5 as the source of truth for the built-in list and selection logic.
 
-> 💡 **If your `/agents` list does not match this cookbook**: you may have installed plugins, or your Claude Code version may differ. **When a recipe name does not match, use the closest available subagent**. For example, if you do not have `Explore`, `general-purpose` can still run a search task.
+> 💡 **If your `/agents` list does not match this cookbook**: you may have installed plugins, or your Antigravity CLI version may differ. **When a recipe name does not match, use the closest available subagent**. For example, if you do not have `Explore`, `general-purpose` can still run a search task.
 
-After confirming what is available, use the 15 recipes below: **find the recipe that matches your scenario, then copy the Prompt Template into the Claude Code conversation**.
+After confirming what is available, use the 15 recipes below: **find the recipe that matches your scenario, then copy the Prompt Template into the Antigravity CLI conversation**.
 
 ---
 
@@ -51,7 +51,7 @@ After confirming what is available, use the 15 recipes below: **find the recipe 
 ```
 Review the staged changes in this repo (git diff --cached).
 Focus on: (1) security issues (hardcoded secrets, SQL injection, XSS),
-(2) error handling gaps, (3) missing tests, (4) violations of CLAUDE.md
+(2) error handling gaps, (3) missing tests, (4) violations of GEMINI.md
 conventions. Per-category PASS/FAIL + concrete fix for each issue with
 file:line reference + overall verdict (APPROVE / REQUEST CHANGES).
 ```
@@ -220,7 +220,7 @@ Don't make the change yet — just the impact analysis.
 
 **Subagent**: `general-purpose` × N (spawn several at the same time)
 
-> 💡 **How to spawn several at the same time**: in the Claude Code conversation, **enter the prompt below 4 times in a row** (changing `<file-path>` each time). Claude Code will run them in parallel automatically. You do not need to wait for the first subagent to finish before entering the second prompt. That is the practical workflow for “parallel spawn.”
+> 💡 **How to spawn several at the same time**: in the Antigravity CLI conversation, **enter the prompt below 4 times in a row** (changing `<file-path>` each time). Antigravity CLI will run them in parallel automatically. You do not need to wait for the first subagent to finish before entering the second prompt. That is the practical workflow for “parallel spawn.”
 
 **Prompt Template** (change `<file-path>` each time):
 ```
@@ -292,7 +292,7 @@ desktop 1280px), (4) color contrast (WCAG AA), (5) touch target size
 
 ---
 
-### Recipe 14: Ask how to use a Claude Code feature
+### Recipe 14: Ask how to use a Antigravity CLI feature
 
 **Scenario**: You forgot how to configure hooks, forgot the frontmatter fields for slash commands, or want to look up documentation.
 
@@ -300,7 +300,7 @@ desktop 1280px), (4) color contrast (WCAG AA), (5) touch target size
 
 **Prompt Template**:
 ```
-How do I <specific Claude Code feature question, e.g., "configure a
+How do I <specific Antigravity CLI feature question, e.g., "configure a
 PreToolUse hook to block dangerous bash commands">? Show: (1) minimum
 config in settings.json, (2) example hook script (Python or shell),
 (3) 1 common gotcha, (4) where in the official docs to read more.
@@ -341,7 +341,7 @@ Not sure which subagent to use? Look it up by **task type**:
 | `Plan` | **3** (refactor plan) / **9** (blast radius)|
 | `general-purpose` | **5** (fact-check) / **7** (multi-paper compare) / **10** (parallel multi-target) / **12** (LLM-as-judge eval)|
 | `frontend-developer` | **13** (a11y audit) / **15** (React form)|
-| `claude-code-guide` | **14** (Claude Code feature lookup)|
+| `claude-code-guide` | **14** (Antigravity CLI feature lookup)|
 
 ---
 
@@ -360,7 +360,7 @@ Subagents are not free. Every dispatch **spends tokens and adds latency**. In th
 
 ## Next Steps
 
-- **Understand the full theory** (how subagents differ from skills / MCP, and the 3 multi-agent mechanisms) → [Stage 5.5](../stages/05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature)
+- **Understand the full theory** (how subagents differ from skills / MCP, and the 3 multi-agent mechanisms) → [Stage 5.5](../stages/05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature)
 - **CLI daily-use playbook** → [`tracks/cli/A3-cli-production.md` Playbook 4](../tracks/cli/A3-cli-production.en.md#-playbook-4-dispatching-subagents-for-independent-tasks)
 - **See where subagents fit in the agent paradigm map** → [`resources/agent-paradigms.md`](./agent-paradigms.en.md#subagent--spawning-an-agent-inside-an-agent-runtime)
-- **Glossary lookup** → [`resources/glossary.md` § 5. Claude Code Ecosystem — Subagent](./glossary.en.md#subagent)
+- **Glossary lookup** → [`resources/glossary.md` § 5. Antigravity CLI Ecosystem — Subagent](./glossary.en.md#subagent)

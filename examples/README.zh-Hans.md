@@ -197,7 +197,7 @@ r = client.chat.completions.create(model="meta/llama-3.3-70b-instruct", messages
 | 2 Prompt eng | 4 个 | 全 inline |
 | **3 Tool use** | **6 个** | inline 1 + folder 5（`examples/stage-3/`） |
 | 4 Frameworks | 5 个 | 全 folder（`examples/stage-4/`） |
-| 5 Claude Code 生态 | 11 个 | inline 6 + folder 5（`examples/stage-5/`） |
+| 5 Antigravity CLI 生态 | 11 个 | inline 6 + folder 5（`examples/stage-5/`） |
 | 6 Memory/RAG | 5 个 | 全 folder（`examples/stage-6/`） |
 | 7 Multi-agent | 5 个 | inline 1 + folder 4（`examples/stage-7/`） |
 | Track A1-A3 | 12 个 | 全 inline、外加 2 个小 folder（CLI-9 / CLI-10） |

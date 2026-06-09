@@ -31,7 +31,7 @@ Each stage **adds one capability** to the same agent. By the end it's a multi-LL
 | 2 | Write a professional prompt | ~20 lines |
 | 3 | Tool use: auto-fetch arXiv | ~80 lines |
 | 4 | Rewrite with framework + reflection | ~40 lines (framework abstracts the loop) |
-| 5 | Package as Claude Code Skill | SKILL.md + 30 lines |
+| 5 | Package as Antigravity CLI Skill | SKILL.md + 30 lines |
 | 6 | Add RAG memory: compare with past papers | ~60 lines |
 | 7 | Add eval, observability, deploy | ~100 lines |
 
@@ -286,9 +286,9 @@ print(result["messages"][-1].content)
 
 ---
 
-## Stage 5 — Claude Code Project Skill
+## Stage 5 — Antigravity CLI Project Skill
 
-> This step is **not** Python — it's repackaging the logic from Stages 1-4 as a Claude Code **project skill** that Claude loads natively. With a clear `description`, Claude will auto-trigger it when the user mentions a relevant request.
+> This step is **not** Python — it's repackaging the logic from Stages 1-4 as a Antigravity CLI **project skill** that Claude loads natively. With a clear `description`, Claude will auto-trigger it when the user mentions a relevant request.
 
 In your repo, create:
 
@@ -320,7 +320,7 @@ The user:
 - Asks "how does this paper differ from other approaches"
 
 ## How to do it
-1. Fetch paper content from the URL (use Claude Code's built-in WebFetch tool; or Read tool if a PDF is attached)
+1. Fetch paper content from the URL (use Antigravity CLI's built-in WebFetch tool; or Read tool if a PDF is attached)
 2. Apply this prompt structure:
    - Motivation (≤60 words)
    - Method (≤60 words)
@@ -333,13 +333,13 @@ The user:
 - `references/example-summaries.md` — 3 example outputs in the target style
 ```
 
-Once placed, **open Claude Code in this repo** — project-level skills auto-load (no install command needed). Claude triggers the skill when the user's input matches the `description`.
+Once placed, **open Antigravity CLI in this repo** — project-level skills auto-load (no install command needed). Claude triggers the skill when the user's input matches the `description`.
 
-To verify it works: paste `https://arxiv.org/abs/2210.03629` in a Claude Code session, see whether Claude responds in your defined format.
+To verify it works: paste `https://arxiv.org/abs/2210.03629` in a Antigravity CLI session, see whether Claude responds in your defined format.
 
 **What you learn**: the difference between project skills and plugin marketplace skills (this one is project-level, active as soon as you're in the repo; plugins are a separate distribution layer); `description` is the discovery mechanism (not a magic `trigger_phrases` field); how `references/` extends a skill with longer examples.
 
-**Going further**: if you want to package this skill as a shareable plugin (so others can install it in their own Claude Code), see [Stage 5.4 Plugins & Marketplaces](../stages/05-claude-code-ecosystem.en.md#54--plugins--marketplaces). This walkthrough doesn't cover plugin packaging.
+**Going further**: if you want to package this skill as a shareable plugin (so others can install it in their own Antigravity CLI), see [Stage 5.4 Plugins & Marketplaces](../stages/05-gemini-skills-ecosystem.en.md#54--plugins--marketplaces). This walkthrough doesn't cover plugin packaging.
 
 ---
 
@@ -563,7 +563,7 @@ docker run -p 8000:8000 \
 
 - [ ] Build a ReAct agent from scratch (Stage 3)
 - [ ] Rewrite with a framework and add advanced patterns (Stage 4)
-- [ ] Package an agent as a Claude Code skill (Stage 5)
+- [ ] Package an agent as a Antigravity CLI skill (Stage 5)
 - [ ] Add RAG memory to make the agent stateful (Stage 6)
 - [ ] Write evals + connect observability + deploy (Stage 7)
 

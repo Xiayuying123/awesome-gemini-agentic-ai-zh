@@ -15,7 +15,7 @@
 
 完成后你会：
 
-- 知道 7 个主流 CLI agent（Claude Code / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent）的差别
+- 知道 7 个主流 CLI agent（Antigravity CLI / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent）的差别
 - 依自己的场景挑出第一个 CLI 工具
 - 完成安装 + 认证 + 第一个真正的任务（不是 hello world）
 - 知道什么 时候该换 / 加第二个 CLI
@@ -31,7 +31,7 @@
 
 1. [**`resources/agent-paradigms.zh-Hans.md`**](../../resources/agent-paradigms.zh-Hans.md) ⭐ — 5 种 agent 型态的全景图；先读这份知道 CLI agent 在整个 agent 生态中的位置（Type 2 + Type 3）
 2. [**`resources/cli-agents-guide.zh-Hans.md`**](../../resources/cli-agents-guide.zh-Hans.md) ⭐ — 本轨的核心参考。7 个主流 CLI agent 并列比较、依 use case 推荐、实用搭配
-3. [**Anthropic — Claude Code Quickstart**](https://docs.anthropic.com/en/docs/claude-code/quickstart) — 官方安装指南
+3. [**Anthropic — Antigravity CLI Quickstart**](https://docs.anthropic.com/en/docs/claude-code/quickstart) — 官方安装指南
 4. [**OpenAI — Codex Quickstart**](https://github.com/openai/codex/blob/main/README.md) — Codex 安装跟认证流程
 
 ## 🛠 动手练习（基础 illustrative 练习）
@@ -47,7 +47,7 @@
 → 用真任务跑，才能感受 agent 跟 chatbot 的差别。
 
 ### 动手练习 CLI-2：CLI 内建的 system prompt 文件
-- Claude Code → 写一个 `CLAUDE.md` 在 repo 根目录
+- Antigravity CLI → 写一个 `GEMINI.md` 在 repo 根目录
 - Codex → 写 `AGENTS.md`
 - Gemini CLI → 写 `GEMINI.md`
 - goose / OpenCode → 看各自的设置
@@ -67,7 +67,7 @@
 详细比较（star、license、强弱项、推荐场景）见 [`resources/cli-agents-guide.zh-Hans.md`](../../resources/cli-agents-guide.zh-Hans.md)。这里只给快速 entry point：
 
 #### [anthropics/claude-code](https://github.com/anthropics/claude-code) ⭐⭐⭐⭐⭐
-★ 120k+ — 第一个 CLI agent 推荐。内建 SKILL / plugin 生态、CLAUDE.md prompt 系统、中文社群资源丰富。
+★ 120k+ — 第一个 CLI agent 推荐。内建 SKILL / plugin 生态、GEMINI.md prompt 系统、中文社群资源丰富。
 
 #### [openai/codex](https://github.com/openai/codex) ⭐⭐⭐⭐⭐
 ★ 80k+ — 已订 ChatGPT Plus / Pro 的人很合适；用同一个 账号就能在终端机跑。
@@ -102,7 +102,7 @@
 你能不能：
 - [ ] 讲得出 7 个主流 CLI 的核心差别（不查表就答得出 3-4 个）
 - [ ] 你已经選定一个主用 CLI，并有 working setup（装好、认证好、跑过至少 5 个非 hello-world 任务）
-- [ ] 写过你自己的 `CLAUDE.md` / `AGENTS.md` / `GEMINI.md`
+- [ ] 写过你自己的 `GEMINI.md` / `AGENTS.md` / `GEMINI.md`
 - [ ] 至少跑过第二个 CLI 一次，知道两个的风格差异
 
 如果可以 → 进 [A2 — CLI Workflow Patterns](A2-cli-workflow.zh-Hans.md)。

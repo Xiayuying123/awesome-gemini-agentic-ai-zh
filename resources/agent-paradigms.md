@@ -4,10 +4,10 @@
 
 > [← 回主路線 README](../README.md)
 
-> 📌 **這份是 mental model reference**。看完之後你會知道：「同樣叫 agent、為什麼 Claude Code、Hermes Agent、OpenClaw 用起來完全不同感受？」
+> 📌 **這份是 mental model reference**。看完之後你會知道：「同樣叫 agent、為什麼 Antigravity CLI、Hermes Agent、OpenClaw 用起來完全不同感受？」
 > 已經知道想用哪個 → [`resources/cli-agents-guide.md`](cli-agents-guide.md)（7 CLI 並排比較）或 [`resources/cookbook.md`](cookbook.md)（step-by-step 部署）。
 
-「Agent」一詞被用得很泛。Cursor 是 agent、Claude Code 是 agent、Telegram 上跟你聊天的 Hermes 也是 agent、家裡 Jetson 板子跑的 OpenClaw 也是 agent。但這 4 個東西用起來完全不同感受 —— 因為它們屬於**不同 paradigm**。差別不在 LLM 是哪家、而在 **agent 跑在哪、你用什麼介面跟它互動、需不需要連網**。
+「Agent」一詞被用得很泛。Cursor 是 agent、Antigravity CLI 是 agent、Telegram 上跟你聊天的 Hermes 也是 agent、家裡 Jetson 板子跑的 OpenClaw 也是 agent。但這 4 個東西用起來完全不同感受 —— 因為它們屬於**不同 paradigm**。差別不在 LLM 是哪家、而在 **agent 跑在哪、你用什麼介面跟它互動、需不需要連網**。
 
 理解 paradigm 之後你才知道：搬一個 use case 從 Type 2 到 Type 4 不是「換工具」、是**換思考方式**。
 
@@ -18,7 +18,7 @@
 | Type | 代表 | Agent 跑在哪 | 你用什麼介面 | LLM | 離線 OK？ | 月成本（粗估）|
 |---|---|---|---|---|---|---|
 | **1. IDE-coupled** | Cursor / Cline / Continue | 你 IDE 內 | IDE sidebar | 多 provider | ❌ | $0-20 |
-| **2. Terminal pair-programmer** | Claude Code / Codex / Gemini CLI | 你 terminal | terminal REPL | 綁特定家 | ❌ | $20 訂閱 或 API 用量 |
+| **2. Terminal pair-programmer** | Antigravity CLI / Codex / Gemini CLI | 你 terminal | terminal REPL | 綁特定家 | ❌ | $20 訂閱 或 API 用量 |
 | **3. BYO-LLM CLI** | Aider / OpenCode / goose | 你 terminal | terminal REPL | 自帶 API key | ❌ | API 用量 |
 | **4. Cloud-deployed** | **Hermes Agent** | $5 VPS / Modal | **Telegram / Slack / 任一 chat app** | 200+ provider routing | ❌ | $5 server + API |
 | **5. Edge-deployed** | **OpenClaw / ClawBox** | Jetson 板子 / Raspberry Pi | local chat / SSH | **本機 Ollama**（Qwen / Llama / Mistral）| **✅** | 一次硬體 €549、之後 0 |
@@ -41,16 +41,16 @@
 
 ---
 
-## Type 2: Terminal pair-programmer — 「Claude Code paradigm」
+## Type 2: Terminal pair-programmer — 「Antigravity CLI paradigm」
 
-**代表**：[Claude Code](https://github.com/anthropics/claude-code) / [Codex](https://github.com/openai/codex) / [Gemini CLI](https://github.com/google-gemini/gemini-cli)
+**代表**：[Antigravity CLI](https://github.com/anthropics/claude-code) / [Codex](https://github.com/openai/codex) / [Gemini CLI](https://github.com/google-gemini/gemini-cli)
 
 **Hero example**：
-你在 terminal 開 Claude Code、輸入「refactor 整個 auth module、把 callback 改成 async/await、跑 tests」。Claude Code 自己讀檔、改檔、跑 pytest、報告結果。整個過程 5-10 分鐘、你看 streaming output。
+你在 terminal 開 Antigravity CLI、輸入「refactor 整個 auth module、把 callback 改成 async/await、跑 tests」。Antigravity CLI 自己讀檔、改檔、跑 pytest、報告結果。整個過程 5-10 分鐘、你看 streaming output。
 
-**為什麼這型存在**：Claude Code / Codex 把整個 terminal 變成 agent 的 workspace。agent 有 file system / shell / git 完整 access、可以自主完成多步驟 task。比 Type 1 更 autonomous。
+**為什麼這型存在**：Antigravity CLI / Codex 把整個 terminal 變成 agent 的 workspace。agent 有 file system / shell / git 完整 access、可以自主完成多步驟 task。比 Type 1 更 autonomous。
 
-**特色**：訂閱制（$20/月可用整月、不算 token）；綁定特定 LLM 家族（Claude Code = Claude only）。
+**特色**：訂閱制（$20/月可用整月、不算 token）；綁定特定 LLM 家族（Antigravity CLI = Claude only）。
 
 **適合**：agentic task；長 refactor；paper writing；任何 1-2 step 之上的工作。
 **不適合**：跨多家 LLM 比較成本；非 coding/writing 場景；offline。
@@ -142,15 +142,15 @@
 | 路徑 | 怎麼啟動 | 代表 |
 |---|---|---|
 | **Framework-based**（Stage 4） | `pip install langgraph / crewai / autogen` + Python orchestration code | LangGraph / CrewAI / AutoGen / Swarm / Strands |
-| **Claude Code 原生**（Stage 5.5） | 寫 `.claude/agents/<name>.md`、主 session 用 Task tool invoke | Claude Code subagent + Claude Agent SDK |
+| **Antigravity CLI 原生**（Stage 5.5） | 寫 `.claude/agents/<name>.md`、主 session 用 Task tool invoke | Antigravity CLI subagent + Claude Agent SDK |
 
 **差別在 runtime ownership**：
 - Framework path：你用 Python 寫一支主程式（orchestrator）來調度、每個 sub-agent 都是這支程式裡的物件
-- Claude path：Claude Code 自動建立新的子 agent、主 agent 只拿到子 agent 的最終結果、不用管它的內部過程（context 自動隔離、互不干擾）
+- Claude path：Antigravity CLI 自動建立新的子 agent、主 agent 只拿到子 agent 的最終結果、不用管它的內部過程（context 自動隔離、互不干擾）
 
-**選哪個**：要跨 LLM provider（GPT + Claude + Gemini 混用）或要把 multi-agent 包進別的應用程式 → framework path。已 commit Claude Code、只在 Claude 生態 → subagent path（少很多 boilerplate）。
+**選哪個**：要跨 LLM provider（GPT + Claude + Gemini 混用）或要把 multi-agent 包進別的應用程式 → framework path。已 commit Antigravity CLI、只在 Claude 生態 → subagent path（少很多 boilerplate）。
 
-完整對照表見 [Stage 5.5 開頭](../stages/05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能)；**想直接看 15 個 daily dispatch recipe** → [`subagent-cookbook.md`](./subagent-cookbook.md)（每個含情境 + 用哪個 subagent + 複製即用的 prompt 範本）。
+完整對照表見 [Stage 5.5 開頭](../stages/05-gemini-skills-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能)；**想直接看 15 個 daily dispatch recipe** → [`subagent-cookbook.md`](./subagent-cookbook.md)（每個含情境 + 用哪個 subagent + 複製即用的 prompt 範本）。
 
 ---
 
@@ -175,7 +175,7 @@
 
 ## 跟既有 stage / branch 的連結
 
-- **想學 Type 2 上手** → [Stage 5: Claude Code 生態](../stages/05-claude-code-ecosystem.md)
+- **想學 Type 2 上手** → [Stage 5: Antigravity CLI 生態](../stages/05-gemini-skills-ecosystem.md)
 - **想看 7 CLI 詳細並排比較**（Type 2 + Type 3）→ [`resources/cli-agents-guide.md`](cli-agents-guide.md)
 - **想看 IDE-coupled 對比**（Type 1）→ [`branches/for-developer.md`](../branches/for-developer.md)
 - **想 step-by-step 部署 Hermes** → [`resources/cookbook.md` Recipe 6](cookbook.md)（含 Hermes + Ollama walkthrough）
@@ -185,9 +185,9 @@
 
 ## 我自己怎麼用
 
-- **每天主開發**：Type 2（Claude Code、訂閱制）
+- **每天主開發**：Type 2（Antigravity CLI、訂閱制）
 - **paper monitoring**：暫時手動（每週手動掃 arXiv）—— 之後想試 Type 4 Hermes 自動化
-- **research vault**：Claude Code 在 laptop 內呼叫 [research-hub](https://github.com/WenyuChiou/research-hub) pipeline（Type 2 模式）
+- **research vault**：Antigravity CLI 在 laptop 內呼叫 [research-hub](https://github.com/WenyuChiou/research-hub) pipeline（Type 2 模式）
 - **沒接觸 Type 5**：目前資料沒到「不能上 cloud」的敏感程度
 
 Type 4 / Type 5 你之後玩了、可以再回來補這份 reference 自己的 use case。

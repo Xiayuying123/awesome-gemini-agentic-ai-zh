@@ -13,7 +13,7 @@ After Stages 0-2, you want to use existing CLI agents to get real work done — 
 
 ## 📌 Learning Goals
 
-- Know the differences between 7 mainstream CLI agents (Claude Code / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent)
+- Know the differences between 7 mainstream CLI agents (Antigravity CLI / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent)
 - Pick a first CLI tool based on your scenario
 - Complete install + auth + your first real task (not a hello world)
 - Know when to switch / add a second CLI
@@ -29,7 +29,7 @@ You should already:
 
 1. [**`resources/agent-paradigms.en.md`**](../../resources/agent-paradigms.en.md) ⭐ — the 5-paradigm map of the agent landscape; read this first to see where CLI agents sit (Type 2 + Type 3) in the wider ecosystem
 2. [**`resources/cli-agents-guide.en.md`**](../../resources/cli-agents-guide.en.md) ⭐ — the core reference for this track. 7 mainstream CLI agents side by side, use-case picks, real-world setups
-3. [**Anthropic — Claude Code Quickstart**](https://docs.anthropic.com/en/docs/claude-code/quickstart) — official install
+3. [**Anthropic — Antigravity CLI Quickstart**](https://docs.anthropic.com/en/docs/claude-code/quickstart) — official install
 4. [**OpenAI — Codex Quickstart**](https://github.com/openai/codex/blob/main/README.md) — Codex install + auth
 
 ## 🛠 Hands-on Exercises (foundational, illustrative)
@@ -45,7 +45,7 @@ You should already:
 → Real tasks are what make the difference between an agent and a chatbot visible.
 
 ### Exercise CLI-2: CLI's built-in system prompt file
-- Claude Code → write a `CLAUDE.md` at the repo root
+- Antigravity CLI → write a `GEMINI.md` at the repo root
 - Codex → write `AGENTS.md`
 - Gemini CLI → write `GEMINI.md`
 - goose / OpenCode → see each tool's docs
@@ -65,7 +65,7 @@ Deliberately break your API key (one wrong character) and see how the CLI errors
 Detailed comparison (stars, license, strengths, recommended use cases) in [`resources/cli-agents-guide.en.md`](../../resources/cli-agents-guide.en.md). Quick entry points here:
 
 #### [anthropics/claude-code](https://github.com/anthropics/claude-code) ⭐⭐⭐⭐⭐
-★ 120k+ — Recommended first CLI agent. Built-in SKILL / plugin ecosystem, CLAUDE.md prompt system, rich community resources.
+★ 120k+ — Recommended first CLI agent. Built-in SKILL / plugin ecosystem, GEMINI.md prompt system, rich community resources.
 
 #### [openai/codex](https://github.com/openai/codex) ⭐⭐⭐⭐⭐
 ★ 80k+ — Top pick if you already subscribe to ChatGPT Plus / Pro; same account works in the terminal.
@@ -100,7 +100,7 @@ Closed-source desktop app — drag-and-drop UI for local LLMs. Try this first if
 Can you:
 - [ ] Articulate the core differences between the 7 mainstream CLIs (3-4 without checking the table)
 - [ ] Have a working primary CLI (installed, authed, ran 5+ real tasks)
-- [ ] Written your own `CLAUDE.md` / `AGENTS.md` / `GEMINI.md`
+- [ ] Written your own `GEMINI.md` / `AGENTS.md` / `GEMINI.md`
 - [ ] Run a second CLI at least once, know the style differences
 
 If yes → proceed to [A2 — CLI Workflow Patterns](A2-cli-workflow.en.md).

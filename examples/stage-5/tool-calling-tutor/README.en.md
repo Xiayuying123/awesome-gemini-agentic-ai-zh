@@ -2,11 +2,11 @@
   <a href="./README.md">繁體中文</a> | <a href="./README.zh-Hans.md">简体中文</a> | <strong>English</strong>
 </div>
 
-# tool-calling-tutor — Claude Code skill
+# tool-calling-tutor — Antigravity CLI skill
 
 > What this skill does: when you're stuck on tool calling (LLM won't call, args wrong, ReAct loop runs forever, don't know how to write a schema), it auto-loads to walk you through a 4-symptom diagnostic + 5-step fix.
 
-Pairs with [Stage 3 — Tool Use & Agent Intro](../../../stages/03-tool-use-and-hello-agent.en.md). Also serves as the **bundled skill example** for [Stage 5 — Claude Code Ecosystem](../../../stages/05-claude-code-ecosystem.en.md) 5.3.
+Pairs with [Stage 3 — Tool Use & Agent Intro](../../../stages/03-tool-use-and-hello-agent.en.md). Also serves as the **bundled skill example** for [Stage 5 — Antigravity CLI Ecosystem](../../../stages/05-gemini-skills-ecosystem.en.md) 5.3.
 
 ## Why this skill exists
 
@@ -23,7 +23,7 @@ This skill fills that gap:
 
 ## Dual purpose
 
-1. **For learners**: install as a personal debug assistant. When you prompt Claude Code with "why won't the LLM call my tool", the skill auto-loads and walks the 4-symptom diagnostic.
+1. **For learners**: install as a personal debug assistant. When you prompt Antigravity CLI with "why won't the LLM call my tool", the skill auto-loads and walks the 4-symptom diagnostic.
 2. **As a Stage 5 5.3 meta-example**: when learning to write SKILL.md, study this one directly. Includes full frontmatter (with trigger phrases + Do NOT use for), `references/` design, and `evals/evals.json` example.
 
 ## Install (30 seconds)
@@ -48,7 +48,7 @@ cp SKILL.md references/ evals/ .claude/skills/tool-calling-tutor/
 
 ### Verify the install
 
-Restart Claude Code, then prompt:
+Restart Antigravity CLI, then prompt:
 
 ```
 Why won't the LLM call my tool?

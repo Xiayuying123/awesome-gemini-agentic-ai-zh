@@ -2,7 +2,7 @@
 
 > **繁體中文** | [简体中文](./cookbook.zh-Hans.md) | [English](./cookbook.en.md)
 
-> Stage 5（Claude Code 生態）跟 [`mcp-skills-catalog.md`](mcp-skills-catalog.md) 講「概念」跟「有哪些工具」。這份 cookbook 補中間缺的：「**怎麼動手做出來**」。每個 recipe 是一份 step-by-step + sample code + 常見 pitfall，~30-50 分鐘做完一個。
+> Stage 5（Antigravity CLI 生態）跟 [`mcp-skills-catalog.md`](mcp-skills-catalog.md) 講「概念」跟「有哪些工具」。這份 cookbook 補中間缺的：「**怎麼動手做出來**」。每個 recipe 是一份 step-by-step + sample code + 常見 pitfall，~30-50 分鐘做完一個。
 >
 > 不是 reference 也不是 tutorial——是 recipe，挑你需要的那道煮就好。
 
@@ -21,7 +21,7 @@
 
 ## 1. 寫你的第一個 Skill
 
-> Skill = 一個資料夾含 `SKILL.md`，Claude Code 啟動時自動 discover、按情境自動載入。最小 viable 版本 50 行就能跑。
+> Skill = 一個資料夾含 `SKILL.md`，Antigravity CLI 啟動時自動 discover、按情境自動載入。最小 viable 版本 50 行就能跑。
 >
 > 📚 **這份是「30 分鐘跑出第一個」實作版。想看「Skill 怎麼寫得好」深度討論** → [Hello-Agents Extra08：如何寫出好的 Skill](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra08-如何写出好的Skill.md)（中文最完整的 Skill 最佳實踐，討論 description 寫法、references / scripts 設計等）。兩份互補：先用本 recipe 跑出第一個，再讀那份 polish 寫法。
 
@@ -103,7 +103,7 @@ When the user wants Python imports cleaned up:
 #### Step 3：測試
 
 ```bash
-# 重啟 Claude Code（讓它重新 discover skills）
+# 重啟 Antigravity CLI（讓它重新 discover skills）
 # 在 conversation 裡丟一個觸發句
 # e.g.「幫我整理一下這段 Python 的 imports」
 # 觀察 Claude 有沒有按照 SKILL.md 的步驟做
@@ -136,21 +136,21 @@ When the user wants Python imports cleaned up:
 
 ### 進一步
 
-- 看 [Stage 5.3](../stages/05-claude-code-ecosystem.md#53--skillsclaude-code-的行為層-claude-code-生態最關鍵的一層) 的 Skill anatomy 詳解
+- 看 [Stage 5.3](../stages/05-gemini-skills-ecosystem.md#53--skillsclaude-code-的行為層-claude-code-生態最關鍵的一層) 的 Skill anatomy 詳解
 - 看 [`anthropics/skills`](https://github.com/anthropics/skills) 官方 skill 範本（docx / xlsx / pptx 等）的寫法
-- 多個 skill 打包成 plugin → [Stage 5.4](../stages/05-claude-code-ecosystem.md#54--plugins-與-marketplaces)
+- 多個 skill 打包成 plugin → [Stage 5.4](../stages/05-gemini-skills-ecosystem.md#54--plugins-與-marketplaces)
 
 ---
 
 ## 2. 寫你的第一個 MCP server
 
-> MCP server = 一個獨立 process，跑起來提供 tool / resource / prompt 給 LLM host（Claude Desktop / Claude Code）。最小可 run 版 < 50 行 Python。
+> MCP server = 一個獨立 process，跑起來提供 tool / resource / prompt 給 LLM host（Claude Desktop / Antigravity CLI）。最小可 run 版 < 50 行 Python。
 
 ### 為什麼
 
 - Skill 是給 Claude 的「角色 + 規則」；MCP 是給 Claude 的「**外部 function**」
 - Skill 不能讀檔、不能呼叫 API；MCP 可以（任何 tool 你寫得出來）
-- Skill 只在 Claude Code 跑；MCP 任何 LLM host（包括 Cursor、自寫 agent）都能接
+- Skill 只在 Antigravity CLI 跑；MCP 任何 LLM host（包括 Cursor、自寫 agent）都能接
 
 ### 步驟
 
@@ -221,7 +221,7 @@ if __name__ == "__main__":
 }
 ```
 
-**Claude Code**：用 `claude mcp add` 指令：
+**Antigravity CLI**：用 `claude mcp add` 指令：
 
 ```bash
 claude mcp add hello-mcp python /絕對路徑/到/server.py
@@ -245,9 +245,9 @@ Claude 回（會顯示 tool call icon）：Echo: hello world
 
 ### 進一步
 
-- 看 [Stage 5.2](../stages/05-claude-code-ecosystem.md#52--mcpmodel-context-protocol-基礎) 的 MCP 完整介紹
+- 看 [Stage 5.2](../stages/05-gemini-skills-ecosystem.md#52--mcpmodel-context-protocol-基礎) 的 MCP 完整介紹
 - 看 [`modelcontextprotocol/servers`](https://github.com/modelcontextprotocol/servers) 官方範例（filesystem、github、sqlite、time 等）
-- 寫 production server 看 [Stage 5.2「練習：MCP in production」](../stages/05-claude-code-ecosystem.md#52--mcpmodel-context-protocol-基礎) 跟 [`anthropics/claude-code`](https://github.com/anthropics/claude-code) 的 `~/.claude/skills/`
+- 寫 production server 看 [Stage 5.2「練習：MCP in production」](../stages/05-gemini-skills-ecosystem.md#52--mcpmodel-context-protocol-基礎) 跟 [`anthropics/claude-code`](https://github.com/anthropics/claude-code) 的 `~/.claude/skills/`
 
 ---
 
@@ -278,7 +278,7 @@ git clone https://github.com/anthropics/skills.git ~/.claude/skills/anthropic-sk
 
 或者用 `claude plugin install`（如果有打包成 plugin）。
 
-#### Step 2：重啟 Claude Code
+#### Step 2：重啟 Antigravity CLI
 
 - skills/docx/ → docx 讀寫
 - skills/xlsx/ → Excel 讀寫
@@ -335,7 +335,7 @@ Claude 會根據 user query 自動載入合適的 skill。
 
 ## 4. NotebookLM Workflow
 
-> NotebookLM 是 Google 的 RAG-on-your-docs 工具。**Claude Code 沒有官方 NotebookLM 整合**，但社群有 2 個成熟方案。
+> NotebookLM 是 Google 的 RAG-on-your-docs 工具。**Antigravity CLI 沒有官方 NotebookLM 整合**，但社群有 2 個成熟方案。
 
 ### 為什麼
 
@@ -344,7 +344,7 @@ NotebookLM 強的地方：
 - Q&A 帶 citation（每個答案都標出來自哪份文件第幾頁）
 - 生成 summary / mind map / podcast-style audio overview
 
-弱點：要在 NotebookLM 網頁裡用，跟你的其他 workflow（Claude Code、Obsidian、Zotero）斷開。
+弱點：要在 NotebookLM 網頁裡用，跟你的其他 workflow（Antigravity CLI、Obsidian、Zotero）斷開。
 
 兩個方案橋接：
 1. **PleasePrompto/notebooklm-skill**（Skill，browser automation）
@@ -354,7 +354,7 @@ NotebookLM 強的地方：
 
 | 場景 | 選哪個 | 為什麼 |
 |---|---|---|
-| 偶爾從 Claude Code 查一下 NotebookLM | `PleasePrompto/notebooklm-skill` | Claude Code 內 prompt 一句話就跑、setup 簡單 |
+| 偶爾從 Antigravity CLI 查一下 NotebookLM | `PleasePrompto/notebooklm-skill` | Antigravity CLI 內 prompt 一句話就跑、setup 簡單 |
 | 批次操作（建 100 個 notebook、批次匯入文件） | `teng-lin/notebooklm-py` | Python API，可程式化跑 |
 | 不想 Google 政策變動就壞 | （等 Google 出官方 API） | 兩個都是 unofficial、會有風險 |
 
@@ -420,7 +420,7 @@ print(answer.citations)
 
 ## 5. Zotero Workflow
 
-> Zotero 管文獻，加上 [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) 後 Claude Code 能直接搜 / 加 / 分類 / 標 references。
+> Zotero 管文獻，加上 [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) 後 Antigravity CLI 能直接搜 / 加 / 分類 / 標 references。
 
 ### 為什麼
 
@@ -429,14 +429,14 @@ print(answer.citations)
 - 「給我所有講 transformer 的 paper 摘要」——要自己 select、export、丟給 LLM
 - 「這篇 paper 該打什麼 tag？」——人工
 
-zotero-skills 把這些變成 Claude Code 內一句 prompt 就跑。
+zotero-skills 把這些變成 Antigravity CLI 內一句 prompt 就跑。
 
 ### 跟 zotero-gpt 差別
 
 | 工具 | 角色 | 適合 |
 |---|---|---|
 | [`MuiseDestiny/zotero-gpt`](https://github.com/MuiseDestiny/zotero-gpt) | Zotero plugin（在 Zotero **內部** chat） | 邊讀 paper 邊問 LLM、不切換視窗 |
-| [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | Claude Code skill（從 **外部** 操作 Zotero） | 寫 paper / 整理文獻時，Claude Code 為主 |
+| [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | Antigravity CLI skill（從 **外部** 操作 Zotero） | 寫 paper / 整理文獻時，Antigravity CLI 為主 |
 
 互補不衝突，可以兩個都裝。
 
@@ -506,7 +506,7 @@ git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-sk
 
 ### 為什麼
 
-Stage 1 教你用 Ollama / llama.cpp / vLLM 跑本機 LLM；Stage 5 教 Claude Code、MCP、Skills、Plugins 的 agent 生態。中間常見的誤會是：**Claude Code 不是本機 LLM runner**。Claude Code 需要 Anthropic OAuth / API key，不能直接把 model endpoint 改成 Ollama 或其他本機 endpoint。
+Stage 1 教你用 Ollama / llama.cpp / vLLM 跑本機 LLM；Stage 5 教 Antigravity CLI、MCP、Skills、Plugins 的 agent 生態。中間常見的誤會是：**Antigravity CLI 不是本機 LLM runner**。Antigravity CLI 需要 Anthropic OAuth / API key，不能直接把 model endpoint 改成 Ollama 或其他本機 endpoint。
 
 如果目標是「本機 LLM + CLI agent」，選擇支援 BYO LLM 的 CLI 會更直接：**OpenCode / goose / Aider / Hermes Agent** 都能接 OpenAI-compatible endpoint 或 Ollama provider。這個 recipe 用一個短流程讓你先跑通 model、agent、任務三件事。
 
@@ -576,9 +576,9 @@ hermes
 - **Quality**：3B / 7B 模型的 reasoning、長 context、複雜程式碼能力通常不如 Claude。
 - **Cost**：token 成本是 `$0`，但會吃本機 RAM / VRAM 與電力。
 
-#### Step 4：跟 Claude Code 的差異（5 分鐘）
+#### Step 4：跟 Antigravity CLI 的差異（5 分鐘）
 
-| 面向 | Claude Code | OpenCode + Ollama |
+| 面向 | Antigravity CLI | OpenCode + Ollama |
 |---|---|---|
 | LLM | Anthropic hosted | 本機模型 |
 | 成本 | 訂閱或 per-token | `$0` token cost |
@@ -587,11 +587,11 @@ hermes
 | Reasoning 上限 | Claude 4.5+ 較強 | 取決於本機模型 |
 | 適合 use case | 複雜 codebase、長 context、可靠推理 | 隱私資料、離線 demo、低成本反覆試 |
 
-### 重要限制：Claude Code 不能直接用本機 LLM
+### 重要限制：Antigravity CLI 不能直接用本機 LLM
 
-Claude Code 目前需要 Anthropic OAuth / API key，沒有官方設定可以把模型切成 Ollama 或本機 endpoint。網路上可能有 proxy 或 API shim 做實驗，但這不是官方支援路徑，穩定性與相容性要自己承擔。
+Antigravity CLI 目前需要 Anthropic OAuth / API key，沒有官方設定可以把模型切成 Ollama 或本機 endpoint。網路上可能有 proxy 或 API shim 做實驗，但這不是官方支援路徑，穩定性與相容性要自己承擔。
 
-要用本機 LLM，建議把「Claude Code」跟「支援 BYO LLM 的 CLI agent」分開看：Claude Code 用在需要 Claude 品質的工作；OpenCode / goose / Aider / Hermes 用在本機、離線、隱私或低成本實驗。
+要用本機 LLM，建議把「Antigravity CLI」跟「支援 BYO LLM 的 CLI agent」分開看：Antigravity CLI 用在需要 Claude 品質的工作；OpenCode / goose / Aider / Hermes 用在本機、離線、隱私或低成本實驗。
 
 ### 常見 pitfall
 
@@ -612,7 +612,7 @@ Claude Code 目前需要 Anthropic OAuth / API key，沒有官方設定可以把
 
 ## 找不到你要的 recipe？
 
-- 看 [Stage 5](../stages/05-claude-code-ecosystem.md) 完整概念
+- 看 [Stage 5](../stages/05-gemini-skills-ecosystem.md) 完整概念
 - 看 [`mcp-skills-catalog.md`](mcp-skills-catalog.md) 完整工具清單
 - 看 [`schema-design-cheatsheet.md`](schema-design-cheatsheet.md) 寫 tool schema 的細節
 - 看 [`cli-agents-guide.md`](cli-agents-guide.md) 7 個主流 CLI agent 比較

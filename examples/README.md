@@ -215,7 +215,7 @@ r = client.messages.create(model="claude-haiku-4-5", ...)
 | 2 Prompt eng | 4 個 | 全 inline |
 | **3 Tool use** | **6 個** | inline 1 + folder 5（`examples/stage-3/`） |
 | 4 Frameworks | 5 個 | 全 folder（`examples/stage-4/`） |
-| 5 Claude Code 生態 | 11 個 | inline 6 + folder 5（`examples/stage-5/`） |
+| 5 Antigravity CLI 生態 | 11 個 | inline 6 + folder 5（`examples/stage-5/`） |
 | 6 Memory/RAG | 5 個 | 全 folder（`examples/stage-6/`） |
 | 7 Multi-agent | 5 個 | inline 1 + folder 4（`examples/stage-7/`） |
 | Track A1-A3 | 12 個 | 全 inline、外加 2 個小 folder（CLI-9 / CLI-10） |

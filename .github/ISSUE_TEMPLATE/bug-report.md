@@ -11,7 +11,7 @@ labels: bug
 <!-- 例如：Stage 5 中 anthropics/claude-code 的連結失效 -->
 
 ## 受影響的檔案 / Affected file
-<!-- 例如：stages/05-claude-code-ecosystem.md:65 -->
+<!-- 例如：stages/05-gemini-skills-ecosystem.md:65 -->
 
 ## 看到的內容 / What you saw
 <!-- 把錯誤的原文貼上來 -->

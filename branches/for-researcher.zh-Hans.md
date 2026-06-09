@@ -15,7 +15,7 @@
 | **文献探索** | 不知道某个领域有哪些经典 paper | 推荐 + 摘要 + 比较 | NotebookLM → paper-qa → gpt-researcher |
 | **文献精读** | PDF 翻一半就忘 / 抓不到 claim | 抓 claim、figure、citation、做笔记 | Zotero + zotero-gpt → zotero-skills |
 | **研究设计** | RQ 模糊、不知选哪个 method | 对话厘清、列出 trade-off | Claude.ai 对话 → ai-research-skills |
-| **实验 / 写代码** | 重复 boilerplate、写 plot 浪费时间 | 写 / 改 code、batch refactor | Claude Code → codex-delegate |
+| **实验 / 写代码** | 重复 boilerplate、写 plot 浪费时间 | 写 / 改 code、batch refactor | Antigravity CLI → codex-delegate |
 | **论文撰写** | 草稿卡关、句子不通 | 大纲 → 段落 → 润色 | Claude.ai → gemini-delegate（长稿） |
 | **改稿 / 投稿** | 期刊规范一堆、容易漏 | banned-word / figure-text / submission checklist | academic-writing-skills |
 | **跨 paper synthesis** | 5 篇 paper 互相对话、context 爆 | 1M token 一次读完 + 整理 | gemini-delegate |
@@ -24,13 +24,13 @@
 
 ## 精选 Projects
 
-> 💡 **想把 Claude Code 接到 NotebookLM、Obsidian、Notion、Excel、PDF、Excalidraw 等研究常用工具？** 62 个集成在 [`resources/mcp-skills-catalog.zh-Hans.md`](../resources/mcp-skills-catalog.zh-Hans.md)（按使用场景分类）。下面这节保留“研究专属”的工具与 marketplace。
+> 💡 **想把 Antigravity CLI 接到 NotebookLM、Obsidian、Notion、Excel、PDF、Excalidraw 等研究常用工具？** 62 个集成在 [`resources/mcp-skills-catalog.zh-Hans.md`](../resources/mcp-skills-catalog.zh-Hans.md)（按使用场景分类）。下面这节保留“研究专属”的工具与 marketplace。
 
 ### 研究流程 Marketplace
 
 #### [flonat/claude-research](https://github.com/flonat/claude-research) ⭐⭐⭐
 
-给博士研究者的 Claude Code 基础建设——学术流程用的 skill、agent、hook、规则。LaTeX / 文献管理为主。
+给博士研究者的 Antigravity CLI 基础建设——学术流程用的 skill、agent、hook、规则。LaTeX / 文献管理为主。
 
 ---
 
@@ -175,7 +175,7 @@
 
 ## 必修阅读
 
-1. [The Effortless Academic — Claude Code beginner guides](https://effortlessacademic.com/claude-code-and-cowork-for-academics-beginner-guide-part-1/)
+1. [The Effortless Academic — Antigravity CLI beginner guides](https://effortlessacademic.com/claude-code-and-cowork-for-academics-beginner-guide-part-1/)
 2. [Pedro Sant'Anna — Researcher setup guide](https://paulgp.substack.com/p/getting-started-with-claude-code)
 
 ## 必练流程（按使用频率）
@@ -196,13 +196,13 @@
 
 ## 层级建议
 
-研究者不需要一开始就装 Claude Code。下表是建议的进阶路径：
+研究者不需要一开始就装 Antigravity CLI。下表是建议的进阶路径：
 
 | Tier | 工具 | 适合谁 | 学习成本 |
 |---|---|---|---|
 | **Tier 0** | Claude.ai 网页版 + NotebookLM | 非程序背景、人文社科、临床研究 | 0（会用浏览器就行） |
 | **Tier 1** | Claude Desktop + Zotero MCP / Obsidian MCP | 已有 Zotero / Obsidian 习惯的研究者 | 半天装好 |
-| **Tier 2** | Claude Code + ai-research-skills | 计算型研究者、写 / 改程序为主 | 1-2 天上手 |
-| **Tier 3** | Claude Code + codex-delegate + gemini-delegate + research-hub | 想跑 multi-LLM 研究 pipeline、跨多工具集成 | 1 周 setup + 持续调 |
+| **Tier 2** | Antigravity CLI + ai-research-skills | 计算型研究者、写 / 改程序为主 | 1-2 天上手 |
+| **Tier 3** | Antigravity CLI + codex-delegate + gemini-delegate + research-hub | 想跑 multi-LLM 研究 pipeline、跨多工具集成 | 1 周 setup + 持续调 |
 
 **多数研究者停在 Tier 1-2 就够了**——Tier 3 是有大量重复流程（比如每周跑同样的 paper synthesis）才值得。

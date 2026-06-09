@@ -2,7 +2,7 @@
 
 > **繁體中文** | [简体中文](./subagent-advanced.zh-Hans.md) | [English](./subagent-advanced.en.md)
 
-> 📋 **這份是給誰看的**：你已經會用內建 subagent（[Stage 5.5](../stages/05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能) + [cookbook](./subagent-cookbook.md) 走完了），準備：(1) **自己寫一個** subagent、(2) **組合多個** subagent、或 (3) **debug** 跑壞的 subagent。
+> 📋 **這份是給誰看的**：你已經會用內建 subagent（[Stage 5.5](../stages/05-gemini-skills-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能) + [cookbook](./subagent-cookbook.md) 走完了），準備：(1) **自己寫一個** subagent、(2) **組合多個** subagent、或 (3) **debug** 跑壞的 subagent。
 >
 > ⚠️ **先決條件**：讀完 Stage 5.5 §易混淆觀念釐清 + cookbook 15 個 recipe 之後再來。沒讀 cookbook 直接看這份會卡在「subagent 是什麼」這層。
 
@@ -165,17 +165,17 @@ description: Use PROACTIVELY before commits touching auth or payment code. Check
 
 ## §3 自製 subagent 的 debug 工具
 
-> 📌 **跟 [Stage 5.5 §易混淆 5 條 Gotcha](../stages/05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能) 角度不同**——
+> 📌 **跟 [Stage 5.5 §易混淆 5 條 Gotcha](../stages/05-gemini-skills-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能) 角度不同**——
 > 5.5 Gotcha 是「**best-practice-oriented**」：寫 subagent 時就要注意的事
 > 這節 5 切點是「**debug-oriented**」：subagent **已經跑壞了**該從哪裡查
 > 內容有 3 條重疊（tools / model / memory）但視角不同、可分開讀
 
 寫了 `.claude/agents/<name>.md`、結果不如預期——下面是 debug 的 5 個切點：
 
-### 切點 1: 確認 Claude Code 看得到你的 agent
+### 切點 1: 確認 Antigravity CLI 看得到你的 agent
 
 ```bash
-# 在 Claude Code 對話框內跑：
+# 在 Antigravity CLI 對話框內跑：
 /agents
 ```
 **期待**：列表裡有你寫的那個 name。**沒有**：
@@ -233,7 +233,7 @@ model: haiku
 # model: opus
 ```
 
-看 session 結束後 Claude Code 顯示的 token 統計（右下角 status bar 或 session summary），或用 `/clear` 後對比前後用量。
+看 session 結束後 Antigravity CLI 顯示的 token 統計（右下角 status bar 或 session summary），或用 `/clear` 後對比前後用量。
 
 ---
 
@@ -271,6 +271,6 @@ issues, error handling gaps. Per-issue: file:line + suggested fix.
 ## 接下來
 
 - **想看更多 dispatch recipe** → [`subagent-cookbook.md`](./subagent-cookbook.md)（15 個複製即用的派遣 prompt）
-- **想理解 subagent 跟 skill / MCP 的層次關係** → [Stage 5.5](../stages/05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能)
+- **想理解 subagent 跟 skill / MCP 的層次關係** → [Stage 5.5](../stages/05-gemini-skills-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能)
 - **想跑 multi-agent coordination**（Pattern B）→ [agent-collab-skills](https://github.com/WenyuChiou/agent-collab-skills) plugin
-- **詞彙快查** → [`glossary.md` § 5. Claude Code 生態](./glossary.md#subagent子-agent)
+- **詞彙快查** → [`glossary.md` § 5. Antigravity CLI 生態](./glossary.md#subagent子-agent)

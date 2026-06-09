@@ -2,15 +2,15 @@
 
 > [繁體中文](./mcp-skills-catalog.md) | [简体中文](./mcp-skills-catalog.zh-Hans.md) | **English**
 
-> Connect Claude Code (or any other CLI agent) to the apps you already use, without window-hopping. This page is a curated index of 62 MCP servers / Claude Skills / integrations grouped by use case (incl. research-workflow + multi-LLM-delegation dedicated sections).
+> Connect Antigravity CLI (or any other CLI agent) to the apps you already use, without window-hopping. This page is a curated index of 62 MCP servers / Claude Skills / integrations grouped by use case (incl. research-workflow + multi-LLM-delegation dedicated sections).
 
 ---
 
 ## How to use this catalog
 
 - **Looking for a specific tool's MCP**: jump to the relevant section below
-- **Want to know what MCP / Skills / Plugins are**: see [RESOURCES.en.md "Three core terms"](../RESOURCES.en.md#three-core-terms-mcp--skills--plugins) first, then [Stage 5 — Claude Code Ecosystem](../stages/05-claude-code-ecosystem.en.md)
-- **Want hands-on exercises (install + test)**: see [Stage 5.2 (MCP)](../stages/05-claude-code-ecosystem.en.md#52--mcp-model-context-protocol--foundation) and [Stage 5.3 (Skills)](../stages/05-claude-code-ecosystem.en.md#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem)
+- **Want to know what MCP / Skills / Plugins are**: see [RESOURCES.en.md "Three core terms"](../RESOURCES.en.md#three-core-terms-mcp--skills--plugins) first, then [Stage 5 — Antigravity CLI Ecosystem](../stages/05-gemini-skills-ecosystem.en.md)
+- **Want hands-on exercises (install + test)**: see [Stage 5.2 (MCP)](../stages/05-gemini-skills-ecosystem.en.md#52--mcp-model-context-protocol--foundation) and [Stage 5.3 (Skills)](../stages/05-gemini-skills-ecosystem.en.md#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem)
 
 ### Inclusion direction (not strict rules)
 
@@ -62,7 +62,7 @@
 | Rating | ⭐⭐⭐⭐ (community, most popular) |
 
 **What it does**: read/write your Obsidian vault via the Obsidian REST API community plugin.
-**Audience**: heavy Obsidian users wanting Claude Code to organize daily notes, auto-link, search across files.
+**Audience**: heavy Obsidian users wanting Antigravity CLI to organize daily notes, auto-link, search across files.
 **Notes**: requires the [Local REST API](https://github.com/coddingtonbear/obsidian-local-rest-api) plugin in Obsidian.
 
 ### [PleasePrompto/notebooklm-skill](https://github.com/PleasePrompto/notebooklm-skill) ⭐⭐⭐⭐
@@ -73,8 +73,8 @@
 | License | NOASSERTION |
 | Rating | ⭐⭐⭐⭐ |
 
-**What it does**: a Claude Code Skill that uses browser automation to query NotebookLM, with citation-backed answers.
-**Audience**: people who manage papers / research notes in NotebookLM but want to query from Claude Code in one prompt.
+**What it does**: a Antigravity CLI Skill that uses browser automation to query NotebookLM, with citation-backed answers.
+**Audience**: people who manage papers / research notes in NotebookLM but want to query from Antigravity CLI in one prompt.
 **Notes**: requires Google account auth.
 
 ### [teng-lin/notebooklm-py](https://github.com/teng-lin/notebooklm-py) ⭐⭐⭐⭐
@@ -138,7 +138,7 @@
 | Rating | ⭐⭐⭐⭐⭐ (**official**, must-install) |
 
 **What it does**: Anthropic's official Agent Skills repo — includes docx / xlsx / pptx / pdf processing skills.
-**Audience**: every Claude Code user — `claude skill install` and Claude can read/write Office files directly.
+**Audience**: every Antigravity CLI user — `claude skill install` and Claude can read/write Office files directly.
 **Notes**: this is a Skills collection, not an MCP; lives in the Stage 5.3 Skills system.
 
 ### [haris-musa/excel-mcp-server](https://github.com/haris-musa/excel-mcp-server) ⭐⭐⭐⭐⭐
@@ -282,7 +282,7 @@
 | Rating | ⭐⭐⭐⭐⭐ (**official**) |
 
 **What it does**: GitHub's official MCP — issues / PRs / repos / Actions / Codespaces.
-**Audience**: every GitHub user; once Claude Code is wired up, PR review, issue triage, release notes all work.
+**Audience**: every GitHub user; once Antigravity CLI is wired up, PR review, issue triage, release notes all work.
 **Notes**: **must-install for Track A's A3 Exercise CLI-9**.
 
 ### [sooperset/mcp-atlassian](https://github.com/sooperset/mcp-atlassian) ⭐⭐⭐⭐⭐
@@ -353,7 +353,7 @@
 | License | MIT |
 | Rating | ⭐⭐⭐⭐⭐ |
 
-**What it does**: AI coding skill that turns codebases / SQL schemas / R scripts / shell scripts / docs / papers / images / videos into a queryable knowledge graph. Works across Claude Code, Codex, OpenCode, Cursor, Gemini CLI.
+**What it does**: AI coding skill that turns codebases / SQL schemas / R scripts / shell scripts / docs / papers / images / videos into a queryable knowledge graph. Works across Antigravity CLI, Codex, OpenCode, Cursor, Gemini CLI.
 **Audience**: engineers / researchers analyzing large codebases, tracking cross-file references, or asking questions across "app code + DB schema + infra" together.
 **Notes**: cross-cutting tool — fits both dev collaboration (understanding existing codebases) and research workflow (turning any artifact into a graph). When stuck on a big codebase, use graphify to extract structure, then feed it back to Claude for reasoning.
 
@@ -459,7 +459,7 @@
 
 **What it does**: Playwright MCP server — let the LLM open browsers, click buttons, fill forms, scrape pages.
 **Audience**: anyone doing E2E automation, cross-site integration, scraping behind logins.
-**Notes**: official Playwright; most robust. **First choice for Claude Code + web automation**.
+**Notes**: official Playwright; most robust. **First choice for Antigravity CLI + web automation**.
 
 ### [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp) ⭐⭐⭐⭐⭐
 
@@ -509,7 +509,7 @@
 | License | MIT |
 | Rating | ⭐⭐⭐⭐⭐ (most popular Figma MCP) |
 
-**What it does**: feed Figma layout info to coding agents — read design files, expose component structure, let Cursor / Claude Code generate matching React components.
+**What it does**: feed Figma layout info to coding agents — read design files, expose component structure, let Cursor / Antigravity CLI generate matching React components.
 **Audience**: front-end devs going from Figma designs to component code.
 **Notes**: requires Figma access token; must-install for design-to-code workflows.
 
@@ -533,7 +533,7 @@
 | License | MIT |
 | Rating | ⭐⭐⭐⭐ (alternative Excalidraw) |
 
-**What it does**: MCP server + Claude Code Skill, real-time canvas sync, create / edit / export.
+**What it does**: MCP server + Antigravity CLI Skill, real-time canvas sync, create / edit / export.
 **Audience**: people who need real-time canvas sync and programmatic operation.
 **Notes**: complementary to the official; community-maintained.
 
@@ -575,7 +575,7 @@
 
 **What it does**: query Sentry error events / issues / traces from LLMs.
 **Audience**: engineers using Sentry for production errors.
-**Notes**: "show me last week's stack trace for this error" works directly in Claude Code.
+**Notes**: "show me last week's stack trace for this error" works directly in Antigravity CLI.
 
 ### [winor30/mcp-server-datadog](https://github.com/winor30/mcp-server-datadog) ⭐⭐⭐
 
@@ -602,7 +602,7 @@
 | Rating | ⭐⭐⭐⭐ |
 
 **What it does**: connect LLMs to Spotify — play tracks, manage playlists, query history.
-**Audience**: anyone integrating playback control or text → music workflows with Claude Code.
+**Audience**: anyone integrating playback control or text → music workflows with Antigravity CLI.
 **Notes**: requires Spotify Premium (API restriction).
 
 ### [kimtaeyoon83/mcp-server-youtube-transcript](https://github.com/kimtaeyoon83/mcp-server-youtube-transcript) ⭐⭐⭐⭐
@@ -642,7 +642,7 @@
 | Rating | ⭐⭐⭐ |
 
 **What it does**: bidirectional Feishu (Lark) docs / sheet / bitable ↔ Markdown, with OAuth 2.0, CLI, TUI, Claude Skills.
-**Audience**: Chinese-language users on Feishu / Lark wanting to bridge Lark content with Claude Code.
+**Audience**: Chinese-language users on Feishu / Lark wanting to bridge Lark content with Antigravity CLI.
 **Notes**: currently one of the few MCP / Skill options in the Chinese ecosystem; WeChat / DingTalk don't have standalone MCPs yet (they live inside chatbot frameworks).
 
 ### [netease-youdao/LobsterAI](https://github.com/netease-youdao/LobsterAI) ⭐⭐⭐⭐
@@ -654,8 +654,8 @@
 | Rating | ⭐⭐⭐⭐ |
 
 **What it does**: NetEase Youdao's "24/7 all-scenario AI agent" — workflow automation, cross-app coordination, file processing. Chinese-native.
-**Audience**: Chinese-language users wanting an alternative to Claude Code / OpenAI Operator-class all-in-one agents; scenarios needing tight integration with mainland Chinese services (NetEase, DingTalk, etc.).
-**Notes**: product-style agent (not a Skill / MCP); substitutes for Claude Code / Codex rather than complementing them.
+**Audience**: Chinese-language users wanting an alternative to Antigravity CLI / OpenAI Operator-class all-in-one agents; scenarios needing tight integration with mainland Chinese services (NetEase, DingTalk, etc.).
+**Notes**: product-style agent (not a Skill / MCP); substitutes for Antigravity CLI / Codex rather than complementing them.
 
 ### [QwenLM/Qwen-Agent](https://github.com/QwenLM/Qwen-Agent) ⭐⭐⭐⭐⭐
 
@@ -667,7 +667,7 @@
 
 **What it does**: Alibaba's official Qwen agent framework — RAG, tool use, code interpreter, multi-agent, MCP-compatible. Defaults to Qwen models but swappable to other LLMs.
 **Audience**: developers using Qwen / Tongyi as primary LLM; teams that want a Chinese-native agent framework (examples + docs are bilingual but Chinese-first).
-**Notes**: MCP compatibility is the highlight — plugs into Claude Code-style hosts directly; active maintenance (last commit 2026-03).
+**Notes**: MCP compatibility is the highlight — plugs into Antigravity CLI-style hosts directly; active maintenance (last commit 2026-03).
 
 ### [coze-dev/coze-studio](https://github.com/coze-dev/coze-studio) ⭐⭐⭐⭐⭐
 
@@ -726,7 +726,7 @@
 | Rating | ⭐⭐⭐ |
 
 **What it does**: Terminal AI coding assistant optimized for DeepSeek models — supports MCP server integration, Claude-style Skills, conversation caching, written in Go.
-**Audience**: Chinese developers who use DeepSeek as their primary LLM; those who want a terminal tool without the full Claude Code stack.
+**Audience**: Chinese developers who use DeepSeek as their primary LLM; those who want a terminal tool without the full Antigravity CLI stack.
 **Notes**: One of the few open-source tools with DeepSeek-specific optimization; MCP + Skills dual support allows incremental capability expansion.
 
 ### [simonlin1212/a-stock-data](https://github.com/simonlin1212/a-stock-data) ⭐⭐⭐⭐
@@ -738,8 +738,8 @@
 | Rating | ⭐⭐⭐⭐ |
 
 **What it does**: China A-share market data toolkit — a single SKILL.md file wrapping 8 data sources (mootdx, EastMoney, akshare, iwencai, etc.) with 21 endpoints, directly usable by AI coding assistants.
-**Audience**: Chinese developers using Claude Code / Codex / OpenClaw for investment research or quantitative analysis; those who don't want to build data-fetching logic from scratch.
-**Notes**: Installable with a single `curl` + `pip install`; highest-starred community Skill for Chinese A-share data. Compatible with Claude Code, Codex, and OpenClaw.
+**Audience**: Chinese developers using Antigravity CLI / Codex / OpenClaw for investment research or quantitative analysis; those who don't want to build data-fetching logic from scratch.
+**Notes**: Installable with a single `curl` + `pip install`; highest-starred community Skill for Chinese A-share data. Compatible with Antigravity CLI, Codex, and OpenClaw.
 
 > Looking for WeChat / DingTalk integrations? Today the mainstream is chatbot frameworks (e.g., zhayujie/CowAgent), not pure MCP servers. Will add when proper MCPs emerge.
 
@@ -803,7 +803,7 @@
 | Rating | ⭐⭐⭐ (finance analysis tool; practical example of hosted vs self-hosted MCP architecture) |
 
 **What it does**: YIELD INTELLIGENCE hosted remote MCP server — live US Treasury yield rates, dividend ETF / REIT / preferred stock analysis, and passive income portfolio optimization. Two tools: `analyze_yield_opportunities` (scans passive income options) + `optimize_income_portfolio` (builds a portfolio toward a target monthly income). Listed in the Anthropic official MCP Registry (`io.github.thebrierfox/intuitek-ace`, since 2026-05-10).
-**Audience**: people doing personal finance analysis in Claude Code / Claude Desktop who want AI to surface passive income opportunities. Good hands-on example of a hosted remote MCP server — plug the URL in, zero install, useful for Stage 5 learners exploring the hosted vs self-hosted difference.
+**Audience**: people doing personal finance analysis in Antigravity CLI / Claude Desktop who want AI to surface passive income opportunities. Good hands-on example of a hosted remote MCP server — plug the URL in, zero install, useful for Stage 5 learners exploring the hosted vs self-hosted difference.
 **Notes**: Live endpoint `https://api.intuitek.ai/yield/mcp` (no auth, no API key required). x402 micropayment $1 USDC/call on Base (agent-to-agent scenarios); free for regular users. Analysis-only, no trading. GitHub: [thebrierfox/intuitek-ace](https://github.com/thebrierfox/intuitek-ace) (MIT License).
 
 ---
@@ -820,7 +820,7 @@
 | License | MIT |
 | Rating | ⭐⭐⭐⭐⭐ (full research workflow) |
 
-**What it does**: 14 Claude Code skills covering common research tasks — literature triage, research design, project context, manuscript writing, multi-AI delegation. Packaged as a 5-plugin marketplace, install with one command.
+**What it does**: 14 Antigravity CLI skills covering common research tasks — literature triage, research design, project context, manuscript writing, multi-AI delegation. Packaged as a 5-plugin marketplace, install with one command.
 **Audience**: grad students / postdocs wanting a complete "research workflow" skill set in one drop.
 **Notes**: marketplace format, aligns with the plugin/marketplace concept taught in Stage 5.4.
 
@@ -832,7 +832,7 @@
 | License | MIT |
 | Rating | ⭐⭐⭐ (narrow but deep) |
 
-**What it does**: rigorous academic paper writing / revision / submission skill for Claude Code. Field-agnostic, customizable per-paper via journal_format.md and style_overrides.md.
+**What it does**: rigorous academic paper writing / revision / submission skill for Antigravity CLI. Field-agnostic, customizable per-paper via journal_format.md and style_overrides.md.
 **Audience**: researchers actively writing / revising papers who want to automate banned-word audit, figure-text coupling, submission checklists.
 **Notes**: one of the 5 plugins inside ai-research-skills; can also be installed standalone.
 
@@ -845,8 +845,8 @@
 | Rating | ⭐⭐⭐⭐ |
 
 **What it does**: Zotero CLI skill — programmatically search, add, classify, annotate references.
-**Audience**: Zotero users wanting Claude Code to organize their library directly.
-**Notes**: complementary to [`MuiseDestiny/zotero-gpt`](https://github.com/MuiseDestiny/zotero-gpt) — that one is a Zotero plugin (chat inside Zotero), this one is a CLI / Skill (operate Zotero from Claude Code).
+**Audience**: Zotero users wanting Antigravity CLI to organize their library directly.
+**Notes**: complementary to [`MuiseDestiny/zotero-gpt`](https://github.com/MuiseDestiny/zotero-gpt) — that one is a Zotero plugin (chat inside Zotero), this one is a CLI / Skill (operate Zotero from Antigravity CLI).
 
 ### [WenyuChiou/research-hub](https://github.com/WenyuChiou/research-hub) ⭐⭐⭐⭐
 
@@ -882,7 +882,7 @@ Claude is bad at token-heavy mechanical work (cost, context blowout); Codex is b
 | License | MIT |
 | Rating | ⭐⭐⭐⭐⭐ |
 
-**What it does**: Claude Code skill that uses Codex CLI as the execution specialist — multi-file refactors, batch edits, boilerplate generation, wrapper-based implementation tasks. Claude writes the plan + reviews; Codex executes.
+**What it does**: Antigravity CLI skill that uses Codex CLI as the execution specialist — multi-file refactors, batch edits, boilerplate generation, wrapper-based implementation tasks. Claude writes the plan + reviews; Codex executes.
 **Audience**: developers wanting to save tokens / accelerate large-scale mechanical edits; learners who want to verify "multi-agent isn't just a buzzword".
 **Use it for**: refactoring 30+ files, generating test scaffolds, porting the same pattern across N files, writing migration scripts.
 **Don't use for**: architecture decisions, bug diagnosis, security review, tasks needing conversation memory — Claude does these better directly.
@@ -896,7 +896,7 @@ Claude is bad at token-heavy mechanical work (cost, context blowout); Codex is b
 | License | MIT |
 | Rating | ⭐⭐⭐⭐ |
 
-**What it does**: Claude Code skill that uses Gemini CLI as the long-form / large-context / CJK executor — 1M-token context window, Chinese long-form drafting, second-opinion review. Claude provides the outline and critique; Gemini writes the long form.
+**What it does**: Antigravity CLI skill that uses Gemini CLI as the long-form / large-context / CJK executor — 1M-token context window, Chinese long-form drafting, second-opinion review. Claude provides the outline and critique; Gemini writes the long form.
 **Audience**: researchers writing papers, knowledge workers writing Chinese reports / Threads posts, people who want a second LLM's perspective for cross-checking.
 **Use it for**: long-form drafts (>3000 words), cross-document synthesis (stuffing many long docs into the 1M-token context), Chinese / CJK content, LLM-vs-LLM comparison views.
 **Don't use for**: short queries, code generation (use codex), production-critical decisions (final human review).
@@ -910,7 +910,7 @@ Claude is bad at token-heavy mechanical work (cost, context blowout); Codex is b
 | License | MIT |
 | Rating | ⭐⭐ (experimental — treat as reference) |
 
-**What it does**: Claude Code marketplace for multi-agent collaboration — task splitter, output reconciler, adversarial debate, shared memory, acceptance gate. Composes with codex-delegate / gemini-delegate.
+**What it does**: Antigravity CLI marketplace for multi-agent collaboration — task splitter, output reconciler, adversarial debate, shared memory, acceptance gate. Composes with codex-delegate / gemini-delegate.
 **Audience**: people running 2+ delegate agents per round who want to see one way of packaging multi-agent coordination into a marketplace.
 **Notes**: **experimental** — don't treat this as a framework ready for production use. It's the maintainer's own setup made public as a reference. For multi-agent frameworks built for production, see LangGraph / AutoGen / CrewAI in Stage 7.
 

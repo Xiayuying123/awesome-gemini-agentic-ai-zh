@@ -13,11 +13,11 @@
 | 檔案 | 角色 | 什麼時候看 | 行數 |
 |---|---|---|---|
 | [`glossary.md`](glossary.md) | **30 秒查詞典** | 看 stage 內文時遇到 LLM / RAG / token / agent / vector DB / streaming / batch API 不知道什麼意思 | ~210 |
-| [`cli-agents-guide.md`](cli-agents-guide.md) | **7 個 CLI agent 比較** | 第一次選 CLI agent（Claude Code / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent）不知道挑哪個 | ~134 |
-| [`mcp-skills-catalog.md`](mcp-skills-catalog.md) | **62 個整合 catalog** | 想把 Claude Code 接 Notion / Obsidian / Excel / Postgres / Slack / 等等實際工具 | ~775 |
+| [`cli-agents-guide.md`](cli-agents-guide.md) | **7 個 CLI agent 比較** | 第一次選 CLI agent（Antigravity CLI / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent）不知道挑哪個 | ~134 |
+| [`mcp-skills-catalog.md`](mcp-skills-catalog.md) | **62 個整合 catalog** | 想把 Antigravity CLI 接 Notion / Obsidian / Excel / Postgres / Slack / 等等實際工具 | ~775 |
 | [`schema-design-cheatsheet.md`](schema-design-cheatsheet.md) | **function schema 設計 5 規則 + 5 anti-pattern** | 寫 tool schema / MCP server schema / function calling，發現 LLM 選錯 tool / 傳錯參數 | ~159 |
 | [`cookbook.md`](cookbook.md) | **6 個 step-by-step recipe** | 想 30-50 分鐘做出第一個 Skill / MCP server / 接 Office / 接 NotebookLM / 接 Zotero / 接本機 LLM | ~620 |
-| [`setup-guide.md`](setup-guide.md) | **從零開始的 setup 指南** | 完全沒 dev 背景、第一次申請 API key / 裝 Python / 用 Claude Code | ~400 |
+| [`setup-guide.md`](setup-guide.md) | **從零開始的 setup 指南** | 完全沒 dev 背景、第一次申請 API key / 裝 Python / 用 Antigravity CLI | ~400 |
 | [`style-guide.md`](style-guide.md) | **送 PR 前的格式 / 用詞規範** | 要對 repo 貢獻、寫 entry / 翻譯 | ~338 |
 
 合計 ~2500 行 reference。看起來不少，但**每份檔案讀的時機不同**——你不會一次全讀，只在對應情境查 30 秒到 45 分鐘。
@@ -38,7 +38,7 @@
 
 → [`cli-agents-guide.md`](cli-agents-guide.md)（6 個 CLI 比較 + 依 use case 推薦）
 
-### 🔌 我要把 Claude Code 接 X 工具（Notion / Excel / Postgres 等）
+### 🔌 我要把 Antigravity CLI 接 X 工具（Notion / Excel / Postgres 等）
 
 → [`mcp-skills-catalog.md`](mcp-skills-catalog.md)（62 個整合分 14 類）
 

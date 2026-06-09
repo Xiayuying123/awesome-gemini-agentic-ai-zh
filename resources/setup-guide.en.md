@@ -55,7 +55,7 @@ Agents that live in your terminal — you give one prompt (e.g. "refactor this m
 
 | CLI Agent | Install / Docs | Primary LLM |
 |---|---|---|
-| **Claude Code** | https://docs.anthropic.com/en/docs/claude-code/quickstart | Claude |
+| **Antigravity CLI** | https://docs.anthropic.com/en/docs/claude-code/quickstart | Claude |
 | **Codex CLI** | https://github.com/openai/codex | GPT family |
 | **Gemini CLI** | https://github.com/google-gemini/gemini-cli | Gemini |
 | **OpenCode** | https://github.com/sst/opencode | Any (multi-provider) |
@@ -64,7 +64,7 @@ Agents that live in your terminal — you give one prompt (e.g. "refactor this m
 | **Hermes Agent** | https://github.com/NousResearch/hermes-agent | 200+ (model-neutral) |
 
 → Full 7-CLI comparison → [`cli-agents-guide.en.md`](cli-agents-guide.en.md)
-→ Detailed Claude Code first install → [D](#d--install-claude-code-for-the-first-time-about-10-minutes-needed-for-stage-5--for-developer) below
+→ Detailed Antigravity CLI first install → [D](#d--install-claude-code-for-the-first-time-about-10-minutes-needed-for-stage-5--for-developer) below
 
 > 💡 **IDE vs CLI — how to pick?** Want AI alongside you while you code → IDE. Want to give one prompt and let the agent run a multi-step task → CLI. Many people use both.
 
@@ -220,17 +220,17 @@ If Claude introduces itself, your API key, Python, and packages are working.
 
 ---
 
-## D — Install Claude Code for the First Time (About 10 Minutes; Needed for Stage 5 / for-developer)
+## D — Install Antigravity CLI for the First Time (About 10 Minutes; Needed for Stage 5 / for-developer)
 
 ### Install Node.js First
 
-> 💡 **What is Node.js?** A runtime for running JavaScript, similar to a Python interpreter but for JS. **`npm`** is its bundled package manager, which plays the same role as Python's `pip`: installing tools other people wrote, including Claude Code below. `npm install -g X` means install X globally so you can use it from any folder.
+> 💡 **What is Node.js?** A runtime for running JavaScript, similar to a Python interpreter but for JS. **`npm`** is its bundled package manager, which plays the same role as Python's `pip`: installing tools other people wrote, including Antigravity CLI below. `npm install -g X` means install X globally so you can use it from any folder.
 
 - **macOS / Linux**: run `brew install node`, or download from https://nodejs.org.
 - **Windows**: download the installer from https://nodejs.org.
 - **Verify**: run `node --version`; v18 or newer is enough.
 
-### Install Claude Code
+### Install Antigravity CLI
 
 ```bash
 npm install -g @anthropic-ai/claude-code
@@ -247,9 +247,9 @@ On first launch, you will usually choose between:
 - **Claude subscription**: sign in with your Claude.ai account. This is the simplest path for beginners.
 - **API key**: paste the key you created in A.
 
-### Create Your First `CLAUDE.md`
+### Create Your First `GEMINI.md`
 
-Create `CLAUDE.md` at the root of your project. Claude Code reads it on startup so it understands how you want help.
+Create `GEMINI.md` at the root of your project. Antigravity CLI reads it on startup so it understands how you want help.
 
 ```markdown
 # Who you are
@@ -270,7 +270,7 @@ I am [your name], a [your field, such as teacher / researcher / writer].
 
 ## E — Your First Skill Example (About 5 Minutes; Needed for Stage 5.3)
 
-A Skill is a reusable prompt package for Claude Code. When your message matches the description, Claude Code loads that instruction automatically.
+A Skill is a reusable prompt package for Antigravity CLI. When your message matches the description, Antigravity CLI loads that instruction automatically.
 
 Create `.claude/skills/hello-skill/SKILL.md`:
 
@@ -289,7 +289,7 @@ When the user asks you to greet them, return three things:
 
 Run `claude`, then type `say hi`. If Claude returns the three items, the Skill loaded.
 
-> For deeper Skill design, see [Stage 5.3 — Skills](../stages/05-claude-code-ecosystem.en.md#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem).
+> For deeper Skill design, see [Stage 5.3 — Skills](../stages/05-gemini-skills-ecosystem.en.md#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem).
 > For copy-and-run examples, see the [Cookbook](cookbook.en.md).
 
 ---
@@ -300,7 +300,7 @@ Run `claude`, then type `say hi`. If Claude returns the three items, the Skill l
 |---|---|
 | You want to understand LLMs, APIs, and tokens | [Stage 1 — LLM Basics](../stages/01-llm-basics.en.md) |
 | You want to pick a role-based branch | [Everyday users](../branches/for-everyday-users.en.md) / [Teachers](../branches/for-teacher.en.md) / [Knowledge workers](../branches/for-knowledge-worker.en.md) / [Researchers](../branches/for-researcher.en.md) / [Developers](../branches/for-developer.en.md) |
-| You want the full Claude Code ecosystem | [Stage 5 — Claude Code Ecosystem](../stages/05-claude-code-ecosystem.en.md) |
+| You want the full Antigravity CLI ecosystem | [Stage 5 — Antigravity CLI Ecosystem](../stages/05-gemini-skills-ecosystem.en.md) |
 | You want local LLMs without a cloud key | [Cookbook Recipe 6](cookbook.en.md#6-local-llm--cli-agent-quick-walkthrough) |
 | You want to compare CLI agents | [CLI Agents Comparison Guide](cli-agents-guide.en.md) |
 | A term is unclear | [Glossary](glossary.en.md) |

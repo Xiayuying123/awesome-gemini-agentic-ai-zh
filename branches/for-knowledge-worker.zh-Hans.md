@@ -20,7 +20,7 @@
 | **Notion / 知识库整理** | 杂乱、没架构、找不到旧笔记 | 重 tag + 分类 + 自动摘要 | Claude Desktop + Notion MCP |
 | **文件 / 提案草稿** | spec / proposal 卡关 | 大纲 → 段落 → 润色 | Claude.ai |
 
-> 💡 **MCP 是知识工作者的关键**：第一次接触 MCP？看 [Stage 5.2 — MCP 基础](../stages/05-claude-code-ecosystem.zh-Hans.md#52--mcpmodel-context-protocol-基础)；想知道有哪些 MCP server → [`resources/mcp-skills-catalog.zh-Hans.md`](../resources/mcp-skills-catalog.zh-Hans.md)。
+> 💡 **MCP 是知识工作者的关键**：第一次接触 MCP？看 [Stage 5.2 — MCP 基础](../stages/05-gemini-skills-ecosystem.zh-Hans.md#52--mcpmodel-context-protocol-基础)；想知道有哪些 MCP server → [`resources/mcp-skills-catalog.zh-Hans.md`](../resources/mcp-skills-catalog.zh-Hans.md)。
 
 ## 精选 Projects
 
@@ -134,11 +134,11 @@ Slack / Gmail / Discord 等。Anthropic 原本维护的 reference server 已于 
 | **Tier 0** | Claude.ai / ChatGPT / Gemini / Perplexity（网页版） | 大多数知识工作者从这里开始 | 0（会用浏览器就行） |
 | **Tier 1** | Claude Desktop + MCP（Gmail / Notion / 日历） | 要对本机 / 云端文件重复跑流程 | 半天装好 |
 | **Tier 2** | n8n / Make / Langflow（自动化平台） | 要把多个 SaaS 工具串起来、不写 code | 1 周 setup |
-| **Tier 3** | Claude Code / Codex / 自己写 Python | 有 dev 背景或团队有 dev 支援、要做能上线部署的成果 | 数周、跟 Track A 重叠 |
+| **Tier 3** | Antigravity CLI / Codex / 自己写 Python | 有 dev 背景或团队有 dev 支援、要做能上线部署的成果 | 数周、跟 Track A 重叠 |
 
 **Tier 3+（CLI / SDK）对多数知识工作者任务来说太重**——不要被别人怂恿过去。多数人停在 Tier 1-2 就够。
 
 ## 阅读
 
-- [How I Turned Claude Code Into My Personal AI Agent OS](https://aimaker.substack.com/p/how-i-turned-claude-code-into-personal-ai-agent-operating-system-for-writing-research-complete-guide) — 知识工作者个案研究
+- [How I Turned Antigravity CLI Into My Personal AI Agent OS](https://aimaker.substack.com/p/how-i-turned-claude-code-into-personal-ai-agent-operating-system-for-writing-research-complete-guide) — 知识工作者个案研究
 - [**Anthropic — The Founder's Playbook**](https://claude.com/blog/the-founders-playbook) — Anthropic 2026-05-14 发布的 35 页 startup 指南;Idea / MVP / Launch / Scale 四阶段对应到 2026 AI capability

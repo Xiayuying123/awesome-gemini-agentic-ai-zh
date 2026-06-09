@@ -197,7 +197,7 @@ r = client.chat.completions.create(model="meta/llama-3.3-70b-instruct", messages
 | 2 Prompt engineering | 4 | all inline |
 | **3 Tool use** | **6** | inline 1 + folder 5 (`examples/stage-3/`) |
 | 4 Frameworks | 5 | all folder (`examples/stage-4/`) |
-| 5 Claude Code ecosystem | 11 | inline 6 + folder 5 (`examples/stage-5/`) |
+| 5 Antigravity CLI ecosystem | 11 | inline 6 + folder 5 (`examples/stage-5/`) |
 | 6 Memory/RAG | 5 | all folder (`examples/stage-6/`) |
 | 7 Multi-agent | 5 | inline 1 + folder 4 (`examples/stage-7/`) |
 | Track A1-A3 | 12 | all inline + 2 small folders (CLI-9 / CLI-10) |

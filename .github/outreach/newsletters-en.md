@@ -30,7 +30,7 @@ stage. MIT. Rendered site: https://wenyuchiou.github.io/awesome-agentic-ai-zh/
 ```
 Most "awesome-AI-agents" lists are flat link dumps — useful to look
 things up, useless as a path. This is a sequenced roadmap instead: 8
-stages (LLM basics → tool use → frameworks → Claude Code ecosystem →
+stages (LLM basics → tool use → frameworks → Antigravity CLI ecosystem →
 memory/RAG → multi-agent → Computer/Browser Use), two tracks (use
 existing CLI agents vs build your own), 5 audience branches, 240+
 curated projects with "what it teaches / how to run", and small runnable

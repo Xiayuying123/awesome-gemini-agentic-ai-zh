@@ -134,7 +134,7 @@ python test.py        # 確認跑得起來
 順序：
 
 1. **再讀一次 README 的 pitfall + punchline** — 80% 的卡住來自漏看某個關鍵設計
-2. **打開 `examples/stage-5/tool-calling-tutor/` skill**（裝進 Claude Code）— tool calling 相關的卡住、4-symptom triage 帶你診斷
+2. **打開 `examples/stage-5/tool-calling-tutor/` skill**（裝進 Antigravity CLI）— tool calling 相關的卡住、4-symptom triage 帶你診斷
 3. **看 `starter_reference.py`**（你改名藏起來的那個）— 對照你寫的差別、找出哪裡邏輯漏
 4. **看 GitHub issue** 有沒有人問過
 5. **開 issue** — 帶上你的 code + 你看到的錯誤、我會回

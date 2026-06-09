@@ -18,7 +18,7 @@
 
 ![AI / ML / DL / LLM vs. Agent](../resources/diagrams/ai-ml-llm-agent-hierarchy.en.png)
 
-→ **An "Agent" is not a "more advanced model than an LLM," nor is it a branch under the LLM classification tree**. An agent is a **cross-layer abstract system** that uses an LLM as one of its components. Cursor / Claude Code / Hermes Agent all use the same LLMs internally (Claude / GPT / Gemini)—the difference is how they wrap the LLM in a tool-calling loop.
+→ **An "Agent" is not a "more advanced model than an LLM," nor is it a branch under the LLM classification tree**. An agent is a **cross-layer abstract system** that uses an LLM as one of its components. Cursor / Antigravity CLI / Hermes Agent all use the same LLMs internally (Claude / GPT / Gemini)—the difference is how they wrap the LLM in a tool-calling loop.
 
 ### Three-Line Comparison (The Quickest Version)
 
@@ -26,7 +26,7 @@
 |---|---|---|---|
 | **AI** | The entire field of study | Too abstract to be "used" directly | ML, DL, LLM, RL are all subfields of AI |
 | **LLM** | A single model that maps text to text | Give a prompt → Get text back | GPT-5, Claude, Llama 3, Qwen |
-| **Agent** | A **system** of LLM + tools + loop | Give a task → It completes it in multiple steps | Cursor, Claude Code, Hermes Agent |
+| **Agent** | A **system** of LLM + tools + loop | Give a task → It completes it in multiple steps | Cursor, Antigravity CLI, Hermes Agent |
 
 **One sentence**: An LLM is like a brain that understands and generates text; an Agent connects that brain to tools, workflow, and feedback loops so it can finish multi-step tasks as a system.
 
@@ -73,7 +73,7 @@ After learning the 3 minimum components, the next layer is "**how the LLM thinks
 **🀄 Chinese**:
 1. [**Hung-yi Lee — Introduction to Generative AI (Spring 2024 NTU Course)**](https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php) ⭐⭐⭐ — The highest quality academic-level introduction to AI / LLM / agents in the Chinese-speaking world. Each episode is 30-60 minutes, taught at National Taiwan University, with official page including slides + YouTube links. Covers both LLM and agent concepts. The latest integrated version can be found at [**GenAI-ML 2025 Fall**](https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall.php), and the main YouTube channel is [**@HungyiLeeNTU**](https://www.youtube.com/@HungyiLeeNTU).
 2. [**datawhalechina/hello-agents** Ch1 "First Look at Agents"](https://github.com/datawhalechina/hello-agents) ⭐ — The most complete text-based introduction to agents in Chinese.
-3. [**datawhalechina/hello-agents** Ch2 "The History of Agent Development"](https://github.com/datawhalechina/hello-agents) — The evolutionary path from BabyAGI → AutoGPT → Claude Code.
+3. [**datawhalechina/hello-agents** Ch2 "The History of Agent Development"](https://github.com/datawhalechina/hello-agents) — The evolutionary path from BabyAGI → AutoGPT → Antigravity CLI.
 4. [**3Blue1Brown Chinese Dubbed Version**](https://www.youtube.com/@3Blue1BrownCN) — Visual explanations of LLM / Transformer (in Chinese).
 
 **Optional / Advanced Reading**:
@@ -122,9 +122,9 @@ You should already have:
 >
 > For the full 3-way trade-off, see [`examples/README.md`](../examples/README.en.md#three-paths--default-is-ollama-cost-driven).
 >
-> 🆘 **Stuck?** Tool calling has the steepest learning curve in the entire curriculum. Install the [`examples/stage-5/tool-calling-tutor/`](../examples/stage-5/tool-calling-tutor/) skill—when you prompt Claude Code with "Why isn't my LLM calling my tool?" or "What's wrong with my schema?", it will auto-load and walk you through a 4-symptom diagnostic process.
+> 🆘 **Stuck?** Tool calling has the steepest learning curve in the entire curriculum. Install the [`examples/stage-5/tool-calling-tutor/`](../examples/stage-5/tool-calling-tutor/) skill—when you prompt Antigravity CLI with "Why isn't my LLM calling my tool?" or "What's wrong with my schema?", it will auto-load and walk you through a 4-symptom diagnostic process.
 >
-> 🪜 **This stage is the starting point for single-agent**: one LLM + ReAct loop. For **multi-agent concepts** (multiple agents collaborating), see [Stage 4 What is a multi-agent framework](04-agent-frameworks.en.md#-what-is-a-multi-agent-framework); for **Claude's native subagent mechanism** (`.claude/agents/` + Task tool, no framework needed), see [Stage 5.5](05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature).
+> 🪜 **This stage is the starting point for single-agent**: one LLM + ReAct loop. For **multi-agent concepts** (multiple agents collaborating), see [Stage 4 What is a multi-agent framework](04-agent-frameworks.en.md#-what-is-a-multi-agent-framework); for **Claude's native subagent mechanism** (`.claude/agents/` + Task tool, no framework needed), see [Stage 5.5](05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature).
 
 ### Exercise 1: Function Calling (One Tool, One Call)
 Give Claude a tool (a fake weather API) and a question ("Is it raining in Taipei right now?"). See how Claude calls the tool, gets the result, and then answers you.
@@ -423,9 +423,9 @@ messages.append({"role": "tool", "tool_call_id": tc.id,
 
 > **This section is for concept + routing, not an exercise**. There is no verified working solution, no "Exercise N" label, no success criteria—in adherence with this repo's principle of "no exercises without verified answers, routing at most." Want to get your hands dirty? Read the papers / projects below directly.
 
-**What is reflection?**: The error handling in Exercise 5 is "LLM makes a mistake → you (externally) catch + retry"; **reflection** is "LLM observes its own mistake → fixes it itself." The difference is where the agency lies—this is the loop that production agents (Cursor / Cline / Claude Code) run every day.
+**What is reflection?**: The error handling in Exercise 5 is "LLM makes a mistake → you (externally) catch + retry"; **reflection** is "LLM observes its own mistake → fixes it itself." The difference is where the agency lies—this is the loop that production agents (Cursor / Cline / Antigravity CLI) run every day.
 
-**Why is this section in Stage 3 and not Stage 6?**: Reflection is classified in both academia (Reflexion paper Shinn 2023, Self-Refine Madaan 2023) and production (Cursor / Claude Code) as a **planning / reasoning loop** mechanism—it's a sibling pattern to ReAct (Exercise 3), **not a memory pattern**. It's the same multi-turn loop of LLM self-guidance, just "what to do next" changes from "call a tool" to "critique myself."
+**Why is this section in Stage 3 and not Stage 6?**: Reflection is classified in both academia (Reflexion paper Shinn 2023, Self-Refine Madaan 2023) and production (Cursor / Antigravity CLI) as a **planning / reasoning loop** mechanism—it's a sibling pattern to ReAct (Exercise 3), **not a memory pattern**. It's the same multi-turn loop of LLM self-guidance, just "what to do next" changes from "call a tool" to "critique myself."
 
 **Advanced version (full version of Reflexion with persistent memory) → [Stage 6 Advanced: Full Reflexion with Persistent Memory](06-memory-rag.en.md#-advanced-full-reflexion-with-persistent-memory--track-b-elective)**—when reflection needs to be cross-session, storing past failures as context for the next round, this version truly needs a memory layer.
 
@@ -449,7 +449,7 @@ messages.append({"role": "tool", "tool_call_id": tc.id,
 - [**LangChain — Reflection Agents (blog)**](https://blog.langchain.dev/reflection-agents/) — A framework implementation reference + a complete working notebook.
 - [**datawhalechina/hello-agents**](https://github.com/datawhalechina/hello-agents) — The corresponding chapter (Self-reflection / Self-Refine section, a complete tutorial in Chinese).
 
-> 💡 **Want to see how reflection looks in a production agent?**: [Stage 5 5.6 Harness Internals](05-claude-code-ecosystem.en.md#56--dissecting-claude-code-source-reference-harness-implementation--a-must-read-for-track-b) dissects the Claude Code source where you can see it—the agent self-evaluates the patch after a tool call, goes back to fix problems, and commits after correction. **This is one of the core building blocks of modern production agents**.
+> 💡 **Want to see how reflection looks in a production agent?**: [Stage 5 5.6 Harness Internals](05-gemini-skills-ecosystem.en.md#56--dissecting-claude-code-source-reference-harness-implementation--a-must-read-for-track-b) dissects the Antigravity CLI source where you can see it—the agent self-evaluates the patch after a tool call, goes back to fix problems, and commits after correction. **This is one of the core building blocks of modern production agents**.
 
 ## 🎯 Curated Projects
 

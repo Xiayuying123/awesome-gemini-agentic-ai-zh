@@ -55,7 +55,7 @@
 
 | CLI Agent | 安裝 / 文件 | 主要 LLM |
 |---|---|---|
-| **Claude Code** | https://docs.anthropic.com/en/docs/claude-code/quickstart | Claude |
+| **Antigravity CLI** | https://docs.anthropic.com/en/docs/claude-code/quickstart | Claude |
 | **Codex CLI** | https://github.com/openai/codex | GPT 系列 |
 | **Gemini CLI** | https://github.com/google-gemini/gemini-cli | Gemini |
 | **OpenCode** | https://github.com/sst/opencode | 任意（多 provider） |
@@ -64,7 +64,7 @@
 | **Hermes Agent** | https://github.com/NousResearch/hermes-agent | 200+（model-neutral） |
 
 → 想看 7 個 CLI 完整比較 → [`cli-agents-guide.md`](cli-agents-guide.md)
-→ Claude Code 第一次裝的詳細步驟 → 本指南 [D](#d--第一次裝-claude-code約-10-分鐘stage-5--for-developer-會用到)
+→ Antigravity CLI 第一次裝的詳細步驟 → 本指南 [D](#d--第一次裝-claude-code約-10-分鐘stage-5--for-developer-會用到)
 
 > 💡 **IDE-based 跟 CLI agent 怎麼選？** 邊寫 code 邊要 AI 幫忙 → IDE；下單一 prompt 讓 agent 自己跑完一整個任務 → CLI。兩個可以並用。
 
@@ -220,17 +220,17 @@ uv run --with anthropic --with python-dotenv python hello-claude.py
 
 ---
 
-## D — 第一次裝 Claude Code（約 10 分鐘；Stage 5 / for-developer 會用到）
+## D — 第一次裝 Antigravity CLI（約 10 分鐘；Stage 5 / for-developer 會用到）
 
 ### 先裝 Node.js
 
-> 💡 **Node.js 是什麼**：跑 JavaScript 的 runtime（類似 Python interpreter 但是給 JS 用）。**`npm`** 是它附帶的「套件管理器」（package manager）—— 跟 Python 的 `pip` 同角色、用來安裝別人寫好的工具（如下面的 Claude Code）。`npm install -g X` 表示「全域裝 X、之後在任何資料夾都能用」。
+> 💡 **Node.js 是什麼**：跑 JavaScript 的 runtime（類似 Python interpreter 但是給 JS 用）。**`npm`** 是它附帶的「套件管理器」（package manager）—— 跟 Python 的 `pip` 同角色、用來安裝別人寫好的工具（如下面的 Antigravity CLI）。`npm install -g X` 表示「全域裝 X、之後在任何資料夾都能用」。
 
 - **macOS / Linux**：`brew install node`，或從 https://nodejs.org 下載。
 - **Windows**：從 https://nodejs.org 下載 installer。
 - **驗證**：輸入 `node --version`，看到 v18 以上即可。
 
-### 裝 Claude Code
+### 裝 Antigravity CLI
 
 ```bash
 npm install -g @anthropic-ai/claude-code
@@ -247,9 +247,9 @@ claude
 - **Claude subscription**：用 Claude.ai 帳號登入，對初學者最省事。
 - **API key**：貼上 A 申請到的 key。
 
-### 建立第一份 `CLAUDE.md`
+### 建立第一份 `GEMINI.md`
 
-在你的 project 根目錄建立 `CLAUDE.md`。Claude Code 啟動時會讀它，理解你希望它怎麼協助。
+在你的 project 根目錄建立 `GEMINI.md`。Antigravity CLI 啟動時會讀它，理解你希望它怎麼協助。
 
 ```markdown
 # 你是誰
@@ -270,7 +270,7 @@ claude
 
 ## E — 第一個 Skill 範例（約 5 分鐘；Stage 5.3 會用到）
 
-Skill 是 Claude Code 的「可重用 prompt 包」。當你的訊息符合描述，Claude Code 會自動載入那份指示。
+Skill 是 Antigravity CLI 的「可重用 prompt 包」。當你的訊息符合描述，Antigravity CLI 會自動載入那份指示。
 
 建立 `.claude/skills/hello-skill/SKILL.md`：
 
@@ -289,7 +289,7 @@ description: 第一個 hello skill。當使用者說「請打招呼」或「say 
 
 跑 `claude`，輸入「請打招呼」。如果 Claude 回覆三件事，就代表 Skill 被載入了。
 
-> 想看更完整的 Skill 設計：看 [Stage 5.3 — Skills](../stages/05-claude-code-ecosystem.md#53--skillsclaude-code-的行為層-claude-code-生態最關鍵的一層)。
+> 想看更完整的 Skill 設計：看 [Stage 5.3 — Skills](../stages/05-gemini-skills-ecosystem.md#53--skillsclaude-code-的行為層-claude-code-生態最關鍵的一層)。
 > 想看可以照做的範例：看 [Cookbook](cookbook.md)。
 
 ---
@@ -300,7 +300,7 @@ description: 第一個 hello skill。當使用者說「請打招呼」或「say 
 |---|---|
 | 想正式理解 LLM、API、token | [Stage 1 — LLM 基礎](../stages/01-llm-basics.md) |
 | 想直接挑身分分支 | [日常使用者](../branches/for-everyday-users.md) / [教師](../branches/for-teacher.md) / [知識工作者](../branches/for-knowledge-worker.md) / [研究者](../branches/for-researcher.md) / [開發者](../branches/for-developer.md) |
-| 想看 Claude Code 完整生態 | [Stage 5 — Claude Code 生態系](../stages/05-claude-code-ecosystem.md) |
+| 想看 Antigravity CLI 完整生態 | [Stage 5 — Antigravity CLI 生態系](../stages/05-gemini-skills-ecosystem.md) |
 | 想本機 LLM、不用雲端 key | [Cookbook Recipe 6](cookbook.md#6-本機-llm--cli-agent-快速-walkthrough) |
 | 想比較 CLI agent | [CLI Agents 比較指南](cli-agents-guide.md) |
 | 不懂某個用詞 | [Glossary](glossary.md) |

@@ -11,7 +11,7 @@
 | Phase 3 — Stage 1 + 3 folder renames (6 folders) | `starter.py` (Ollama) / `starter_anthropic.py` / both test suites | `python test.py` + `python test_anthropic.py` per folder | 0 |
 | Phase A — `stages/03-tool-use-and-hello-agent.md` inline `<details>` (練習 2-6) | 5 simplified inline blocks + zh-Hans drift | `wc -l` parity, `grep` no residual Trad chars | 0 |
 | Phase B — `examples/stage-5/tool-calling-tutor/` skill | SKILL.md + 3 references + evals + trilingual READMEs | YAML frontmatter parses; evals.json valid JSON | 0 (live skill-install test still pending) |
-| Phase C — cross-references | stages/03 + stages/05 + CLAUDE.md links | `grep -c` confirms 10 references across 7 files | 0 |
+| Phase C — cross-references | stages/03 + stages/05 + GEMINI.md links | `grep -c` confirms 10 references across 7 files | 0 |
 | **Stage 4 (5 ex)** | LangGraph + CrewAI + LangGraph workflow + Smolagents + Pydantic AI | 8/8 test suites verified green; ex2 CrewAI install-blocked on Python 3.14 (tiktoken/regex wheels) — code shipped unmodified | 3 (i18n key mismatch in ex3 + Smolagents docstring `Args:` requirement in ex4 + Pydantic AI version fallback in ex5 test) |
 | **Stage 6 (5 ex)** | embeddings + ChromaDB + chunking + full RAG + long-term memory | 10/10 test suites verified green | 2 (ChromaDB `kb` collection name too short for Chroma 1.0+; `EphemeralClient` state leak across test fixtures) |
 | **Stage 7 (5 ex)** | multi-agent debate + eval + observability + streaming/caching + FastAPI deploy | 10/10 test suites verified green | 1 (operator precedence: `and` binds tighter than `or` in fake_agent dispatcher) |
@@ -35,7 +35,7 @@ Shipped in commits [`d598e37`](https://github.com/WenyuChiou/awesome-agentic-ai-
 
 1. **CrewAI exercise (Stage 4 ex2)** not tested on Python 3.14 — tiktoken + regex don't have wheels yet. Code shipped unchanged; users on Python 3.11/3.12/3.13 should be fine. Document at top of `examples/stage-4/02-multi-agent-roles/README.md` if needed for future learners.
 
-2. **tool-calling-tutor skill** not live-tested in Claude Code — only structural validation (YAML frontmatter parse + JSON evals validate). Manual install test: `cp -r examples/stage-5/tool-calling-tutor/{SKILL.md,references,evals} ~/.claude/skills/tool-calling-tutor/`, restart Claude Code, prompt 「為什麼 LLM 不呼叫我的 tool」.
+2. **tool-calling-tutor skill** not live-tested in Antigravity CLI — only structural validation (YAML frontmatter parse + JSON evals validate). Manual install test: `cp -r examples/stage-5/tool-calling-tutor/{SKILL.md,references,evals} ~/.claude/skills/tool-calling-tutor/`, restart Antigravity CLI, prompt 「為什麼 LLM 不呼叫我的 tool」.
 
 3. **starter.py = complete solution pedagogy gap** — flagged in `docs/HOW_TO_USE.md`. v2 would split into `starter_template.py` (TODO) + `starter_reference.py` (solution); v1 is doc-only meta-instruction.
 
@@ -51,13 +51,13 @@ Shipped in commits [`d598e37`](https://github.com/WenyuChiou/awesome-agentic-ai-
 
 | File | Lines (zh-TW) | Exercises |
 |---|---|---|
-| `tracks/cli/A1-cli-intro.md` | 107 | CLI-1 安裝 + 第一次跑 / CLI-2 CLAUDE.md / CLI-3 第二個 CLI 並用 / CLI-4 認證細節 |
-| `tracks/cli/A2-cli-workflow.md` | 126 | CLI-5 production CLAUDE.md / CLI-6 slash command / CLI-7 多步驟拆解 / CLI-8 portable prompt |
+| `tracks/cli/A1-cli-intro.md` | 107 | CLI-1 安裝 + 第一次跑 / CLI-2 GEMINI.md / CLI-3 第二個 CLI 並用 / CLI-4 認證細節 |
+| `tracks/cli/A2-cli-workflow.md` | 126 | CLI-5 production GEMINI.md / CLI-6 slash command / CLI-7 多步驟拆解 / CLI-8 portable prompt |
 | `tracks/cli/A3-cli-production.md` | 134 | CLI-9 MCP server 接 CLI / CLI-10 GitHub Actions / CLI-11 cost tracking / CLI-12 plugin 跨 team 分享 |
 
 **No `examples/track-a/` folder built — and this is intentional**. CLI exercises are:
 - Bash commands (`ollama pull`, `claude` install, MCP-server install)
-- Markdown authoring (CLAUDE.md, slash command `.md` files, SKILL.md)
+- Markdown authoring (GEMINI.md, slash command `.md` files, SKILL.md)
 - YAML / JSON config (GitHub Actions `.yml`, `plugin.json`, `marketplace.json`)
 - **Not Python SDK code**, so the dual-path Ollama/Anthropic `starter.py` + `test.py` pattern doesn't apply.
 
@@ -65,20 +65,20 @@ What learners do for Track A: follow each numbered exercise in the outline doc, 
 
 **Core reference**: [`resources/cli-agents-guide.md`](../resources/cli-agents-guide.md) (148 lines) — 7-CLI comparison + decision rubric + common pitfalls.
 
-**Potential v2** (not committed): could ship `examples/track-a/` containing sample CLAUDE.md / `.claude/commands/review.md` / sample GHA workflow yml. Low priority — current outline is self-contained.
+**Potential v2** (not committed): could ship `examples/track-a/` containing sample GEMINI.md / `.claude/commands/review.md` / sample GHA workflow yml. Low priority — current outline is self-contained.
 
 ### Stage 5 — partial coverage
 
-Stage 5 (`stages/05-claude-code-ecosystem.md`) has 4 sub-stages with hands-on exercises:
+Stage 5 (`stages/05-gemini-skills-ecosystem.md`) has 4 sub-stages with hands-on exercises:
 
 | Sub-stage | Status |
 |---|---|
-| 5.1 Claude Code 基礎 | Outline only (in `stages/05-...md` 動手練習) |
+| 5.1 Antigravity CLI 基礎 | Outline only (in `stages/05-...md` 動手練習) |
 | 5.2 MCP (Model Context Protocol) | Outline only; cookbook 2 covers building first MCP server |
 | 5.3 Skills | Outline + **1 shipped meta-example**: [`examples/stage-5/tool-calling-tutor/`](../examples/stage-5/tool-calling-tutor/) (full SKILL.md + 3 references + evals.json, used as the Stage 5.3 authoring exemplar) |
 | 5.4 Plugins & Marketplaces | Outline only |
 
-For v2, sub-stages 5.1 / 5.2 / 5.4 could ship sample artifacts (sample `CLAUDE.md`, MCP server skeleton, plugin.json). Similar to Track A v2 — low priority.
+For v2, sub-stages 5.1 / 5.2 / 5.4 could ship sample artifacts (sample `GEMINI.md`, MCP server skeleton, plugin.json). Similar to Track A v2 — low priority.
 
 ## v2 path (deferred)
 

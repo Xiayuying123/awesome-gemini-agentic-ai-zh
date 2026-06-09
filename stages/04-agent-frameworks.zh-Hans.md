@@ -94,23 +94,23 @@
 | **4. Supervisor-Worker**<br>（hub-spoke） | ⭐⭐⭐ | 1 主 + N worker、主分配 + 整合 | 任务拆解、报告整合 | LangGraph、AutoGen GroupChat |
 | **5. Debate / Society**<br>（多视角收敛） | ⭐⭐⭐⭐ | 2+ agent 互相 critique 或角色扮演 | research、judgment task、social simulation | AutoGen GroupChat、[CAMEL paper](https://arxiv.org/abs/2303.17760)、[Generative Agents paper](https://arxiv.org/abs/2304.03442) |
 
-### Claude Code subagent — 另一条 orchestration 路线
+### Antigravity CLI subagent — 另一条 orchestration 路线
 
-> **这节跟上面的 5 个 pattern 不同层**：上面 5 个 pattern 是 framework / 自己 code 都能实作的设计选择；本节介绍的 **Claude Code subagent 是另一个 execution model**（runtime 内建的 orchestration、不写 framework code）。读完 5 个 pattern 后、本节让你知道“multi-agent 还有第二条路”。
+> **这节跟上面的 5 个 pattern 不同层**：上面 5 个 pattern 是 framework / 自己 code 都能实作的设计选择；本节介绍的 **Antigravity CLI subagent 是另一个 execution model**（runtime 内建的 orchestration、不写 framework code）。读完 5 个 pattern 后、本节让你知道“multi-agent 还有第二条路”。
 
-**Multi-agent 不只有 framework 这条路**。Anthropic 自家的 Claude Code 提供另一个 abstraction 层：[subagent](05-claude-code-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能) — 写一个 `.claude/agents/<name>.md` 档就是一个 subagent，**不需要 framework**。
+**Multi-agent 不只有 framework 这条路**。Anthropic 自家的 Antigravity CLI 提供另一个 abstraction 层：[subagent](05-gemini-skills-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能) — 写一个 `.claude/agents/<name>.md` 档就是一个 subagent，**不需要 framework**。
 
-跟 framework 路线的根本差异（一句话）：**framework 路线**跨 LLM provider、写 Python orchestration code、checkpointing / audit trail 完整；**Claude Code subagent** 只在 Claude Code runtime 内、写 markdown 不写 code、天生 context 隔离。
+跟 framework 路线的根本差异（一句话）：**framework 路线**跨 LLM provider、写 Python orchestration code、checkpointing / audit trail 完整；**Antigravity CLI subagent** 只在 Antigravity CLI runtime 内、写 markdown 不写 code、天生 context 隔离。
 
-> 📌 **完整逐维度对照表（启动方式 / runtime / context 隔离 / provider lock-in / 学习曲线）的 canonical 在 [Stage 5.5 开头](05-claude-code-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能)**——本 stage 只需知道“multi-agent 还有 Claude Code 原生这第二条路”、逐项实作差异到 5.5 再看。
+> 📌 **完整逐维度对照表（启动方式 / runtime / context 隔离 / provider lock-in / 学习曲线）的 canonical 在 [Stage 5.5 开头](05-gemini-skills-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能)**——本 stage 只需知道“multi-agent 还有 Antigravity CLI 原生这第二条路”、逐项实作差异到 5.5 再看。
 
 **何时选 subagent 而非 framework**：
-- 你已经在使用 Claude Code 跑日常工作
+- 你已经在使用 Antigravity CLI 跑日常工作
 - 任务 context 大、会吃光主 session window（读整个 codebase 之类）
 - 多 subagent 并行（research / write / critic）省 wall-clock 时间
 - 不需要跨 provider migration
 
-详细写法 + 动手练习见 [Stage 5.5](05-claude-code-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能)（**建议先完成 Stage 5.1 Claude Code 基础再回来看 5.5**——subagent 是 Claude Code 生态的进阶功能、需要先熟悉基础用法）。
+详细写法 + 动手练习见 [Stage 5.5](05-gemini-skills-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能)（**建议先完成 Stage 5.1 Antigravity CLI 基础再回来看 5.5**——subagent 是 Antigravity CLI 生态的进阶功能、需要先熟悉基础用法）。
 
 ### Framework 的工作
 
@@ -139,7 +139,7 @@ Framework 把上面这 5 个 pattern 的 orchestration boilerplate（roles、han
 > 2. **跑 1 个 framework quickstart**（2-3 hr）— LangGraph 或 CrewAI 二选一、跑官方多 agent 教学
 > 3. **对照 Anthropic Cookbook `customer_service_agent`**（1 hr）— production-style routing + handoff 范例
 > 4. *(可选)* **深入学术侧**：挑 paper 1-2 篇看（AutoGen / CAMEL / ChatDev / Generative Agents）
-> 5. *(Claude 用户可选)* **写一个 subagent 对照**：见 [Stage 5.5](05-claude-code-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能)、跟 framework 路线比较
+> 5. *(Claude 用户可选)* **写一个 subagent 对照**：见 [Stage 5.5](05-gemini-skills-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能)、跟 framework 路线比较
 >
 > **不必把 5 个 paper 全读完**、挑跟你场景最近的 1-2 个。
 
@@ -213,7 +213,7 @@ Stage 3 教你写 single tool / multi-tool selection（手写 `if/elif/else` 路
 - [ ] 看出什么时候 CodeAct（Smolagents）比 JSON-tool 更好
 - [ ] 判断什么时候该丢掉 framework、直接用 raw API
 
-如果可以 → 进 [Stage 5 — Claude Code Ecosystem](05-claude-code-ecosystem.zh-Hans.md)。
+如果可以 → 进 [Stage 5 — Antigravity CLI Ecosystem](05-gemini-skills-ecosystem.zh-Hans.md)。
 
 ## 💡 策略提示 + 过程中可能踩到的坑
 

@@ -170,7 +170,7 @@ DO NOT:
 3. 黃色分支 🧠
    問題：「context 沒效率 (Context inefficient)」
    ↓
-   📖 Anthropic Skills + CLAUDE.md memory docs (~15 min)
+   📖 Anthropic Skills + GEMINI.md memory docs (~15 min)
 
 4. 藍色分支 🧪
    問題：「eval 怎麼寫 / 自動驗證 (How to write evals / auto-verify)」
@@ -223,7 +223,7 @@ DO NOT:
 3. 黄色分支 🧠
    问题：「context 没效率 (Context inefficient)」
    ↓
-   📖 Anthropic Skills + CLAUDE.md memory docs (~15 min)
+   📖 Anthropic Skills + GEMINI.md memory docs (~15 min)
 
 4. 蓝色分支 🧪
    问题：「eval 怎么写 / 自动验证 (How to write evals / auto-verify)」
@@ -276,7 +276,7 @@ Branch down into 5 columns, laid out horizontally, each with a distinct color + 
 3. Yellow branch 🧠
    Problem: "Context inefficient"
    ↓
-   📖 Anthropic Skills + CLAUDE.md memory docs (~15 min)
+   📖 Anthropic Skills + GEMINI.md memory docs (~15 min)
 
 4. Blue branch 🧪
    Problem: "How to write evals / auto-verify"
@@ -332,7 +332,7 @@ DO NOT:
      — 下次同樣情境自動被抓
             ↓
   ⑤ 📜 mandatory rule (Mandatory invocation rule)
-     — CLAUDE.md / SKILL.md 規則
+     — GEMINI.md / SKILL.md 規則
 
 從 ⑤ 拉一條箭頭回到 ①、循環持續、加註「持續循環 (continuous loop)」。
 
@@ -347,11 +347,11 @@ DO NOT:
   ↓
   🤖✅ Retrospective test → 9+ real drift caught
   ↓
-  📜 CLAUDE.md mandatory rule
+  📜 GEMINI.md mandatory rule
 
 視覺風格：
 - 主圖（5-step loop）+ F14 線性 example 右側、用線分隔
-- 配色：incident 紅、document blue、preset green、auto-catch orange、CLAUDE.md purple
+- 配色：incident 紅、document blue、preset green、auto-catch orange、GEMINI.md purple
 - Sans-serif、比例 16:9
 - 簡潔 tech blog 風
 
@@ -386,7 +386,7 @@ DO NOT:
      — 下次同样情境自动被抓
             ↓
   ⑤ 📜 mandatory rule (Mandatory invocation rule)
-     — CLAUDE.md / SKILL.md 规则
+     — GEMINI.md / SKILL.md 规则
 
 从 ⑤ 拉一条箭头回到 ①、循环持续、加注「持续循环 (continuous loop)」。
 
@@ -401,11 +401,11 @@ DO NOT:
   ↓
   🤖✅ Retrospective test → 9+ real drift caught
   ↓
-  📜 CLAUDE.md mandatory rule
+  📜 GEMINI.md mandatory rule
 
 视觉风格：
 - 主图（5-step loop）+ F14 线性 example 右侧、用线分隔
-- 配色：incident 红、document blue、preset green、auto-catch orange、CLAUDE.md purple
+- 配色：incident 红、document blue、preset green、auto-catch orange、GEMINI.md purple
 - Sans-serif、比例 16:9
 - 简洁 tech blog 风
 
@@ -440,7 +440,7 @@ Main diagram (left / center): 5-step cycle, clockwise or top-down:
       — the next time the same situation appears, it is caught automatically
             ↓
   (5) 📜 Mandatory invocation rule
-      — written into CLAUDE.md / SKILL.md
+      — written into GEMINI.md / SKILL.md
 
 An arrow from (5) back to (1), with the caption "continuous loop".
 
@@ -455,11 +455,11 @@ Right-side separate box: F14 concrete example (linear arrows):
   ↓
   🤖✅ Retrospective test → 9+ real drifts caught
   ↓
-  📜 CLAUDE.md mandatory rule
+  📜 GEMINI.md mandatory rule
 
 Visual style:
 - Main 5-step loop + linear F14 example on the right, separated by a divider line
-- Color palette: incident red, document blue, preset green, auto-catch orange, CLAUDE.md purple
+- Color palette: incident red, document blue, preset green, auto-catch orange, GEMINI.md purple
 - Sans-serif typography
 - 16:9 aspect ratio
 - Clean tech blog aesthetic

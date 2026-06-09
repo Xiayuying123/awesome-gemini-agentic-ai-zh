@@ -75,7 +75,7 @@ Format: `YYYY-MM-DD · category · 1-line summary (commit-sha)`.
 - **content** · Stage 4/6/7 verified + merged to main (`cdb0ae3`); Stage 8 NEW — Agent Interfaces, §1-15 across 3 commits A/B/C (`b83c894`, `6c87a2f`, `069406f`).
 - **content** · curation positioning crystallized — exercises reframed foundational/illustrative; repo = curation hub + simple cases, depth → hello-agents (`00dc046`, `0206dbc`).
 - **content** · 精選 Projects consolidated to single 適合誰 tables across Stages 0-8 + Track A (`fd94d80`, `19a14a8`).
-- **content** · Stage 5 expanded (§5.1-5.6: Claude Code basics, MCP/Plugin/Skill 定位, §5.5 Subagents, Harness Internals) (`2c3f1dd`, `f7de4e7`).
+- **content** · Stage 5 expanded (§5.1-5.6: Antigravity CLI basics, MCP/Plugin/Skill 定位, §5.5 Subagents, Harness Internals) (`2c3f1dd`, `f7de4e7`).
 - **content** · Stage 6 RAG-first restructure + GraphRAG / Contextual Retrieval / Hybrid Search; 2026 frontier-model refresh (`f00e2c2`, `acbc9dc`).
 - **ci** · 4 checks added — anchor validator, mirror-sync reminder, 2026 freshness, stage-template enforce (`a14c809`, `4491e6e`).
 - **i18n** · 8-stage tri-locale mirror catch-up via Codex + Gemini delegation; 37 legacy anchors fixed, validator → strict (`8b39c75`, `706d257`).
@@ -85,12 +85,12 @@ Format: `YYYY-MM-DD · category · 1-line summary (commit-sha)`.
 
 - **content** · examples/ bootstrapped — Stage 1 (6) + 2 (4) + 3 (6) + 4 (5) + 6 (5) + 7 (5) inline starters + folder examples, tri-locale (`c1fcaa7`, `8051861`, `7d2c1b7`).
 - **content** · dual-path examples — Ollama (default, cost-driven) alongside Anthropic; per-stage budget + LLM recommendation list (`bc37ad8`, `3fa5410`).
-- **content** · tool-calling-tutor — installable Claude Code skill + Stage 5 §5.3 meta-example (`3584669`).
+- **content** · tool-calling-tutor — installable Antigravity CLI skill + Stage 5 §5.3 meta-example (`3584669`).
 - **i18n** · diagrams renamed `.zh-Hans.png` per BCP 47 / W3C convention (`78797a3`).
 
 ## 2026-05-11
 
-- **accessibility** · `resources/setup-guide.md` (3 langs) — addresses the dev-fluency assumption gap that subagent audit flagged across 5 non-dev branches. 5 sections covering API key registration, Python install, hello-world, Claude Code first auth, SKILL.md primer (`3c88b2b`). Plus 15 branch-top callouts on all 5 audience branches. `resources/README.{en,zh-Hans}.md` created for trilingual parity.
+- **accessibility** · `resources/setup-guide.md` (3 langs) — addresses the dev-fluency assumption gap that subagent audit flagged across 5 non-dev branches. 5 sections covering API key registration, Python install, hello-world, Antigravity CLI first auth, SKILL.md primer (`3c88b2b`). Plus 15 branch-top callouts on all 5 audience branches. `resources/README.{en,zh-Hans}.md` created for trilingual parity.
 - **accessibility** · README — promoted setup-guide pointer to top of Quick Start across all 3 langs (`ad47706`). Was buried in Related Resources where non-dev visitors hit technical walls before discovering it.
 - **accessibility** · setup-guide opens with a 4-tier on-ramp (Web / Desktop / CLI / API) + official download URLs for Claude.ai, ChatGPT, Gemini, Le Chat, Claude Desktop, ChatGPT Desktop, LM Studio (`3c89952`). Replaces the abstract "decide two things" intro so non-dev readers see "just use claude.ai for free" as the first option, not "register API key → install Python".
 - **accessibility** · setup-guide adds a 3rd tier between Desktop and CLI: **IDE with built-in AI** (Cursor, Windsurf, Cline, Continue, Roo Code, Zed, GitHub Copilot) with download URLs (`7e14093`). Distinguishes "AI sidekick while you write code" from "agent runs autonomous task in terminal".
@@ -100,7 +100,7 @@ Format: `YYYY-MM-DD · category · 1-line summary (commit-sha)`.
 - **funnel** · Stage 1 → Stage 2 callouts added across 3 langs to address visible drop in `traffic/popular/paths` (`0ee2a3a`)
 - **outreach** · 3 awesome-list targets backfilled into channel-partners matrix from launch-checklist: `travisvn/awesome-claude-skills`, `WangRongsheng/awesome-LLM-resources`, `AiHubCN/Awesome-Chinese-LLM` (`90a6ad1`)
 - **outreach** · PR #6135 to `punkpeye/awesome-mcp-servers` — addressed bot `name-check`, replied to non-applicable `glama-check` + `emoji-check` (`81a7313`)
-- **content** · Cookbook Recipe 6 — **Local-LLM × CLI Agent walkthrough** (`5855852`). Bridges Stage 1 (local LLM) + Stage 5 (CLI agent) end-to-end. Explicitly notes Claude Code does **not** support local LLM as backend; routes readers to OpenCode / goose / Aider / Hermes instead. Stage 5 + cli-agents-guide also gain matching pointers.
+- **content** · Cookbook Recipe 6 — **Local-LLM × CLI Agent walkthrough** (`5855852`). Bridges Stage 1 (local LLM) + Stage 5 (CLI agent) end-to-end. Explicitly notes Antigravity CLI does **not** support local LLM as backend; routes readers to OpenCode / goose / Aider / Hermes instead. Stage 5 + cli-agents-guide also gain matching pointers.
 - **catalog** · Hermes Agent (`NousResearch/hermes-agent` ★142k) added as 7th major CLI agent across `cli-agents-guide`, `tracks/cli/A1`, and 5 dependent files (`698f13a`). Differentiator: cloud-VM-native, model-neutral (200+ LLMs via OpenRouter / NIM / GLM / Kimi / etc.), self-improving skill loop.
 - **i18n** · `*.zh-CN.md` → `*.zh-Hans.md` migration per BCP 47 / W3C compliance (`21b653d`). 25 files renamed, ~270 markdown lines updated, tooling (`sync-language-switchers.py`, `lint.yml`, `generate-stage5-stack.py`) migrated. Thanks [@xfq](https://github.com/xfq) (W3C i18n lead) for flagging in [#9](https://github.com/WenyuChiou/awesome-agentic-ai-zh/issues/9). Added to CONTRIBUTORS (`868691d`).
 - **visuals** · English README hero (`banner.en.png`), Learning Map (`learning-map.en.png`), and Branch Decision Tree (`branch-decision-tree.en.png`) refreshed to ChatGPT-rendered versions (`c7edff8`, `4be6b88`, `6c03c58`).

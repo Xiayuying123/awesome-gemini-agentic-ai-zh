@@ -13,11 +13,11 @@
 | File | Role | When to Read | Lines |
 |---|---|---|---|
 | [`glossary.en.md`](glossary.en.md) | **30-second term lookup** | You hit terms like LLM / RAG / token / agent / vector DB / streaming / batch API while reading a stage | ~210 |
-| [`cli-agents-guide.en.md`](cli-agents-guide.en.md) | **7 CLI agents compared** | First time choosing among Claude Code / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent | ~134 |
-| [`mcp-skills-catalog.en.md`](mcp-skills-catalog.en.md) | **62 integration catalog** | You want Claude Code connected to Notion / Obsidian / Excel / Postgres / Slack / other real tools | ~775 |
+| [`cli-agents-guide.en.md`](cli-agents-guide.en.md) | **7 CLI agents compared** | First time choosing among Antigravity CLI / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent | ~134 |
+| [`mcp-skills-catalog.en.md`](mcp-skills-catalog.en.md) | **62 integration catalog** | You want Antigravity CLI connected to Notion / Obsidian / Excel / Postgres / Slack / other real tools | ~775 |
 | [`schema-design-cheatsheet.en.md`](schema-design-cheatsheet.en.md) | **5 function-schema rules + 5 anti-patterns** | You are writing a tool schema / MCP server schema / function calling and the LLM picks the wrong tool or arguments | ~159 |
 | [`cookbook.en.md`](cookbook.en.md) | **6 step-by-step recipes** | You want to build a first Skill / MCP server / Office integration / NotebookLM flow / Zotero flow / local LLM in 30-50 minutes | ~620 |
-| [`setup-guide.en.md`](setup-guide.en.md) | **From-zero setup guide** | No dev background; first time creating an API key, installing Python, or using Claude Code | ~400 |
+| [`setup-guide.en.md`](setup-guide.en.md) | **From-zero setup guide** | No dev background; first time creating an API key, installing Python, or using Antigravity CLI | ~400 |
 | [`style-guide.en.md`](style-guide.en.md) | **Format and wording rules before PRs** | You want to contribute to the repo, add entries, or improve translations | ~338 |
 
 Together these are about ~2500 lines of reference. That sounds large, but **each file is read at a different moment**. You do not read all of them at once; you open the relevant one for 30 seconds to 45 minutes.
@@ -38,7 +38,7 @@ You do not need any reference first. **Start with the main [README](../README.en
 
 → [`cli-agents-guide.en.md`](cli-agents-guide.en.md) (CLI comparison + recommendations by use case)
 
-### 🔌 I Want to Connect Claude Code to Tool X (Notion / Excel / Postgres / etc.)
+### 🔌 I Want to Connect Antigravity CLI to Tool X (Notion / Excel / Postgres / etc.)
 
 → [`mcp-skills-catalog.en.md`](mcp-skills-catalog.en.md) (62 integrations in 14 categories)
 

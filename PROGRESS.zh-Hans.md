@@ -30,7 +30,7 @@
 
 - [ ] **A1 — CLI Agent 入门 + 选择** · [`tracks/cli/A1-cli-intro.zh-Hans.md`](tracks/cli/A1-cli-intro.zh-Hans.md)
 - [ ] **A2 — CLI Workflow Patterns** · [`tracks/cli/A2-cli-workflow.zh-Hans.md`](tracks/cli/A2-cli-workflow.zh-Hans.md)
-- [ ] **Stage 5 — Claude Code 生态(两轨共用)** · [`stages/05-claude-code-ecosystem.zh-Hans.md`](stages/05-claude-code-ecosystem.zh-Hans.md)
+- [ ] **Stage 5 — Antigravity CLI 生态(两轨共用)** · [`stages/05-gemini-skills-ecosystem.zh-Hans.md`](stages/05-gemini-skills-ecosystem.zh-Hans.md)
 - [ ] **A3 — Integration & Production** · [`tracks/cli/A3-cli-production.zh-Hans.md`](tracks/cli/A3-cli-production.zh-Hans.md)
 - [ ] **Stage 8 — Agent 操作界面(两轨共用)** · [`stages/08-agent-interfaces.zh-Hans.md`](stages/08-agent-interfaces.zh-Hans.md)
 
@@ -42,7 +42,7 @@
 
 - [ ] **Stage 3 — 工具使用与第一个 Agent** ⭐ · [`stages/03-tool-use-and-hello-agent.zh-Hans.md`](stages/03-tool-use-and-hello-agent.zh-Hans.md)
 - [ ] **Stage 4 — Agent 框架** · [`stages/04-agent-frameworks.zh-Hans.md`](stages/04-agent-frameworks.zh-Hans.md)
-- [ ] **Stage 5 — Claude Code 生态** ⭐⭐(两轨共用)· [`stages/05-claude-code-ecosystem.zh-Hans.md`](stages/05-claude-code-ecosystem.zh-Hans.md)
+- [ ] **Stage 5 — Antigravity CLI 生态** ⭐⭐(两轨共用)· [`stages/05-gemini-skills-ecosystem.zh-Hans.md`](stages/05-gemini-skills-ecosystem.zh-Hans.md)
 - [ ] **Stage 6 — 上下文管理：RAG 与 Memory** · [`stages/06-memory-rag.zh-Hans.md`](stages/06-memory-rag.zh-Hans.md)
 - [ ] **Stage 7 — Multi-Agent · 进阶应用** · [`stages/07-multi-agent-production.zh-Hans.md`](stages/07-multi-agent-production.zh-Hans.md)
 - [ ] **Stage 7.5 — 进阶 Agentic 概念** · [`stages/07.5-advanced-agentic-concepts.zh-Hans.md`](stages/07.5-advanced-agentic-concepts.zh-Hans.md)

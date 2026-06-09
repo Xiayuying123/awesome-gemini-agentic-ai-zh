@@ -10,7 +10,7 @@
 - [ ] 其他 / Other
 
 ## 影響範圍 / Affected files
-<!-- 例如：stages/05-claude-code-ecosystem.md + stages/05-claude-code-ecosystem.en.md -->
+<!-- 例如：stages/05-gemini-skills-ecosystem.md + stages/05-gemini-skills-ecosystem.en.md -->
 
 ## 摘要 / Summary
 <!-- 1-3 句說明做了什麼 + 為什麼 -->

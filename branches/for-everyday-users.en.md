@@ -17,7 +17,7 @@ The table below splits everyday AI use into 7 common scenarios. Most of them are
 | **Language practice** | No conversation partner; unclear grammar mistakes | Voice conversation and instant correction | ChatGPT Voice / Gemini |
 | **Research / comparison** | Hard to know which source to trust | Multi-source search with citations | Perplexity |
 | **Organizing life workflows** | Recipes / trips / todo lists are scattered | Consolidation + structure | Claude.ai / ChatGPT |
-| **Batch file cleanup** | 100 PDFs / images with no clear grouping | Rename + classify + summarize | Claude Desktop / Claude Code |
+| **Batch file cleanup** | 100 PDFs / images with no clear grouping | Rename + classify + summarize | Claude Desktop / Antigravity CLI |
 | **Privacy-sensitive chat** | Medical / legal / financial notes should not go to the cloud | Run a local LLM | Ollama + qwen2.5 |
 
 > 💡 **Do not rush upgrades**: the first 5 scenarios can stay at Tier 0 (web). You only need Tier 1-3 when you repeat the same flow often or data absolutely cannot leave your machine.
@@ -86,7 +86,7 @@ Desktop version of ChatGPT. Ask questions about screenshots, voice conversation,
 | Stars | ★ 80k+ |
 | License | Apache-2.0 |
 
-**What it teaches**: OpenAI's terminal agent — it can help organize files, batch-process text, and run multi-step tasks from the command line; coding is only one use case. Same category as Claude Code, but uses OpenAI models.
+**What it teaches**: OpenAI's terminal agent — it can help organize files, batch-process text, and run multi-step tasks from the command line; coding is only one use case. Same category as Antigravity CLI, but uses OpenAI models.
 
 **Best for**: People who already subscribe to ChatGPT Plus / Pro and want to use the same account in the terminal.
 
@@ -147,7 +147,7 @@ Use these 5 templates as starting points and adapt them to your own context:
 | **Daily** | Email triage | (1) Paste pending emails into Claude in the morning<br>(2) Ask it to classify "reply now / today / this week / skip"<br>(3) Draft replies for your review | Claude.ai / ChatGPT |
 | **Daily** | Speaking practice | (1) Open ChatGPT Voice<br>(2) Practice English / Japanese conversation<br>(3) Ask it to flag grammar mistakes | ChatGPT Voice / Gemini |
 | **Weekly** | Weekly journal | (1) Tell Claude what you did this week<br>(2) Ask for a journal + next week's priorities<br>(3) Save it to Obsidian / Notion | Claude.ai |
-| **Occasional** | Batch file cleanup | (1) Run Claude Code in your Downloads folder<br>(2) Rename by date + topic<br>(3) Sort into subfolders | Claude Code |
+| **Occasional** | Batch file cleanup | (1) Run Antigravity CLI in your Downloads folder<br>(2) Rename by date + topic<br>(3) Sort into subfolders | Antigravity CLI |
 | **Privacy scenario** | Local medical / legal / financial notes | (1) Run qwen2.5:7b in Ollama<br>(2) Organize personal notes without sending data to the cloud<br>(3) ⚠️ It protects **privacy**, not **correctness**: specific diagnoses / legal judgments / investment decisions still require professionals | Ollama + qwen2.5 |
 
 > 💡 **Starter habit**: run "daily email triage" and "speaking practice" for a month first, then add other workflows.
@@ -160,7 +160,7 @@ Recommended progression:
 |---|---|---|---|
 | **Tier 0** | Claude.ai / ChatGPT / Gemini / Perplexity (web) | 90% of scenarios: no install, no payment required | 0 (if you can use a browser) |
 | **Tier 1** | Claude Desktop / ChatGPT Desktop + MCP | Local files, retained conversation history, Gmail / Notion integrations | 30 minutes |
-| **Tier 2** | Claude Code / opencode (CLI) | Repeated automation needs, such as doing the same task 100 times daily | 1-2 days |
+| **Tier 2** | Antigravity CLI / opencode (CLI) | Repeated automation needs, such as doing the same task 100 times daily | 1-2 days |
 | **Tier 3** | Ollama local LLM | Privacy-sensitive data that cannot go to the cloud, API-cost sensitivity, offline use | Half a day |
 
 > **Do not let anyone push you to upgrade prematurely**. Tier 0 is enough for most people. Tiers 2-3 are tools, not status symbols.

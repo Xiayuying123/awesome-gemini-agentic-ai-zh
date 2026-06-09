@@ -2,7 +2,7 @@
 
 > [繁體中文](./subagent-advanced.md) | [简体中文](./subagent-advanced.zh-Hans.md) | **English**
 
-> 📋 **Who this is for**: You already know how to use built-in subagents (you have gone through [Stage 5.5](../stages/05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature) + the [cookbook](./subagent-cookbook.en.md)), and you are ready to: (1) **write your own** subagent, (2) **compose multiple** subagents, or (3) **debug** a broken subagent.
+> 📋 **Who this is for**: You already know how to use built-in subagents (you have gone through [Stage 5.5](../stages/05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature) + the [cookbook](./subagent-cookbook.en.md)), and you are ready to: (1) **write your own** subagent, (2) **compose multiple** subagents, or (3) **debug** a broken subagent.
 >
 > ⚠️ **Prerequisite**: Read Stage 5.5’s “Common confusing concepts clarified” section and the 15 cookbook recipes first. If you jump into this without the cookbook, you will get stuck at the “what is a subagent?” layer.
 
@@ -165,17 +165,17 @@ When you want to run 2+ subagents together, how should you compose them? The 3 p
 
 ## §3 Debugging Tools for Custom Subagents
 
-> 📌 **Different angle from [Stage 5.5 §Clarifying 5 Gotchas](../stages/05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature)**:
+> 📌 **Different angle from [Stage 5.5 §Clarifying 5 Gotchas](../stages/05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature)**:
 > Stage 5.5 Gotchas are **best-practice-oriented**: things to pay attention to when writing a subagent
 > This section's 5 entry points are **debug-oriented**: where to look after a subagent has already broken
 > 3 topics overlap (tools / model / memory), but the angle differs; read both for full coverage
 
 You wrote `.claude/agents/<name>.md`, but the result is not what you expected. Here are 5 debug entry points:
 
-### Debug entry point 1: Confirm Claude Code can see your agent
+### Debug entry point 1: Confirm Antigravity CLI can see your agent
 
 ```bash
-# Run inside the Claude Code conversation:
+# Run inside the Antigravity CLI conversation:
 /agents
 ```
 **Expected**: The list includes the name you wrote. If it does **not**:
@@ -233,7 +233,7 @@ model: haiku
 # model: opus
 ```
 
-Check the token statistics Claude Code shows after the session ends (in the lower-right status bar or session summary), or use `/clear` and compare usage before and after.
+Check the token statistics Antigravity CLI shows after the session ends (in the lower-right status bar or session summary), or use `/clear` and compare usage before and after.
 
 ---
 
@@ -271,6 +271,6 @@ This is fully self-contained. The subagent can run from this prompt without any 
 ## Next Steps
 
 - **More dispatch recipes** → [`subagent-cookbook.en.md`](./subagent-cookbook.en.md) (15 copy-paste dispatch prompts)
-- **Understand how subagents relate to skills / MCP** → [Stage 5.5](../stages/05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature)
+- **Understand how subagents relate to skills / MCP** → [Stage 5.5](../stages/05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature)
 - **Run multi-agent coordination** (Pattern B) → the [agent-collab-skills](https://github.com/WenyuChiou/agent-collab-skills) plugin
-- **Vocabulary quick lookup** → [`glossary.en.md` § 5. Claude Code ecosystem](./glossary.en.md#5-claude-code-ecosystem)
+- **Vocabulary quick lookup** → [`glossary.en.md` § 5. Antigravity CLI ecosystem](./glossary.en.md#5-claude-code-ecosystem)

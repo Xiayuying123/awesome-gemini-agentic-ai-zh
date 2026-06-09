@@ -30,7 +30,7 @@ This is a checklist **for your own use**. You do not need to submit it, open a P
 
 - [ ] **A1 — CLI Agent Introduction + Selection** · [`tracks/cli/A1-cli-intro.en.md`](tracks/cli/A1-cli-intro.en.md)
 - [ ] **A2 — CLI Workflow Patterns** · [`tracks/cli/A2-cli-workflow.en.md`](tracks/cli/A2-cli-workflow.en.md)
-- [ ] **Stage 5 — Claude Code Ecosystem (shared by both tracks)** · [`stages/05-claude-code-ecosystem.en.md`](stages/05-claude-code-ecosystem.en.md)
+- [ ] **Stage 5 — Antigravity CLI Ecosystem (shared by both tracks)** · [`stages/05-gemini-skills-ecosystem.en.md`](stages/05-gemini-skills-ecosystem.en.md)
 - [ ] **A3 — Integration & Production** · [`tracks/cli/A3-cli-production.en.md`](tracks/cli/A3-cli-production.en.md)
 - [ ] **Stage 8 — Agent Interfaces (shared by both tracks)** · [`stages/08-agent-interfaces.en.md`](stages/08-agent-interfaces.en.md)
 
@@ -42,7 +42,7 @@ This is a checklist **for your own use**. You do not need to submit it, open a P
 
 - [ ] **Stage 3 — Tool Use and Your First Agent** ⭐ · [`stages/03-tool-use-and-hello-agent.en.md`](stages/03-tool-use-and-hello-agent.en.md)
 - [ ] **Stage 4 — Agent Frameworks** · [`stages/04-agent-frameworks.en.md`](stages/04-agent-frameworks.en.md)
-- [ ] **Stage 5 — Claude Code Ecosystem** ⭐⭐(shared by both tracks)· [`stages/05-claude-code-ecosystem.en.md`](stages/05-claude-code-ecosystem.en.md)
+- [ ] **Stage 5 — Antigravity CLI Ecosystem** ⭐⭐(shared by both tracks)· [`stages/05-gemini-skills-ecosystem.en.md`](stages/05-gemini-skills-ecosystem.en.md)
 - [ ] **Stage 6 — Context Management: RAG and Memory** · [`stages/06-memory-rag.en.md`](stages/06-memory-rag.en.md)
 - [ ] **Stage 7 — Multi-Agent · Advanced Applications** · [`stages/07-multi-agent-production.en.md`](stages/07-multi-agent-production.en.md)
 - [ ] **Stage 7.5 — Advanced Agentic Concepts** · [`stages/07.5-advanced-agentic-concepts.en.md`](stages/07.5-advanced-agentic-concepts.en.md)

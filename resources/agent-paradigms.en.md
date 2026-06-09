@@ -4,10 +4,10 @@
 
 > [← Back to main README](../README.en.md)
 
-> 📌 **This is a mental-model reference**. After reading you'll understand: "Why do Claude Code, Hermes Agent, and OpenClaw all call themselves 'agents' but feel completely different to use?"
+> 📌 **This is a mental-model reference**. After reading you'll understand: "Why do Antigravity CLI, Hermes Agent, and OpenClaw all call themselves 'agents' but feel completely different to use?"
 > If you already know which one you want → [`resources/cli-agents-guide.en.md`](cli-agents-guide.en.md) (7-CLI side-by-side comparison) or [`resources/cookbook.en.md`](cookbook.en.md) (step-by-step deployment).
 
-The word "agent" gets used loosely. Cursor is an agent. Claude Code is an agent. Hermes Agent — the one chatting with you on Telegram — is an agent. OpenClaw running on a Jetson board in your apartment is also an agent. But these four feel completely different in practice — because they belong to **different paradigms**. The difference isn't which LLM family they use; it's **where the agent runs, what interface you use to talk to it, and whether it needs an internet connection**.
+The word "agent" gets used loosely. Cursor is an agent. Antigravity CLI is an agent. Hermes Agent — the one chatting with you on Telegram — is an agent. OpenClaw running on a Jetson board in your apartment is also an agent. But these four feel completely different in practice — because they belong to **different paradigms**. The difference isn't which LLM family they use; it's **where the agent runs, what interface you use to talk to it, and whether it needs an internet connection**.
 
 Once you understand the paradigm, moving a use case from Type 2 to Type 4 isn't "switching tools" — it's **switching how you think**.
 
@@ -18,7 +18,7 @@ Once you understand the paradigm, moving a use case from Type 2 to Type 4 isn't 
 | Type | Examples | Where the agent runs | How you reach it | LLM | Offline OK? | Monthly cost (rough) |
 |---|---|---|---|---|---|---|
 | **1. IDE-coupled** | Cursor / Cline / Continue | Inside your IDE | IDE sidebar | Multi-provider | ❌ | $0-20 |
-| **2. Terminal pair-programmer** | Claude Code / Codex / Gemini CLI | Your terminal | Terminal REPL | Single-family | ❌ | $20 sub or API |
+| **2. Terminal pair-programmer** | Antigravity CLI / Codex / Gemini CLI | Your terminal | Terminal REPL | Single-family | ❌ | $20 sub or API |
 | **3. BYO-LLM CLI** | Aider / OpenCode / goose | Your terminal | Terminal REPL | Bring your own API key | ❌ | API usage |
 | **4. Cloud-deployed** | **Hermes Agent** | $5 VPS / Modal | **Telegram / Slack / any chat app** | 200+ provider routing | ❌ | $5 server + API |
 | **5. Edge-deployed** | **OpenClaw / ClawBox** | Jetson board / Raspberry Pi | local chat / SSH | **Local Ollama** (Qwen / Llama / Mistral) | **✅** | One-time €549, then 0 |
@@ -41,16 +41,16 @@ You're writing a React component in Cursor. Editor on the left, Cursor sidebar o
 
 ---
 
-## Type 2: Terminal pair-programmer — "the Claude Code paradigm"
+## Type 2: Terminal pair-programmer — "the Antigravity CLI paradigm"
 
-**Examples**: [Claude Code](https://github.com/anthropics/claude-code) / [Codex](https://github.com/openai/codex) / [Gemini CLI](https://github.com/google-gemini/gemini-cli)
+**Examples**: [Antigravity CLI](https://github.com/anthropics/claude-code) / [Codex](https://github.com/openai/codex) / [Gemini CLI](https://github.com/google-gemini/gemini-cli)
 
 **Hero example**:
-You open Claude Code in a terminal and type "refactor the entire auth module, swap callbacks for async/await, run the tests." Claude Code reads files, edits them, runs pytest, and reports back. Five to ten minutes of streaming output, autonomous throughout.
+You open Antigravity CLI in a terminal and type "refactor the entire auth module, swap callbacks for async/await, run the tests." Antigravity CLI reads files, edits them, runs pytest, and reports back. Five to ten minutes of streaming output, autonomous throughout.
 
-**Why this type exists**: Claude Code and Codex turn the whole terminal into the agent's workspace. The agent has full access to the file system, shell, and git — it can complete multi-step tasks autonomously. More autonomous than Type 1.
+**Why this type exists**: Antigravity CLI and Codex turn the whole terminal into the agent's workspace. The agent has full access to the file system, shell, and git — it can complete multi-step tasks autonomously. More autonomous than Type 1.
 
-**Distinguishing trait**: Subscription pricing ($20/month covers the whole month, no per-token billing); locked to a specific LLM family (Claude Code = Claude only).
+**Distinguishing trait**: Subscription pricing ($20/month covers the whole month, no per-token billing); locked to a specific LLM family (Antigravity CLI = Claude only).
 
 **Good for**: agentic tasks; long refactors; paper writing; anything beyond a 1-2 step prompt.
 **Not for**: cost-comparing across LLM providers; non-coding/writing scenarios; offline work.
@@ -142,15 +142,15 @@ There are two main implementation paths:
 | Path | How it starts | Examples |
 |---|---|---|
 | **Framework-based** (Stage 4) | `pip install langgraph / crewai / autogen` + Python orchestration code | LangGraph / CrewAI / AutoGen / Swarm / Strands |
-| **Claude Code native** (Stage 5.5) | Write `.claude/agents/<name>.md`; invoke it from the main session with the Task tool | Claude Code subagents + Claude Agent SDK |
+| **Antigravity CLI native** (Stage 5.5) | Write `.claude/agents/<name>.md`; invoke it from the main session with the Task tool | Antigravity CLI subagents + Claude Agent SDK |
 
 **The difference is runtime ownership**:
 - Framework path: your own Python process runs the orchestrator, and each sub-agent is an object inside your program
-- Claude path: Claude Code spawns a new agent instance itself; parent / child share the Claude runtime, and the parent only sees the child’s final result (context is isolated automatically)
+- Claude path: Antigravity CLI spawns a new agent instance itself; parent / child share the Claude runtime, and the parent only sees the child’s final result (context is isolated automatically)
 
-**Which should you choose?** If you need to mix LLM providers (GPT + Claude + Gemini) or embed multi-agent orchestration into another application, choose the framework path. If you are already committed to Claude Code and staying inside the Claude ecosystem, choose the subagent path (much less boilerplate).
+**Which should you choose?** If you need to mix LLM providers (GPT + Claude + Gemini) or embed multi-agent orchestration into another application, choose the framework path. If you are already committed to Antigravity CLI and staying inside the Claude ecosystem, choose the subagent path (much less boilerplate).
 
-See the full comparison table at the [start of Stage 5.5](../stages/05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature); **to jump straight into 15 daily dispatch recipes** → [`subagent-cookbook.en.md`](./subagent-cookbook.en.md) (each includes a scenario + which subagent to use + a copy-paste prompt template).
+See the full comparison table at the [start of Stage 5.5](../stages/05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature); **to jump straight into 15 daily dispatch recipes** → [`subagent-cookbook.en.md`](./subagent-cookbook.en.md) (each includes a scenario + which subagent to use + a copy-paste prompt template).
 
 ---
 
@@ -175,7 +175,7 @@ Real power users often run **2 or 3 types simultaneously**, each handling what i
 
 ## Links to existing stages / branches
 
-- **Learn Type 2 hands-on** → [Stage 5: Claude Code Ecosystem](../stages/05-claude-code-ecosystem.en.md)
+- **Learn Type 2 hands-on** → [Stage 5: Antigravity CLI Ecosystem](../stages/05-gemini-skills-ecosystem.en.md)
 - **See the 7-CLI detailed comparison** (Type 2 + Type 3) → [`resources/cli-agents-guide.en.md`](cli-agents-guide.en.md)
 - **Compare IDE-coupled tools** (Type 1) → [`branches/for-developer.en.md`](../branches/for-developer.en.md)
 - **Step-by-step Hermes deployment** → [`resources/cookbook.en.md` Recipe 6](cookbook.en.md) (Hermes + Ollama walkthrough)
@@ -185,9 +185,9 @@ Real power users often run **2 or 3 types simultaneously**, each handling what i
 
 ## How I personally use these
 
-- **Daily development**: Type 2 (Claude Code, subscription)
+- **Daily development**: Type 2 (Antigravity CLI, subscription)
 - **Paper monitoring**: still manual for now (a weekly arXiv scan by hand) — Type 4 Hermes is on the list to try
-- **Research vault**: Claude Code on my laptop calls the [research-hub](https://github.com/WenyuChiou/research-hub) pipeline (Type 2 mode)
+- **Research vault**: Antigravity CLI on my laptop calls the [research-hub](https://github.com/WenyuChiou/research-hub) pipeline (Type 2 mode)
 - **No Type 5 yet**: my data isn't sensitive enough yet to justify going fully offline
 
 Once you try Type 4 or Type 5 in practice, come back and add your own use case to this reference.

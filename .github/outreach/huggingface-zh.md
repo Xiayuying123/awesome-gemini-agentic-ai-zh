@@ -40,7 +40,7 @@ for agentic AI:
 - **Stage 0**: Foundations (Python, git, CLI, REST APIs)
 - **Stage 1-3**: LLM basics, prompt engineering, RAG, frameworks
 - **Stage 4**: Agentic frameworks (LangChain, LangGraph, AutoGen, etc.)
-- **Stage 5**: Claude Code ecosystem (MCP, Skills, Plugins)
+- **Stage 5**: Antigravity CLI ecosystem (MCP, Skills, Plugins)
 - **Stage 6**: Multi-agent + memory + production hardening
 - **Stage 7**: Production deployment + observability
 - **Stage 8**: Agent Interfaces (Computer Use, Browser Use, Code Sandbox)

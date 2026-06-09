@@ -78,7 +78,7 @@ cd awesome-agentic-ai-zh
 - 🛠️ **Foundational hands-on exercises** — 1-5 illustrative exercises per stage (specs + dual-path SDK comparison + success criteria). Positioned as **foundational + roadmap verification** — for chapter-length depth exercises see the hello-agents / Anthropic Cookbook callout in each stage
 - 🎯 **240+ curated projects** — each with star rating, audience, what it teaches, how to run (incl. local LLM runners: Ollama, llama.cpp, LocalAI, MLX)
 - 🌏 **Trilingual, fully maintained** — zh-TW (canonical) / 简中 / English; the English edition is complete, not a thin mirror
-- 🎓 **Beyond frameworks: Claude Code ecosystem** — MCP / Skills / Plugins / SDK full stack
+- 🎓 **Beyond frameworks: Antigravity CLI ecosystem** — MCP / Skills / Plugins / SDK full stack
 - 🔬 **5 specialized branches** — researcher / developer / teacher / knowledge worker / **everyday user**
 - ⏱️ **Time commitment, stated upfront** — Track A 8-10 weeks / Track B 16-22 weeks minimum, 5-7 months realistic (5-8 hr/week part-time)
 
@@ -90,10 +90,10 @@ cd awesome-agentic-ai-zh
 
 After **Stages 0-2 (shared foundations)**, pick a track based on your goal:
 
-- **Track A — CLI Power User**: you want to **USE** existing CLI agents (Claude Code, Codex, OpenCode, Gemini CLI, etc.) to get work done — not build agents from scratch. 3 sub-stages (A1-A3).
+- **Track A — CLI Power User**: you want to **USE** existing CLI agents (Antigravity CLI, Codex, OpenCode, Gemini CLI, etc.) to get work done — not build agents from scratch. 3 sub-stages (A1-A3).
 - **Track B — Agent Builder**: you want to **BUILD** your own agents — learn frameworks, write ReAct, design multi-agent systems. Stages 3-8 main path.
 
-The two tracks are **not mutually exclusive** — most people start with A to get hands-on, then come back to B for internals (or vice versa). Stage 5 (Claude Code Ecosystem) is used by both tracks.
+The two tracks are **not mutually exclusive** — most people start with A to get hands-on, then come back to B for internals (or vice versa). Stage 5 (Antigravity CLI Ecosystem) is used by both tracks.
 
 ### Shared Foundations (Stages 0-2)
 
@@ -108,9 +108,9 @@ The two tracks are **not mutually exclusive** — most people start with A to ge
 | Stage | Topic | Key Content | Time |
 |---|---|---|---|
 | **A1** | [CLI Agent Intro & Selection](tracks/cli/A1-cli-intro.en.md) | 7-CLI comparison · install · first run | 1 wk |
-| **A2** | [CLI Workflow Patterns](tracks/cli/A2-cli-workflow.en.md) | CLAUDE.md · slash commands · multi-step decomposition | 1-2 wks |
+| **A2** | [CLI Workflow Patterns](tracks/cli/A2-cli-workflow.en.md) | GEMINI.md · slash commands · multi-step decomposition | 1-2 wks |
 | **A3** | [Integration & Production](tracks/cli/A3-cli-production.en.md) | MCP-into-CLI · CI automation · cost / observability | 1-2 wks |
-| **+5** | [Stage 5 — Claude Code Ecosystem](stages/05-claude-code-ecosystem.en.md) (**Shared Hub**) | MCP · Skills · Plugins · Subagents; Track A reads 5.1-5.4 (5.5-5.6 optional) | 1-2 wks (Track A view) |
+| **+5** | [Stage 5 — Antigravity CLI Ecosystem](stages/05-gemini-skills-ecosystem.en.md) (**Shared Hub**) | MCP · Skills · Plugins · Subagents; Track A reads 5.1-5.4 (5.5-5.6 optional) | 1-2 wks (Track A view) |
 | **+8** | [Stage 8 — Agent Interfaces](stages/08-agent-interfaces.en.md) (**Shared Hub**) | Computer Use · Browser Use · Code Sandbox; Track A reads Track A usage | 1-2 wks (Track A view) |
 
 > **Track A total time**: includes Stages 0-2 (shared foundations) + A1-A3 + **Stage 5 + Stage 8 (two shared hubs) ≈ 8-10 weeks**. Core reference: [`resources/cli-agents-guide.en.md`](resources/cli-agents-guide.en.md).
@@ -121,7 +121,7 @@ The two tracks are **not mutually exclusive** — most people start with A to ge
 |---|---|---|---|
 | **3** ⭐ | [Tool Use & Hello Agent](stages/03-tool-use-and-hello-agent.en.md) | function calling · ReAct · 5 hands-on exercises | 2-3 wks |
 | **4** | [Agent Frameworks](stages/04-agent-frameworks.en.md) | LangGraph · AutoGen · CrewAI · Smolagents | 2-3 wks |
-| **5** ⭐⭐ | [Claude Code Ecosystem](stages/05-claude-code-ecosystem.en.md) (**Shared Hub**, Track A also studies) | MCP · Skills · Plugins · Subagents | 3-4 wks (Track B view) |
+| **5** ⭐⭐ | [Antigravity CLI Ecosystem](stages/05-gemini-skills-ecosystem.en.md) (**Shared Hub**, Track A also studies) | MCP · Skills · Plugins · Subagents | 3-4 wks (Track B view) |
 | **6** | [Context Engineering: RAG and Memory](stages/06-memory-rag.en.md) | vector DB · long-term memory · contextual retrieval | 2 wks |
 | **7** | [Multi-Agent · Productionization](stages/07-multi-agent-production.en.md) | multi-agent orchestration · eval · observability · advanced SDK | 2-4 wks |
 | **7.5** | [Advanced Agentic Workflow Concepts](stages/07.5-advanced-agentic-concepts.en.md) (reading map) | work boundary · PAR loop · agent-as-judge · 12 advanced concepts + reading list | 1 wk (no code) |
@@ -130,7 +130,7 @@ The two tracks are **not mutually exclusive** — most people start with A to ge
 > **Track B total time**: minimum **16-22 weeks**, realistic **5-7 months** (5-8 hr/week part-time)
 
 > **Two shared hubs (used by both Track A + Track B)**:
-> - **Stage 5** = Claude Code Ecosystem (MCP / Skills / Plugins / Subagents) — Track A learns MCP-into-CLI, Track B learns agent runtime structure
+> - **Stage 5** = Antigravity CLI Ecosystem (MCP / Skills / Plugins / Subagents) — Track A learns MCP-into-CLI, Track B learns agent runtime structure
 > - **Stage 8** = Agent Interfaces (Computer Use / Browser / Sandbox, 2024-2026 frontier) — Track A learns "how to use" for task delegation, Track B learns "how to build" with embedded interfaces
 
 > 💡 **Want a concrete cross-stage example?** [Build Your First AI Agent in 7 Steps](walkthroughs/build-first-agent-in-7-steps.en.md) — same Paper Summary Bot traced from Stage 1 through Stage 7, ~350 lines of executable code (**Track B**)
@@ -167,7 +167,7 @@ The main path has 5 parts:
 
 - **Part 1 (Stages 0-2): Foundations & LLM Basics** — Python / git / API, what's an LLM, prompt design
 - **Part 2 (Stages 3-4): Build Your Agent** — from tool use to agents, learn the major frameworks
-- **Part 3 (Stage 5) Shared Hub** — Claude Code Ecosystem (MCP / Skills / Plugins / Subagents; used by both Track A + B)
+- **Part 3 (Stage 5) Shared Hub** — Antigravity CLI Ecosystem (MCP / Skills / Plugins / Subagents; used by both Track A + B)
 - **Part 4 (Stages 6-7): Advanced Integration** — memory / RAG / multi-agent collaboration / harness engineering
 - **Part 5 (Stage 8) Shared Hub** — Agent Interfaces (Computer Use / Browser Use / Code Sandbox, 2024-2026 frontier; used by both tracks)
 
@@ -212,7 +212,7 @@ Common quick links, grouped by **scenario**:
 |---|---|---|
 | Want to build Skill / MCP server / Word / Zotero / local LLM integration | [`resources/cookbook.en.md`](resources/cookbook.en.md) | 6 step-by-step recipes, 30-50 min each |
 | Want to use subagents but do not know who to dispatch, how to dispatch, or what work to dispatch | [`resources/subagent-cookbook.en.md`](resources/subagent-cookbook.en.md) | 15 copy-paste dispatch recipes |
-| Stuck on tool calling (LLM won't call / schema broken / ReAct won't stop) | [`examples/stage-5/tool-calling-tutor/`](examples/stage-5/tool-calling-tutor/) | Claude Code installable skill, 4-symptom diagnostic |
+| Stuck on tool calling (LLM won't call / schema broken / ReAct won't stop) | [`examples/stage-5/tool-calling-tutor/`](examples/stage-5/tool-calling-tutor/) | Antigravity CLI installable skill, 4-symptom diagnostic |
 | How to use the hands-on exercises correctly (active vs passive mode) | [`docs/HOW_TO_USE.md`](docs/HOW_TO_USE.md) | 5-10 min read, applies to every stage |
 
 ### 🔌 Daily tool integrations / Finding MCP servers
@@ -226,7 +226,7 @@ Common quick links, grouped by **scenario**:
 
 | Your situation | Where | What's there |
 |---|---|---|
-| Research workflow + multi-LLM delegation skill pair | [`RESOURCES.en.md` research workflow](RESOURCES.en.md#research-workflow-by-the-repo-maintainer) | Maintainer's own Claude Code research skill set |
+| Research workflow + multi-LLM delegation skill pair | [`RESOURCES.en.md` research workflow](RESOURCES.en.md#research-workflow-by-the-repo-maintainer) | Maintainer's own Antigravity CLI research skill set |
 | CLI agent 7-way comparison + production combos | [`resources/cli-agents-guide.en.md`](resources/cli-agents-guide.en.md) | Track A's core reference, ~148 lines |
 | Schema design rules (must-read for tool calling) | [`resources/schema-design-cheatsheet.en.md`](resources/schema-design-cheatsheet.en.md) | 5 golden rules + 5 anti-patterns |
 
@@ -264,7 +264,7 @@ Other lists in the same space — useful to browse alongside this repo when hunt
 
 - [`wong2/awesome-mcp-servers`](https://github.com/wong2/awesome-mcp-servers) — categorized MCP server catalog
 - [`punkpeye/awesome-mcp-servers`](https://github.com/punkpeye/awesome-mcp-servers) — another MCP server catalog
-- [`hesreallyhim/awesome-claude-code`](https://github.com/hesreallyhim/awesome-claude-code) — Claude Code tools & plugins list
+- [`hesreallyhim/awesome-claude-code`](https://github.com/hesreallyhim/awesome-claude-code) — Antigravity CLI tools & plugins list
 
 These are pure catalogs (browse and pick). This repo is different in that it has a **learning order from Stage 0 all the way to production**.
 

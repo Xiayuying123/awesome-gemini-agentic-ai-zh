@@ -94,7 +94,7 @@ LLMs can use your private / domain data in three main ways. **This stage teaches
 
 You should have already:
 - Completed Stage 3 (ability to write tool use, call LLM APIs, understand ReAct loop) — **hard technical prerequisite**
-- Walked through Stage 4 (agent frameworks) + Stage 5 (Claude Code ecosystem) — the curriculum main line is **3 → 4 → 5 → 6** (see the [README learning map](../README.en.md#-learning-map-two-tracks)); not a hard technical prerequisite, but RAG / memory often pairs with frameworks + Claude Code memory mechanisms so following the sequence gives a more complete understanding, and [Stage 7](07-multi-agent-production.md) expects you to have completed 4 + 5 + 6
+- Walked through Stage 4 (agent frameworks) + Stage 5 (Antigravity CLI ecosystem) — the curriculum main line is **3 → 4 → 5 → 6** (see the [README learning map](../README.en.md#-learning-map-two-tracks)); not a hard technical prerequisite, but RAG / memory often pairs with frameworks + Antigravity CLI memory mechanisms so following the sequence gives a more complete understanding, and [Stage 7](07-multi-agent-production.md) expects you to have completed 4 + 5 + 6
 - Be able to run Python `pip install` to install SDKs (will use `chromadb`, `sentence-transformers`, etc. later)
 - Be comfortable with basic Python structures like lists, dicts, and generators.
 
@@ -440,7 +440,7 @@ After learning the three patterns, you do not need to build a memory store from 
 
 | Framework | Stars | License | Primary use case | Key features |
 |---|---|---|---|---|
-| [**agentmemory**](https://github.com/rohitg00/agentmemory) | 7.7k★ | Apache-2.0 | **Coding-agent cross-session memory** | MCP-universal (Claude Code / Cursor / Gemini CLI / Codex / Hermes / OpenClaw), 95.2% R@5, 92% token saving, 51 MCP tools + 12 auto hooks, benchmark-driven |
+| [**agentmemory**](https://github.com/rohitg00/agentmemory) | 7.7k★ | Apache-2.0 | **Coding-agent cross-session memory** | MCP-universal (Antigravity CLI / Cursor / Gemini CLI / Codex / Hermes / OpenClaw), 95.2% R@5, 92% token saving, 51 MCP tools + 12 auto hooks, benchmark-driven |
 | [**mem0**](https://github.com/mem0ai/mem0) | 55.6k★ | Apache-2.0 | **Chatbot / personal-assistant user-level memory** | Auto fact extraction + forgetting + namespace, production-tested, largest community |
 | [**Letta**](https://github.com/letta-ai/letta) (formerly MemGPT) | 22.7k★ | Apache-2.0 | **Long-session agents** (measured in months) | OS-style paging memory (working + archival), persona stability, MemGPT paper lineage |
 | [**Zep**](https://github.com/getzep/zep) | 4.6k★ | Apache-2.0 | **Temporal KG-based memory** | Builds conversation history into a temporal KG for time-aware reasoning and audit trails |
@@ -464,7 +464,7 @@ After learning the three patterns, you do not need to build a memory store from 
 | **Working memory** | Current task context | The LLM context window itself |
 | **Episodic memory** | Specific experiences from past tasks | Reflexion records, prior trajectories |
 | **Semantic memory** | Abstract facts / knowledge | RAG knowledge bases, user profiles, preferences |
-| **Procedural memory** | How to perform actions / skills | Tool definitions, [Skills (Stage 5.3)](05-claude-code-ecosystem.md#53--skillsclaude-code-的行為層-claude-code-生態最關鍵的一層) |
+| **Procedural memory** | How to perform actions / skills | Tool definitions, [Skills (Stage 5.3)](05-gemini-skills-ecosystem.md#53--skillsclaude-code-的行為層-claude-code-生態最關鍵的一層) |
 
 → **Why it is useful**: the three patterns above (buffer / summary / vector) mostly handle working + episodic memory. Production agents usually need to account for all four layers. CoALA is a practical checklist for spotting which layer your agent is missing.
 
@@ -596,7 +596,7 @@ print(chunks[0])
 > 💡 **Delineation with Stage 3 Reflection**:
 > - To understand "how the reflection loop works and runs in a single turn" → Stage 3 Reflection.
 > - To understand "how reflections accumulate across sessions and agents learn from past lessons" → This section.
-> - To see how reflection is used in production agents (Cursor / Claude Code) → [Stage 5 5.6 Harness Internals](05-claude-code-ecosystem.md#56--claude-code-source-解剖reference-harness-implementation-track-b-必看).
+> - To see how reflection is used in production agents (Cursor / Antigravity CLI) → [Stage 5 5.6 Harness Internals](05-gemini-skills-ecosystem.md#56--claude-code-source-解剖reference-harness-implementation-track-b-必看).
 
 ## 🤔 Advanced Reasoning / Reflection — 2024-2026 Trends ⭐ Covers Both Tracks
 

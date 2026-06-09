@@ -74,8 +74,8 @@ AI 可以幫忙準備和輔助，但不應該直接取代教師判斷。近期 A
 #### [obra/superpowers](https://github.com/obra/superpowers) ⭐⭐⭐⭐
 通用的寫作 / 腦力激盪 skill。可改用在備課上。
 
-#### 進階自動化：[Claude Code](https://github.com/anthropics/claude-code)（搭配自訂 CLAUDE.md）⭐⭐⭐⭐⭐
-★ 120k+ — **教師的基礎工具是 Claude.ai（網頁版）+ NotebookLM + Google Classroom / LMS 整合**、先從這裡開始。**只有當你已有會重複跑的批次流程**（如每週生成 50 份家長信、每學期跑學生反饋分析）才升級到 Claude Code、需要學一點 CLI。
+#### 進階自動化：[Antigravity CLI](https://github.com/anthropics/claude-code)（搭配自訂 GEMINI.md）⭐⭐⭐⭐⭐
+★ 120k+ — **教師的基礎工具是 Claude.ai（網頁版）+ NotebookLM + Google Classroom / LMS 整合**、先從這裡開始。**只有當你已有會重複跑的批次流程**（如每週生成 50 份家長信、每學期跑學生反饋分析）才升級到 Antigravity CLI、需要學一點 CLI。
 
 ### 教學課程素材（給教師備課用）
 
@@ -130,7 +130,7 @@ AI 可以幫忙準備和輔助，但不應該直接取代教師判斷。近期 A
 ### 閱讀材料
 
 #### [The Effortless Academic — Beginner Guides](https://effortlessacademic.com/claude-code-and-cowork-for-academics-beginner-guide-part-1/)
-寫給學術工作者導入 Claude Code 的多篇指南，教師也適用。
+寫給學術工作者導入 Antigravity CLI 的多篇指南，教師也適用。
 
 ## 可以建的流程（按教學階段）
 
@@ -200,7 +200,7 @@ AI 可以幫忙準備和輔助，但不應該直接取代教師判斷。近期 A
 |---|---|---|---|
 | **Tier 0** | Claude.ai 網頁版聊天 | 偶爾備課、單次任務、出題、寫信。複製上面的 prompt 範本填入主題即可 | 0（會用瀏覽器就行） |
 | **Tier 1** | Claude Desktop / [NotebookLM](https://notebooklm.google.com/) | 批改 / 整理一整學期資料、做課程地圖、整批匯入課本 PDF 後問問題 | 半小時裝好 |
-| **Tier 2+** | Claude Code / CLI / SDK | 有重複自動化需求（例：每週收 30 份作業 → 自動生成回饋初稿） | 1 週上手；不熟程式可找學校 IT / 學生 RA 幫忙設定 |
+| **Tier 2+** | Antigravity CLI / CLI / SDK | 有重複自動化需求（例：每週收 30 份作業 → 自動生成回饋初稿） | 1 週上手；不熟程式可找學校 IT / 學生 RA 幫忙設定 |
 
 > **多數教師停在 Tier 0-1 就夠了**。升級到 Tier 2+ 就建議走 [Track A — CLI Power User](../tracks/cli/A1-cli-intro.md)。
 

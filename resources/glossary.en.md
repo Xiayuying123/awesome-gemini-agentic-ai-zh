@@ -130,7 +130,7 @@ The "LLM → tool → result → LLM" repeated cycle. Termination: LLM says "don
 
 ### Self-Refine (Basic reflection / no memory)
 
-The agent evaluates the previous round's output and changes the next round's behavior — an "Actor answers → Critic finds issues → Actor reads feedback and answers again" single-session loop. **It does not need a persistent memory layer**; it is purely a reasoning-loop mechanism, a sibling pattern to ReAct. Production agents (Cursor / Cline / Claude Code) run variants of this every day.
+The agent evaluates the previous round's output and changes the next round's behavior — an "Actor answers → Critic finds issues → Actor reads feedback and answers again" single-session loop. **It does not need a persistent memory layer**; it is purely a reasoning-loop mechanism, a sibling pattern to ReAct. Production agents (Cursor / Cline / Antigravity CLI) run variants of this every day.
 
 Representative paper: [Self-Refine (Madaan 2023)](https://arxiv.org/abs/2303.17651). **For the full Reflexion version** (with episodic memory), see 3 Memory / Retrieval / RAG.
 
@@ -237,11 +237,11 @@ Google's protocol for agent ↔ agent communication. Sibling to MCP, but for age
 
 ---
 
-## 5. Claude Code Ecosystem
+## 5. Antigravity CLI Ecosystem
 
 ### MCP (Model Context Protocol)
 
-Anthropic's open protocol, introduced in 2024, that lets any LLM host (Claude Code, Cursor, your own agent) connect to external tool servers through one interface. Think "**USB for LLMs**".
+Anthropic's open protocol, introduced in 2024, that lets any LLM host (Antigravity CLI, Cursor, your own agent) connect to external tool servers through one interface. Think "**USB for LLMs**".
 
 **Technically it standardizes 3 primitives**:
 - **Tools**: functions an LLM can call (read DB / search web / send email…)
@@ -250,40 +250,40 @@ Anthropic's open protocol, introduced in 2024, that lets any LLM host (Claude Co
 
 **Architecture**: server / client pattern — the tool server runs locally or remotely, and the LLM host connects as the client. The server exposes those primitives over one of three transports: stdio / SSE / HTTP.
 
-📍 Detail: [Stage 5.2](../stages/05-claude-code-ecosystem.en.md#52--mcp-model-context-protocol--foundation)
+📍 Detail: [Stage 5.2](../stages/05-gemini-skills-ecosystem.en.md#52--mcp-model-context-protocol--foundation)
 
 ### Skills / SKILL.md
 
-Claude Code's "behavior bundles". A Skill = a folder containing `SKILL.md` (describing "what to do in what situations, and which tools can be called") + optional reference files / scripts.
+Antigravity CLI's "behavior bundles". A Skill = a folder containing `SKILL.md` (describing "what to do in what situations, and which tools can be called") + optional reference files / scripts.
 
-**Trigger mechanism** (many people do not know this, but it matters): before Claude Code handles each message, it scans the **frontmatter `description` field** of every available skill — if it matches the current situation, the corresponding SKILL.md is auto-loaded. **So the quality of the description directly determines whether the skill gets triggered.** In practice, starting with "Use when ..." works best.
+**Trigger mechanism** (many people do not know this, but it matters): before Antigravity CLI handles each message, it scans the **frontmatter `description` field** of every available skill — if it matches the current situation, the corresponding SKILL.md is auto-loaded. **So the quality of the description directly determines whether the skill gets triggered.** In practice, starting with "Use when ..." works best.
 
-📍 Detail: [Stage 5.3](../stages/05-claude-code-ecosystem.en.md#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem)
+📍 Detail: [Stage 5.3](../stages/05-gemini-skills-ecosystem.en.md#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem)
 
 ### Plugin / Marketplace
 
 Package multiple Skills + slash commands + hooks + MCP configs into one shippable unit. A **Marketplace** is a catalog of plugins; users `claude plugin install` to grab community-built ones.
 
-📍 Detail: [Stage 5.4](../stages/05-claude-code-ecosystem.en.md#54--plugins--marketplaces)
+📍 Detail: [Stage 5.4](../stages/05-gemini-skills-ecosystem.en.md#54--plugins--marketplaces)
 
 ### Slash Command
 
-Commands inside Claude Code starting with `/` (`/help`, `/compact`, `/plan`, etc.). Custom-definable — drop a prompt into `.claude/commands/<name>.md` and it becomes `/name`.
+Commands inside Antigravity CLI starting with `/` (`/help`, `/compact`, `/plan`, etc.). Custom-definable — drop a prompt into `.claude/commands/<name>.md` and it becomes `/name`.
 
-### CLAUDE.md
+### GEMINI.md
 
-A markdown file at project root that Claude Code reads on every launch. Project-level rules / conventions / context (language, code style, files to avoid, etc.).
+A markdown file at project root that Antigravity CLI reads on every launch. Project-level rules / conventions / context (language, code style, files to avoid, etc.).
 
 ### Hooks
 
-Scripts that run before or after specific Claude Code events. **The official system supports 7 event types**:
+Scripts that run before or after specific Antigravity CLI events. **The official system supports 7 event types**:
 
 | Hook | Trigger time | Typical use |
 |---|---|---|
 | `PreToolUse` | **Before** a tool call | Block dangerous operations (`rm -rf`, destructive ops), rewrite parameters |
 | `PostToolUse` | **After** a tool call | Logging, auto-format files that were just written |
 | `UserPromptSubmit` | When the user submits a message | Add context (git status / current time) |
-| `Notification` | When Claude Code emits a notification | Desktop toast / Slack ping |
+| `Notification` | When Antigravity CLI emits a notification | Desktop toast / Slack ping |
 | `Stop` | When the session ends | Auto-commit / cleanup |
 | `PreCompact` | Before auto-compact | Promote important decisions into memory |
 | `PostCompact` | After compact | Check what context got compressed |
@@ -292,9 +292,9 @@ Configuration: add a `"hooks"` block in `.claude/settings.json` and point it at 
 
 ### Subagent
 
-A spawned agent from the main Claude Code session, with its own context window, dedicated to a specific task. E.g. "spin up a code-reviewer subagent for this diff."
+A spawned agent from the main Antigravity CLI session, with its own context window, dedicated to a specific task. E.g. "spin up a code-reviewer subagent for this diff."
 
-How to set up: put frontmatter + system prompt + tool whitelist in `.claude/agents/<name>.md`. The main session invokes it with the Task tool (automatic parallel / sequential). **Compared with framework-based multi-agent**: a subagent does not require LangGraph / CrewAI or similar frameworks; markdown is enough, but it is tied to the Claude Code runtime. Full guide: [Stage 5.5](../stages/05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature); **15 copy-paste dispatch recipes** → [`subagent-cookbook.en.md`](./subagent-cookbook.en.md).
+How to set up: put frontmatter + system prompt + tool whitelist in `.claude/agents/<name>.md`. The main session invokes it with the Task tool (automatic parallel / sequential). **Compared with framework-based multi-agent**: a subagent does not require LangGraph / CrewAI or similar frameworks; markdown is enough, but it is tied to the Antigravity CLI runtime. Full guide: [Stage 5.5](../stages/05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature); **15 copy-paste dispatch recipes** → [`subagent-cookbook.en.md`](./subagent-cookbook.en.md).
 
 ---
 
@@ -338,13 +338,13 @@ Rule layer that prevents the LLM from doing bad things — block prompt injectio
 
 ### CLI Agent
 
-Agents that run in a terminal (Claude Code, Codex, Aider, Gemini CLI, etc.). Versus IDE-bound (Cursor, Continue) or web-based (ChatGPT, Claude.ai).
+Agents that run in a terminal (Antigravity CLI, Codex, Aider, Gemini CLI, etc.). Versus IDE-bound (Cursor, Continue) or web-based (ChatGPT, Claude.ai).
 
 📍 Detail: [Track A A1](../tracks/cli/A1-cli-intro.en.md), [`resources/cli-agents-guide.en.md`](cli-agents-guide.en.md)
 
 ### BYO API Key (Bring Your Own)
 
-Tool that supports user-provided API keys instead of bundled subscriptions. Aider / OpenCode / goose are BYO; Claude Code / Codex default to subscriptions.
+Tool that supports user-provided API keys instead of bundled subscriptions. Aider / OpenCode / goose are BYO; Antigravity CLI / Codex default to subscriptions.
 
 ### Local LLM / On-Device
 
@@ -373,14 +373,14 @@ The discipline of engineering **what information goes into the context window on
 
 ### Harness Engineering
 
-The discipline of engineering the **execution and control layer around the model** — everything that is not model weights and not just the prompt string itself: agent loop / tool registry / context manager / permissions / safety layer / memory layer / eval / observability / retry / circuit breaker, etc. Simon Willison 2025: **coding agent = LLM + harness**. Addy Osmani: harness = all the code that is not the model itself. [OpenAI also used the term "Harness Engineering" in February 2026](https://openai.com/index/harness-engineering). Claude Code, Cursor, OpenCode, etc. are harnesses. **A framework wraps an LLM into an agent; a harness wraps an agent into a product that can actually go live.**
+The discipline of engineering the **execution and control layer around the model** — everything that is not model weights and not just the prompt string itself: agent loop / tool registry / context manager / permissions / safety layer / memory layer / eval / observability / retry / circuit breaker, etc. Simon Willison 2025: **coding agent = LLM + harness**. Addy Osmani: harness = all the code that is not the model itself. [OpenAI also used the term "Harness Engineering" in February 2026](https://openai.com/index/harness-engineering). Antigravity CLI, Cursor, OpenCode, etc. are harnesses. **A framework wraps an LLM into an agent; a harness wraps an agent into a product that can actually go live.**
 
 Contrast:
 - **Framework** (Stage 4) defines the **API**: what the interface you call looks like
 - **Harness** (this term) defines the **runtime**: how it runs, how it recovers, how it is observed
 
 📍 Discipline-level concept (**8 core components** / prompt→context→harness three-layer engineering split / framework vs harness): [Stage 7 Harness Engineering](../stages/07-multi-agent-production.en.md)
-📍 Reference implementation case study (reading Claude Code source): [Stage 5 5.6](../stages/05-claude-code-ecosystem.en.md)
+📍 Reference implementation case study (reading Antigravity CLI source): [Stage 5 5.6](../stages/05-gemini-skills-ecosystem.en.md)
 📍 Further: [`anthropics/claude-agent-sdk-python`](https://github.com/anthropics/claude-agent-sdk-python), [`ai-boost/awesome-harness-engineering`](https://github.com/ai-boost/awesome-harness-engineering), [`ZhangHanDong/harness-engineering-from-cc-to-ai-coding`](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding)
 
 ---
@@ -423,6 +423,6 @@ Google's "user-space kernel" — intercepts syscalls and emulates them itself, n
 
 ## Term not here?
 
-- Read the actual stage content: [Stage 5.2 MCP](../stages/05-claude-code-ecosystem.en.md#52--mcp-model-context-protocol--foundation) / [5.3 Skills](../stages/05-claude-code-ecosystem.en.md#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem) / [5.4 Plugins](../stages/05-claude-code-ecosystem.en.md#54--plugins--marketplaces)
+- Read the actual stage content: [Stage 5.2 MCP](../stages/05-gemini-skills-ecosystem.en.md#52--mcp-model-context-protocol--foundation) / [5.3 Skills](../stages/05-gemini-skills-ecosystem.en.md#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem) / [5.4 Plugins](../stages/05-gemini-skills-ecosystem.en.md#54--plugins--marketplaces)
 - Required reading lists in [Stage 1](../stages/01-llm-basics.en.md) / [Stage 6](../stages/06-memory-rag.en.md) / [Stage 7](../stages/07-multi-agent-production.en.md) / [Stage 8](../stages/08-agent-interfaces.en.md)
 - Missing? Open an issue or PR a new entry.

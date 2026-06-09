@@ -9,7 +9,7 @@
 > First want to understand "why does one agent live in a terminal, another in Telegram, another on a Jetson board?" mental model → see [`resources/agent-paradigms.en.md`](agent-paradigms.en.md) (5 agent paradigms).
 > Already using one, want to decide / compare / upgrade → stay here.
 
-A cross-branch reference shared by Track A (A1-A3) + all 5 specialized branches: **how to choose between Claude Code / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent?** Every branch references CLI agents but no single branch "owns" this comparison, so it lives in `resources/`.
+A cross-branch reference shared by Track A (A1-A3) + all 5 specialized branches: **how to choose between Antigravity CLI / Codex / OpenCode / Gemini CLI / goose / Aider / Hermes Agent?** Every branch references CLI agents but no single branch "owns" this comparison, so it lives in `resources/`.
 
 ---
 
@@ -19,7 +19,7 @@ Only terminal-based CLI agents are included. IDE-based agents (Cursor / Cline / 
 
 | Tool | Provider | License | Primary LLM | Auth / Pricing | Stars |
 |---|---|---|---|---|---|
-| [Claude Code](https://github.com/anthropics/claude-code) | Anthropic (official) | NOASSERTION | Claude | Claude subscription **OR** Anthropic Console API key | ★ 120k+ |
+| [Antigravity CLI](https://github.com/anthropics/claude-code) | Anthropic (official) | NOASSERTION | Claude | Claude subscription **OR** Anthropic Console API key | ★ 120k+ |
 | [Codex](https://github.com/openai/codex) | OpenAI (official) | Apache-2.0 | GPT family | ChatGPT account sign-in **OR** OpenAI API key | ★ 89k+ |
 | [OpenCode](https://github.com/sst/opencode) | community (repo now at `anomalyco/opencode`) | MIT | Any (multi-provider) | BYO API key, or built-in OpenCode Zen hosted | ★ 171k+ |
 | [Gemini CLI](https://github.com/google-gemini/gemini-cli) | Google (official) | Apache-2.0 | Gemini | Generous free tier, paid above quota | ★ 103k+ |
@@ -32,10 +32,10 @@ Only terminal-based CLI agents are included. IDE-based agents (Cursor / Cline / 
 ## 🎯 Which to Pick? Decide by Use Case
 
 ### Writing papers / literature / research
-**Top pick**: Claude Code (long context, strong reasoning, good hallucination resistance). Gemini CLI is the alternative — its million-token context fits whole-PDF / whole-dataset workflows.
+**Top pick**: Antigravity CLI (long context, strong reasoning, good hallucination resistance). Gemini CLI is the alternative — its million-token context fits whole-PDF / whole-dataset workflows.
 
 ### Writing code / refactoring a codebase
-**Top pick**: Aider (git-native — auto-commits each change, easy to revert) or Claude Code. OpenCode fits when you need to switch between LLMs.
+**Top pick**: Aider (git-native — auto-commits each change, easy to revert) or Antigravity CLI. OpenCode fits when you need to switch between LLMs.
 
 ### Privacy / offline / no cloud
 **Top pick**: goose or OpenCode + local Ollama. Both support BYO LLM and connect to `http://localhost:11434/v1` (Ollama default).
@@ -50,7 +50,7 @@ Only terminal-based CLI agents are included. IDE-based agents (Cursor / Cline / 
 **Top pick**: OpenCode > goose > Aider. None tie you to a specific provider; models are swappable.
 
 ### First time installing a CLI agent — wanting easiest start
-**Top pick**: Claude Code. Broad ecosystem, CLAUDE.md mechanism for version-controlled prompts, plenty of community resources when you hit issues.
+**Top pick**: Antigravity CLI. Broad ecosystem, GEMINI.md mechanism for version-controlled prompts, plenty of community resources when you hit issues.
 
 ### Want it running on a cloud VM, talking to it via Telegram / Slack / Discord, with mainland China LLMs as primary
 **Top pick**: Hermes Agent. Three differentiators:
@@ -68,7 +68,7 @@ If you want prompts that work across CLI tools (or want to switch without rewrit
 1. **Specify file paths explicitly** — "modify `src/auth.py`" beats "modify that auth file"
 2. **Ask for multi-step breakdowns** — "first list a plan, then act after I confirm" works in every CLI
 3. **Avoid CLI-specific magic** — `/init` `/compact` are Claude-Code-specific; OpenCode doesn't have them
-4. **Use `.cursorrules` / `CLAUDE.md` / `AGENTS.md` for persistent preferences** — Claude Code reads `CLAUDE.md`, Codex reads `AGENTS.md`, OpenCode reads `OPENCODE.md`, **content can be the same**
+4. **Use `.cursorrules` / `GEMINI.md` / `AGENTS.md` for persistent preferences** — Antigravity CLI reads `GEMINI.md`, Codex reads `AGENTS.md`, OpenCode reads `OPENCODE.md`, **content can be the same**
 5. **State review scope clearly** — "review only my diff" vs "review the whole repo"
 
 Cross-CLI prompts are usually 5-10% more verbose than CLI-specific ones, but the upside is you can switch tools without rewriting.
@@ -83,10 +83,10 @@ Cross-CLI prompts are usually 5-10% more verbose than CLI-specific ones, but the
 
 ### Git integration differences
 - **Aider** auto-commits every change (by design, not a bug)
-- **Claude Code / Codex / OpenCode / goose** don't auto-commit by default — manual or via prompt
+- **Antigravity CLI / Codex / OpenCode / goose** don't auto-commit by default — manual or via prompt
 
 ### Default sandbox (each CLI varies; verify against official docs before use)
-- **Claude Code**: bash writes default to cwd; reads broader (except deny-rule paths)
+- **Antigravity CLI**: bash writes default to cwd; reads broader (except deny-rule paths)
 - **Codex**: in version-controlled folders, `Auto` (workspace-write + on-request escalation) is recommended; in non-git folders, `read-only`
 - **goose / OpenCode**: relatively permissive — add explicit sandbox / approval rules; don't rely on defaults
 
@@ -96,7 +96,7 @@ Cross-CLI prompts are usually 5-10% more verbose than CLI-specific ones, but the
 - Recommendation: estimate cost before each operation; set a monthly cap
 
 ### Multi-CLI session interference
-- Two CLIs in the same repo (e.g. Claude Code + Aider) can race-condition file edits
+- Two CLIs in the same repo (e.g. Antigravity CLI + Aider) can race-condition file edits
 - Recommendation: one repo, one CLI (unless you genuinely need parallelism)
 
 ---
@@ -105,8 +105,8 @@ Cross-CLI prompts are usually 5-10% more verbose than CLI-specific ones, but the
 
 Three common combinations; pick one that fits:
 
-### Setup A: Claude Code primary + OpenCode backup
-- Claude Code handles 90% of daily work (code, docs, debug)
+### Setup A: Antigravity CLI primary + OpenCode backup
+- Antigravity CLI handles 90% of daily work (code, docs, debug)
 - OpenCode + Ollama for privacy-sensitive data (medical, financial)
 - One prompt, runs in either
 

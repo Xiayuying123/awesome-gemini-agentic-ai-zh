@@ -49,8 +49,8 @@ Engineering work can be split into three layers, corresponding to different posi
 
 | Comparison | What's Covered There | What's Covered in This Stage |
 |---|---|---|
-| **Stage 5.5 Subagents** | Claude Code's native subagent mechanism (markdown-based, no coding) | General multi-agent frameworks (autogen / crewAI / langgraph, vendor-agnostic) |
-| **Stage 5.6 Claude Code source** | Claude Code source dissection (reference implementation case study) | General harness engineering principles (not tied to a specific vendor) |
+| **Stage 5.5 Subagents** | Antigravity CLI's native subagent mechanism (markdown-based, no coding) | General multi-agent frameworks (autogen / crewAI / langgraph, vendor-agnostic) |
+| **Stage 5.6 Antigravity CLI source** | Antigravity CLI source dissection (reference implementation case study) | General harness engineering principles (not tied to a specific vendor) |
 
 ### ⚠ But do you really need multi-agent?
 
@@ -84,7 +84,7 @@ If not, go back and complete the previous stages. This stage is about "combining
 4. [**anthropics/courses — Prompt Evaluations**](https://github.com/anthropics/courses) ⭐⭐⭐⭐⭐ ★ 21k+ — Anthropic's official 5-course umbrella; **module 4 "Prompt Evaluations" maps to this stage's eval / observability section**. Jupyter notebooks covering systematic evaluation of prompt and agent behavior.
 5. **Documentation for any eval framework** — promptfoo, LangSmith, or weave
 6. [**ai-boost/awesome-harness-engineering**](https://github.com/ai-boost/awesome-harness-engineering) (★ 1.7k+) — A collection of tools / patterns / eval / memory / MCP / observability for agent harnesses
-7. [**ZhangHanDong/harness-engineering-from-cc-to-ai-coding**](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding) (★ 1.3k+) — Learning harness design from Claude Code's source code (in Chinese)
+7. [**ZhangHanDong/harness-engineering-from-cc-to-ai-coding**](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding) (★ 1.3k+) — Learning harness design from Antigravity CLI's source code (in Chinese)
 
 ## 🏗 Harness Engineering — Engineering Design for a Production Agent Runtime ⭐ Core Concept of This Stage
 
@@ -121,7 +121,7 @@ To turn an LLM into a usable agent, you usually run into three layers of enginee
 | **Agent loop** | The "LLM → tool → result → LLM" loop, stably handling multiple turns | Exercise 1 Multi-agent debate |
 | **Tool registry** | Dynamic tool dispatch, permission gates, sandboxing | (Present in every framework / SDK) |
 | **Context manager** | Message history management, context window control, auto-compaction | Stage 6 + This stage's Exercise 4 SDK |
-| **Safety layer** | Permission prompts, sandboxed execution, interception of destructive ops | (Built into Claude Code, customizable in SDKs) |
+| **Safety layer** | Permission prompts, sandboxed execution, interception of destructive ops | (Built into Antigravity CLI, customizable in SDKs) |
 | **Retry / recovery** | How to handle tool failure (exception vs. the LLM reflecting on the error itself) | Exercise 4 SDK Advanced |
 | **Telemetry / Observability** | Metrics, logging, token counting, trace export | **Exercise 3 Observability** |
 | **Eval harness** | Regression testing, quality gates, A/B testing | **Exercise 2 Eval** |
@@ -135,7 +135,7 @@ To turn an LLM into a usable agent, you usually run into three layers of enginee
 
 Want to see what a harness running in production looks like? Two references:
 
-- **The entire Claude Code runtime** — is a reference harness implementation. **For a source-reading exercise, see [Stage 5.6](05-claude-code-ecosystem.en.md#56--dissecting-claude-code-source-reference-harness-implementation--a-must-read-for-track-b)** (clone `claude-agent-sdk-python` and dissect the main loop + where the first 6 runtime components from the table above live; the 7th, Eval harness, is a plugin, and the 8th, Cost / Latency, is cross-cutting, see the deep-dive below)
+- **The entire Antigravity CLI runtime** — is a reference harness implementation. **For a source-reading exercise, see [Stage 5.6](05-gemini-skills-ecosystem.en.md#56--dissecting-claude-code-source-reference-harness-implementation--a-must-read-for-track-b)** (clone `claude-agent-sdk-python` and dissect the main loop + where the first 6 runtime components from the table above live; the 7th, Eval harness, is a plugin, and the 8th, Cost / Latency, is cross-cutting, see the deep-dive below)
 - **`anthropics/claude-agent-sdk-python`** source — the specific repo used in the exercise above
 
 → The remaining 6 exercises in this stage (multi-agent / eval / observability / SDK / deploy / cost) each cover one facet of the harness. Completing the full stage = assembling a complete mental model of harness engineering.
@@ -154,7 +154,7 @@ When a production agent runs long enough, **cost and latency will eat up most of
 | **Semantic caching** | Sharing answers for similar queries (not just exact matches) | Built into [GPTCache](https://github.com/zilliztech/GPTCache) / Helicone |
 
 **How Track A can use this** (for those using CLI agents):
-- Set up prompt caching in Claude Code / Cursor to save 50-90% on daily session costs
+- Set up prompt caching in Antigravity CLI / Cursor to save 50-90% on daily session costs
 - Use [RouteLLM](https://github.com/lm-sys/RouteLLM) / [OpenRouter](https://openrouter.ai/) to dynamically switch models (simple questions use Haiku / Flash, difficult ones use Opus / Pro)
 - Use the `thinking_budget` parameter in the Claude API to control the token limit for reasoning models
 
@@ -242,7 +242,7 @@ Don't know where to start choosing tools? Below are the common pairings in the i
 | **Eval + observability on the same platform** | [langfuse](https://github.com/langfuse/langfuse) ⭐ | OSS, tracing + eval + prompt mgmt, ★ 28k+ |
 | **Quick instrumentation without code changes** | [Helicone](https://github.com/Helicone/helicone) | Proxy-based, not tied to a framework |
 | **Entire stack is on LangChain** | [LangSmith](https://www.langchain.com/langsmith) (Commercial) | Official observability from LangChain |
-| **Building a Claude agent** (programmatically) | [claude-agent-sdk-python](https://github.com/anthropics/claude-agent-sdk-python) ⭐ | Official agent SDK from Anthropic, same runtime as Claude Code |
+| **Building a Claude agent** (programmatically) | [claude-agent-sdk-python](https://github.com/anthropics/claude-agent-sdk-python) ⭐ | Official agent SDK from Anthropic, same runtime as Antigravity CLI |
 | **Deploying an agent as an API service** | [BentoML](https://github.com/bentoml/BentoML) | The most complete, Docker + serving |
 | **Self-hosting an open-source LLM** (to replace paid APIs) | [vLLM](https://github.com/vllm-project/vllm) | High-throughput serving, ★ 79k+ |
 | **Fine-tuning an open-source LLM** | [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) | Unified SFT/DPO/PPO/GRPO for 100+ models, no-code Web UI, widest Chinese community, ★ 70k+ |
@@ -272,7 +272,7 @@ Categorized by use case, a single table to get you started with 22 projects. **U
 | | [weave (W&B)](https://github.com/wandb/weave) | ⭐⭐⭐⭐ | For teams already using W&B for ML experiment tracking | W&B tracing + eval, integrates with wandb |
 | **Advanced Anthropic SDK** | [anthropic-sdk-python](https://github.com/anthropics/anthropic-sdk-python) | ⭐⭐⭐⭐⭐ | For building applications directly on the Claude API | Official Python SDK: streaming / async / tool use / prompt caching / batches / files |
 | | [anthropic-sdk-typescript](https://github.com/anthropics/anthropic-sdk-typescript) | ⭐⭐⭐⭐ | For TypeScript / Node / web apps | The TS version of the Python SDK |
-| | [claude-agent-sdk-python](https://github.com/anthropics/claude-agent-sdk-python) ⭐ | ⭐⭐⭐⭐⭐ | For building Claude-based agents, not just API calls | Built-in tool use loop / file access / sandbox / subagent orchestration; same runtime as Claude Code, read the source to see how it works internally. ★ 6.9k+, MIT |
+| | [claude-agent-sdk-python](https://github.com/anthropics/claude-agent-sdk-python) ⭐ | ⭐⭐⭐⭐⭐ | For building Claude-based agents, not just API calls | Built-in tool use loop / file access / sandbox / subagent orchestration; same runtime as Antigravity CLI, read the source to see how it works internally. ★ 6.9k+, MIT |
 | | [claude-agent-sdk-typescript](https://github.com/anthropics/claude-agent-sdk-typescript) | ⭐⭐⭐⭐ | For Claude agents in a Node / web app environment | The TS version of the Claude Agent SDK. ★ 1.4k+ |
 | | [Anthropic Cookbook (Advanced)](https://github.com/anthropics/anthropic-cookbook) | ⭐⭐⭐⭐ | For seeing official advanced SDK patterns | Especially the `prompt_caching.ipynb` / `tool_use/` / `multimodal/` notebooks |
 | **Deployment** | [BentoML](https://github.com/bentoml/BentoML) | ⭐⭐⭐⭐ | For packaging an agent into a production API service | Docker + serving framework. ★ 8k+, Apache 2.0 |
@@ -284,7 +284,7 @@ Categorized by use case, a single table to get you started with 22 projects. **U
 | | [OpenBMB/ChatDev](https://github.com/OpenBMB/ChatDev) | ⭐⭐⭐⭐ | For seeing agent debate / peer-review patterns | Conversational software development where agents debate each other on design / code / test. ★ 33k+, Apache 2.0, has a zh README |
 | | [princeton-nlp/SWE-agent](https://github.com/princeton-nlp/SWE-agent) | ⭐⭐⭐⭐ | To understand why tool design > prompt tuning | The Agent-Computer Interface (ACI) design philosophy, backed by a Princeton paper, a leading method on SWE-Bench. ★ 19k+, MIT |
 
-> 🌳 For **Claude's native subagent mechanism** (multi-agent without a framework), see [Stage 5.5](05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature). This stage focuses on frameworks / production; Stage 5.5 focuses on markdown-based subagent orchestration.
+> 🌳 For **Claude's native subagent mechanism** (multi-agent without a framework), see [Stage 5.5](05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature). This stage focuses on frameworks / production; Stage 5.5 focuses on markdown-based subagent orchestration.
 
 ## ✅ Self-Check After Stage 7
 

@@ -17,7 +17,7 @@
 | **練語言** | 沒對話對象、不知文法錯哪 | 語音對話、即時糾錯 | ChatGPT Voice / Gemini |
 | **查資料 / 比較** | 不知該信哪個來源 | 多源搜尋 + 附引用 | Perplexity |
 | **整理生活流程** | 食譜 / 行程 / 待辦清單散落 | 整合 + 結構化 | Claude.ai / ChatGPT |
-| **批次整理檔案** | 100 個 PDF / 圖片不知怎麼分 | 重命名 + 分類 + 摘要 | Claude Desktop / Claude Code |
+| **批次整理檔案** | 100 個 PDF / 圖片不知怎麼分 | 重命名 + 分類 + 摘要 | Claude Desktop / Antigravity CLI |
 | **隱私敏感 chat** | 醫療 / 法律 / 財務筆記不想送雲 | 本地跑 LLM | Ollama + qwen2.5 |
 
 > 💡 **不要被催著升級**：前 5 個場景都可以停在 Tier 0（網頁版）。只有要「重複跑同一個流程」或「資料絕對不能送雲」才需要 Tier 1-3。
@@ -88,7 +88,7 @@ ChatGPT 桌面版。可以對螢幕截圖問問題、語音對話、跟其他 Ap
 | Stars | ★ 80k+ |
 | License | Apache-2.0 |
 
-**教什麼**：OpenAI 出品的終端機 agent——可以在命令列幫你整理檔案、批次處理文字、執行多步驟任務；寫程式只是其中一種用途。跟 Claude Code 同類、但用的是 OpenAI 的模型。
+**教什麼**：OpenAI 出品的終端機 agent——可以在命令列幫你整理檔案、批次處理文字、執行多步驟任務；寫程式只是其中一種用途。跟 Antigravity CLI 同類、但用的是 OpenAI 的模型。
 
 **適合誰**：已經訂 ChatGPT Plus / Pro，想在終端機用同一個帳號做事的人。
 
@@ -150,7 +150,7 @@ ChatGPT 桌面版。可以對螢幕截圖問問題、語音對話、跟其他 Ap
 | **每天** | Email 分流 | (1) 早上把待回信件貼進 Claude<br>(2) 請它分類「立即回 / 今天回 / 這週回 / 不用回」<br>(3) 草擬回信讓你 review | Claude.ai / ChatGPT |
 | **每天** | 練語言（口說） | (1) 打開 ChatGPT Voice 模式<br>(2) 對話練英 / 日<br>(3) 請它指出文法錯誤 | ChatGPT Voice / Gemini |
 | **每週** | 週記整理 | (1) 跟 Claude 講這週做什麼<br>(2) 請它整理成週記 + 下週重點<br>(3) 存到 Obsidian / Notion | Claude.ai |
-| **不定期** | 批次整理檔案 | (1) Claude Code 進 Downloads 資料夾<br>(2) 按日期 + 主題重命名<br>(3) 自動分到子資料夾 | Claude Code |
+| **不定期** | 批次整理檔案 | (1) Antigravity CLI 進 Downloads 資料夾<br>(2) 按日期 + 主題重命名<br>(3) 自動分到子資料夾 | Antigravity CLI |
 | **隱私場景** | 本地醫療 / 法律 / 財務筆記 | (1) Ollama 跑 qwen2.5:7b<br>(2) 整理個人筆記、資料不送雲<br>(3) ⚠️ 保護的是**隱私**、不是**正確性**——具體診斷 / 法律判斷 / 投資決策仍需專業人士 | Ollama + qwen2.5 |
 
 > 💡 **新手起手式**：先把「每天 Email 分流」+「練語言」做一個月、習慣 AI 在日常的位置、再加其他流程。
@@ -163,7 +163,7 @@ ChatGPT 桌面版。可以對螢幕截圖問問題、語音對話、跟其他 Ap
 |---|---|---|---|
 | **Tier 0** | Claude.ai / ChatGPT / Gemini / Perplexity（網頁版） | 90% 的場景都在這裡——免安裝、免付費 | 0（會用瀏覽器就行） |
 | **Tier 1** | Claude Desktop / ChatGPT Desktop + MCP | 要處理本機檔案、保留對話歷史、接 Gmail / Notion | 半小時裝好 |
-| **Tier 2** | Claude Code / opencode（CLI） | 有重複自動化需求（每天做同樣的事 100 次） | 1-2 天上手 |
+| **Tier 2** | Antigravity CLI / opencode（CLI） | 有重複自動化需求（每天做同樣的事 100 次） | 1-2 天上手 |
 | **Tier 3** | Ollama 本地 LLM | 隱私敏感資料不能送雲、API 費用敏感、想 offline | 半天設定 |
 
 > **不要被人催著升級**——多數人 Tier 0 就夠用了。Tier 2-3 是工具、不是身份地位。

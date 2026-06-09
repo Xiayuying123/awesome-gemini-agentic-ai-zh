@@ -49,7 +49,7 @@
 | 课程（连结） | 成本 | 适合谁 | 教什么 | 证书 |
 |---|---|---|---|---|
 | [Coursera — Agentic AI Engineering（Edureka）](https://www.coursera.org/specializations/agentic-ai-engineering) ⭐⭐⭐ | 💰 | 想沿 LangChain / LangGraph / MCP 一路做完的人 | 4 课：LangChain 生态、LCEL、ReAct/memory、LangGraph 多 agent、MCP 部署、eval | 付费 Specialization Certificate。caveat：Edureka 是商业培训机构（非大学/lab），可信度中等；想要更高背书选上面 IBM / Vanderbilt |
-| [Anthropic Academy](https://anthropic.skilljar.com/) ⭐⭐⭐⭐ | 🆓 | 在 Claude / MCP stack 上做 agent 的人 | Claude Code、Claude API、MCP、Agent Skills；17 门自学课、5 条学习轨 | 免费官方证书（Skilljar 签发，含 quiz，email 注册即可，可加 LinkedIn）。caveat：vendor-specific（Claude/MCP），补充而非取代框架中立的基础课 |
+| [Anthropic Academy](https://anthropic.skilljar.com/) ⭐⭐⭐⭐ | 🆓 | 在 Claude / MCP stack 上做 agent 的人 | Antigravity CLI、Claude API、MCP、Agent Skills；17 门自学课、5 条学习轨 | 免费官方证书（Skilljar 签发，含 quiz，email 注册即可，可加 LinkedIn）。caveat：vendor-specific（Claude/MCP），补充而非取代框架中立的基础课 |
 
 > 也想了解但未列为主 entry：[LangChain Academy — Intro to LangGraph](https://academy.langchain.com/courses/intro-to-langgraph)（🆓 免费 LangGraph 完成证书，single-vendor）。云厂商（Google Cloud / AWS）的 agentic 路线多半给 skill badge，跟它们各自的付费**专业认证考试**不是同一回事，别混为一谈。
 

@@ -10,7 +10,7 @@
 
 > 🔑 **Key Terms**: See explanations within this chapter and in the main [`resources/glossary.md`](../resources/glossary.md).
 
-**👥 Shared Hub**: Like Stage 5 (The Claude Code Ecosystem), this chapter serves as a hub for both Track A (CLI Power User) and Track B (Agent Builder). Stages 5 and 8 are the two central hubs of this curriculum.
+**👥 Shared Hub**: Like Stage 5 (The Antigravity CLI Ecosystem), this chapter serves as a hub for both Track A (CLI Power User) and Track B (Agent Builder). Stages 5 and 8 are the two central hubs of this curriculum.
 
 ## 🎯 What are Agent Interfaces? (Positioning)
 
@@ -49,9 +49,9 @@
 
 ### Why is this a Shared Hub?
 
-Like Stage 5 (The Claude Code Ecosystem), this stage is a **hub**, not track-specific:
+Like Stage 5 (The Antigravity CLI Ecosystem), this stage is a **hub**, not track-specific:
 
-- **Track A (CLI Power User)**: Uses Claude Computer Use to delegate desktop tasks, uses Codex background mode, and connects to browser MCPs in Claude Code.
+- **Track A (CLI Power User)**: Uses Claude Computer Use to delegate desktop tasks, uses Codex background mode, and connects to browser MCPs in Antigravity CLI.
 - **Track B (Agent Builder)**: Embeds `browser-use` into their own agents, uses E2B/Daytona to run agent-generated code, and uses the built-in sandbox in the OpenAI Agents SDK.
 
 **Both tracks need these 3 interface layers**—which is why this chapter is positioned as a hub.
@@ -72,7 +72,7 @@ After completing this stage, you will be able to:
 
 You should have already:
 
-- Completed [Stage 5](05-claude-code-ecosystem.md) (understand MCP/Skills/Plugins, use Claude Code daily).
+- Completed [Stage 5](05-gemini-skills-ecosystem.md) (understand MCP/Skills/Plugins, use Antigravity CLI daily).
 - Completed [Stage 7](07-multi-agent-production.md) (understand harness engineering, know what the reward-hacking warning is about).
 - Have a basic familiarity with Docker/VM concepts (this chapter explains the difference between microVMs and Containers, but you'll struggle if you've never touched Docker).
 - **For Track A only**: Completing Stage 5 is sufficient; Stage 7 is optional. The Track A portion of this chapter does not depend on building experience.
@@ -235,7 +235,7 @@ Agent receives a task
 
 **Why this only became a production requirement in 2026**:
 - **April 2026 OpenAI Agents SDK Update**: [Built-in support for 7 sandbox providers](https://openai.com/index/the-next-evolution-of-the-agents-sdk/) (Blaxel, Cloudflare, Daytona, E2B, Modal, Runloop, Vercel).
-- Before that, protection relied on approval gates in tools like [Claude Code](05-claude-code-ecosystem.md) or [Cursor](https://www.cursor.com). But a production agent runs **unattended and must have a sandbox.**
+- Before that, protection relied on approval gates in tools like [Antigravity CLI](05-gemini-skills-ecosystem.md) or [Cursor](https://www.cursor.com). But a production agent runs **unattended and must have a sandbox.**
 
 ### 🔑 Mini-Glossary of Isolation Technologies
 
@@ -289,19 +289,19 @@ A common sticking point for new readers, explained here:
 
 **Reader pain point**: A Track A student wants to know "**How do I use** Claude Computer Use to delegate my desktop tasks?" not "How do I build it?"
 
-### 1. Connect to Computer Use / Browser MCPs in Claude Code
+### 1. Connect to Computer Use / Browser MCPs in Antigravity CLI
 
-**Why the MCP route**: You're already familiar with Claude Code ([Stage 5](05-claude-code-ecosystem.md)). New features can be connected via MCP without switching tools.
+**Why the MCP route**: You're already familiar with Antigravity CLI ([Stage 5](05-gemini-skills-ecosystem.md)). New features can be connected via MCP without switching tools.
 
-- **Computer-use MCP** (many community implementations): After adding the server to your `.mcp.json`, you can call "screenshot → analyze → operate" from within Claude Code.
-- **Browser MCP**: Tools like the [Playwright MCP](https://github.com/modelcontextprotocol/servers) allow Claude Code to open a browser and run web tasks.
+- **Computer-use MCP** (many community implementations): After adding the server to your `.mcp.json`, you can call "screenshot → analyze → operate" from within Antigravity CLI.
+- **Browser MCP**: Tools like the [Playwright MCP](https://github.com/modelcontextprotocol/servers) allow Antigravity CLI to open a browser and run web tasks.
 
 ### 2. Run Tasks in the Background with Codex Desktop
 
 **Why background mode**: The [OpenAI Codex desktop (April 2026)](https://openai.com/index/codex-for-almost-everything/) doesn't hog your cursor by default. The agent runs in the background while you do other things—**allowing multiple agent workflows to run in parallel**.
 
 - Best for tasks that are **long-running and don't need constant supervision**, like "Analyze the Q3 financial report, turn it into a slide deck, and post it to Slack."
-- Complements Claude Code: Use Claude Code for coding tasks, and Codex desktop for cross-app workflows.
+- Complements Antigravity CLI: Use Antigravity CLI for coding tasks, and Codex desktop for cross-app workflows.
 
 ### 3. Use Atlas / Comet / Gemini in Chrome for Web Tasks
 
@@ -315,7 +315,7 @@ A common sticking point for new readers, explained here:
 ### Example Cross-App Workflow
 
 "**Help me turn the Q3 CSV into a chart and post it to the #finance Slack channel**":
-1. Use Claude Code (with a Computer-use MCP) to open Excel.
+1. Use Antigravity CLI (with a Computer-use MCP) to open Excel.
 2. Load the CSV and use the chart wizard to generate a chart.
 3. Take a screenshot.
 4. Switch to Slack and paste it into the `#finance` channel.
@@ -465,7 +465,7 @@ A table of 15 projects, categorized by use case.
 |---|---|---|---|---|
 | **Computer Use SDK**| [anthropics/anthropic-quickstarts](https://github.com/anthropics/anthropic-quickstarts) | ⭐⭐⭐⭐⭐ | First time with Computer Use | Includes a Docker quickstart, 5-minute setup. |
 | | [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) | ⭐⭐⭐⭐⭐ | Building production agents with OpenAI | April 2026: built-in harness + 7 sandbox providers. |
-| | [anthropics/claude-agent-sdk-python](https://github.com/anthropics/claude-agent-sdk-python) | ⭐⭐⭐⭐⭐ | Building production agents with Claude | Anthropic's agent SDK, predates OpenAI's, same runtime as Claude Code. |
+| | [anthropics/claude-agent-sdk-python](https://github.com/anthropics/claude-agent-sdk-python) | ⭐⭐⭐⭐⭐ | Building production agents with Claude | Anthropic's agent SDK, predates OpenAI's, same runtime as Antigravity CLI. |
 | **Browser Use OSS**| [browser-use/browser-use](https://github.com/browser-use/browser-use) ⭐ | ⭐⭐⭐⭐⭐ | #1 OSS web agent | 86k+ stars, MIT, LLM-vendor agnostic. |
 | | [microsoft/OmniParser](https://github.com/microsoft/OmniParser) | ⭐⭐⭐⭐ | Vision-based GUI parsing | v2 has 60% latency improvement, Apache 2.0, includes OmniTool (Windows VM control). |
 | **AI Browser** (closed-source/consumer)| [Atlas](https://openai.com/index/introducing-chatgpt-atlas/) | ⭐⭐⭐⭐ | ChatGPT users + Agent Mode | From OpenAI, GA on macOS. |

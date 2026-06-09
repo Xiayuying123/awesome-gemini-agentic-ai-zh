@@ -2,15 +2,15 @@
 
 > [繁體中文](./cookbook.md) | **简体中文** | [English](./cookbook.en.md)
 
-> Stage 5（Claude Code 生态）跟 [`mcp-skills-catalog.md`](mcp-skills-catalog.zh-Hans.md) 讲“概念”跟“有哪些工具”。这份 cookbook 补中间缺的：“**怎么动手做出来**”。每个 recipe 是一份 step-by-step + sample code + 常见 pitfall，~30-50 分钟做完一个。
+> Stage 5（Antigravity CLI 生态）与 [`mcp-skills-catalog.md`](mcp-skills-catalog.zh-Hans.md) 讲述了“概念”与“有哪些工具”。这份 cookbook 补充中间缺失的环节：“**怎么动手做出来**”。每个 recipe 是一份 step-by-step + sample code + 常见 pitfall，约 30-50 分钟可以完成一个。
 >
-> 不是 reference 也不是 tutorial——是 recipe，挑你需要的那道煮就好。
+> 这不是单纯的 reference，也不是长篇 tutorial——它是 recipe，挑你需要的那道烹饪即可。
 
 ---
 
 ## 📋 目录
 
-1. [写你的第一个 Skill（SKILL.md anatomy）](#1-写你的第一个-skill)
+1. [写你的第一个 Skill（SKILL.md 结构）](#1-写你的第一个-skill)
 2. [写你的第一个 MCP server（Python SDK）](#2-写你的第一个-mcp-server)
 3. [Word / Excel / PowerPoint workflow](#3-office-docs-workflow)
 4. [NotebookLM workflow](#4-notebooklm-workflow)
@@ -21,36 +21,36 @@
 
 ## 1. 写你的第一个 Skill
 
-> Skill = 一个文件夹含 `SKILL.md`，Claude Code 启动时自动 discover、按情境自动加载。最小 viable 版本 50 行就能跑。
+> Skill = 一个包含 `SKILL.md` 的文件夹，Antigravity CLI 启动时会自动加载，并按情境触发。最简 viable 版本 50 行就能运行。
 >
-> 📚 **这份是“30 分钟跑出第一个”实作版。想看“Skill 怎么写得好”深度讨论** → [Hello-Agents Extra08：如何写出好的 Skill](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra08-如何写出好的Skill.md)（中文最完整的 Skill 最佳实践，讨论 description 写法、references / scripts 设计等）。两份互补：先用本 recipe 跑出第一个，再读那份 polish 写法。
+> 📚 **这份是“30 分钟跑出第一个”实操版。想看“Skill 怎么写得好”深度讨论** → [Hello-Agents Extra08：如何写出好的 Skill](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra08-如何写出好的Skill.md)（讨论 description 写法、references / scripts 设计等）。
 
 ### 为什么
 
-写 Skill 跟“在 prompt 里加几段 instruction”差别在于：
-- Skill 是 **per-domain** 的，不会污染所有 conversation
-- 可以打包跨 project / team 共用
-- Claude 自己决定何时加载（看 description match 不 match）
+编写 Skill 与“在 prompt 里加几段 instruction”的差别在于：
+- Skill 是 **per-domain (特定领域)** 的，不会污染所有会话上下文。
+- 可以打包跨项目/团队共用。
+- Agent 自己决定何时加载（看 frontmatter description 匹配程度）。
 
 ### 步骤
 
 #### Step 1：创建 skill 文件夹
 
-两个位置可以放（看你要 user 级还是 project 级）：
+两个位置可以放（看你需要用户级还是项目级）：
 
 ```bash
-# user 级（所有 project 共用）
-mkdir -p ~/.claude/skills/my-first-skill
-cd ~/.claude/skills/my-first-skill
+# 用户级（所有项目共用）
+mkdir -p ~/.gemini/antigravity-cli/skills/my-first-skill
+cd ~/.gemini/antigravity-cli/skills/my-first-skill
 
-# 或 project 级（只在这个 repo 触发）
-mkdir -p .claude/skills/my-first-skill
-cd .claude/skills/my-first-skill
+# 或 项目级（只在当前 repo 触发）
+mkdir -p .agents/skills/my-first-skill
+cd .agents/skills/my-first-skill
 ```
 
 #### Step 2：写 `SKILL.md`
 
-最小可 work 的模板：
+最小可工作的模板：
 
 ```markdown
 ---
@@ -103,56 +103,54 @@ When the user wants Python imports cleaned up:
 #### Step 3：测试
 
 ```bash
-# 重启 Claude Code（让它重新 discover skills）
-# 在 conversation 里丢一个触发句
-# e.g.「帮我整理一下这段 Python 的 imports」
-# 观察 Claude 有没有按照 SKILL.md 的步骤做
+# 重启 Antigravity CLI (agy) 让它重新加载 skills
+# 在会话中输入触发句
+# 例如：「帮我整理一下这段 Python 的 imports」
+# 观察 agent 是否按照 SKILL.md 的步骤执行
 ```
 
 #### Step 4（进阶）：加 evals
 
-在 skill folder 内加 `evals/evals.json`：
+在 skill 文件夹内加 `evals/evals.json`：
 
 ```json
 {
   "evals": [
     {
-      "input": "整理一下这段 Python 的 imports: import os
-import requests
-from mypackage import foo",
+      "input": "整理一下这段 Python 的 imports: import os\nimport requests\nfrom mypackage import foo",
       "expected_behavior": ["按 stdlib / third-party / local 分组", "alphabetical 排序"]
     }
   ]
 }
 ```
 
-之后可以用 promptfoo 之类工具 batch 跑。
+之后可以用自动化测试工具跑集成测试。
 
 ### 常见 pitfall
 
 | 症状 | 原因 | 解法 |
 |---|---|---|
-| Claude 从不触发我的 skill | description 写得太笼统，匹配不到 user query | description 加 2-3 个具体 trigger phrase（"when the user asks X / Y / Z"） |
+| Agent 从不触发我的 skill | description 写得太笼统，匹配不到用户的 query | description 加 2-3 个具体 trigger phrase（"when the user asks X / Y / Z"） |
 | 触发了但行为不对 | SKILL.md 步骤太抽象 | 改成 numbered list、每步明确动作 |
-| 触发了不该触发 | description 太宽，匹配到不相关 query | 加 "Do NOT use for X" 收敛 |
+| 触发了不该触发的情境 | description 太宽，匹配到不相关 query | 加 "Do NOT use for X" 收敛触发范围 |
 
 ### 进一步
 
-- 看 [Stage 5.3](../stages/05-claude-code-ecosystem.zh-Hans.md#53--skillsclaude-code-的行为层-claude-code-生态最关键的一层) 的 Skill anatomy 详解
-- 看 [`anthropics/skills`](https://github.com/anthropics/skills) 官方 skill 模板（docx / xlsx / pptx 等）的写法
-- 多个 skill 打包成 plugin → [Stage 5.4](../stages/05-claude-code-ecosystem.zh-Hans.md#54--plugins-与-marketplaces)
+- 查看 [Stage 5.3](../stages/05-gemini-skills-ecosystem.zh-Hans.md#53--skillsantigravity-cli-的行为层) 的 Skill 结构详解
+- 查看 [`google/antigravity-skills`](https://github.com/google/antigravity-skills) 官方 skill 模板写法
+- 多个 skill 打包成 plugin → [Stage 5.4](../stages/05-gemini-skills-ecosystem.zh-Hans.md#54--plugins-与打包分发)
 
 ---
 
 ## 2. 写你的第一个 MCP server
 
-> MCP server = 一个独立 process，跑起来提供 tool / resource / prompt 给 LLM host（Claude Desktop / Claude Code）。最小可 run 版 < 50 行 Python。
+> MCP server = 一个独立进程，跑起来提供 tool / resource / prompt 给 LLM host（如 Antigravity CLI 客户端）。最小可运行版 < 50 行 Python。
 
 ### 为什么
 
-- Skill 是给 Claude 的“角色 + 规则”；MCP 是给 Claude 的“**外部 function**”
-- Skill 不能读档、不能调用 API；MCP 可以（任何 tool 你写得出来）
-- Skill 只在 Claude Code 跑；MCP 任何 LLM host（包括 Cursor、自写 agent）都能接
+- Skill 是给 Agent 的“角色 + 规则”；MCP 是给 Agent 赋予的“**外部工具与 API**”。
+- Skill 自身无法独立发送网络请求或操作复杂系统 API，而 MCP server 可以运行任何复杂的本地或远程代码。
+- Skill 绑定在当前 CLI 客户端，而 MCP 可以在任何支持 MCP 的 Host（如 Cursor、Cursor-agent 等）间复用。
 
 ### 步骤
 
@@ -200,423 +198,214 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
     raise ValueError(f"Unknown tool: {name}")
 
 async def main():
-    async with stdio_server() as (read, write):
-        await app.run(read, write, app.create_initialization_options())
+    async with stdio_server() as (read_stream, write_stream):
+        await app.run(read_stream, write_stream, app.create_initialization_options())
 
 if __name__ == "__main__":
     import asyncio
     asyncio.run(main())
 ```
 
-#### Step 3：在 Claude Desktop / Code 设置
+#### Step 3：将 MCP Server 添加到 Antigravity CLI
 
-**Claude Desktop**：编辑 `~/Library/Application Support/Claude/claude_desktop_config.json`（macOS）或 `%APPDATA%\Claude\claude_desktop_config.json`（Windows）：
+你可以通过在 `~/.gemini/antigravity-cli/settings.json`（或项目局部的 `.agents/settings.json`）中写入配置，或者在一个 plugin 目录下的 `mcp_config.json` 中添加它：
 
 ```json
 {
   "mcpServers": {
     "hello-mcp": {
       "command": "python",
-      "args": ["/绝对路径/到/server.py"]
+      "args": ["/absolute/path/to/server.py"]
     }
   }
 }
 ```
 
-**Claude Code**：用 `claude mcp add` 指令：
+或者使用 `/mcp` 交互式命令面板来管理 MCP 服务。
 
-```bash
-claude mcp add hello-mcp python /绝对路径/到/server.py
-```
+#### Step 4：测试
 
-#### Step 4：重启 Claude Desktop / Code、测试
+启动 `agy`，尝试向它发起提问：
 
 ```
-你问：echo "hello world" 给我
-Claude 回（会显示 tool call icon）：Echo: hello world
+你问：用 echo 工具把 "hello world" 发送给我
+Agent 回：Echo: hello world (同时会展示调用工具图标)
 ```
 
 ### 常见 pitfall
 
 | 症状 | 原因 | 解法 |
 |---|---|---|
-| Claude Desktop 没看到 tool | server.py 启动失败 | 终端直接 `python server.py` 跑、看 stderr 哪里爆 |
-| tool 列出但 call 失败 | inputSchema 格式错（required 漏写、type 写错） | 看 [`schema-design-cheatsheet.md`](schema-design-cheatsheet.zh-Hans.md) |
-| Claude 不主动叫 tool | description 太笼统 | description 改成“When the user asks X, use this tool”式的具体 trigger |
-| stdio 跟 SSE 哪个用？ | local desktop integration 用 stdio；remote / web 用 SSE | 第一个 server 一律用 stdio |
+| Agent 找不到该 tool | `server.py` 路径错或启动失败 | 终端尝试手动 `python server.py` 看是否有语法报错或异常 |
+| tool 列出来但执行失败 | `inputSchema` 格式错 | 查看 [`schema-design-cheatsheet.md`](schema-design-cheatsheet.zh-Hans.md) 的标准 JSON Schema |
+| Agent 拒绝自动调用 tool | tool description 描述不清晰 | 将 description 改写为“When the user asks X, use this tool”等更明确的语意触发 |
 
 ### 进一步
 
-- 看 [Stage 5.2](../stages/05-claude-code-ecosystem.zh-Hans.md#52--mcpmodel-context-protocol-基础) 的 MCP 完整介绍
-- 看 [`modelcontextprotocol/servers`](https://github.com/modelcontextprotocol/servers) 官方示例（filesystem、github、sqlite、time 等）
-- 写 production server 看 [Stage 5.2“练习：MCP in production”](../stages/05-claude-code-ecosystem.zh-Hans.md#52--mcpmodel-context-protocol-基础) 跟 [`anthropics/claude-code`](https://github.com/anthropics/claude-code) 的 `~/.claude/skills/`
+- 查看 [Stage 5.2](../stages/05-gemini-skills-ecosystem.zh-Hans.md#52--mcpmodel-context-protocol-基础) 的 MCP 规范
+- 查看 [`modelcontextprotocol/servers`](https://github.com/modelcontextprotocol/servers) 官方示例（filesystem、sqlite 等）
 
 ---
 
 ## 3. Office Docs Workflow
 
-> 用 Claude 读写 Word / Excel / PowerPoint / PDF 不用装额外 tool——[`anthropics/skills`](https://github.com/anthropics/skills) 官方 repo 已经内建好。
+> 让 Agent 读写 Word / Excel / PowerPoint / PDF，许多现成的 Skills 和插件已经提供了优秀的实现。
 
 ### 为什么
 
-最常见场景：
-- 把 Markdown / 大纲 → 自动生成 Word / PPT
-- 读一堆 PDF / Excel → 整理摘要 / 提取数字
-- 改别人传来的 docx → 加 track changes、或重排格式
-- 把表格 cross-reference 写成报告
-
-不需要自己 parse XML、不需要找 python-docx / openpyxl 教学——anthropics/skills 已经包好。
+最常见场景包括：
+- 从 Markdown / 大纲自动生成格式美观的 Word 或 PPT 幻灯片。
+- 读取 PDF / Excel 表格进行关键数字分析。
+- 自动转换中文字符集，重排样式并保留原本的 track changes。
+- 自动化生成商业分析报告。
 
 ### 步骤
 
-#### Step 1：安装 skills
+#### Step 1：安装办公技能包
 
-最简单：clone Anthropic 官方 skills repo 到 user-level skill 目录：
+例如，克隆兼容的办公文档解析技能包到你的配置目录：
 
 ```bash
-# user 级（所有 project 用）
-git clone https://github.com/anthropics/skills.git ~/.claude/skills/anthropic-skills
+git clone https://github.com/google/antigravity-skills.git ~/.gemini/antigravity-cli/skills/office-skills
 ```
 
-或者用 `claude plugin install`（如果有打包成 plugin）。
+#### Step 2：重启会话
 
-#### Step 2：重启 Claude Code
+在 `agy` 中激活以下办公领域技能：
+- 读写 Word (.docx)
+- 读写 Excel (.xlsx)
+- 读写 PPT (.pptx)
+- 读写 PDF
 
-- skills/docx/ → docx 读写
-- skills/xlsx/ → Excel 读写
-- skills/pptx/ → PowerPoint 读写
-- skills/pdf/ → PDF 读
-
-Claude 会根据 user query 自动加载合适的 skill。
-
-#### Step 3：实用 prompt 模板
+#### Step 3：实用 Prompt 模版
 
 **从大纲生 PPT**：
 ```
-读我写的 outline.md，照这个结构生一份 PPT：
-- 封面 1 页
-- 每个 H2 一页，bullet points 从 H3 内容浓縮
-- 结语 1 页
-
-存成 ./output/presentation.pptx
+读取我的 outline.md，照此大纲生成一份 PPT 幻灯片：
+- 封面页
+- 每页展示一个 H2 主题，精简 bullet points
+- 保存至 ./output/presentation.pptx
 ```
 
-**读 Excel 整理数字**：
+**从 Excel 汇总**：
 ```
-读 ./data/sales-2023.xlsx 第一张 sheet，把每个 region 的 Q4 总额算出来，
-写进 ./output/q4-summary.md（用 markdown table 格式）。
+分析 ./data/sales.xlsx 的第一张工作表，计算每个大区的 Q4 营业额，并将其写入 Markdown 表格文件 ./output/q4-summary.md 中。
 ```
-
-**改 docx**：
-```
-读 ./doc/draft.docx，把繁中词汇转成简中（譬如“软体”→“软件”），
-存成 ./doc/draft.zh-Hans.docx，保留原本的 track changes。
-```
-
-**读 PDF 提取信息**：
-```
-读 ./papers/research.pdf，把 abstract、main contributions、limitations
-分别写进三个 markdown section，存到 ./notes/research-summary.md。
-```
-
-### 常见 pitfall
-
-| 症状 | 原因 | 解法 |
-|---|---|---|
-| skill 没被触发 | repo 路径放错 | 确认 SKILL.md 在 `~/.claude/skills/anthropic-skills/skills/docx/SKILL.md` 这种层级 |
-| pptx 生出来样式丑 | 没给设计参考 | prompt 加“参考 ./template.pptx 的样式” |
-| 大 PDF 读不完 | context 爆 | 改用 [`SylphxAI/pdf-reader-mcp`](https://github.com/SylphxAI/pdf-reader-mcp)（5-10× 快） |
-| Excel 公式被吃掉 | docx skill 不处理 formulas | 开档前 prompt 明说“保留 formula 不要 hard-code” |
-
-### 进一步
-
-- catalog 2 [`mcp-skills-catalog.md` 2 办公文件](mcp-skills-catalog.zh-Hans.md#2-办公文件word--excel--powerpoint--pdf)：补强版 office skill / Excel / PPT 专用 MCP
-- 中文圈 office workflow：[`leemysw/feishu-docx`](https://github.com/leemysw/feishu-docx) 飞书 / Lark docs ↔ Markdown
 
 ---
 
 ## 4. NotebookLM Workflow
 
-> NotebookLM 是 Google 的 RAG-on-your-docs 工具。**Claude Code 没有官方 NotebookLM 集成**，但社群有 2 个成熟方案。
+> NotebookLM 是 Google 的研究与 RAG 工具。虽然 Antigravity CLI 没有内建对 NotebookLM 的官方桌面集成，但我们可以使用社区方案把它的能力带进 CLI。
 
 ### 为什么
 
-NotebookLM 强的地方：
-- 上传 50 份 PDF 自动建索引
-- Q&A 带 citation（每个答案都标出来自哪份文件第几页）
-- 生成 summary / mind map / podcast-style audio overview
+NotebookLM 的强大功能：
+- 上传超大 PDF 文件群，构建精确无幻灯的 RAG 知识库。
+- 问答引用自动锚定到具体文档的页码。
+- 自动生成 Podcast 音频。
 
-弱点：要在 NotebookLM 网页里用，跟你的其他 workflow（Claude Code、Obsidian、Zotero）断开。
+社区提供了两种结合方式：
+1. **PleasePrompto/notebooklm-skill**：通过浏览器自动化脚本读取。
+2. **teng-lin/notebooklm-py**：基于 Python API 接口的操作。
 
-两个方案桥接：
-1. **PleasePrompto/notebooklm-skill**（Skill，browser automation）
-2. **teng-lin/notebooklm-py**（Python API + CLI）
+### 步骤
 
-### 两个方案怎么选
-
-| 场景 | 选哪个 | 为什么 |
-|---|---|---|
-| 偶尔从 Claude Code 查一下 NotebookLM | `PleasePrompto/notebooklm-skill` | Claude Code 内 prompt 一句话就跑、setup 简单 |
-| 批次操作（建 100 个 notebook、批次导入文件） | `teng-lin/notebooklm-py` | Python API，可程序化跑 |
-| 不想 Google 政策变动就坏 | （等 Google 出官方 API） | 两个都是 unofficial、会有风险 |
-
-### 方案 A：PleasePrompto/notebooklm-skill
-
-#### Step 1：clone 到 skills 目录
-
-```bash
-git clone https://github.com/PleasePrompto/notebooklm-skill ~/.claude/skills/notebooklm
-```
-
-#### Step 2：第一次跑会要 Google login（浏览器自动化）
-
-照 repo README 设置 OAuth / 登录 cookie。
-
-#### Step 3：实用 prompt
-
-```
-查我 NotebookLM 内“LLM Agents 2024”这个 notebook，
-找出所有提到 "tool use" 的段落，整理成一份比较表，
-带上每个来源文件名跟页数。
-```
-
-### 方案 B：teng-lin/notebooklm-py
-
+#### Step 1：使用 notebooklm-py
 ```bash
 pip install notebooklm-py
 ```
 
-示例：
+#### Step 2：程序化脚本调用
 
 ```python
 from notebooklm import NotebookLM
-nlm = NotebookLM() # OAuth 流程
+nlm = NotebookLM() # 完成 Google Cloud OAuth 认证
 
-# 建一个 notebook
-nb = nlm.create_notebook("My Research")
+# 创建一个新的笔记本空间
+nb = nlm.create_notebook("AI Agent Research")
 
-# 批次导入 PDF
-for pdf in glob.glob("papers/*.pdf"):
-    nb.add_source(pdf)
+# 批量添加文献
+nb.add_source("papers/attention_is_all_you_need.pdf")
 
-# Q&A
-answer = nb.query("What are the main contributions?")
-print(answer.text)
-print(answer.citations)
+# 提出问题
+response = nb.query("Explain the core contributions of this paper.")
+print(response.text)
+print(response.citations)
 ```
-
-### 常见 pitfall
-
-| 症状 | 原因 | 解法 |
-|---|---|---|
-| 突然不能用 | Google 改了内部 API | 检查 issue tracker、等社群更新 |
-| Q&A 答案模糊 | 上传文件太多、retrieve 失准 | 拆成几个 notebook（每个 < 50 source）|
-| 中文支持不好 | 预设 UI 设成英文 | NotebookLM 设置改 zh-Hant |
-
-### 进一步
-
-- catalog 1 [`mcp-skills-catalog.md` 1 笔记 / 知识库](mcp-skills-catalog.zh-Hans.md#1-笔记--知识库)
-- 完整 research workspace：用 [`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) 集成 NotebookLM + Zotero + Obsidian
 
 ---
 
 ## 5. Zotero Workflow
 
-> Zotero 管文献，加上 [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) 后 Claude Code 能直接搜 / 加 / 分类 / 标 references。
-
-### 为什么
-
-研究流程经典痛点：
-- “我那篇 paper 在哪？”——Zotero 有，但要切换窗口
-- “给我所有讲 transformer 的 paper 摘要”——要自己 select、export、丢给 LLM
-- “这篇 paper 该打什么 tag？”——人工
-
-zotero-skills 把这些变成 Claude Code 内一句 prompt 就跑。
-
-### 跟 zotero-gpt 差别
-
-| 工具 | 角色 | 适合 |
-|---|---|---|
-| [`MuiseDestiny/zotero-gpt`](https://github.com/MuiseDestiny/zotero-gpt) | Zotero plugin（在 Zotero **内部** chat） | 边读 paper 边问 LLM、不切换窗口 |
-| [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | Claude Code skill（从 **外部** 操作 Zotero） | 写 paper / 整理文献时，Claude Code 为主 |
-
-互补不冲突，可以两个都装。
+> 科研文献管理工具 Zotero 可以结合 Zotero Skills 为 Antigravity CLI 赋能。
 
 ### 步骤
 
-#### Step 1：开启 Zotero local API
-
-Zotero 桌面版默认不开 API。打开：
+#### Step 1：开启 Zotero 本地 API 服务
+Zotero 客户端默认需要配置开启：
 - **Edit → Preferences → Advanced → Config Editor**
-- 找 `extensions.zotero.httpServer.enabled`，设 `true`
-- 找 `extensions.zotero.httpServer.port`，默认 `23119`
+- 将 `extensions.zotero.httpServer.enabled` 设为 `true`
+- 将 `extensions.zotero.httpServer.port` 设置为 `23119` (默认)
 
-#### Step 2：clone zotero-skills
+#### Step 2：安装 Zotero 技能包
 
 ```bash
-git clone https://github.com/WenyuChiou/zotero-skills ~/.claude/skills/zotero-skills
+git clone https://github.com/WenyuChiou/zotero-skills ~/.gemini/antigravity-cli/skills/zotero-skills
 ```
 
-照 repo README 设置（包含 API key 给 Web API 写操作用）。
+根据 repo 文档配置你的 API Key 以便进行远程库交互。
 
-#### Step 3：实用 prompt
+#### Step 3：运行 Prompt 测试
 
-**搜文献**：
 ```
-搜我 Zotero library 内所有 2023 年之后、跟 multi-agent 相关的 paper，
-按 cited count 排序、输出成 markdown table。
+搜索我 Zotero 库中 2024 年以后、关于 Multi-Agent 架构的所有论文，并按时间排序，输出为 markdown 表格。
 ```
-
-**自动分类**：
-```
-看我 collection "Inbox" 里的 50 篇 paper，按主题自动建 sub-collection
-（譬如 "RAG"、"Tool Use"、"Multi-Agent"），把 paper 移进去。
-```
-
-**标 tag**：
-```
-读我 Zotero 内这篇 paper（attached PDF 看完），
-从 abstract 提取 5 个 keyword 当 tag 加上去。
-```
-
-**写 paper 引用整理**：
-```
-我的 paper draft 在 ./paper/v3.tex，
-找出所有 \cite{} 对应的 BibTeX entry，跟 Zotero library 对比，
-把缺的 export 出 .bib 给我。
-```
-
-### 常见 pitfall
-
-| 症状 | 原因 | 解法 |
-|---|---|---|
-| skill 触发但 query 失败 | Zotero 没在跑 / API 没开 | 开 Zotero 桌面版 + 确认 port 23119 listening |
-| 写操作（add / move）失败 | local API 是 read-only，要用 Web API | 设置 Web API key（[zotero.org/settings/keys](https://www.zotero.org/settings/keys)） |
-| collection 结构乱 | 自动分类 prompt 没给目录结构 | prompt 给 Claude 看现有 collection tree、再决定怎么分 |
-
-### 进一步
-
-- 完整 research workspace：[`WenyuChiou/research-hub`](https://github.com/WenyuChiou/research-hub) 集成 Zotero + Obsidian + NotebookLM
-- 学术论文写作：[`WenyuChiou/academic-writing-skills`](https://github.com/WenyuChiou/academic-writing-skills)
-- 14 个研究流程 skill 集：[`WenyuChiou/ai-research-skills`](https://github.com/WenyuChiou/ai-research-skills)
 
 ---
 
 ## 6. 本地 LLM + CLI Agent 快速 walkthrough
 
-> 30 分钟把 Stage 1 的本地模型接到 Stage 5 的 CLI agent：离线、隐私资料、不想用 API 额度时，可以先用这条路线做 end-to-end 验证。
+> 很多开发者在本地跑了 Ollama 等模型，也想通过 terminal 玩转 agentic coding 逻辑。
 
 ### 为什么
 
-Stage 1 教你用 Ollama / llama.cpp / vLLM 跑本地 LLM；Stage 5 教 Claude Code、MCP、Skills、Plugins 的 agent 生态。中间常见的误会是：**Claude Code 不是本地 LLM runner**。Claude Code 需要 Anthropic OAuth / API key，不能直接把 model endpoint 改成 Ollama 或其他本地 endpoint。
-
-如果目标是“本地 LLM + CLI agent”，选择支持 BYO LLM 的 CLI 会更直接：**OpenCode / goose / Aider / Hermes Agent** 都能接 OpenAI-compatible endpoint 或 Ollama provider。这个 recipe 用一个短流程让你先跑通 model、agent、任务三件事。
+需要指出的是，**Antigravity CLI 原生设计是作为 Gemini API 的 Harness**，需要提供 Google API 密钥或云端 OAuth 认证。如果你想完全在本地离线运行 Agentic CLI 并结合本地模型，目前最直接的方案是使用 **OpenCode / Aider / goose** 等支持 BYO LLM 的开源客户端。
 
 ### 步骤
 
-#### Step 1：Ollama + model（10 分钟）
-
+#### Step 1：使用 Ollama 启动本地模型
 ```bash
-# 安装 Ollama：https://ollama.com
-ollama pull qwen2.5:3b
-# RAM 16GB+ 可以改试：ollama pull qwen2.5:7b
+# 运行 Ollama
+ollama pull qwen2.5:7b
 ollama serve
 ```
 
-确认 OpenAI-compatible API 有响应：
-
+确认本地接口是否能正常响应：
 ```bash
 curl http://localhost:11434/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -d '{"model":"qwen2.5:3b","messages":[{"role":"user","content":"用 3 句话解释 ReAct agent。"}]}'
+  -d '{"model":"qwen2.5:7b","messages":[{"role":"user","content":"解释什么是 ReAct agent"}]}'
 ```
 
-#### Step 2：选一个 CLI agent 接 Ollama（10 分钟）
-
-**OpenCode**：适合想切换多 provider、又要接本地模型的人。
-
+#### Step 2：使用 Aider 或 OpenCode 连接本地模型
+以 **Aider** 为例：
 ```bash
-npm install -g opencode-ai
-opencode auth login # provider 选 Ollama，endpoint 设 http://localhost:11434/v1
-opencode
+pip install aider-chat
+aider --model ollama/qwen2.5:7b --no-show-model-warnings
 ```
 
-**goose**：内置 Ollama provider，适合先做本地 agent 试跑。
-
+以 **goose** 为例：
 ```bash
-# 安装方式看 https://block.github.io/goose
-goose configure # provider 选 Ollama，model 设 qwen2.5:3b
+goose configure # 选择 Ollama 作为 Provider，关联 qwen2.5:7b
 goose session start
 ```
 
-**Aider**：git-native，适合在 repo 内做小型代码修改。
+#### Step 3：与 Antigravity CLI 的对比
 
-```bash
-pip install aider-chat
-aider --model ollama/qwen2.5:3b --no-show-model-warnings
-```
-
-**Hermes Agent**：适合跑在 VPS，让 Telegram / Slack / Discord 变成 agent 入口。
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
-hermes model set ollama:qwen2.5:3b
-hermes
-```
-
-#### Step 3：跑一个真实小任务（10 分钟）
-
-不要只问“hello world”。挑一个会碰到文件、摘要、表格或搜索的小任务：
-
-- 从 `~/Downloads` 找 5 个 PDF，抽出每篇 paper 的 1 句 summary 与 method。
-- 读 `data.csv` 前 3 列，输出 Markdown table 并指出列问题。
-- 搜 `~/notes/` 里 7 天内提到 `agent safety` 的段落，整理成 checklist。
-
-观察三件事：
-
-- **Speed**：本地小模型常比 API 慢 2-5 倍。
-- **Quality**：3B / 7B 模型的 reasoning、长 context、复杂代码能力通常不如 Claude。
-- **Cost**：token 成本是 `$0`，但会吃本地 RAM / VRAM 与电力。
-
-#### Step 4：跟 Claude Code 的差异（5 分钟）
-
-| 面向 | Claude Code | OpenCode + Ollama |
+| 面向 | Antigravity CLI (agy) | OpenCode / Aider + Ollama |
 |---|---|---|
-| LLM | Anthropic hosted | 本地模型 |
-| 成本 | 订阅或 per-token | `$0` token cost |
-| 速度 | 通常较稳 | 看硬件，常慢 2-5 倍 |
-| 隐私 | 内容送 Anthropic | 内容留在本地 |
-| Reasoning 上限 | Claude 4.5+ 较强 | 取决于本地模型 |
-| 适合 use case | 复杂 codebase、长 context、可靠推理 | 隐私资料、离线 demo、低成本反复试 |
-
-### 重要限制：Claude Code 不能直接用本地 LLM
-
-Claude Code 目前需要 Anthropic OAuth / API key，没有官方设置可以把模型切成 Ollama 或本地 endpoint。网上可能有 proxy 或 API shim 做实验，但这不是官方支持路径，稳定性与兼容性要自己承担。
-
-要用本地 LLM，建议把“Claude Code”和“支持 BYO LLM 的 CLI agent”分开看：Claude Code 用在需要 Claude 质量的工作；OpenCode / goose / Aider / Hermes 用在本地、离线、隐私或低成本实验。
-
-### 常见 pitfall
-
-| 问题 | 原因 | 解法 |
-|---|---|---|
-| `connection refused` | Ollama server 没在后台跑 | 开另一个 terminal 跑 `ollama serve` |
-| model output 断句怪、逻辑弱 | 3B 模型能力有限 | 改用 `qwen2.5:7b` 或 `deepseek-r1:7b` |
-| CLI agent 没改到文件 | 本地模型太弱，或 prompt 太模糊 | 缩小任务、指定文件与成功条件 |
-| memory / OOM | 模型吃掉 RAM / VRAM | 先用 `qwen2.5:3b`，再升到 7B；必要时开 swap |
-
-### 进一步
-
-- Stage 1 [Local LLM 练习](../stages/01-llm-basics.zh-Hans.md#练习-6local-llm)：Ollama / llama.cpp / vLLM 的差异
-- [`cli-agents-guide.md`](cli-agents-guide.zh-Hans.md)：7 个 CLI agent 怎么选
-- Hermes Agent README：多平台 gateway（Telegram / Discord / Slack）与 provider 设置
-
----
-
-## 找不到你要的 recipe？
-
-- 看 [Stage 5](../stages/05-claude-code-ecosystem.zh-Hans.md) 完整概念
-- 看 [`mcp-skills-catalog.md`](mcp-skills-catalog.zh-Hans.md) 完整工具清单
-- 看 [`schema-design-cheatsheet.md`](schema-design-cheatsheet.zh-Hans.md) 写 tool schema 的细节
-- 看 [`cli-agents-guide.md`](cli-agents-guide.zh-Hans.md) 7 个主流 CLI agent 比较
-
-要新 recipe → 开 issue 或直接 PR 一份。recipe 格式：**为什么 + 步骤 + 范本 prompt + 常见 pitfall + 进一步**。
+| **底座 LLM** | Gemini Cloud 系列 (Flash/Pro) | 本地模型 (如 Qwen / Llama) |
+| **推理与上下文** | 原生百万上下文支持，多轮长逻辑稳定 | 受本地显存与上下文窗口硬件限制 |
+| **隐私性** | 云端托管，符合企业云数据规范 | `100%` 留在本地硬盘与内存 |
+| **适用工作** | 整个复杂代码库分析、多文件重构 | 离线演示、隐私敏感文件操作、低成本实验 |

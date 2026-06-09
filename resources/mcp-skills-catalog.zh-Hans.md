@@ -2,15 +2,15 @@
 
 > [繁體中文](./mcp-skills-catalog.md) | **简体中文** | [English](./mcp-skills-catalog.en.md)
 
-> 把 Claude Code（或其他 CLI agent）接到你已经正在用的工具，不用反复切换视窗。本页是 62 个分类整理过的 MCP server / Claude Skill / 集成范例（含研究工作流 + multi-LLM delegation 两个专属区）。
+> 把 Antigravity CLI（或其他 CLI agent）接到你已经正在用的工具，不用反复切换视窗。本页是 62 个分类整理过的 MCP server / Claude Skill / 集成范例（含研究工作流 + multi-LLM delegation 两个专属区）。
 
 ---
 
 ## 怎么用这份目录
 
 - **想找特定工具的 MCP**：直接看下面分类目录
-- **想看 MCP / Skills / Plugins 是什么**：先看 [README 三个核心用语](../README.zh-Hans.md#三个核心用语mcp--skills--plugins)，再看 [Stage 5 — Claude Code 生态系](../stages/05-claude-code-ecosystem.md)
-- **想看 动手练习 怎么装、怎么测**：看 [Stage 5.2 (MCP)](../stages/05-claude-code-ecosystem.zh-Hans.md#52--mcpmodel-context-protocol-基础) 跟 [Stage 5.3 (Skills)](../stages/05-claude-code-ecosystem.zh-Hans.md#53--skillsclaude-code-的行为层-claude-code-生态最关键的一层)
+- **想看 MCP / Skills / Plugins 是什么**：先看 [README 三个核心用语](../README.zh-Hans.md#三个核心用语mcp--skills--plugins)，再看 [Stage 5 — Antigravity CLI 生态系](../stages/05-gemini-skills-ecosystem.md)
+- **想看 动手练习 怎么装、怎么测**：看 [Stage 5.2 (MCP)](../stages/05-gemini-skills-ecosystem.zh-Hans.md#52--mcpmodel-context-protocol-基础) 跟 [Stage 5.3 (Skills)](../stages/05-gemini-skills-ecosystem.zh-Hans.md#53--skillsclaude-code-的行为层-claude-code-生态最关键的一层)
 
 ### 收录原则
 
@@ -62,7 +62,7 @@
 | 推荐度 | ⭐⭐⭐⭐（社群、最热门） |
 
 **教什么**：透过 Obsidian REST API community plugin 让 LLM 读写你的 Obsidian vault。
-**适合谁**：Obsidian 重度用户，想用 Claude Code 整理 daily note、自动 link、跨文件搜索。
+**适合谁**：Obsidian 重度用户，想用 Antigravity CLI 整理 daily note、自动 link、跨文件搜索。
 **备注**：要先在 Obsidian 装 [Local REST API](https://github.com/coddingtonbear/obsidian-local-rest-api) plugin。
 
 ### [PleasePrompto/notebooklm-skill](https://github.com/PleasePrompto/notebooklm-skill) ⭐⭐⭐⭐
@@ -73,8 +73,8 @@
 | License | NOASSERTION |
 | 推荐度 | ⭐⭐⭐⭐ |
 
-**教什么**：Claude Code Skill，用浏览器自动化操作 NotebookLM、查询上传文件，回复带 citation。
-**适合谁**：用 NotebookLM 管 paper 跟研究笔记，但想在 Claude Code 一条 prompt 直接查的人。
+**教什么**：Antigravity CLI Skill，用浏览器自动化操作 NotebookLM、查询上传文件，回复带 citation。
+**适合谁**：用 NotebookLM 管 paper 跟研究笔记，但想在 Antigravity CLI 一条 prompt 直接查的人。
 **备注**：需要 Google 账号登录授权。
 
 ### [teng-lin/notebooklm-py](https://github.com/teng-lin/notebooklm-py) ⭐⭐⭐⭐
@@ -138,7 +138,7 @@
 | 推荐度 | ⭐⭐⭐⭐⭐（**官方**，必装） |
 
 **教什么**：Anthropic 官方 Agent Skills repo，含 docx / xlsx / pptx / pdf 处理 skill。
-**适合谁**：所有 Claude Code 用户——直接 `claude skill install` 就能让 Claude 读写 Office 档。
+**适合谁**：所有 Antigravity CLI 用户——直接 `claude skill install` 就能让 Claude 读写 Office 档。
 **备注**：是 Skills 集合不是 MCP；走 Stage 5.3 Skill 体系。
 
 ### [haris-musa/excel-mcp-server](https://github.com/haris-musa/excel-mcp-server) ⭐⭐⭐⭐⭐
@@ -282,7 +282,7 @@
 | 推荐度 | ⭐⭐⭐⭐⭐（**官方**） |
 
 **教什么**：GitHub 官方 MCP——issue / PR / repo / Actions / Codespaces 操作。
-**适合谁**：所有 GitHub 用户；Claude Code 接上去后 PR review、issue triage、release notes 都能跑。
+**适合谁**：所有 GitHub 用户；Antigravity CLI 接上去后 PR review、issue triage、release notes 都能跑。
 **备注**：**走 Track A 的 A3 动手练习 CLI-9 必装**。
 
 ### [sooperset/mcp-atlassian](https://github.com/sooperset/mcp-atlassian) ⭐⭐⭐⭐⭐
@@ -355,7 +355,7 @@
 | License | MIT |
 | 推荐度 | ⭐⭐⭐⭐⭐ |
 
-**教什么**：把 codebase / SQL schemas / R scripts / shell scripts / docs / papers / images / videos 变成 queryable knowledge graph 的 AI coding skill。Claude Code、Codex、OpenCode、Cursor、Gemini CLI 都能接。
+**教什么**：把 codebase / SQL schemas / R scripts / shell scripts / docs / papers / images / videos 变成 queryable knowledge graph 的 AI coding skill。Antigravity CLI、Codex、OpenCode、Cursor、Gemini CLI 都能接。
 **适合谁**：要对大型 codebase 做架构分析、跨档追 reference、把"app code + DB schema + infra"放一起问的工程师 / 研究者。
 **备注**：跨界——既是 dev collab tool（理解既有 codebase）也算 research workflow（把任意素材转成 graph）。撞墙时用 graphify 抽结构、再丢回 Claude 推论。
 
@@ -461,7 +461,7 @@
 
 **教什么**：Playwright MCP server——让 LLM 开浏览器、点按钮、填表单、抓网页。
 **适合谁**：要做 E2E 自动化、跨网站集成、抓需要登录的网页的人。
-**备注**：Playwright 官方出，最 robust。**Claude Code 接 web 自动化是个不错的选项**。
+**备注**：Playwright 官方出，最 robust。**Antigravity CLI 接 web 自动化是个不错的选项**。
 
 ### [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp) ⭐⭐⭐⭐⭐
 
@@ -511,7 +511,7 @@
 | License | MIT |
 | 推荐度 | ⭐⭐⭐⭐⭐（最热门 Figma MCP） |
 
-**教什么**：把 Figma layout 信息送给 coding agent——读设计稿、提组件结构，给 Cursor / Claude Code 写对应的 React component。
+**教什么**：把 Figma layout 信息送给 coding agent——读设计稿、提组件结构，给 Cursor / Antigravity CLI 写对应的 React component。
 **适合谁**：前端开发者，要 LLM 从 Figma 设计稿生成 component code。
 **备注**：要 Figma access token；对 design-to-code workflow 必装。
 
@@ -535,7 +535,7 @@
 | License | MIT |
 | 推荐度 | ⭐⭐⭐⭐（替代版 Excalidraw） |
 
-**教什么**：MCP server + Claude Code Skill，real-time canvas sync，可创建 / 编辑 / 导出。
+**教什么**：MCP server + Antigravity CLI Skill，real-time canvas sync，可创建 / 编辑 / 导出。
 **适合谁**：需要 real-time canvas sync 跟编程化操作的人。
 **备注**：跟官方版互补，社群维护。
 
@@ -579,7 +579,7 @@
 
 **教什么**：从 LLM 查 Sentry error event、issue、trace。
 **适合谁**：用 Sentry 接 production error 的工程师。
-**备注**：“上周这个 error 的 stack trace 给我看”直接问 Claude Code。
+**备注**：“上周这个 error 的 stack trace 给我看”直接问 Antigravity CLI。
 
 ### [winor30/mcp-server-datadog](https://github.com/winor30/mcp-server-datadog) ⭐⭐⭐
 
@@ -606,7 +606,7 @@
 | 推荐度 | ⭐⭐⭐⭐ |
 
 **教什么**：把 LLM 接到 Spotify——播歌、加歌单、查历史。
-**适合谁**：想用 Claude Code 控播放列表、做语音 / 文字 → 音乐的集成者。
+**适合谁**：想用 Antigravity CLI 控播放列表、做语音 / 文字 → 音乐的集成者。
 **备注**：要 Spotify Premium 账号（API 限制）。
 
 ### [kimtaeyoon83/mcp-server-youtube-transcript](https://github.com/kimtaeyoon83/mcp-server-youtube-transcript) ⭐⭐⭐⭐
@@ -646,7 +646,7 @@
 | 推荐度 | ⭐⭐⭐ |
 
 **教什么**：飞书（Lark）docs / sheet / bitable ↔ Markdown 双向转换，含 OAuth 2.0、CLI、TUI、Claude Skills。
-**适合谁**：用飞书 / Lark 写文档的中文用户，要把 Lark 内容跟 Claude Code 串起来。
+**适合谁**：用飞书 / Lark 写文档的中文用户，要把 Lark 内容跟 Antigravity CLI 串起来。
 **备注**：目前中文圈 MCP / Skill 主要选择之一；微信 / 钉钉暂时没有独立 MCP（多半混在 chat bot framework 里）。
 
 ### [netease-youdao/LobsterAI](https://github.com/netease-youdao/LobsterAI) ⭐⭐⭐⭐
@@ -658,8 +658,8 @@
 | 推荐度 | ⭐⭐⭐⭐ |
 
 **教什么**：网易有道出品的"24/7 全场景 AI agent"——支持工作流自动化、跨应用协作、文件处理。中文 native。
-**适合谁**：中文圈用户要找一个替代 Claude Code / OpenAI Operator 等级的 all-in-one agent；对中国大陆服务（网易、钉钉等）集成需求高的场景。
-**备注**：产品式 agent（不是 Skill / MCP）；跟 Claude Code / Codex 互为替代，不是搭配。
+**适合谁**：中文圈用户要找一个替代 Antigravity CLI / OpenAI Operator 等级的 all-in-one agent；对中国大陆服务（网易、钉钉等）集成需求高的场景。
+**备注**：产品式 agent（不是 Skill / MCP）；跟 Antigravity CLI / Codex 互为替代，不是搭配。
 
 ### [QwenLM/Qwen-Agent](https://github.com/QwenLM/Qwen-Agent) ⭐⭐⭐⭐⭐
 
@@ -671,7 +671,7 @@
 
 **教什么**：阿里巴巴官方 Qwen agent framework——RAG、tool use、code interpreter、multi-agent、MCP 兼容，默认搭配 Qwen 系列模型但可换其他 LLM。
 **适合谁**：用 Qwen / 通义千问 为主 LLM 的开发者；想要中文 native 的 agent framework（范例、文档都中文齐全）。
-**备注**：MCP 兼容是亮点——可以直接接到 Claude Code 等 host；维护节奏正常（last commit 2026-03）。
+**备注**：MCP 兼容是亮点——可以直接接到 Antigravity CLI 等 host；维护节奏正常（last commit 2026-03）。
 
 ### [coze-dev/coze-studio](https://github.com/coze-dev/coze-studio) ⭐⭐⭐⭐⭐
 
@@ -730,7 +730,7 @@
 | 推荐度 | ⭐⭐⭐ |
 
 **教什么**：专为 DeepSeek 模型优化的终端 AI 编码助手——支持 MCP server 接入、Claude-style Skills、对话缓存优化，Go 实现。
-**适合谁**：以 DeepSeek 为主力 LLM 的中文开发者；想用终端工具但不需要 Claude Code 全家桶的人。
+**适合谁**：以 DeepSeek 为主力 LLM 的中文开发者；想用终端工具但不需要 Antigravity CLI 全家桶的人。
 **备注**：开源同类中少见的 DeepSeek 专属优化；MCP + Skills 双支持让它可以逐步扩充能力。
 
 ### [simonlin1212/a-stock-data](https://github.com/simonlin1212/a-stock-data) ⭐⭐⭐⭐
@@ -742,8 +742,8 @@
 | 推荐度 | ⭐⭐⭐⭐ |
 
 **教什么**：A 股全栈数据工具包——单一 SKILL.md 文件封装 8 个数据源（mootdx、东财、akshare、iwencai 等）21 个端点，AI 编码助手直接可用。
-**适合谁**：用 Claude Code / Codex / OpenClaw 做投研或量化分析的中文开发者；不想自己刻数据抓取逻辑的人。
-**备注**：一条 `curl` + `pip install` 即可启用；中国 A 股数据类 Skill 中星星数最高的社群实现。兼容 Claude Code、Codex、OpenClaw。
+**适合谁**：用 Antigravity CLI / Codex / OpenClaw 做投研或量化分析的中文开发者；不想自己刻数据抓取逻辑的人。
+**备注**：一条 `curl` + `pip install` 即可启用；中国 A 股数据类 Skill 中星星数最高的社群实现。兼容 Antigravity CLI、Codex、OpenClaw。
 
 > 想找微信 / 钉钉集成？目前主流是用 chat bot framework（如 zhayujie/CowAgent）而不是纯 MCP server。等正規 MCP 出现再加进来。
 
@@ -807,7 +807,7 @@
 | 推荐度 | ⭐⭐⭐（金融分析工具；了解 hosted vs self-hosted MCP 实现差异的实例） |
 
 **教什么**：YIELD INTELLIGENCE hosted remote MCP server——即时美国国债收益率 + 股息 ETF / REIT / 优先股分析 + 被动收入投资组合优化。2 个工具：`analyze_yield_opportunities`（扫描被动收入机会）+ `optimize_income_portfolio`（面向目标月收入建立投资组合）。已收录于 Anthropic 官方 MCP Registry（`io.github.thebrierfox/intuitek-ace`，since 2026-05-10）。
-**适合谁**：用 Claude Code / Claude Desktop 做个人理财分析、想让 AI 找出被动收入机会的人。hosted remote MCP server 范例——直接 plug URL、0 安装、适合 Stage 5 学完 MCP 概念后用来体验 hosted vs self-hosted 差异。
+**适合谁**：用 Antigravity CLI / Claude Desktop 做个人理财分析、想让 AI 找出被动收入机会的人。hosted remote MCP server 范例——直接 plug URL、0 安装、适合 Stage 5 学完 MCP 概念后用来体验 hosted vs self-hosted 差异。
 **备注**：Live endpoint `https://api.intuitek.ai/yield/mcp`（no auth、no API key）。x402 micropayment $1 USDC/call on Base（agent-to-agent 场景）；一般用户免费。纯分析工具，不涉及交易。GitHub：[thebrierfox/intuitek-ace](https://github.com/thebrierfox/intuitek-ace)（MIT License）。
 
 ---
@@ -824,7 +824,7 @@
 | License | MIT |
 | 推荐度 | ⭐⭐⭐⭐⭐（研究流程一整套） |
 
-**教什么**：14 个 Claude Code skills 涵盖常见研究任务——文献分流、研究设计、project context、论文写作、multi-AI delegation。打包成 5-plugin marketplace，一个指令安装。
+**教什么**：14 个 Antigravity CLI skills 涵盖常见研究任务——文献分流、研究设计、project context、论文写作、multi-AI delegation。打包成 5-plugin marketplace，一个指令安装。
 **适合谁**：研究生 / 博后想一次获取“研究全流程”skill set。
 **备注**：marketplace 形式，跟 Stage 5.4 教的 plugin/marketplace 概念对齐。
 
@@ -836,7 +836,7 @@
 | License | MIT |
 | 推荐度 | ⭐⭐⭐（窄但深） |
 
-**教什么**：严谨学术论文写作 / 修改 / 投稿的 Claude Code skill。Field-agnostic，可用 per-paper journal_format.md 跟 style_overrides.md 客制规则。
+**教什么**：严谨学术论文写作 / 修改 / 投稿的 Antigravity CLI skill。Field-agnostic，可用 per-paper journal_format.md 跟 style_overrides.md 客制规则。
 **适合谁**：在写 / 改 paper 的研究者，想把 banned-word audit、figure-text coupling、submission checklist 自动化。
 **备注**：是 ai-research-skills 5 plugin 中的一个，也可独立安装。
 
@@ -849,8 +849,8 @@
 | 推荐度 | ⭐⭐⭐⭐ |
 
 **教什么**：Zotero CLI skill——程序化搜索 / 添加 / 分类 / 标记文献。
-**适合谁**：用 Zotero 管理文献、想让 Claude Code 直接整理 library 的研究者。
-**备注**：跟 [`MuiseDestiny/zotero-gpt`](https://github.com/MuiseDestiny/zotero-gpt) 的区别——后者是 Zotero plugin（在 Zotero 里 chat），这份是 CLI / Skill（从 Claude Code 操作 Zotero）。
+**适合谁**：用 Zotero 管理文献、想让 Antigravity CLI 直接整理 library 的研究者。
+**备注**：跟 [`MuiseDestiny/zotero-gpt`](https://github.com/MuiseDestiny/zotero-gpt) 的区别——后者是 Zotero plugin（在 Zotero 里 chat），这份是 CLI / Skill（从 Antigravity CLI 操作 Zotero）。
 
 ### [WenyuChiou/research-hub](https://github.com/WenyuChiou/research-hub) ⭐⭐⭐⭐
 
@@ -878,8 +878,8 @@
 | License | MIT |
 | 推荐度 | ⭐⭐⭐⭐⭐ |
 
-**教什么**：Claude Code skill 把 Codex CLI 当作 execution specialist——适合大量文件 refactor、boilerplate 生成、实现密集任务。Claude 规划 + review，Codex 执行。
-**适合谁**：要在 Claude Code 内把实现工作自动 delegate 给 Codex 的开发者。
+**教什么**：Antigravity CLI skill 把 Codex CLI 当作 execution specialist——适合大量文件 refactor、boilerplate 生成、实现密集任务。Claude 规划 + review，Codex 执行。
+**适合谁**：要在 Antigravity CLI 内把实现工作自动 delegate 给 Codex 的开发者。
 **备注**：搭配 `gemini-delegate-skill` 用（一个跑 code-heavy、一个跑 long-form / CJK）。Stage 7 multi-agent 概念实战版。
 
 ### [WenyuChiou/gemini-delegate-skill](https://github.com/WenyuChiou/gemini-delegate-skill) ⭐⭐⭐⭐
@@ -890,7 +890,7 @@
 | License | MIT |
 | 推荐度 | ⭐⭐⭐⭐ |
 
-**教什么**：Claude Code skill 把 Gemini CLI 当作 large-context synthesis、英文 / zh-TW / CJK long-form drafting、second-opinion review 的执行者。
+**教什么**：Antigravity CLI skill 把 Gemini CLI 当作 large-context synthesis、英文 / zh-TW / CJK long-form drafting、second-opinion review 的执行者。
 **适合谁**：写长文、跨语言 draft、需要第二意见 review 的人——研究者写 paper / 中文报告场景特别合适。
 **备注**：跟 codex-delegate 互补——“Codex 写 code、Gemini 写 prose”分工。
 
@@ -902,7 +902,7 @@
 | License | MIT |
 | 推荐度 | ⭐⭐（experimental，当作 reference 看就好） |
 
-**教什么**：Claude Code marketplace for multi-agent collaboration——task splitter、output reconciler、adversarial debate、shared memory、acceptance gate。跟 codex-delegate / gemini-delegate 组合用。
+**教什么**：Antigravity CLI marketplace for multi-agent collaboration——task splitter、output reconciler、adversarial debate、shared memory、acceptance gate。跟 codex-delegate / gemini-delegate 组合用。
 **适合谁**：要跑 2+ delegate agent 在同一轮、想看 multi-agent coordination 怎么打包成 marketplace 的人。
 **备注**：experimental——别把它当作生产级 framework，当作维护者把自己 setup 公开的 reference 看就好。要可上线部署的请看 Stage 7 的 LangGraph / AutoGen / CrewAI。
 

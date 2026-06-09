@@ -18,7 +18,7 @@
 
 ![AI / ML / DL / LLM 與 Agent 的關係](../resources/diagrams/ai-ml-llm-agent-hierarchy.png)
 
-→ **「Agent」不是「比 LLM 更厲害的模型」，也不是 LLM 樹狀分類底下的一個分支**。Agent 是個**跨層抽象的系統**，把 LLM 當作其中一個元件來用。Cursor / Claude Code / Hermes Agent 內部都還是同一批 LLM（Claude / GPT / Gemini）—— 差別是怎麼把 LLM 包進工具呼叫迴圈裡。
+→ **「Agent」不是「比 LLM 更厲害的模型」，也不是 LLM 樹狀分類底下的一個分支**。Agent 是個**跨層抽象的系統**，把 LLM 當作其中一個元件來用。Cursor / Antigravity CLI / Hermes Agent 內部都還是同一批 LLM（Claude / GPT / Gemini）—— 差別是怎麼把 LLM 包進工具呼叫迴圈裡。
 
 ### 三行對照（最快版）
 
@@ -26,7 +26,7 @@
 |---|---|---|---|
 | **AI** | 整個學科 | 太抽象、不能直接「用」 | ML、DL、LLM、RL 都是 AI 子領域 |
 | **LLM** | 把文字映射到文字的單一模型 | 給 prompt → 回字 | GPT-5、Claude、Llama 3、Qwen |
-| **Agent** | LLM + 工具 + loop 的**系統** | 給任務 → 自己跑多步驟達成 | Cursor、Claude Code、Hermes Agent |
+| **Agent** | LLM + 工具 + loop 的**系統** | 給任務 → 自己跑多步驟達成 | Cursor、Antigravity CLI、Hermes Agent |
 
 **一句話**：LLM 像是會理解與產生文字的大腦；Agent 則是把這個大腦接上工具、流程與回饋迴圈，讓它能完成多步驟任務的系統。
 
@@ -65,7 +65,7 @@
 **🀄 中文**：
 1. [**李宏毅 — 生成式 AI 導論（2024 春台大課程）**](https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php) ⭐⭐⭐ — 中文圈最高品質的 AI / LLM / agent 學術級導論。每集 30-60 分鐘、台大授課、官方頁含投影片 + YouTube 連結。LLM / agent 概念都涵蓋。最新整合版見 [**GenAI-ML 2025 秋**](https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall.php)、YouTube 主頻道 [**@HungyiLeeNTU**](https://www.youtube.com/@HungyiLeeNTU)
 2. [**datawhalechina/hello-agents** Ch1「初識智能體」](https://github.com/datawhalechina/hello-agents) ⭐ — 文字版最完整中文 agent 導論
-3. [**datawhalechina/hello-agents** Ch2「智能體發展史」](https://github.com/datawhalechina/hello-agents) — BabyAGI → AutoGPT → Claude Code 演化脈絡
+3. [**datawhalechina/hello-agents** Ch2「智能體發展史」](https://github.com/datawhalechina/hello-agents) — BabyAGI → AutoGPT → Antigravity CLI 演化脈絡
 4. [**3Blue1Brown 中文配音版**](https://www.youtube.com/@3Blue1BrownCN) — LLM / Transformer 視覺化解說（中文配音）
 
 **🇺🇸 English**：
@@ -122,9 +122,9 @@
 >
 > 完整 3 路 trade-off 見 [`examples/README.md`](../examples/README.md#三條路徑--預設用-ollama成本考量)。
 >
-> 🆘 **卡住了？** Tool calling 是整個 curriculum 最陡的學習曲線。裝 [`examples/stage-5/tool-calling-tutor/`](../examples/stage-5/tool-calling-tutor/) skill——當你 prompt Claude Code「為什麼 LLM 不呼叫我的 tool」、「我這 schema 哪裡寫壞」會自動載入、走 4-symptom 診斷流程。
+> 🆘 **卡住了？** Tool calling 是整個 curriculum 最陡的學習曲線。裝 [`examples/stage-5/tool-calling-tutor/`](../examples/stage-5/tool-calling-tutor/) skill——當你 prompt Antigravity CLI「為什麼 LLM 不呼叫我的 tool」、「我這 schema 哪裡寫壞」會自動載入、走 4-symptom 診斷流程。
 >
-> 🪜 **本 stage 是 single-agent 起點**：一個 LLM + ReAct loop。**Multi-agent 概念**（多個 agent 協作）入門看 [Stage 4 什麼是 multi-agent framework](04-agent-frameworks.md#-什麼是-multi-agent-framework)、**Claude 原生 subagent 機制**（`.claude/agents/` + Task tool、不需 framework）看 [Stage 5.5](05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能)。
+> 🪜 **本 stage 是 single-agent 起點**：一個 LLM + ReAct loop。**Multi-agent 概念**（多個 agent 協作）入門看 [Stage 4 什麼是 multi-agent framework](04-agent-frameworks.md#-什麼是-multi-agent-framework)、**Claude 原生 subagent 機制**（`.claude/agents/` + Task tool、不需 framework）看 [Stage 5.5](05-gemini-skills-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制-2025-新功能)。
 
 ### 練習 1：Function Calling（一個工具、一次呼叫）
 給 Claude 一個工具（假的天氣 API）跟一個問題（「台北現在有下雨嗎？」）。看 Claude 怎麼呼叫工具、拿到結果、再回答你。
@@ -423,9 +423,9 @@ messages.append({"role": "tool", "tool_call_id": tc.id,
 
 > **本節是 concept + routing、不是練習**。沒有 verified working solution、不掛「練習 N」label、不給 success criteria——遵守本 repo「沒驗證答案不寫練習、頂多 routing」原則。想動手做？直接讀下方 paper / project。
 
-**反思是什麼**：練習 5 的 error handling 是「LLM 出錯 → 你（外部）catch + retry」；**反思**是「LLM 觀察自己出錯 → 自己改」。差別是 agency 在哪一邊——這是 production agent（Cursor / Cline / Claude Code）每天都在跑的迴圈。
+**反思是什麼**：練習 5 的 error handling 是「LLM 出錯 → 你（外部）catch + retry」；**反思**是「LLM 觀察自己出錯 → 自己改」。差別是 agency 在哪一邊——這是 production agent（Cursor / Cline / Antigravity CLI）每天都在跑的迴圈。
 
-**為什麼這節在 Stage 3 而不是 Stage 6**：反思在學術（Reflexion paper Shinn 2023、Self-Refine Madaan 2023）跟 production（Cursor / Claude Code）上都被歸類在 **planning / reasoning loop** 機制——是 ReAct（練習 3）的 sibling pattern，**不是 memory pattern**。同樣是 LLM 自我引導的多輪迴圈，只是「下一輪要做什麼」從「呼叫 tool」換成「批改自己」。
+**為什麼這節在 Stage 3 而不是 Stage 6**：反思在學術（Reflexion paper Shinn 2023、Self-Refine Madaan 2023）跟 production（Cursor / Antigravity CLI）上都被歸類在 **planning / reasoning loop** 機制——是 ReAct（練習 3）的 sibling pattern，**不是 memory pattern**。同樣是 LLM 自我引導的多輪迴圈，只是「下一輪要做什麼」從「呼叫 tool」換成「批改自己」。
 
 **進階版（帶 persistent memory 的 Reflexion 完整版）→ [Stage 6 進階：Reflexion with Memory](06-memory-rag.md#-進階帶持久記憶的-reflexion-完整版--track-b-選讀)**——當反思要跨 session、把過去失敗存起來當下一輪 context，這個版本才真的需要 memory 層。
 
@@ -449,7 +449,7 @@ messages.append({"role": "tool", "tool_call_id": tc.id,
 - [**LangChain — Reflection Agents（blog）**](https://blog.langchain.dev/reflection-agents/) — framework 實作參考 + 完整 working notebook
 - [**datawhalechina/hello-agents**](https://github.com/datawhalechina/hello-agents) — 對應章節（自我反思 / Self-Refine 段落、中文完整教學）
 
-> 💡 **想看反思怎麼長進 production agent**：[Stage 5 5.6 Harness Internals](05-claude-code-ecosystem.md#56--claude-code-source-解剖reference-harness-implementation-track-b-必看) 解剖 Claude Code source 時可以看到——agent 跑完 tool call 後自我評估 patch、有問題回頭改、修正後再 commit。**這是現代 production agent 的核心 building block 之一**。
+> 💡 **想看反思怎麼長進 production agent**：[Stage 5 5.6 Harness Internals](05-gemini-skills-ecosystem.md#56--claude-code-source-解剖reference-harness-implementation-track-b-必看) 解剖 Antigravity CLI source 時可以看到——agent 跑完 tool call 後自我評估 patch、有問題回頭改、修正後再 commit。**這是現代 production agent 的核心 building block 之一**。
 
 ## 🎯 精選 Projects
 

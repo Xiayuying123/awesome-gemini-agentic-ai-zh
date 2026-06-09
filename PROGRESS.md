@@ -30,7 +30,7 @@
 
 - [ ] **A1 — CLI Agent 入門 + 選擇** · [`tracks/cli/A1-cli-intro.md`](tracks/cli/A1-cli-intro.md)
 - [ ] **A2 — CLI Workflow Patterns** · [`tracks/cli/A2-cli-workflow.md`](tracks/cli/A2-cli-workflow.md)
-- [ ] **Stage 5 — Claude Code 生態(兩軌共用)** · [`stages/05-claude-code-ecosystem.md`](stages/05-claude-code-ecosystem.md)
+- [ ] **Stage 5 — Antigravity CLI 生態(兩軌共用)** · [`stages/05-gemini-skills-ecosystem.md`](stages/05-gemini-skills-ecosystem.md)
 - [ ] **A3 — Integration & Production** · [`tracks/cli/A3-cli-production.md`](tracks/cli/A3-cli-production.md)
 - [ ] **Stage 8 — Agent 操作介面(兩軌共用)** · [`stages/08-agent-interfaces.md`](stages/08-agent-interfaces.md)
 
@@ -42,7 +42,7 @@
 
 - [ ] **Stage 3 — 工具使用與第一個 Agent** ⭐ · [`stages/03-tool-use-and-hello-agent.md`](stages/03-tool-use-and-hello-agent.md)
 - [ ] **Stage 4 — Agent 框架** · [`stages/04-agent-frameworks.md`](stages/04-agent-frameworks.md)
-- [ ] **Stage 5 — Claude Code 生態** ⭐⭐(兩軌共用)· [`stages/05-claude-code-ecosystem.md`](stages/05-claude-code-ecosystem.md)
+- [ ] **Stage 5 — Antigravity CLI 生態** ⭐⭐(兩軌共用)· [`stages/05-gemini-skills-ecosystem.md`](stages/05-gemini-skills-ecosystem.md)
 - [ ] **Stage 6 — 上下文管理:RAG 與 Memory** · [`stages/06-memory-rag.md`](stages/06-memory-rag.md)
 - [ ] **Stage 7 — Multi-Agent · 進階應用** · [`stages/07-multi-agent-production.md`](stages/07-multi-agent-production.md)
 - [ ] **Stage 7.5 — 進階 Agentic 概念** · [`stages/07.5-advanced-agentic-concepts.md`](stages/07.5-advanced-agentic-concepts.md)

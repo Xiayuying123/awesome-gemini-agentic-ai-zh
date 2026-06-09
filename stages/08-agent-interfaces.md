@@ -10,7 +10,7 @@
 
 > 🔑 **關鍵名詞**：見本章內部解釋 + [`resources/glossary.md`](../resources/glossary.md)
 
-**兩 track 共用 hub**——跟 Stage 5（Claude Code 生態）一樣、Track A（CLI Power User）+ Track B（Agent Builder）兩條路徑都會用到。Stage 5 + Stage 8 是 curriculum 兩個 hub。
+**兩 track 共用 hub**——跟 Stage 5（Antigravity CLI 生態）一樣、Track A（CLI Power User）+ Track B（Agent Builder）兩條路徑都會用到。Stage 5 + Stage 8 是 curriculum 兩個 hub。
 
 ## 🎯 Agent Interfaces 是什麼（先定位）
 
@@ -49,9 +49,9 @@
 
 ### 為什麼兩 track 共用
 
-跟 Stage 5（Claude Code 生態）一樣、本 stage 是 **hub** 而非 track-specific：
+跟 Stage 5（Antigravity CLI 生態）一樣、本 stage 是 **hub** 而非 track-specific：
 
-- **Track A（CLI Power User）**：用 Claude Computer Use 委派桌面任務、用 Codex background mode、在 Claude Code 接 browser MCP
+- **Track A（CLI Power User）**：用 Claude Computer Use 委派桌面任務、用 Codex background mode、在 Antigravity CLI 接 browser MCP
 - **Track B（Agent Builder）**：embed browser-use 進自己 agent、用 E2B / Daytona 跑 agent-generated code、用 OpenAI Agents SDK 內建 sandbox
 
 **兩個 track 都繞不開這 3 層 interface**——所以放 hub 位置。
@@ -72,7 +72,7 @@
 
 你應該已經：
 
-- 完成 [Stage 5](05-claude-code-ecosystem.md)（懂 MCP / Skills / Plugins、Claude Code 用過 daily）
+- 完成 [Stage 5](05-gemini-skills-ecosystem.md)（懂 MCP / Skills / Plugins、Antigravity CLI 用過 daily）
 - 完成 [Stage 7](07-multi-agent-production.md)（懂 harness engineering、knows what reward-hacking warning is about）
 - 對 Docker / VM 概念基礎熟悉（本章會解釋 microVM / Container 差異、但完全沒接觸過 Docker 會卡）
 - **若只 Track A**：Stage 5 完成就夠，Stage 7 可選；本章 Track A 部分不依賴 build 經驗
@@ -235,7 +235,7 @@ agent 收到任務
 
 **為什麼 2026 才正式變 production 要求**：
 - **2026-04 OpenAI Agents SDK 更新**：[內建支援 7 個 sandbox provider](https://openai.com/index/the-next-evolution-of-the-agents-sdk/)（Blaxel / Cloudflare / Daytona / E2B / Modal / Runloop / Vercel）
-- 之前都靠 [Claude Code](05-claude-code-ecosystem.md) / [Cursor](https://www.cursor.com) 的 approval gate 擋——但 production agent **無人盯、必須 sandbox**
+- 之前都靠 [Antigravity CLI](05-gemini-skills-ecosystem.md) / [Cursor](https://www.cursor.com) 的 approval gate 擋——但 production agent **無人盯、必須 sandbox**
 
 ### 🔑 隔離技術術語小辭典
 
@@ -289,19 +289,19 @@ agent 收到任務
 
 **Reader pain**：Track A 想「**我怎麼用** Claude Computer Use 把桌面任務委派出去」、不是「怎麼 build」。
 
-### 1. 在 Claude Code 內接 Computer Use / Browser MCP
+### 1. 在 Antigravity CLI 內接 Computer Use / Browser MCP
 
-**Why MCP 路線**：你已熟 Claude Code（[Stage 5](05-claude-code-ecosystem.md)），新功能能透過 MCP 接、不用換工具。
+**Why MCP 路線**：你已熟 Antigravity CLI（[Stage 5](05-gemini-skills-ecosystem.md)），新功能能透過 MCP 接、不用換工具。
 
-- **Computer-use MCP**（社群實作多版本）：在 `.mcp.json` 加 server 後、Claude Code 內就能叫「截圖 → 看 → 操作」
-- **Browser MCP**：[Playwright MCP](https://github.com/modelcontextprotocol/servers) 等、Claude Code 可開瀏覽器跑 web 任務
+- **Computer-use MCP**（社群實作多版本）：在 `.mcp.json` 加 server 後、Antigravity CLI 內就能叫「截圖 → 看 → 操作」
+- **Browser MCP**：[Playwright MCP](https://github.com/modelcontextprotocol/servers) 等、Antigravity CLI 可開瀏覽器跑 web 任務
 
 ### 2. 用 Codex desktop 在 background 跑
 
 **Why background mode**：[OpenAI Codex desktop (April 2026)](https://openai.com/index/codex-for-almost-everything/) 預設不搶 cursor、agent 在後台跑、你繼續做別的事——**多個 agent workflow 可平行**。
 
 - 適合：「分析 Q3 財報、整理成 slide、發 Slack」這種**長時間 + 不需要盯著看**的任務
-- 跟 Claude Code 互補：Claude Code 做 code 任務、Codex desktop 做跨 app workflow
+- 跟 Antigravity CLI 互補：Antigravity CLI 做 code 任務、Codex desktop 做跨 app workflow
 
 ### 3. 用 Atlas / Comet / Gemini in Chrome 跑 web 任務
 
@@ -315,7 +315,7 @@ agent 收到任務
 ### 跨 app workflow 範例
 
 「**幫我把 Q3 csv 變成圖、存到 Slack #finance**」：
-1. Claude Code（接 Computer-use MCP）打開 Excel
+1. Antigravity CLI（接 Computer-use MCP）打開 Excel
 2. 載入 csv、用 chart wizard 生成圖表
 3. 截圖
 4. 切到 Slack、貼到 `#finance` channel
@@ -465,7 +465,7 @@ agent = Agent(
 |---|---|---|---|---|
 | **Computer Use SDK** | [anthropics/anthropic-quickstarts](https://github.com/anthropics/anthropic-quickstarts) | ⭐⭐⭐⭐⭐ | 第一次接觸 Computer Use | 含 Docker quickstart、5 分鐘起步 |
 | | [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) | ⭐⭐⭐⭐⭐ | 用 OpenAI 寫 production agent | 2026-04 內建 harness + 7 sandbox provider |
-| | [anthropics/claude-agent-sdk-python](https://github.com/anthropics/claude-agent-sdk-python) | ⭐⭐⭐⭐⭐ | 用 Claude 寫 production agent | Anthropic 早於 OpenAI 的 agent SDK、跟 Claude Code 同 runtime |
+| | [anthropics/claude-agent-sdk-python](https://github.com/anthropics/claude-agent-sdk-python) | ⭐⭐⭐⭐⭐ | 用 Claude 寫 production agent | Anthropic 早於 OpenAI 的 agent SDK、跟 Antigravity CLI 同 runtime |
 | **Browser Use OSS** | [browser-use/browser-use](https://github.com/browser-use/browser-use) ⭐ | ⭐⭐⭐⭐⭐ | OSS web agent 第一名 | 86k+ stars、MIT、LLM-vendor agnostic |
 | | [microsoft/OmniParser](https://github.com/microsoft/OmniParser) | ⭐⭐⭐⭐ | vision-based GUI parsing | v2 60% latency 改善、Apache 2.0、含 OmniTool（Windows VM control）|
 | **AI Browser**（閉源 / 消費）| [Atlas](https://openai.com/index/introducing-chatgpt-atlas/) | ⭐⭐⭐⭐ | ChatGPT user + Agent Mode | OpenAI 出品、macOS GA |

@@ -1,59 +1,59 @@
-# Stage 5 — Claude Code Ecosystem ⭐⭐
+# Stage 5 — Antigravity CLI Ecosystem ⭐⭐
 
-> [繁體中文](./05-claude-code-ecosystem.md) | [简体中文](./05-claude-code-ecosystem.zh-Hans.md) | **English**
+> [繁體中文](./05-gemini-skills-ecosystem.md) | [简体中文](./05-gemini-skills-ecosystem.zh-Hans.md) | **English**
 
 ⏱ **Time estimate**: 3-4 weeks (~15-25 hours)
 
-> 🚪 **Entry condition** (shared hub — differs by track): **Track A (CLI Power User)** arrives from A1-A2 — knowing Python + having run a basic CLI is enough; start from 5.1/5.2. **Track B (Agent Builder)** should first complete [Stage 3](03-tool-use-and-hello-agent.en.md) (tool use) + [Stage 4](04-agent-frameworks.en.md) (agent frameworks), then read this whole stage as "how Claude Code works internally". Not sure which track? → see the 📌 two-track note below.
+> 🚪 **Entry condition** (shared hub — differs by track): **Track A (CLI Power User)** arrives from A1-A2 — knowing Python + having run a basic CLI is enough; start from 5.1/5.2. **Track B (Agent Builder)** should first complete [Stage 3](03-tool-use-and-hello-agent.en.md) (tool use) + [Stage 4](04-agent-frameworks.en.md) (agent frameworks), then read this whole stage as "how Antigravity CLI works internally". Not sure which track? → see the 📌 two-track note below.
 
 > 💡 This entire stage revolves around 4 keywords (**MCP / Skills / Plugins / Marketplace**) → if you're not familiar with them, first check out [`resources/glossary.en.md` 5](../resources/glossary.en.md#5-claude-code-ecosystem).
 
 **👥 Shared Hub**: This stage is used by both Track A (CLI Power User) and Track B (Agent Builder). Stage 5 and [Stage 8 — Agent Interfaces](08-agent-interfaces.en.md) are the two central hubs of this curriculum.
 
 > 📌 **This stage is used by both tracks**:
-> - **Track A (CLI Power User)**: A2 uses [5.1 (Claude Code Basics)](#51--claude-code-basics); A3 uses [5.2 (MCP)](#52--mcp-model-context-protocol--foundation) + selectively uses [5.3 (Skills)](#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem) and [5.4 (Plugins)](#54--plugins--marketplaces) (A3's Exercise CLI-12 will teach you how to package CLAUDE.md and commands into a plugin). The reading perspective is "**how to get work done with Claude Code**."
-> - **Track B (Agent Builder)**: Treats the entire stage as a deep dive into "**how Claude Code works internally**," from 5.1 all the way to 5.4.
+> - **Track A (CLI Power User)**: A2 uses [5.1 (Antigravity CLI Basics)](#51--claude-code-basics); A3 uses [5.2 (MCP)](#52--mcp-model-context-protocol--foundation) + selectively uses [5.3 (Skills)](#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem) and [5.4 (Plugins)](#54--plugins--marketplaces) (A3's Exercise CLI-12 will teach you how to package GEMINI.md and commands into a plugin). The reading perspective is "**how to get work done with Antigravity CLI**."
+> - **Track B (Agent Builder)**: Treats the entire stage as a deep dive into "**how Antigravity CLI works internally**," from 5.1 all the way to 5.4.
 
-> 🗺️ **What kind of agent is Claude Code?** → See [`resources/agent-paradigms.en.md`](../resources/agent-paradigms.en.md) Type 1 (IDE-coupled) + Type 2 (Terminal pair-programmer); start there for a full comparison of all 5 paradigms.
+> 🗺️ **What kind of agent is Antigravity CLI?** → See [`resources/agent-paradigms.en.md`](../resources/agent-paradigms.en.md) Type 1 (IDE-coupled) + Type 2 (Terminal pair-programmer); start there for a full comparison of all 5 paradigms.
 
-> ⚠️ **Looking to use a local LLM? This stage is not that path.** Claude Code requires the Anthropic API / OAuth and cannot be directly pointed to Ollama or a local endpoint. For offline work, sensitive data, or to avoid using API quota, please see [`resources/cookbook.en.md` Recipe 6](../resources/cookbook.en.md#6-local-llm--cli-agent-quick-walkthrough) and use a CLI agent that supports BYO LLM, like OpenCode / goose / Aider / Hermes.
+> ⚠️ **Looking to use a local LLM? This stage is not that path.** Antigravity CLI requires the Anthropic API / OAuth and cannot be directly pointed to Ollama or a local endpoint. For offline work, sensitive data, or to avoid using API quota, please see [`resources/cookbook.en.md` Recipe 6](../resources/cookbook.en.md#6-local-llm--cli-agent-quick-walkthrough) and use a CLI agent that supports BYO LLM, like OpenCode / goose / Aider / Hermes.
 
-> 📋 **Structure of this chapter**: 6 sub-chapters (5.1 Basics / 5.2 MCP / 5.3 Skills / 5.4 Plugins / 5.5 Subagents / 5.6 Dissecting Claude Code Source), each with "Learning Goals → Required Reading → Hands-on Exercises → Curated Projects" → followed by a self-check at the end of the chapter. **Note**: The **discipline-level** concept of Harness Engineering (the engineering of an agent's execution system) is systematically covered in [Stage 7](07-multi-agent-production.en.md); 5.6 in this chapter uses Claude Code as a case study, observing how a mature agent tool handles tools, memory, configuration, permissions, and execution flow
+> 📋 **Structure of this chapter**: 6 sub-chapters (5.1 Basics / 5.2 MCP / 5.3 Skills / 5.4 Plugins / 5.5 Subagents / 5.6 Dissecting Antigravity CLI Source), each with "Learning Goals → Required Reading → Hands-on Exercises → Curated Projects" → followed by a self-check at the end of the chapter. **Note**: The **discipline-level** concept of Harness Engineering (the engineering of an agent's execution system) is systematically covered in [Stage 7](07-multi-agent-production.en.md); 5.6 in this chapter uses Antigravity CLI as a case study, observing how a mature agent tool handles tools, memory, configuration, permissions, and execution flow
 > 🔑 **Key Terms**: See [`resources/glossary.en.md` 5](../resources/glossary.en.md#5-claude-code-ecosystem).
 
 ## Stack at a Glance
 
 From top to bottom, each layer builds on the one below it:
 
-![Claude Code Ecosystem Stack](../resources/diagrams/stage5-stack.en.png)
+![Antigravity CLI Ecosystem Stack](../resources/diagrams/stage5-stack.en.png)
 
 Each layer adds a capability:
 - **API + SDK**: Programmatic access to the LLM.
 - **Tool Use**: Allows the LLM to call functions you define.
 - **MCP**: A standardized protocol that lets any LLM host use any tool server.
-- **Skills**: Behavior bundles for Claude Code that can wrap MCP tools.
+- **Skills**: Behavior bundles for Antigravity CLI that can wrap MCP tools.
 - **Plugins**: Package and distribute Skills, hooks, commands, and MCP settings as a single unit.
 
 This stage has 4 sub-sections. **Please do them in order**—each one builds on the last.
 
 ```
-5.1 Claude Code Basics 3-5 days (installation, slash commands, CLAUDE.md)
+5.1 Antigravity CLI Basics 3-5 days (installation, slash commands, GEMINI.md)
 5.2 MCP — Protocol Layer 5-7 days (write your first MCP server)
 5.3 Skills — Behavior Layer 5-7 days (write your first SKILL.md)
 5.4 Plugins & Marketplaces 5-7 days (package and publish)
 ```
 
-After completing this stage, you will be able to extend Claude Code, write your own MCP server, and publish a plugin marketplace.
+After completing this stage, you will be able to extend Antigravity CLI, write your own MCP server, and publish a plugin marketplace.
 
 ---
 
 ## 🗺️ 7-Layer Architecture Map (read this first, then 5.1-5.6)
 
-> 📋 **What this section is**: maps Claude Code's 7 primitives (MCP / Skills / Plugins / Subagents / Hooks / Slash commands / CLI) to **7 architecture layers + 3 engineering disciplines**. Read it once before 5.1-5.6 to know which layer each sub-chapter teaches; read it again afterward as synthesis. **The layering is a teaching choice, not an absolute truth**.
+> 📋 **What this section is**: maps Antigravity CLI's 7 primitives (MCP / Skills / Plugins / Subagents / Hooks / Slash commands / CLI) to **7 architecture layers + 3 engineering disciplines**. Read it once before 5.1-5.6 to know which layer each sub-chapter teaches; read it again afterward as synthesis. **The layering is a teaching choice, not an absolute truth**.
 
-![Claude Code 7-Layer Architecture Map](../resources/diagrams/claude-architecture-map.en.png)
+![Antigravity CLI 7-Layer Architecture Map](../resources/diagrams/claude-architecture-map.en.png)
 
-> 📊 **Above**: Claude Code 7 architecture layers + 3 engineering disciplines integrated view.
+> 📊 **Above**: Antigravity CLI 7 architecture layers + 3 engineering disciplines integrated view.
 
 ### One sentence per layer + Claude's primitive
 
@@ -82,9 +82,9 @@ Prompt / Context / Harness are **disciplines for different layers**. Learning on
 
 ### Cross-CLI vendor mini-comparison (2026-05 snapshot)
 
-Only Claude Code has the **full 7-layer stack**; most other CLIs stop at single-agent plus simplified variants:
+Only Antigravity CLI has the **full 7-layer stack**; most other CLIs stop at single-agent plus simplified variants:
 
-| Layer | Claude Code | OpenAI Codex | Gemini CLI |
+| Layer | Antigravity CLI | OpenAI Codex | Gemini CLI |
 |---|---|---|---|
 | L5 Coordination (multi-agent) | ✅ Subagents | ❌ single-agent | ❌ |
 | L3 Control Plane (hooks) | ✅ Hooks | ❌ | ❌ |
@@ -95,11 +95,11 @@ Only Claude Code has the **full 7-layer stack**; most other CLIs stop at single-
 
 ---
 
-## 5.1 — Claude Code Basics
+## 5.1 — Antigravity CLI Basics
 
-### What is Claude Code (Positioning First)
+### What is Antigravity CLI (Positioning First)
 
-**Claude Code = a Claude agent that runs inside your terminal**—with full access to the file system, shell, git, and subprocesses, capable of **autonomously completing multi-step tasks** (read file → modify file → run tests → commit → create PR).
+**Antigravity CLI = a Claude agent that runs inside your terminal**—with full access to the file system, shell, git, and subprocesses, capable of **autonomously completing multi-step tasks** (read file → modify file → run tests → commit → create PR).
 
 Differences from other Claude interfaces:
 
@@ -108,64 +108,64 @@ Differences from other Claude interfaces:
 | **claude.ai** (web) | Browser | Pure chat + file uploads, no file system operations | Occasional chats, asking a single question |
 | **Claude API** (programmatic) | Your server / script | LLM calls, you build the agent loop | Building production systems |
 | **Claude Agent SDK** | Your Python / TS environment | Full agent runtime + tool use + multiple sessions | Building production agent systems |
-| **Claude Code** (**This Section**) | Your terminal | **Full OS-level agent** (file / shell / git / subprocess) + skill / plugin / subagent ecosystem | **Primary daily work tool** |
+| **Antigravity CLI** (**This Section**) | Your terminal | **Full OS-level agent** (file / shell / git / subprocess) + skill / plugin / subagent ecosystem | **Primary daily work tool** |
 
-Before moving on to 5.2-5.6, you will learn about **4 core structures of Claude Code** in this section: CLAUDE.md (memory layer) / slash commands (control layer) / the `~/.claude/` directory (configuration layer) / settings.json (behavior layer).
+Before moving on to 5.2-5.6, you will learn about **4 core structures of Antigravity CLI** in this section: GEMINI.md (memory layer) / slash commands (control layer) / the `~/.claude/` directory (configuration layer) / settings.json (behavior layer).
 
 ### Learning Goals
 
 After completing this section, you will be able to:
-- Explain the respective roles of Claude Code, claude.ai, the API, and the SDK (**"why use the CLI instead of the web"**)
-- Install Claude Code, configure authentication, and run your first session with file access
-- Use 8-10 common slash commands to control Claude Code's behavior
-- Write a project-level `CLAUDE.md` to set baseline behavior
+- Explain the respective roles of Antigravity CLI, claude.ai, the API, and the SDK (**"why use the CLI instead of the web"**)
+- Install Antigravity CLI, configure authentication, and run your first session with file access
+- Use 8-10 common slash commands to control Antigravity CLI's behavior
+- Write a project-level `GEMINI.md` to set baseline behavior
 - Recognize the `~/.claude/` directory structure (where skills / agents / plugins / settings.json are located)
 
 ### Required Reading
-1. [**Anthropic — Claude Code Quickstart**](https://docs.claude.com/en/docs/claude-code/quickstart) — Official installation guide
-2. [**Anthropic — CLAUDE.md best practices**](https://docs.claude.com/en/docs/claude-code/memory) — How to write project memory
+1. [**Anthropic — Antigravity CLI Quickstart**](https://docs.claude.com/en/docs/claude-code/quickstart) — Official installation guide
+2. [**Anthropic — GEMINI.md best practices**](https://docs.claude.com/en/docs/claude-code/memory) — How to write project memory
 3. [**Anthropic — Slash Commands**](https://docs.claude.com/en/docs/claude-code/slash-commands) — Official full list of slash commands
 4. [**Anthropic — Settings**](https://docs.claude.com/en/docs/claude-code/settings) — Full `settings.json` schema + env vars
 5. [**KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh**](https://github.com/KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh) — A beginner's guide in Simplified Chinese
 
-> 🛠️ **Writing a good CLAUDE.md?** First read [Stage 7.5 Core Harness Engineering Principles (multi-source synthesis)](07.5-advanced-agentic-concepts.en.md#-cross-concept-harness-engineering-principles-multi-source-synthesis) to build the mental model, then use the 2 prompts below.
+> 🛠️ **Writing a good GEMINI.md?** First read [Stage 7.5 Core Harness Engineering Principles (multi-source synthesis)](07.5-advanced-agentic-concepts.en.md#-cross-concept-harness-engineering-principles-multi-source-synthesis) to build the mental model, then use the 2 prompts below.
 
-### 📋 CLAUDE.md design prompts (using the 5 principles)
+### 📋 GEMINI.md design prompts (using the 5 principles)
 
-Copy these directly when writing or revising CLAUDE.md:
+Copy these directly when writing or revising GEMINI.md:
 
-#### Prompt 1 — Audit your existing CLAUDE.md
+#### Prompt 1 — Audit your existing GEMINI.md
 
 ```
-I have a CLAUDE.md at [paste path]. Audit it against these 5 harness engineering principles:
+I have a GEMINI.md at [paste path]. Audit it against these 5 harness engineering principles:
 
 1. Legibility — Markdown headers for sections? Conventions written concretely ("2-space indent") or vaguely ("format properly")?
 2. Progressive Disclosure — Under 200 lines? Are `@-import` or `.claude/rules/<topic>.md` used to split content?
-3. System of Record — Does CLAUDE.md act as an entry map pointing to `docs/` + `.coord/`, or does it cram all rules in one file?
+3. System of Record — Does GEMINI.md act as an entry map pointing to `docs/` + `.coord/`, or does it cram all rules in one file?
 4. Taste Invariants — Verifiable rules ("run `make lint` before commit") or unverifiable phrases ("follow best practices")?
 5. Transparency — Does it require the agent to show planning steps, or does it expect silent execution?
 
 For each: PASS / FAIL / PARTIAL + reason + fix suggestion. Total X/5 + first thing to fix.
 ```
 
-#### Prompt 2 — Generate a new CLAUDE.md (using the 5 principles)
+#### Prompt 2 — Generate a new GEMINI.md (using the 5 principles)
 
 ```
-I want to write CLAUDE.md for a [describe project — e.g. Python data-analysis monorepo / academic paper repo / Next.js app] following these 5 harness engineering principles:
+I want to write GEMINI.md for a [describe project — e.g. Python data-analysis monorepo / academic paper repo / Next.js app] following these 5 harness engineering principles:
 
 - **Under 200 lines**
 - Acts as an **entry map** — use `@-import` to pull in external docs or `.claude/rules/<topic>.md`
 - Every rule must be **verifiable** (avoid "follow best practices" hand-waving)
 - Include **1-2 transparency rules** (e.g. "show the plan before any edit > 50 lines")
-- Mark which content belongs in CLAUDE.md vs `.claude/rules/<topic>.md`
+- Mark which content belongs in GEMINI.md vs `.claude/rules/<topic>.md`
 
 Output:
-1. Full CLAUDE.md content
+1. Full GEMINI.md content
 2. Suggested `.claude/rules/` directory split (topic list)
 3. One example `.claude/rules/<topic>.md` (pick one topic)
 ```
 
-→ **Suggested workflow**: use Prompt 2 to generate a draft before writing CLAUDE.md, then use Prompt 1 to audit the finished file.
+→ **Suggested workflow**: use Prompt 2 to generate a draft before writing GEMINI.md, then use Prompt 1 to audit the finished file.
 
 ### Common Slash Commands (10 to learn)
 
@@ -190,7 +190,7 @@ For a complete list, see the official [Slash Commands documentation](https://doc
 ~/.claude/ ← Global user-level
 ├── settings.json ← Global behavior (env / hooks / permissions / model defaults)
 ├── settings.local.json ← Machine-specific (not checked into git)
-├── CLAUDE.md ← Global baseline (loaded in every session)
+├── GEMINI.md ← Global baseline (loaded in every session)
 ├── skills/<name>/SKILL.md ← User-level skills (5.3)
 ├── agents/<name>.md ← User-level subagents (5.5)
 ├── plugins/ ← Installed plugins (5.4)
@@ -204,14 +204,14 @@ For a complete list, see the official [Slash Commands documentation](https://doc
 ├── commands/<name>.md ← Project-level slash commands
 └── hooks/ ← Project-level hooks
 
-<project-root>/CLAUDE.md ← Project baseline (loaded in every session)
+<project-root>/GEMINI.md ← Project baseline (loaded in every session)
 ```
 
 **Priority Order** (who wins in a conflict): project > user > built-in default.
 
 ### Hands-on Exercises
 - **Exercise 1: First Session** — Install, authenticate, `cd` to a repo, run `claude` → ask "summarize this codebase" → observe how it reads files.
-- **Exercise 2: CLAUDE.md** — Write a `CLAUDE.md` in the repo root (role / context / what not to do / how to do things / common commands), and compare the behavior with and without the `CLAUDE.md`.
+- **Exercise 2: GEMINI.md** — Write a `GEMINI.md` in the repo root (role / context / what not to do / how to do things / common commands), and compare the behavior with and without the `GEMINI.md`.
 - **Exercise 3: 5 Slash Commands** — In one session, use `/help`, `/plan`, `/compact`, `/model`, and `/agents` in order, and observe what each one does.
 - **Exercise 4: Directory Exploration** — Run `ls ~/.claude/` + `cat ~/.claude/settings.json` to see what your user-level settings look like.
 
@@ -219,8 +219,8 @@ For a complete list, see the official [Slash Commands documentation](https://doc
 
 | Project | ⭐ | Best for | Why it's recommended / Notes |
 |---|---|---|---|
-| [anthropics/claude-code](https://github.com/anthropics/claude-code) ⭐ Official | ⭐⭐⭐⭐⭐ | Tracking new versions / reading release notes / reporting bugs | The official Claude Code repo, with issues, releases, and inline examples. |
-| [Anthropic — Claude Code Official Docs](https://docs.claude.com/en/docs/claude-code/overview) | ⭐⭐⭐⭐⭐ | Any reference query | **The true canonical reference**—the 5 required readings above all come from here. |
+| [anthropics/claude-code](https://github.com/anthropics/claude-code) ⭐ Official | ⭐⭐⭐⭐⭐ | Tracking new versions / reading release notes / reporting bugs | The official Antigravity CLI repo, with issues, releases, and inline examples. |
+| [Anthropic — Antigravity CLI Official Docs](https://docs.claude.com/en/docs/claude-code/overview) | ⭐⭐⭐⭐⭐ | Any reference query | **The true canonical reference**—the 5 required readings above all come from here. |
 | [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | ⭐⭐⭐⭐ | Seeing what the community has to offer (slash command / skill / hook examples) | A broader list of resources (currently being reorganized). |
 | [KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh](https://github.com/KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh) | ⭐⭐⭐⭐ | Chinese readers who want a step-by-step tutorial | A beginner's guide in Simplified Chinese. |
 
@@ -253,7 +253,7 @@ For a complete list, see the official [Slash Commands documentation](https://doc
 
 ### Learning Goals
 - Explain MCP's three abstractions (Tools, Resources, Prompts)
-- Connect an existing MCP server to Claude Desktop or Claude Code
+- Connect an existing MCP server to Claude Desktop or Antigravity CLI
 - Write a minimal MCP server in Python that provides 1-2 tools
 - Distinguish between an MCP server, Tool Use, Skills, and Plugins
 
@@ -264,7 +264,7 @@ For a complete list, see the official [Slash Commands documentation](https://doc
 
 ### Hands-on Exercises
 - **Exercise: MCP client** — Install `modelcontextprotocol/servers/filesystem` and connect to it from Claude Desktop. Watch Claude read your files.
-- **Exercise: MCP server** — Write a Python MCP server that provides one tool (e.g., "convert temperature"). Connect to it from Claude Code. **For step-by-step instructions** → see [`resources/cookbook.en.md` 2](../resources/cookbook.en.md#2-write-your-first-mcp-server).
+- **Exercise: MCP server** — Write a Python MCP server that provides one tool (e.g., "convert temperature"). Connect to it from Antigravity CLI. **For step-by-step instructions** → see [`resources/cookbook.en.md` 2](../resources/cookbook.en.md#2-write-your-first-mcp-server).
 - **Exercise: MCP in production** — In the same Claude session, connect to 2-3 MCP servers simultaneously and watch them coordinate.
 
 ### Curated Projects (for spec / SDK / template reference)
@@ -281,11 +281,11 @@ For a complete list, see the official [Slash Commands documentation](https://doc
 | [punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) | ⭐⭐⭐⭐ | Cross-referencing with wong2's list | Another MCP server catalog, organized differently and often updated more frequently. |
 | [github/github-mcp-server](https://github.com/github/github-mcp-server) | ⭐⭐⭐⭐ | Reading the source of an MCP server actually running in production | Maintained by GitHub, a real example running in production. |
 | [21st-dev/magic-mcp](https://github.com/21st-dev/magic-mcp) | ⭐⭐⭐ | Finding inspiration after Exercise 2 | A non-trivial MCP server that generates UI components, ★ 4.8k+, NOASSERTION. **Shows that MCP can do more than just data fetching.** |
-| [yamadashy/repomix](https://github.com/yamadashy/repomix) | ⭐⭐⭐⭐⭐ | Feeding an entire codebase to an LLM | ★ 24k+, MIT. Packs a repo into a single AI-friendly file, with MCP server mode + tree-sitter compression (~70% token savings) + secretlint to filter secrets. **Daily-driver tool to pair with Claude Code / Codex.** |
+| [yamadashy/repomix](https://github.com/yamadashy/repomix) | ⭐⭐⭐⭐⭐ | Feeding an entire codebase to an LLM | ★ 24k+, MIT. Packs a repo into a single AI-friendly file, with MCP server mode + tree-sitter compression (~70% token savings) + secretlint to filter secrets. **Daily-driver tool to pair with Antigravity CLI / Codex.** |
 
 ---
 
-## 5.3 — Skills (Claude Code's Behavior Layer) ⭐ The most critical layer of the Claude Code ecosystem
+## 5.3 — Skills (Antigravity CLI's Behavior Layer) ⭐ The most critical layer of the Antigravity CLI ecosystem
 
 ### What is a Skill (Positioning First)
 
@@ -334,15 +334,15 @@ Output:
 
 → **Suggested workflow**: start with `/skill skill-creator` for a clean skeleton → use Prompt 2 to fill it in → finish with Prompt 1 to audit it.
 
-**Core mental model**: If you find yourself "**typing the same prompt every time to teach Claude how to do something**" → write it as a skill, and you won't have to next time. In the Claude Code ecosystem, **skills are the dividing line between power users and regular users**—those proficient in writing skills can compress an hour of work into 5 minutes.
+**Core mental model**: If you find yourself "**typing the same prompt every time to teach Claude how to do something**" → write it as a skill, and you won't have to next time. In the Antigravity CLI ecosystem, **skills are the dividing line between power users and regular users**—those proficient in writing skills can compress an hour of work into 5 minutes.
 
-### Skill vs CLAUDE.md vs MCP vs Plugin vs Subagent — A Comparison Table
+### Skill vs GEMINI.md vs MCP vs Plugin vs Subagent — A Comparison Table
 
 These layers are often confused. **A one-line comparison**:
 
 | Component | What it is | When to Use | Trigger | Example |
 |---|---|---|---|---|
-| **CLAUDE.md** (5.1) | Baseline behavior for a repo / project | Repo-wide conventions ("use type hints," "commit message format") | **Loaded in every session**, regardless of context | The CLAUDE.md in your repo root |
+| **GEMINI.md** (5.1) | Baseline behavior for a repo / project | Repo-wide conventions ("use type hints," "commit message format") | **Loaded in every session**, regardless of context | The GEMINI.md in your repo root |
 | **MCP server** (5.2) | A protocol server that provides tools / data | When you want Claude to access **external resources** (APIs / DBs / file systems) | After the server starts, can be called anytime | `github` MCP / `postgres` MCP |
 | **Skill** (**This Section**) | A **behavior package for a specific situation** | When you want to set "**in situation X → follow process Y**" | **Auto-loaded on description match** | `skill-vetter` (checks before installing a skill) / `pdf` (handles PDFs) |
 | **Plugin** (5.4) | A distributable package of skills + commands + MCP + hooks | When you want to share / install a **whole set** of configurations | `/plugin install <name>@<marketplace>` | `engineering` bundle / `finance` bundle |
@@ -350,7 +350,7 @@ These layers are often confused. **A one-line comparison**:
 
 **How to choose**:
 
-- A single-line setting → put it in `CLAUDE.md`
+- A single-line setting → put it in `GEMINI.md`
 - A multi-step process, used only in a specific situation → write a **Skill** (the topic of this section)
 - Need to access external resources (API / DB) → write an **MCP server**
 - The skill is too large and consumes the entire main session window → turn it into a **Subagent**
@@ -396,7 +396,7 @@ These layers are often confused. **A one-line comparison**:
 | **📊 Data analysis** | `data-analyst` / `visualization-expert` | community | SQL / pandas / chart type selection. |
 | **⚙️ Permissions / settings management** | `update-config` / `fewer-permission-prompts` | claude-plugins-official | Management of hooks / permissions / env vars. |
 | **🔁 Self-improvement** | `self-improving-agent` | community | Captures learning / errors / corrections for continuous agent improvement. |
-| **🌐 General / fallback** | `general-purpose` | Built into Claude Code | The default entry point for complex, open-ended tasks and uncovered scenarios. |
+| **🌐 General / fallback** | `general-purpose` | Built into Antigravity CLI | The default entry point for complex, open-ended tasks and uncovered scenarios. |
 
 **Suggested adoption order**:
 1. **First must-install**: `skill-vetter` (use it to check other skills before installing them).
@@ -412,13 +412,13 @@ These layers are often confused. **A one-line comparison**:
 | Project | ⭐ | Best for | Why it's recommended / Notes |
 |---|---|---|---|
 | [anthropics/skills](https://github.com/anthropics/skills) ⭐ Official spec | ⭐⭐⭐⭐⭐ | Reading before writing your own SKILL.md | Anthropic's official Skills repo: `spec/` (frontmatter standard) + `template/` (starter template) + `skills/` containing reference implementations like pdf / docx / xlsx / pptx / skill-creator / skill-vetter. ★ 144k+. **A reference template for SKILL.md structure**. For the broader Agent Skills standard, see [agentskills.io](https://agentskills.io). |
-| [anthropics/claude-code](https://github.com/anthropics/claude-code) | ⭐⭐⭐⭐ | Tracking new features, reading release notes | The main Claude Code repo, including issues / releases / inline skill examples. For learning Skills, this repo is secondary to the one above. |
+| [anthropics/claude-code](https://github.com/anthropics/claude-code) | ⭐⭐⭐⭐ | Tracking new features, reading release notes | The main Antigravity CLI repo, including issues / releases / inline skill examples. For learning Skills, this repo is secondary to the one above. |
 | [mattpocock/skills](https://github.com/mattpocock/skills) | ⭐⭐⭐⭐ | Seeing "real-world engineer daily SKILL.mds" | Matt Pocock (a well-known educator in the TypeScript community) has open-sourced his actual `.claude/` directory. Each SKILL.md is **extremely short (10-50 lines)** and not over-engineered. **A valuable reference against over-engineered 200-line skills** (★ 120k+, MIT). |
 | [obra/superpowers](https://github.com/obra/superpowers) | ⭐⭐⭐⭐ | Power user setup, learning advanced patterns | 20+ battle-tested skills (TDD, debugging, collaboration patterns) + `/brainstorm` / `/write-plan` / `/execute-plan` commands + a skills-search tool. |
 | [wshobson/agents](https://github.com/wshobson/agents) | ⭐⭐⭐⭐ | Intermediate: learning skill + subagent combinations | Composes skills + subagents for multi-agent orchestration. An example of **evolving from a single SKILL.md to an agent-as-skill composition pattern** (★ 35k+, MIT). |
 | [travisvn/awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills) | ⭐⭐⭐⭐ | Finding an existing skill before writing your own | A curated list of community Claude Skills. |
-| [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | ⭐⭐⭐ | A cross-tool perspective | 1000+ agent skills, compatible with Claude Code / Codex / Gemini CLI / Cursor (★ 24k+, MIT). |
-| [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) | ⭐⭐⭐ | Finding domain-specific skill examples | 232+ Claude Code skills across engineering / marketing / product / compliance. |
+| [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | ⭐⭐⭐ | A cross-tool perspective | 1000+ agent skills, compatible with Antigravity CLI / Codex / Gemini CLI / Cursor (★ 24k+, MIT). |
+| [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) | ⭐⭐⭐ | Finding domain-specific skill examples | 232+ Antigravity CLI skills across engineering / marketing / product / compliance. |
 
 ---
 
@@ -496,7 +496,7 @@ Plugin
 | [anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins) | ⭐⭐⭐⭐⭐ | Seeing a "multi-vertical bundle" type of marketplace | **18 domain-specific plugin bundles** (finance / engineering / sales / legal / marketing / HR / customer-support / data / design / operations / product / productivity / bio-research / enterprise-search / pdf-viewer / small-business / cowork-plugin-management / partner-built). Anthropic's own template for knowledge worker scenarios. |
 | [obra/superpowers-marketplace](https://github.com/obra/superpowers-marketplace) | ⭐⭐⭐⭐ | Those who want to create a "I curate, others write" type of marketplace | **The most minimal marketplace template**—the repo only contains `marketplace.json` + README, with the plugin bodies in external repos. The minimal template for the curator-only pattern (★ 1k+, MIT). |
 | [trailofbits/skills-curated](https://github.com/trailofbits/skills-curated) | ⭐⭐⭐ | Reviewers / teams concerned about supply chain security | A **security-vetted** marketplace maintained by Trail of Bits. Every skill is reviewed, and the README clearly states the criteria. **Demonstrates that a marketplace is not just a list, but also a trust mechanism** (★ 431, CC-BY-SA-4.0). |
-| [rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit) | ⭐⭐⭐ | Those who want to browse what the community has to offer | The largest community catalog of Claude Code agents / skills / hooks / templates. Covers a wide range of use cases. |
+| [rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit) | ⭐⭐⭐ | Those who want to browse what the community has to offer | The largest community catalog of Antigravity CLI agents / skills / hooks / templates. Covers a wide range of use cases. |
 | [anthropics/life-sciences](https://github.com/anthropics/life-sciences) | ⭐⭐⭐ | Those creating a domain-specific marketplace (medical, financial, legal, educational, etc.) | Anthropic's own **domain-specific marketplace** example (for biology / health sciences), demonstrating how to tailor `marketplace.json` for a single vertical. **The payload is bio-sci MCP servers, but the structure of marketplace.json is the main lesson** (★ 420). |
 | [anthropics/claude-for-legal](https://github.com/anthropics/claude-for-legal) | ⭐⭐⭐⭐ | Want to see a full vertical plugin suite (skills + agents + MCP + scheduled agents) | **Anthropic's official legal vertical reference** (★ 7.9k+, Apache-2.0) — 10 legal plugins (commercial / corporate / litigation / privacy / employment / IP / law-student) + 100+ skills + 20+ MCP connectors + scheduled agents + subagent delegation. **You don't need to know law** — this is the best teaching material for "**how to design a vertical plugin suite**": system prompt patterns, accountability surfaces, and the `orchestrate.py` event loop. |
 
@@ -504,7 +504,7 @@ Plugin
 
 ---
 
-## 5.5 — Subagents (Claude Code's native multi-agent mechanism) ⭐ 2025 new feature
+## 5.5 — Subagents (Antigravity CLI's native multi-agent mechanism) ⭐ 2025 new feature
 
 Up to this point, you've learned about MCP (the tool layer), Skills (the behavior layer), and Plugins (the distribution layer). **Subagents are the orchestration layer**—they allow the main Claude session to spawn child agents with independent contexts to run specific tasks and report back the results.
 
@@ -517,20 +517,20 @@ A comparison with framework-based multi-agent systems from Stage 4 (LangGraph / 
 | Dimension | Framework path (Stage 4) | Claude Subagent path (This Section) |
 |---|---|---|
 | Activation | `pip install crewai` + Python code | Simply write a `.claude/agents/<name>.md` file |
-| Runtime | Your own Python process | Claude Code's built-in Task tool |
+| Runtime | Your own Python process | Antigravity CLI's built-in Task tool |
 | Context isolation | Managed by the framework | **Innate**, each subagent has an independent window |
-| Provider lock-in | Medium (many frameworks support multi-LLM) | **Strong** (tied to Claude Code) |
-| Best for | Production systems that span LLM providers | Engineering teams already committed to Claude Code |
+| Provider lock-in | Medium (many frameworks support multi-LLM) | **Strong** (tied to Antigravity CLI) |
+| Best for | Production systems that span LLM providers | Engineering teams already committed to Antigravity CLI |
 | Learning curve | High (framework abstractions + async) | Low (writing markdown) |
 
 ### Current state of multi-agent mechanisms in various CLIs / SDKs (late 2025)
 
-Many people assume that multi-agent CLIs are a standard feature for Anthropic / OpenAI / Google—but in reality, only **Claude Code currently has a complete native multi-agent stack**. Codex CLI / Gemini CLI / Cursor are still single-agent; to get multi-agent functionality, you have to write it yourself using an SDK or framework.
+Many people assume that multi-agent CLIs are a standard feature for Anthropic / OpenAI / Google—but in reality, only **Antigravity CLI currently has a complete native multi-agent stack**. Codex CLI / Gemini CLI / Cursor are still single-agent; to get multi-agent functionality, you have to write it yourself using an SDK or framework.
 
 | Platform | Subagent | Agent team | Background agent | Mechanism |
 |---|:---:|:---:|:---:|---|
-| **Claude Code** (CLI) | ✅ | ✅ | ✅ | `.claude/agents/<name>.md` + Task tool (subagent) + [agent teams](https://docs.claude.com/en/docs/claude-code/agent-teams) + [agent view / background](https://docs.claude.com/en/docs/claude-code/agent-view) |
-| **OpenAI Codex CLI** | ❌ | ❌ | ❌ | `AGENTS.md` is just a **single-agent context file** (similar to CLAUDE.md), **not a subagent system** |
+| **Antigravity CLI** (CLI) | ✅ | ✅ | ✅ | `.claude/agents/<name>.md` + Task tool (subagent) + [agent teams](https://docs.claude.com/en/docs/claude-code/agent-teams) + [agent view / background](https://docs.claude.com/en/docs/claude-code/agent-view) |
+| **OpenAI Codex CLI** | ❌ | ❌ | ❌ | `AGENTS.md` is just a **single-agent context file** (similar to GEMINI.md), **not a subagent system** |
 | **Google Gemini CLI** | ❌ | ❌ | ❌ | `GEMINI.md` is just for context; no subagent / multi-agent features |
 | **Cursor** (IDE-coupled) | ❌ | ❌ | ❌ | A single Cursor Agent; queued messages are sequential, not parallel |
 | **OpenAI Agents SDK**<br>(programmatic, not CLI) | ⚠️ Handoffs + agents-as-tools | ❌ | ❌ | A pure Python SDK, not a CLI; the handoff pattern is close to Claude's subagents but requires writing code |
@@ -538,19 +538,19 @@ Many people assume that multi-agent CLIs are a standard feature for Anthropic / 
 
 **Interpreting the current state**:
 
-- If you want to play with multi-agent systems in a **CLI** → currently, only Claude Code has native support (**the topic of this section**)
+- If you want to play with multi-agent systems in a **CLI** → currently, only Antigravity CLI has native support (**the topic of this section**)
 - If you want to go **cross-provider / cross-LLM** → take the Stage 4 framework path
 - If you want **OpenAI ecosystem + multiple agents** → use the OpenAI Agents SDK to write a handoff pattern (programmatic, not CLI)
-- If you want **complete control** → go to [Stage 5.6 Dissecting Claude Code Source](#56--dissecting-claude-code-source-reference-harness-implementation--a-must-read-for-track-b) (read the SDK source, wire the multi-agent system yourself)
+- If you want **complete control** → go to [Stage 5.6 Dissecting Antigravity CLI Source](#56--dissecting-claude-code-source-reference-harness-implementation--a-must-read-for-track-b) (read the SDK source, wire the multi-agent system yourself)
 
-→ The rest of this section focuses on **Claude Code subagents**. For developments on other platforms, please follow their respective changelogs (Codex / Gemini / Cursor are still in the single-agent + MCP phase, and will likely follow suit in late 2026).
+→ The rest of this section focuses on **Antigravity CLI subagents**. For developments on other platforms, please follow their respective changelogs (Codex / Gemini / Cursor are still in the single-agent + MCP phase, and will likely follow suit in late 2026).
 
-### How to dispatch Claude Code's 3 multi-agent mechanisms (specific syntax)
+### How to dispatch Antigravity CLI's 3 multi-agent mechanisms (specific syntax)
 
 | Mechanism | When to Use | Dispatch Method |
 |---|---|---|
 | **Subagent**<br>(stable) | Delegate large-context tasks (reading an entire codebase / organizing logs) to an isolated context worker, with the result returned to the main session | (1) Write `.claude/agents/<name>.md` (frontmatter with `name` + `description` + `tools` + optional `model`)<br>(2) Claude **auto-delegates** based on the description; or list manually with `/agents` |
-| **Agent team**<br>(officially documented, but still requires opt-in flag) | When multiple workers need to **communicate with each other** and challenge one another (debate / peer review / multi-perspective exploration) | (1) **Enable** (still requires opt-in): add `"env": {"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"}` to `settings.json`, requires Claude Code v2.1.32+<br>(2) Dispatch with natural language: `Create an agent team to explore X from different angles: one on UX, one on architecture, one playing devil's advocate`<br>(3) Converse with teammates: use `Shift+Down` to switch, type messages directly<br>(4) Clean up: `Clean up the team` |
+| **Agent team**<br>(officially documented, but still requires opt-in flag) | When multiple workers need to **communicate with each other** and challenge one another (debate / peer review / multi-perspective exploration) | (1) **Enable** (still requires opt-in): add `"env": {"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"}` to `settings.json`, requires Antigravity CLI v2.1.32+<br>(2) Dispatch with natural language: `Create an agent team to explore X from different angles: one on UX, one on architecture, one playing devil's advocate`<br>(3) Converse with teammates: use `Shift+Down` to switch, type messages directly<br>(4) Clean up: `Clean up the team` |
 | **Background agent**<br>(research preview) | Run multiple **independent tasks** in the background, monitored from a single interface (e.g., 3 PR reviews at the same time) | (1) Dispatch from shell: `claude --bg "investigate the flaky test"` (requires v2.1.139+)<br>(2) Background an existing session: `/bg`<br>(3) Monitor: `claude agents` (the agent view interface)<br>(4) Operate: `claude attach <id>` / `claude logs <id>` / `claude stop <id>` |
 
 **How to choose between the 3 mechanisms**:
@@ -565,19 +565,19 @@ Many people assume that multi-agent CLIs are a standard feature for Anthropic / 
 
 > 💡 **First, a quick term explanation**: a **subagent** is a “child Claude” spawned from the main Claude session. It has its own context window (the amount of conversation it can remember at once, with a limit) and reports its result back when done. **Dispatch** means asking a subagent to do work, like assigning a task to a teammate.
 
-Many people assume they have to write a subagent themselves before they can use one. In practice, **Claude Code ships with a set of built-in subagents you can use immediately**. The table below shows the three sources:
+Many people assume they have to write a subagent themselves before they can use one. In practice, **Antigravity CLI ships with a set of built-in subagents you can use immediately**. The table below shows the three sources:
 
 | Source | Example subagents | When to use | What you need to do |
 |---|---|---|---|
-| **Built into Claude Code** | `general-purpose` / `code-reviewer` / `Explore` / `Plan` / `frontend-developer` / `claude-code-guide` / `statusline-setup` | Check these first for general tasks | **Nothing; invoke them directly** |
+| **Built into Antigravity CLI** | `general-purpose` / `code-reviewer` / `Explore` / `Plan` / `frontend-developer` / `claude-code-guide` / `statusline-setup` | Check these first for general tasks | **Nothing; invoke them directly** |
 | **plugin / marketplace** | Skill agents inside `obra/superpowers`, multi-subagent packs from `wshobson/agents` | When the built-ins are not enough | Install a plugin / marketplace item ([Stage 5.4](#54--plugins--marketplaces))|
 | **Custom** | A reviewer / domain expert specific to your company workflow | When neither of the above fits | Write `.claude/agents/<name>.md` (see the details block below for an example)|
 
-> 🔍 **Want to know which subagents your Claude Code currently has?** Run `/agents` in the terminal to list them all: built-in, plugin-provided, and custom.
+> 🔍 **Want to know which subagents your Antigravity CLI currently has?** Run `/agents` in the terminal to list them all: built-in, plugin-provided, and custom.
 
 ### How do you choose a subagent? (decision table)
 
-For the 7 built-in Claude Code subagents above, this table maps “**when you need to do X, use Y subagent**” (this is a **decision table**: a quick “X → Y” lookup so you do not have to reason from scratch):
+For the 7 built-in Antigravity CLI subagents above, this table maps “**when you need to do X, use Y subagent**” (this is a **decision table**: a quick “X → Y” lookup so you do not have to reason from scratch):
 
 | What you want to do | Built-in subagent to use | Why |
 |---|---|---|
@@ -586,7 +586,7 @@ For the 7 built-in Claude Code subagents above, this table maps “**when you ne
 | Review staged diff / security audit / pre-commit check | `code-reviewer` | Structured PASS/FAIL output + concrete fixes |
 | Write / modify UI components / handle accessibility | `frontend-developer` | React / responsive design / a11y (shorthand for accessibility — designing for screen-reader and keyboard-only users) domain knowledge |
 | Multi-step research, or you are unsure which category fits | `general-purpose` | General-purpose, can web search, good fallback |
-| Ask how to use a Claude Code feature | `claude-code-guide` | Questions about hooks (scripts that intercept tool calls before / after they run — see Gotcha #5 below) / slash commands (commands starting with `/`) / MCP |
+| Ask how to use a Antigravity CLI feature | `claude-code-guide` | Questions about hooks (scripts that intercept tool calls before / after they run — see Gotcha #5 below) / slash commands (commands starting with `/`) / MCP |
 | None of the above fits | Write `.claude/agents/<name>.md` yourself | Custom or company-specific workflow |
 
 **Mini cookbook for 5 common scenarios** (see the full 15 recipes below):
@@ -699,7 +699,7 @@ You are a senior code reviewer. When invoked:
 3. Output: PASS / list of specific issues with file:line references
 ```
 
-Later, in the main session, if you type "review my changes," Claude will see the matching description, automatically spawn this subagent via the Task tool (Claude Code's internal dispatch mechanism; you do not call it directly), run it, and return a summary to the main session.
+Later, in the main session, if you type "review my changes," Claude will see the matching description, automatically spawn this subagent via the Task tool (Antigravity CLI's internal dispatch mechanism; you do not call it directly), run it, and return a summary to the main session.
 
 </details>
 
@@ -717,7 +717,7 @@ Later, in the main session, if you type "review my changes," Claude will see the
 
 ### Required Reading
 
-1. [**Anthropic — Claude Code Subagents Official Documentation**](https://docs.claude.com/en/docs/claude-code/sub-agents) ⭐ — `.claude/agents/` structure, Task tool interface, best practices
+1. [**Anthropic — Antigravity CLI Subagents Official Documentation**](https://docs.claude.com/en/docs/claude-code/sub-agents) ⭐ — `.claude/agents/` structure, Task tool interface, best practices
 2. [**Anthropic — Building Effective Agents orchestrator-workers**](https://www.anthropic.com/engineering/building-effective-agents) — Anthropic's own view on the orchestrator pattern (theory + examples)
 3. [**Anthropic Cookbook — `customer_service_agent`**](https://github.com/anthropics/claude-cookbooks/tree/main/tool_use) — The canonical multi-agent orchestration example (a chapter-length deep dive; notebook is at `tool_use/customer_service_agent.ipynb`)
 
@@ -742,7 +742,7 @@ A single table to cover 4 projects. **Pick an entry point by looking at "Best fo
 
 > 💡 **Subagents are powerful, but don't use them blindly**: Every subagent invocation is a new Claude inference call, with token cost + latency. **Simple queries can be handled by a skill (a behavioral prompt), no need to spawn a subagent**. The sweet spot for subagents is when: (1) the task context is large and would consume the main session's window (e.g., reading an entire codebase), (2) the task is logically independent of the main session, and isolating the context helps the main flow, (3) multiple subagents running in parallel (research / write / critic) can save wall-clock time.
 
-> 🔗 **Related advanced mechanisms** (official Claude Code, not covered in depth in this stage):
+> 🔗 **Related advanced mechanisms** (official Antigravity CLI, not covered in depth in this stage):
 > - **[Agent teams](https://docs.claude.com/en/docs/claude-code/agent-teams)** — Multiple sessions communicating with each other (e.g., a reviewer agent ↔ implementer agent back-and-forth)
 > - **[Background agents / agent view](https://docs.claude.com/en/docs/claude-code/agent-view)** — Multiple sessions running in the background, monitored from a single interface (e.g., spawning N PR reviews to run simultaneously)
 >
@@ -750,25 +750,25 @@ A single table to cover 4 projects. **Pick an entry point by looking at "Best fo
 
 ---
 
-## 5.6 — Dissecting Claude Code Source (reference harness implementation) ⭐ A must-read for Track B
+## 5.6 — Dissecting Antigravity CLI Source (reference harness implementation) ⭐ A must-read for Track B
 
-> **Positioning of this section**: This section is **not** a discipline-level tutorial on harness engineering—the definition, the **8 components**, and the three-layer lineage of prompt→context→harness are covered in **[Stage 7 Harness Engineering](07-multi-agent-production.en.md#-harness-engineering--engineering-design-for-a-production-agent-runtime--core-concept-of-this-stage)**. **This section is a case study**—we're dissecting the source code of Claude Code (a widely-used reference harness) to find the corresponding locations in the implementation for the **first 6 runtime-internal components** of the 8 components listed in Stage 7 (the other two, Eval and Cost-Latency, are cross-cutting and not in the main source loop).
+> **Positioning of this section**: This section is **not** a discipline-level tutorial on harness engineering—the definition, the **8 components**, and the three-layer lineage of prompt→context→harness are covered in **[Stage 7 Harness Engineering](07-multi-agent-production.en.md#-harness-engineering--engineering-design-for-a-production-agent-runtime--core-concept-of-this-stage)**. **This section is a case study**—we're dissecting the source code of Antigravity CLI (a widely-used reference harness) to find the corresponding locations in the implementation for the **first 6 runtime-internal components** of the 8 components listed in Stage 7 (the other two, Eval and Cost-Latency, are cross-cutting and not in the main source loop).
 
 ### Learning Goals
 
 After completing this section, you will be able to:
 - Understand the main loop of the `claude-agent-sdk-python` source (not line-by-line, but grasping the main structure)
 - Pinpoint in the source the file:line for the first 6 runtime-internal harness components from the [8 components listed in Stage 7](07-multi-agent-production.en.md#-harness-engineering--engineering-design-for-a-production-agent-runtime--core-concept-of-this-stage) (agent loop / tool registry / context manager / safety layer / retry / telemetry). The 7th, Eval, is a plugin, and the 8th, Cost / Latency, is cross-cutting; they are not in the main source loop and are outside the scope of this exercise.
-- Explain the difference between Claude Code's agent loop and the from-scratch ReAct from Stage 3, Exercise 3—what extra components a deployed agent needs that a from-scratch one doesn't.
+- Explain the difference between Antigravity CLI's agent loop and the from-scratch ReAct from Stage 3, Exercise 3—what extra components a deployed agent needs that a from-scratch one doesn't.
 
-> **Where are the discipline-level concepts?**: What harness engineering is / the difference between a framework and a harness / the three-layer lineage of prompt→context→harness → all covered in **[Stage 7 Harness Engineering](07-multi-agent-production.en.md#-harness-engineering--engineering-design-for-a-production-agent-runtime--core-concept-of-this-stage)**. This section is only responsible for the case study of the Claude Code source.
+> **Where are the discipline-level concepts?**: What harness engineering is / the difference between a framework and a harness / the three-layer lineage of prompt→context→harness → all covered in **[Stage 7 Harness Engineering](07-multi-agent-production.en.md#-harness-engineering--engineering-design-for-a-production-agent-runtime--core-concept-of-this-stage)**. This section is only responsible for the case study of the Antigravity CLI source.
 
 ### 📚 Required Reading
 
 1. [**Anthropic — Building Effective Agents**](https://www.anthropic.com/engineering/building-effective-agents) ⭐ — The canonical reference for orchestrator / worker / handoff / reflection and other patterns.
-2. [**anthropics/claude-agent-sdk-python**](https://github.com/anthropics/claude-agent-sdk-python) — The source of Claude Code's official Python SDK; **key files: `src/claude_agent_sdk/_internal/client.py`** (where the main loop is) + `query.py` (for single-turn API calls).
+2. [**anthropics/claude-agent-sdk-python**](https://github.com/anthropics/claude-agent-sdk-python) — The source of Antigravity CLI's official Python SDK; **key files: `src/claude_agent_sdk/_internal/client.py`** (where the main loop is) + `query.py` (for single-turn API calls).
 3. [**ai-boost/awesome-harness-engineering**](https://github.com/ai-boost/awesome-harness-engineering) ⭐ (★ 1.7k+) — A community curation: harness patterns / eval / memory / observability integrations.
-4. [**ZhangHanDong/harness-engineering-from-cc-to-ai-coding**](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding) — The most complete interpretation of Claude Code's internals in the Chinese community.
+4. [**ZhangHanDong/harness-engineering-from-cc-to-ai-coding**](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding) — The most complete interpretation of Antigravity CLI's internals in the Chinese community.
 
 ### 🛠 Hands-on Exercise — Dissecting the agent loop (a reading exercise, not a coding one)
 
@@ -784,7 +784,7 @@ This section is **a reading exercise, not a coding one**—a production harness 
    - (d) **Safety layer**: Is there a permission gate / sandboxing before a tool is executed?
    - (e) **Retry / recovery**: How are tool failures handled (exception vs the LLM reflecting on the error itself)?
    - (f) **Telemetry**: Where are metrics / logging / token counting integrated?
-4. **Write an 80-150 word summary**: "What's the difference between Claude Code's agent loop and your from-scratch ReAct from Stage 3, Exercise 3?" The point is not a trivial observation like "Claude Code is more complex," but to be able to **articulate what extra components are there and why they are necessary to run in production**.
+4. **Write an 80-150 word summary**: "What's the difference between Antigravity CLI's agent loop and your from-scratch ReAct from Stage 3, Exercise 3?" The point is not a trivial observation like "Antigravity CLI is more complex," but to be able to **articulate what extra components are there and why they are necessary to run in production**.
 
 **Deliverable**: A set of notes (in your own Obsidian / Notion / `.md` is fine), no submission required. But **if you can't articulate it, you don't understand it yet**—this is a necessary mental model before moving on to production deployment in Stage 7.
 
@@ -796,23 +796,23 @@ A single table to cover 4 projects. **Pick an entry point by looking at "Best fo
 
 | Project | ⭐ | Best for | Why it's recommended / Notes |
 |---|---|---|---|
-| [anthropics/claude-agent-sdk-python](https://github.com/anthropics/claude-agent-sdk-python) | ⭐⭐⭐⭐⭐ | All Track B learners who want to figure out "how Claude Code runs internally" | **The canonical Python harness, this is the repo you'll be reading for this section's exercise**. It will also be imported in the Stage 7 deployment. |
-| [ZhangHanDong/harness-engineering-from-cc-to-ai-coding](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding) | ⭐⭐⭐⭐ | Chinese readers who want to understand "why Claude Code was designed this way" | The most complete interpretation of CC's internals in the Chinese community (harness concepts → CC implementation → comparison with other AI coding tools). **Use it as a complement to the SDK source**—one tells you "how," the other tells you "why." |
+| [anthropics/claude-agent-sdk-python](https://github.com/anthropics/claude-agent-sdk-python) | ⭐⭐⭐⭐⭐ | All Track B learners who want to figure out "how Antigravity CLI runs internally" | **The canonical Python harness, this is the repo you'll be reading for this section's exercise**. It will also be imported in the Stage 7 deployment. |
+| [ZhangHanDong/harness-engineering-from-cc-to-ai-coding](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding) | ⭐⭐⭐⭐ | Chinese readers who want to understand "why Antigravity CLI was designed this way" | The most complete interpretation of CC's internals in the Chinese community (harness concepts → CC implementation → comparison with other AI coding tools). **Use it as a complement to the SDK source**—one tells you "how," the other tells you "why." |
 | [ai-boost/awesome-harness-engineering](https://github.com/ai-boost/awesome-harness-engineering) | ⭐⭐⭐⭐ | Those who finish 5.6 and want to broaden their horizons | A community curation: 30+ harness / eval / memory / observability / MCP projects (★ 1.7k+). **A breadth resource library, not a tutorial**—pick a sub-topic of interest and dive in. |
 | [wshobson/agents](https://github.com/wshobson/agents) | ⭐⭐⭐⭐ | Those who have written their own subagent in 5.5 and want to see templates actually in use | The ergonomic design of 50+ subagent definitions (description / tool list / system prompt layers). **You'll learn more from reading the source than from reading the docs**. Already introduced in 5.5, cross-referenced here. |
 
-> 💡 **The difference between this section and Stage 7**: This section teaches "how this specific harness, Claude Code, works" (a concrete reference); Stage 7 teaches "what a production harness should generally have" (an abstract pattern). **Go from concrete to abstract**—it will be much easier to get into Stage 7 after you've finished this section.
+> 💡 **The difference between this section and Stage 7**: This section teaches "how this specific harness, Antigravity CLI, works" (a concrete reference); Stage 7 teaches "what a production harness should generally have" (an abstract pattern). **Go from concrete to abstract**—it will be much easier to get into Stage 7 after you've finished this section.
 
 ---
 
-## 5.7 — SDK: Take Claude Code Apart and Rebuild It Your Way ⭐ Track B optional — production only
+## 5.7 — SDK: Take Antigravity CLI Apart and Rebuild It Your Way ⭐ Track B optional — production only
 
 > 🎯 **Who this section is for**: 99% of readers are done after 5.1-5.6. Only descend here if there's something CLI genuinely can't do for you. Stage 5.6 had you read the SDK source for harness understanding; this section is to make you *use* the SDK as your own service.
 
-### One analogy that separates SDK / CLI / `CLAUDE.md`
+### One analogy that separates SDK / CLI / `GEMINI.md`
 
 - **CLI** (`claude` / `codex` / etc.) = a **ready-made car**. Get in, drive.
-- Editing `CLAUDE.md` / `AGENTS.md` / adding hooks / writing skills = **tuning the car's performance** so it drives better for your routines. Still the same car.
+- Editing `GEMINI.md` / `AGENTS.md` / adding hooks / writing skills = **tuning the car's performance** so it drives better for your routines. Still the same car.
 - **SDK** (`claude-agent-sdk-python` / `openai-agents-python`) = **building a new car from the engine up** — controlling the agent loop, tool dispatch, and memory wiring yourself in Python / TS.
 
 **99% of learners plateau at "tuning the car" and that's enough.** Only climb to the SDK rung when tuning genuinely can't reach your target scenario.
@@ -820,7 +820,7 @@ A single table to cover 4 projects. **Pick an entry point by looking at "Best fo
 ### Three-rung ladder — which one are you on?
 
 1. **Rung 1 — Use the CLI directly.** 90% of solo + team use cases. See 5.1.
-2. **Rung 2 — CLI + customisation.** Write `CLAUDE.md`, add hooks, write skills, install plugins. See 5.1-5.4. **Most people stop here, and that's enough.**
+2. **Rung 2 — CLI + customisation.** Write `GEMINI.md`, add hooks, write skills, install plugins. See 5.1-5.4. **Most people stop here, and that's enough.**
 3. **Rung 3 — SDK.** Embed the agent inside your code. This section.
 
 ### When do you actually need rung 3?
@@ -846,7 +846,7 @@ That's it — wrap in `async def` and it runs. `query()` yields several message 
 
 ### vs CLI / vs Customisation comparison (read this AFTER the sections above)
 
-| | CLI (claude / codex) | CLI + custom (CLAUDE.md / hooks) | SDK |
+| | CLI (claude / codex) | CLI + custom (GEMINI.md / hooks) | SDK |
 |---|---|---|---|
 | Embed in your app | ❌ | ❌ | ✅ |
 | Cron / scheduled runs | ⚠️ Barely (`-p` flag) | ⚠️ Same | ✅ |
@@ -862,8 +862,8 @@ That's it — wrap in `async def` and it runs. `query()` yields several message 
 |---|---|---|
 | Publisher | Anthropic | OpenAI |
 | Models | Claude (Opus / Sonnet / Haiku) | OpenAI series + others |
-| Strengths | Same tool / skill / hook abstraction as Claude Code | Handoff / agents-as-tools pattern; built-in sandbox since April 2026 |
-| Best fit | Already on Claude Code, embedding into a service | Already committed to the OpenAI ecosystem |
+| Strengths | Same tool / skill / hook abstraction as Antigravity CLI | Handoff / agents-as-tools pattern; built-in sandbox since April 2026 |
+| Best fit | Already on Antigravity CLI, embedding into a service | Already committed to the OpenAI ecosystem |
 
 Both are MIT-licensed with clean APIs. **The real question is which model your downstream picks.**
 
@@ -880,7 +880,7 @@ Both are MIT-licensed with clean APIs. **The real question is which model your d
 ## ✅ Self-Check Before Stage 6
 
 Can you:
-- [ ] Install Claude Code and use 5 different slash commands?
+- [ ] Install Antigravity CLI and use 5 different slash commands?
 - [ ] Connect 2 MCP servers in the same Claude session?
 - [ ] Write your own MCP server in Python that provides 1 usable tool?
 - [ ] Write a `SKILL.md` that auto-loads on a specific trigger phrase?

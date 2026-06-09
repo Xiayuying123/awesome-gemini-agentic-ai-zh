@@ -2,275 +2,182 @@
 
 > [繁體中文](./subagent-advanced.md) | **简体中文** | [English](./subagent-advanced.en.md)
 
-> 📋 **这份是给谁看的**：你已经会用内置 subagent（[Stage 5.5](../stages/05-claude-code-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能) + [cookbook](./subagent-cookbook.zh-Hans.md) 走完了），准备：(1) **自己写一个** subagent、(2) **组合多个** subagent，或 (3) **debug** 跑坏的 subagent。
+> 📋 **这份是给谁看的**：你已经掌握了内置 subagent 的基本使用（[Stage 5.5](../stages/05-gemini-skills-ecosystem.zh-Hans.md#55--subagentsantigravity-cli-原生多-agent-机制) 和 [cookbook](./subagent-cookbook.zh-Hans.md) 已经阅读完毕），准备开始：(1) **自己编写一个** 自定义 subagent、(2) **组合与编排多个** subagent 协作，或者 (3) **排查与调试** 行为异常的 subagent。
 >
-> ⚠️ **先决条件**：读完 Stage 5.5 §易混淆概念厘清 + cookbook 15 个 recipe 之后再来。没读 cookbook 直接看这份，会卡在“subagent 是什么”这一层。
+> ⚠️ **先决条件**：阅读完 Stage 5.5 核心概念与 cookbook 的 15 个 recipe 后再继续。
 
 ---
 
 ## 怎么读这份文件
 
-3 个独立的进阶主题，按需要查：
+本篇包含 3 个独立的进阶主题，按需查阅：
 
-| 你的问题 | 看哪节 |
+| 遇到的具体问题 | 对应章节 |
 |---|---|
-| 写了一个 subagent，但 Claude 从来不主动派遣它——为什么？ | [§1 Description 怎么写才会被主 session 主动 spawn](#1-description-怎么写才会被主-session-主动-spawn) |
-| 想跑 2-3 个 subagent 串成 pipeline / parallel——怎么设计？ | [§2 Composition pattern 怎么设计](#2-composition-pattern-怎么设计) |
-| subagent 跑坏 / 报错 / 行为跟设置的不一样——怎么 debug？ | [§3 自制 subagent 的 debug 工具](#3-自制-subagent-的-debug-工具) |
-
-每节独立，可以跳读。
+| 编写了一个 subagent，但主 Agent 始终不自动派遣它 | [§1 Description 怎么写才会被主会话自动 spawn](#1-description-怎么写才会被主会话自动-spawn) |
+| 想要串联或并行运行 2-3 个 subagent 协同工作 | [§2 Composition pattern 怎么设计](#2-composition-pattern-怎么设计) |
+| subagent 执行报错、越权或执行步骤异常 | [§3 自定义 subagent 的调试与 Debug](#3-自定义-subagent-的调试与-debug) |
 
 ---
 
-## §1 Description 怎么写才会被主 session 主动 spawn
+## §1 Description 怎么写才会被主会话自动 spawn
 
-主 session 怎么决定派遣哪个 subagent？看 `.claude/agents/<name>.md` 开头 frontmatter（**frontmatter** = 文件最开头的 YAML 设置区，用 `---` 包起来）的 **`description`** 字段。**写法影响被选概率**——下面是 4 个常见 bug + 修正：
+主会话在阅读你的输入时，如何匹配并路由给特定的子 Agent 呢？它会扫描配置文件（如 `.agents/agents/<name>.md`）头部 YAML frontmatter 中的 **`description`** 字段。
 
-### Bug 1: Description 太抽象，Claude 不知道何时派遣
+**Description 的写作细节决定了路由匹配的准确率**。下面是 4 个常见 Bug 与改进写法：
 
-❌ **坏写法**：
+### Bug 1: 描述过于空洞抽象，Agent 无法抓取触发时机
+
+❌ **不推荐写法**：
 ```yaml
 description: A helpful code reviewer.
 ```
-**问题**：“helpful”是空词，reviewer 是泛词。Claude 看不到“什么情境下我该派遣这个”，只能等用户明说名字。
+**分析**：`helpful` 属于主观描述，`reviewer` 范围太广。Agent 无法据此推断在什么代码语境或提问场景下应该唤醒它，只能依靠用户以命令方式指名道姓调用。
 
-✅ **改成**（具体触发条件 + 范围）：
+✅ **建议改写为**（包含明确触发条件 + 执行边界）：
 ```yaml
 description: Use PROACTIVELY when the user has staged ≥ 50 lines of changes and is about to commit. Reviews staged diff for security issues, style violations, missing error handling, and test gaps. Returns per-category PASS/FAIL + concrete fix list.
 ```
-**为什么好**：(1) `PROACTIVELY` 是强信号词，(2) 明确触发条件“staged ≥ 50 lines + about to commit”，(3) 列了会做的 4 件事，(4) 讲清楚返回格式。
+**优势**：
+1. 使用了 `PROACTIVELY`（主动派遣）强提示词。
+2. 规定了具体的阈值“修改并暂存代码 ≥ 50 行且准备 commit”。
+3. 阐明了它的核心审计内容和返回的结构化格式。
 
 ---
 
-### Bug 2: 用了 `PROACTIVELY`，但条件太宽
+### Bug 2: 滥用 `PROACTIVELY`，导致频繁打扰主线开发
 
-❌ **坏写法**：
+❌ **不推荐写法**：
 ```yaml
 description: Use PROACTIVELY for all code-related tasks.
 ```
-**问题**：“all code-related”太宽，Claude 会在每个 coding task 都派遣——用户输入“fix this typo”也派 = 打扰。
+**分析**：“all code-related” 范围过宽，主 Agent 会在每一次细微修改（哪怕只是修改拼写）时频繁派发 subagent，造成严重的交互干扰和 Token 损耗。
 
-✅ **改成**（缩窄条件）：
+✅ **建议改写为**（精确化限定范围）：
 ```yaml
 description: Use PROACTIVELY when a commit is about to land that modifies authentication, database queries, or API routes — these are high-risk surface areas needing extra review.
 ```
-**为什么好**：限定**高风险范围**（auth / DB / API），避免 over-trigger。
+**优势**：限定在高风险区域（认证/数据库查询/API路由），大幅降低冗余触发。
 
 ---
 
-### Bug 3: 完全没写 `PROACTIVELY`，只能被动等
+### Bug 3: 未配置 `PROACTIVELY`，陷入纯被动
 
-❌ **坏写法**：
+❌ **不推荐写法**：
 ```yaml
 description: Reviews code when asked.
 ```
-**问题**：没有 `PROACTIVELY`——Claude 只会在用户明说“review this”时才派遣；如果用户没想到要 review，就漏掉了。
+**分析**：由于没有配置 `PROACTIVELY`，只有当用户在 prompt 里明确写出“让 code-reviewer 审计这段代码”时才会运行，无法作为自动化安全守卫在后台静默拦截。
 
-✅ **改成**（加 PROACTIVELY + 触发场景）：
+✅ **建议改写为**：
 ```yaml
 description: Code reviewer. Use PROACTIVELY when staged changes touch test files but the test count didn't increase — likely missing test coverage for new logic.
 ```
 
-> 💡 **被动 vs 主动的选择**：
-> - **想 always-on safety net**（例如安全 review）→ 用 `PROACTIVELY` + 明确 trigger
-> - **只在用户明说要求才跑**（例如比较费 token 的 deep research）→ 不写 `PROACTIVELY`，改用 `use when user asks for ...`
+> 💡 **主动与被动的定位选择**：
+> - **Always-on 的安全门禁或规范审查**（如漏洞扫描、静态 lint 强制校验） → 配置 `PROACTIVELY` + 明确的 trigger。
+> - **复杂、耗费大量 Token 的深入研究**（如交叉对比多篇大文档） → 避免配置 `PROACTIVELY`，采用被动触发模式（如 `Use when user asks for ...`）。
 
 ---
 
-### Bug 4: Description 过长，超过 picker 偏好
+### Bug 4: 描述冗长复杂，干扰决策器
 
-❌ **坏写法**（500+ 字，讲太多无关细节）：
+❌ **不推荐写法**（写成了洋洋洒洒的说明文档）：
 ```yaml
-description: This subagent performs comprehensive code review including security analysis, performance profiling, style enforcement, type checking, dependency auditing, license compliance, documentation completeness verification, test coverage assessment, accessibility validation, internationalization checks... (continues for paragraphs)
+description: This subagent performs comprehensive code review including security analysis, performance profiling, style enforcement, type checking, dependency auditing, license compliance, documentation completeness verification, test coverage assessment, accessibility validation, internationalization checks... (此处省略几百字)
 ```
-**问题**：虽然 Anthropic **目前没公告字符上限**（截至 2026-05），但 description 过长：(1) 占 context budget，(2) Claude 在 dispatch 决策时读到后段已经失去重点，(3) 多个 subagent 竞争时，长的反而输给短而精准的。
+**分析**：虽然系统对字段长度没有极其严格的物理限制，但过长的说明会占用不必要的系统上下文（System Prompt Budget），导致调度路由器在解析时失焦。
 
-✅ **改成**（精简到 2-3 句，留最重要的 trigger + 范围）：
+✅ **建议改写为**（保留最精准的 2-3 句话）：
 ```yaml
 description: Use PROACTIVELY before commits touching auth or payment code. Checks: hardcoded secrets, missing input validation, SQL injection risk. Returns issue list with file:line.
 ```
-
-> 📌 **Description 写法 cheatsheet**：
-> 1. 开头 `Use PROACTIVELY when X` 或 `Use when user asks for Y`
-> 2. 列 2-4 个**具体会做的事**（不是“helpful”“comprehensive”这种空词）
-> 3. 讲**返回格式**（让主 session 知道接到的会是什么形状）
-> 4. **2-3 句就好**——精准 > 完整
-> 5. **Description 是语义匹配，不是精确关键词匹配**——关键词有帮助，但触发条件要写清楚
->
-> 💡 **语言选择**：description 字段**建议用英文**——Claude 用英文训练，英文 trigger keyword（`PROACTIVELY` 等）效果最稳定。
 
 ---
 
 ## §2 Composition pattern 怎么设计
 
-要跑 2+ subagent 一起时，怎么组合？下面 3 种 pattern 是社群归纳的常见组合：
+当你想同时让 2 个或更多子 Agent 协作时，通常可以参考以下三种被社区验证的编排模式 (Composition Patterns)：
 
-![Subagent Composition — 3 种组合 Pattern](../resources/diagrams/subagent-composition-patterns.zh-Hans.png)
+```
+Pattern A: Parallel (平行隔离)   ---> Spawn Subagent 1 / 2 / 3 同步独立运行
+Pattern B: Pipeline (多步管道)   ---> Subagent 1 Output -> Subagent 2 Input
+Pattern C: Meta-Agent (自我迭代) ---> Subagent 自动生成/修改其他 Subagent (不推荐)
+```
 
-> 📊 **上图**：A 并行（最常用）/ B Pipeline（多 LLM 编排）/ C Meta-Agent（不推荐避坑）—— 先看全貌再读细节。
+### Pattern A — 平行隔离 (Parallel)
 
-### Pattern A — 平行隔离（最常用、最简单）
+**适用情境**：多个子任务彼此完全**独立**，互不依赖。
+- 例如：同时对 4 个不同的模块文件进行并发式的规范合规性检测。
+- 在 prompt 中列出这 4 个目标文件，主会话会分析并单回合多次调用 Task 接口，实现并发执行。
 
-**何时用**：3 个任务**独立**，不需要互相沟通。例：
-- 4 个 file 都要做同样的 audit（spawn 4 个 `general-purpose`）
-- 同时跑“code review”+“找相关 paper”+“写 changelog”3 个独立任务
+### Pattern B — Pipeline 串联 (Pipeline)
 
-**怎么跑**：在**一个 prompt 里**列出 N 个独立任务（例如“请同时 audit 这 4 个文件：A.md / B.md / C.md / D.md”）——Claude 在单一 turn 内**多次调用 Task tool**，自动并行。**不是**连续输入 N 个 prompt（那是 sequential，要等前一个结束）。要长时间独立背景跑，用 `/bg`。
+**适用情境**：任务流程有明显的**上下游步骤关系**，前一步的产出作为下一步的输入。
+- 例如：输入文献 -> 运行 researcher 子代理提取关键段落 -> 运行 reconciler 整合终稿。
+- **推荐实践**：编写一个技能（Skill）或配置插件（如 `agent-collab-workspace`）来定义并触发它的顺序派发逻辑，避免用户手动在终端逐个复制传递结果。
 
-**成本**：低（不需要 coordination）
+### Pattern C — Meta-Agent (自我生成，不推荐)
 
-**陷阱**：3 个 subagent 看不到对方结果——如果有依赖关系要走 Pattern B；另外**也不能让多个 subagent 同时写到同一份文件**，会造成 write conflict / 文件损坏。
-
----
-
-### Pattern B — Pipeline 串接（多步骤协作）
-
-**何时用**：任务需要**步骤顺序**，前一个的 output 是后一个的 input。例：
-- Multi-LLM workflow：Claude planner → Codex implementer → Gemini reviewer
-- 文献研究 pipeline：splitter 切题 → 多 researcher 跑各 sub-query → reconciler 合稿
-
-**怎么跑**：写一个 skill / orchestrator（例如 [agent-collab-workspace](https://github.com/WenyuChiou/agent-collab-skills) plugin），它帮你按序派遣 subagent。**主 session 自己一个一个叫太累，也会出错**。
-
-**成本**：中（要 coordination 逻辑，要管 `.coord/` 中介文件）
-
-**陷阱**：(1) 每多一步，容错 surface 变大，(2) 一个 subagent 出错，整个 pipeline 卡住——所以每步都要写 acceptance criteria。
+**避坑提示**：让一个 subagent 自动去写另一个 subagent。在实际开发中，这极易导致上下文嵌套爆炸、权限漏洞失控、且极其难以调试。**如有重复性或动态模板需求，请改用 Skill 或预设 template 实现**。
 
 ---
 
-### Pattern C — Meta-Agent（**不推荐**，列出来避坑）
+## §3 自定义 subagent 的调试与 Debug
 
-**为什么存在**：理论上“一个 subagent 写出更多 subagent”听起来很 elegant。
+当你在 `.agents/agents/<name>.md` 中写好配置，但在 `agy` 交互中执行效果不对时，请依次排查以下 5 个切点：
 
-**为什么不推荐**：
-1. **Context explosion 风险**——subagent 写的 subagent 写的 subagent... 失控
-2. **没人 audit 新建的 agent**——可能写出危险的 tools allowlist
-3. **Anthropic 官方示例都不这样用**——社群也未发展出可靠 pattern
-4. **debug 噩梦**——出错时不知道该怪原始 prompt、meta-agent，还是被生成的 agent
-
-**该怎么办**：你发现 task 重复很多，觉得“该写个 meta”——**请用 skill 或 template 取代**，不要走 meta-agent 路线。
-
----
-
-### 3 个 pattern 怎么选
-
-| 你的情境 | 用哪个 |
-|---|---|
-| 3 个独立任务，结果各回主 session | **Pattern A** |
-| 多步骤协作，有 input → output 依赖 | **Pattern B** |
-| 想“自动生成 subagent” | **不要做**（去想为什么，通常 skill / template 更合适）|
-
-**90% 的使用情境是 Pattern A**——上 Pattern B 之前先确认“真的需要 coordination”，别 over-engineer。
-
----
-
-## §3 自制 subagent 的 debug 工具
-
-> 📌 **跟 [Stage 5.5 §易混淆 5 条 Gotcha](../stages/05-claude-code-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能) 角度不同**——
-> 5.5 Gotcha 是 "**best-practice-oriented**"：写 subagent 时就要注意的事
-> 这节 5 切点是 "**debug-oriented**"：subagent **已经跑坏了**该从哪里查
-> 内容有 3 条重叠（tools / model / memory）但视角不同，可分开读
-
-写了 `.claude/agents/<name>.md`，结果不如预期——下面是 debug 的 5 个切点：
-
-### 切点 1: 确认 Claude Code 看得到你的 agent
+### 切点 1: 确认 CLI 正常加载了该配置文件
 
 ```bash
-# 在 Claude Code 对话框内跑：
+# 在 agy 对话框中输入：
 /agents
 ```
-**预期**：列表里有你写的那个 name。**没有**：
-- 文件位置错（应该在 `~/.claude/agents/<name>.md` global 或 `<repo>/.claude/agents/<name>.md` project-level；**同名时 project-level 覆盖 global**）
-- YAML frontmatter 语法错（例如 `---` 没包好、`name:` 字段拼错）
-- 名字冲突（同名 agent 被覆盖）
+**检查结果**：
+- 如果列表里**没有**你新写的 Agent 名称：
+  - 检查文件位置是否放错。项目级应在 `./.agents/agents/` 下，全局在 `~/.gemini/antigravity-cli/agents/` 下。
+  - 检查 YAML frontmatter 格式，头尾的 `---` 是否正确包裹。
+  - 检查是否存在名字冲突。
 
----
-
-### 切点 2: 确认 description 写得会被选
-
-跑这个 prompt 测 Claude 会不会自主派遣：
+### 切点 2: 审计 Description 的路由逻辑
+如果 Agent 在列表中但无法自动被唤醒，请尝试输入：
 ```
-描述 1 个会触发你 subagent 的情境（不要直接叫名字），看 Claude 派的是谁。
+描述一个会触发该 subagent 的代码修改情境，但不要直接输入它的名字，看路由器是否能指派正确。
 ```
+若主 Agent 始终没有 spawn 动作，需要优化 frontmatter 中的 `description`，加入更清晰的 `PROACTIVELY` 触发边界。
 
-**Claude 没派遣你 agent**：description 写得让 Claude 看不出“我该派遣这个”。
-- 缺 `PROACTIVELY` keyword → 加上
-- 条件太抽象 → 改成具体 trigger
-- 跟其他 agent 描述重叠 → 写出**独特性**
-
----
-
-### 切点 3: 确认工具权限正确
-
-subagent 派完报“I don't have access to X tool”——`tools:` 白名单漏写。
+### 切点 3: 确认工具白名单 (tools whitelist)
+如果 subagent 报错“I don't have access to tool X”：
+检查 YAML frontmatter 中的 `tools:` 白名单。子 Agent 的权限是默认受限的，如果你需要它读取文件、使用 grep 搜索或运行本地测试，必须明写赋予权限：
 
 ```yaml
-# 常忘的工具：
 tools:
   - Read
   - Grep
-  - Glob       # 找文件
-  - Bash       # 跑 git / pytest
-  - WebFetch   # 读外部 URL
-  - WebSearch  # 上网搜
+  - Glob
+  - Bash        # 用于运行本地测试命令 (如 pytest)
+  - WebFetch    # 允许其读取外部网页
 ```
+> ⚠️ **安全 Gotcha**：如果将 `tools:` 字段省略或写空，subagent 将继承主会话的**全部**工具权限（包括直接修改文件等高危操作），存在沙箱安全隐患。
 
-> ⚠️ **陷阱**：`tools:` 写**空字符串** `tools: ""` 或**省略整个字段**，都不等于“没工具”——两种情况都**继承主 session 全部工具**。要限制就**明写清单**。
-
----
-
-### 切点 4: 确认 model 不会默默烧大钱
-
-subagent 没指定 `model:` = 跟主 session 用同一个。主 session 是 Opus，subagent 也 Opus，token 烧 4x。
+### 切点 4: 模型与 Token 成本控制
+默认情况下，如果没有在 frontmatter 中指定 `model:`，子 Agent 将继承当前主会话所配置的模型。为防止消耗过大，建议为不需要超强推理的审查或检索工具配置轻量模型：
 
 ```yaml
-# 大多数任务 sonnet 就够：
-model: sonnet
-
-# 简单任务（找文件、跑 grep）用 haiku 更省：
-model: haiku
-
-# 真的需要强推理才用 opus（自己评估）：
-# model: opus
+model: gemini-2.5-flash   # 绝大多数常规检索和检查使用 Flash 模型即可
 ```
 
-看 session 结束后 Claude Code 显示的 token 统计（右下角 status bar 或 session summary），或用 `/clear` 后对比前后用量。
+### 切点 5: 确保 Prompt 具有独立性 (Self-Contained)
+**子 Agent 的进程是完全没有主会话历史记忆的**。
 
----
-
-### 切点 5: 确认 prompt 是 self-contained
-
-subagent **看不到主 session 对话**——每次派遣都是**全新 context**。
-
-❌ **错的 prompt**：
+❌ **错误写法**：
 ```
-Review the changes we discussed.
+帮我审查一下我们刚才讨论的修改。
 ```
-subagent 看不到“我们讨论的”是什么，会自己乱猜。
+子 Agent 不知道“刚才讨论的”是什么。
 
-✅ **对的 prompt**：
+✅ **正确写法**：
 ```
-Review the staged changes in this repo (git diff --cached). Focus: security
-issues, error handling gaps. Per-issue: file:line + suggested fix.
+Review the staged changes in this repo (git diff --cached) for any security vulnerabilities.
 ```
-**全 self-contained**——subagent 可以靠这段 prompt 跑起来，不需要“之前的 context”。
-
----
-
-### 5 切点 quick check
-
-| 症状 | 切点 |
-|---|---|
-| `/agents` 看不到 | 切点 1（文件位置 / YAML 语法）|
-| Claude 不主动派遣 | 切点 2（description 写法）|
-| subagent 报“no access to X tool” | 切点 3（tools 白名单）|
-| Token 账单暴增 | 切点 4（model 没指定）|
-| subagent 跑乱、行为怪 | 切点 5（prompt 不 self-contained）|
-
----
-
-## 接下来
-
-- **想看更多 dispatch recipe** → [`subagent-cookbook.zh-Hans.md`](./subagent-cookbook.zh-Hans.md)（15 个复制粘贴即用的派遣 prompt）
-- **想理解 subagent 跟 skill / MCP 的层次关系** → [Stage 5.5](../stages/05-claude-code-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能)
-- **想跑 multi-agent coordination**（Pattern B）→ [agent-collab-skills](https://github.com/WenyuChiou/agent-collab-skills) plugin
-- **词汇快查** → [`glossary.zh-Hans.md` § 5. Claude Code 生态](./glossary.zh-Hans.md#subagent子-agent)
+这保证了 Prompt 传入后，子进程凭借这段话本身就足以运行。

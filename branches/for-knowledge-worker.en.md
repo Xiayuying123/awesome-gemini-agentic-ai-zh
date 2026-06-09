@@ -20,7 +20,7 @@ The table below splits a knowledge worker's day into 7 common scenarios. Most of
 | **Notion / knowledge-base cleanup** | Notes are messy, unstructured, and hard to find | Retag + classify + auto-summarize | Claude Desktop + Notion MCP |
 | **Documents / proposal drafts** | Specs and proposals get stuck | Outline → sections → polish | Claude.ai |
 
-> 💡 **MCP is central for knowledge workers**: new to MCP? Read [Stage 5.2 — MCP Foundation](../stages/05-claude-code-ecosystem.en.md#52--mcp-model-context-protocol--foundation). Looking for available MCP servers? See [`resources/mcp-skills-catalog.en.md`](../resources/mcp-skills-catalog.en.md).
+> 💡 **MCP is central for knowledge workers**: new to MCP? Read [Stage 5.2 — MCP Foundation](../stages/05-gemini-skills-ecosystem.en.md#52--mcp-model-context-protocol--foundation). Looking for available MCP servers? See [`resources/mcp-skills-catalog.en.md`](../resources/mcp-skills-catalog.en.md).
 
 ## Curated Projects
 
@@ -134,11 +134,11 @@ Recommended progression:
 | **Tier 0** | Claude.ai / ChatGPT / Gemini / Perplexity (web) | Most knowledge workers start here | 0 (if you can use a browser) |
 | **Tier 1** | Claude Desktop + MCP (Gmail / Notion / calendar) | Repeat workflows over local / cloud files | Half a day |
 | **Tier 2** | n8n / Make / Langflow (automation platforms) | Connecting several SaaS tools without writing code | 1 week of setup |
-| **Tier 3** | Claude Code / Codex / your own Python | Dev background or dev support, workflows ready for production deployment | Several weeks, overlaps with Track A |
+| **Tier 3** | Antigravity CLI / Codex / your own Python | Dev background or dev support, workflows ready for production deployment | Several weeks, overlaps with Track A |
 
 **Tier 3+ (CLI / SDK) is too heavy for most knowledge worker tasks**. Most people can stop at Tier 1-2.
 
 ## Reading
 
-- [How I Turned Claude Code Into My Personal AI Agent OS](https://aimaker.substack.com/p/how-i-turned-claude-code-into-personal-ai-agent-operating-system-for-writing-research-complete-guide) — knowledge worker case study
+- [How I Turned Antigravity CLI Into My Personal AI Agent OS](https://aimaker.substack.com/p/how-i-turned-claude-code-into-personal-ai-agent-operating-system-for-writing-research-complete-guide) — knowledge worker case study
 - [**Anthropic — The Founder's Playbook**](https://claude.com/blog/the-founders-playbook) — Anthropic's 35-page startup playbook (2026-05-14); maps Idea / MVP / Launch / Scale onto 2026 AI capability

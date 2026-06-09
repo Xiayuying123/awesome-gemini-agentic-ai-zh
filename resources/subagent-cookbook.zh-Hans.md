@@ -2,40 +2,34 @@
 
 > [繁體中文](./subagent-cookbook.md) | **简体中文** | [English](./subagent-cookbook.en.md)
 
-> 📋 **这是什么**：[Stage 5.5](../stages/05-claude-code-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能) 教你 subagent 是什么概念，这份 cookbook 教你**今天就能用**——15 个场景，每个都包含“该用哪个 subagent + 完整 prompt 模板（复制即可用）+ 何时不用”。
+> 📋 **这是什么**：[Stage 5.5](../stages/05-gemini-skills-ecosystem.zh-Hans.md#55--subagentsantigravity-cli-原生多-agent-机制) 讲述了 subagent 的核心概念，这份 cookbook 帮助你**今天就能用**——15 个常见场景，每个都包含“该用哪个 subagent + 完整 prompt 模板（复制即可用）+ 何时不用”。
 >
-> ⚠️ **第一次看？先读 Stage 5.5 的“可派遣的 subagent 有哪些”+“decision table”两节**——理解“什么是 subagent”“Claude Code 内置有哪些”之后再来查 recipe。
+> ⚠️ **第一次看？先读 Stage 5.5 的“可派遣 the subagent 有哪些”+“decision table”两节**——理解“什么是 subagent”“Antigravity CLI 内置有哪些”之后再来查 recipe。
 
 ---
 
 ## 怎么读这份 cookbook
 
-每个 recipe 都用同样的 4 段结构：
+每个 recipe 都采用同样的 4 段结构：
 
-| 段 | 内容 | 为什么有这段 |
+| 结构 | 内容 | 作用 |
 |---|---|---|
-| **场景** | 你今天工作会遇到的具体场景 | 从“我有 X 问题”找到 recipe，而不是从“我想用 subagent”找 |
-| **Subagent** | 用哪一个（Claude Code 内置名称） | 直接 copy 名字，不用想 |
-| **Prompt 模板** | 复制粘贴即可用的指令文字 | 不用自己想怎么写 |
-| **何时不用** | 比用 subagent 更好的替代方案 | 避免“大材小用” |
+| **场景** | 你今天工作会遇到的具体场景 | 从“我有 X 问题”找到匹配 the recipe，而不是从“我想用 subagent”找起 |
+| **Subagent** | 用哪一个（Antigravity CLI 内置名称） | 直接复制名字，免去挑选烦恼 |
+| **Prompt 模板** | 复制粘贴即可用的指令文字 | 无需自己反复打磨提示词 |
+| **何时不用** | 比用 subagent 更好的替代方案 | 避免“大材小用”，节省 Token 与时间 |
 
-> 💡 **怎么实际派遣 subagent**：在你的 Claude Code 终端对话框里，**直接输入（或粘贴）prompt 模板**——就这样。Claude 看到指令，会自动通过 Task tool（内部派遣机制）找到对应 subagent 跑，跑完后向主 session 回报一段摘要。**不需要 slash command，不需要特殊语法**。
+> 💡 **怎么实际派遣 subagent**：在你的 Antigravity CLI 交互式对话框里，**直接输入（或粘贴）prompt 模板**——仅此应用。Agent 看到指令，会自动通过内部 the Task 调度机制找到对应 subagent 独立启动运行，跑完后向主 session 回报一段摘要。**不需要 slash command，不需要特殊语法**。
 >
-> 📌 **subagent ≠ slash command**：`/agents` 是列表命令，**不是调用 subagent 的方式**；派遣 subagent 直接打对话 prompt 文字即可。完整对比表（subagent vs skill / vs slash command / description router）见 [Stage 5.5 §易混淆观念厘清](../stages/05-claude-code-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能)。
+> 📌 **subagent ≠ slash command**：`/agents` 是列表与管理器命令，**不是调用 subagent 的方式**；派遣 subagent 直接输入普通 prompt 对话文字即可。完整对比表（subagent vs skill / vs slash command）见 [Stage 5.5](../stages/05-gemini-skills-ecosystem.zh-Hans.md#55--subagentsantigravity-cli-原生多-agent-机制)。
 
 ---
 
 ## 先确认你有哪些 subagent 可用
 
-在你的 Claude Code session 里跑 `/agents` 这个指令，会列出全部当前可用的 subagent（内置 + plugin + 自定义）。
+在你的 Antigravity CLI 会话里运行 `/agents` 这个指令，会列出全部当前可用的 subagent（内置 + 插件 + 自定义）。
 
-**Claude Code 默认内置 7 个** subagent：`general-purpose` / `code-reviewer` / `Explore` / `Plan` / `frontend-developer` / `claude-code-guide` / `statusline-setup`（截至 2025-11，可能会变动）。
-
-> 📌 **每个内置 subagent 的功能说明 + “遇到 X 任务用 Y”decision table 的 canonical 在 [Stage 5.5 §可派遣的 subagent 有哪些](../stages/05-claude-code-ecosystem.zh-Hans.md#可派遣的-subagent-有哪些)**——本 cookbook 聚焦“怎么派遣”的 15 个 recipe，内置清单与选用逻辑以 Stage 5.5 为准。
-
-> 💡 **如果 `/agents` 列表跟这份 cookbook 不一致**：表示你装了 plugin，或 Claude Code 版本不同。**recipe 名字对不上时，找最接近的 subagent 用就好**（例如没有 `Explore`，用 `general-purpose` 也能跑搜索）。
-
-确认完当前可用清单之后，就可以照下面 15 个 recipe 派遣了——**找到符合你场景的 recipe，把 Prompt 模板复制到 Claude Code 对话框即可**。
+**Antigravity CLI 默认内置 7 个** subagent：`general-purpose` / `code-reviewer` / `Explore` / `Plan` / `frontend-developer` / `antigravity-guide` / `statusline-setup`（可能会随版本变动）。
 
 ---
 
@@ -43,7 +37,7 @@
 
 ### Recipe 1: 写完一批新 code，要 commit 前的 review
 
-**场景**：你刚写了 ≥ 50 行新 code，想 commit 但怕有 bug / security 问题没看到
+**场景**：你刚写了 ≥ 50 行新 code，想 commit 但怕有 bug / 漏洞或风格违规。
 
 **Subagent**：`code-reviewer`
 
@@ -51,18 +45,18 @@
 ```
 Review the staged changes in this repo (git diff --cached).
 Focus on: (1) security issues (hardcoded secrets, SQL injection, XSS),
-(2) error handling gaps, (3) missing tests, (4) violations of CLAUDE.md
+(2) error handling gaps, (3) missing tests, (4) violations of GEMINI.md
 conventions. Per-category PASS/FAIL + concrete fix for each issue with
 file:line reference + overall verdict (APPROVE / REQUEST CHANGES).
 ```
 
-**何时不用**：< 20 行的 typo / formatting fix（直接 `git diff` 自己扫就好，不用花 subagent token）
+**何时不用**：< 20 行的简单拼写或格式修正（直接自己看一眼就行，无需额外开销）。
 
 ---
 
 ### Recipe 2: 进入新 repo，不知道该从哪个 file 开始读
 
-**场景**：复制完一个别人的 repo，`README.md` 讲不清楚程序入口在哪，不想随便挖
+**场景**：克隆完一个新 repo，`README.md` 讲不清楚程序入口在哪，不想自己盲目摸索。
 
 **Subagent**：`Explore`
 
@@ -76,13 +70,13 @@ Map the entry points and core structure of this codebase. Report:
 Under 300 words with file paths.
 ```
 
-**何时不用**：你已经知道要看的 file 路径（直接用 Read tool）
+**何时不用**：你已经知道要看的文件路径（直接使用 Read 工具阅读即可）。
 
 ---
 
 ### Recipe 3: 设计 refactor / migration plan（先想清楚再动手）
 
-**场景**：要重构一个大 module 或做 framework migration，不确定步骤，想先有 plan 再开始
+**场景**：要重构一个大模块或进行依赖框架迁移，不确定步骤，想先梳理出规划再开始。
 
 **Subagent**：`Plan`
 
@@ -95,13 +89,13 @@ touched per phase, (3) what tests gate each phase, (4) rollback strategy
 if a phase fails. Don't write code — just the plan.
 ```
 
-**何时不用**：refactor 只动 1-2 个 file（直接动手，不需要 plan overhead）
+**何时不用**：重构非常轻微，只改动 1-2 个文件。
 
 ---
 
-### Recipe 4: 多文件 / 跨 locale parity 审查
+### Recipe 4: 多文件 / 跨语言 parity 审查
 
-**场景**：你改了 zh-TW + zh-Hans + en 三个 mirror，想确认三边内容一致
+**场景**：你修改了不同语言版本的镜像文档，想确认各方内容与排版格式一致。
 
 **Subagent**：`code-reviewer`
 
@@ -115,13 +109,11 @@ correct (zh-Hans uses "" not 「」; en uses English). Report per-file
 PASS/FAIL.
 ```
 
-**何时不用**：只改 1 个 locale（没有 parity 问题）
-
 ---
 
-### Recipe 5: 多 source fact-check / research
+### Recipe 5: 多数据源 fact-check / 交叉验证
 
-**场景**：要写一段引用，不确定多个 source 讲的是不是同一件事，需要交叉验证
+**场景**：需要写一段引用，不确定多个源文件讲的是否一致，需要交叉验证。
 
 **Subagent**：`general-purpose`
 
@@ -133,13 +125,11 @@ or version differences. Report: confirmed / contradicted / nuanced, with
 direct quotes and URLs. Under 400 words.
 ```
 
-**何时不用**：你已经有 1 个权威 source（直接读那一个就好）
-
 ---
 
 ### Recipe 6: 找某个 symbol / function 在哪定义
 
-**场景**：codebase 里到处都在导入 `parse_config`，想知道实作在哪个 file
+**场景**：代码中频繁导入了某函数，想快速在庞大代码库中定位其定义与作用。
 
 **Subagent**：`Explore`
 
@@ -150,33 +140,27 @@ file:line where it's defined, (2) what it does (1-line summary), (3) which
 files import / use it (top 5). Use Grep, not full file reads.
 ```
 
-**何时不用**：你已经用 IDE 的 "Go to definition" 可以跳过去（IDE 比 subagent 快）
-
 ---
 
-### Recipe 7: 比较多篇 paper / source 的 claim 是否一致
+### Recipe 7: 跨多篇学术论文的比对
 
-**场景**：写文献回顾，3 篇 paper 对同一件事说法不同，不知道该信谁
+**场景**：读完 3-5 篇大体积 PDF，需要横向比对它们的模型方案差异。
 
 **Subagent**：`general-purpose`
 
 **Prompt 模板**：
 ```
-Find and compare 3 independent sources on the topic <topic>. For each
-source, capture: title + author + year + URL. Then report: (1) what
-they agree on, (2) where they disagree (with direct quotes), (3) which
-is most recent / authoritative, (4) suggested phrasing if you had to
-summarize the consensus. Flag if a key source is behind a paywall and
-unreadable.
+Compare the core methodology across these papers: <file1.pdf>, <file2.pdf>,
+<file3.pdf>. Report in a markdown table: (1) model parameters / scale,
+(2) hardware setup used for training, (3) primary optimization metric,
+(4) stated performance improvement. Keep it concise.
 ```
-
-**何时不用**：3 篇都是同一个作者 / 同 lab（没有“多 perspective”可比）
 
 ---
 
-### Recipe 8: Release commit security audit
+### Recipe 8: 发版前的代码安全性审计
 
-**场景**：要发 v1.0 / 升 major version，想最后做一次安全扫描
+**场景**：项目即将发布大版本，想在 commit 进主分支前做最后一次漏洞审计。
 
 **Subagent**：`code-reviewer`
 
@@ -191,13 +175,11 @@ handling changes since last release, (5) public API surface changes
 finding.
 ```
 
-**何时不用**：patch release（hotfix）只动 1 行（人工扫 < 1 分钟）
-
 ---
 
-### Recipe 9: 评估架构变动的 blast radius
+### Recipe 9: 评估架构变动的影响范围 (Blast Radius)
 
-**场景**：想改一个 base class / 共用 utility，不确定会影响多少 file
+**场景**：你想改动一个底层的基类或公共工具函数，需要准确核算受灾面。
 
 **Subagent**：`Plan`
 
@@ -206,23 +188,19 @@ finding.
 Assess the blast radius of changing <component>. Report: (1) direct
 dependents (which files import this), (2) indirect dependents (transitive
 imports), (3) tests that gate the change, (4) suggested rollout order
-(safest → riskiest), (5) feature flag / kill switch strategy if available.
+(safest -> riskiest), (5) feature flag / kill switch strategy if available.
 Don't make the change yet — just the impact analysis.
 ```
 
-**何时不用**：只影响 1 个 file 内部（没有 blast radius 概念）
-
 ---
 
-### Recipe 10: Spawn 并行 subagent 跑同一任务 × 多目标
+### Recipe 10: 针对多个目标文件并行派发 Subagent
 
-**场景**：4 个 branches file 都要做同样的“academic-style audit”，想一次跑 4 个 parallel
+**场景**：你想对多个文件同时运行独立的风格审查。
 
-**Subagent**：`general-purpose` × N（同时 spawn 多个）
+**Subagent**：`general-purpose` × N
 
-> 💡 **怎么“同时 spawn 多个”**：在 Claude Code 对话框内，**连续输入下面的 prompt 4 次**（每次换 `<file-path>`）。Claude Code 会自动并行跑，不需要等第一个 subagent 结束才能输入第二个——这就是“parallel spawn”的实际操作方式。
-
-**Prompt 模板**（每次换 `<file-path>`）：
+**Prompt 模板**（每次修改 `<file-path>` 并依次发送）：
 ```
 Audit `<file-path>` for academic-style issues: (1) over-engineering
 jargon without first-use explanation, (2) clarity (long sentences,
@@ -232,13 +210,11 @@ file's banner / intro callout for who it's for). Report 4-category
 PASS/FAIL + fix-list with line numbers. Under 500 words.
 ```
 
-**何时不用**：1 个目标就够（直接调用 1 次，不要 over-orchestrate）
-
 ---
 
-### Recipe 11: 找跨 repo 的相似 implementation
+### Recipe 11: 找跨仓库的相似实现
 
-**场景**：你在某个 repo 看到一个 pattern，想知道另一个 repo 有没有类似实作
+**场景**：在项目 A 看到某种优秀的设计实践，想看项目 B 是否有类似逻辑。
 
 **Subagent**：`Explore`
 
@@ -250,13 +226,11 @@ pattern, e.g., "retry decorator with exponential backoff">. Report:
 (3) which is most idiomatic for this codebase's style.
 ```
 
-**何时不用**：你有具体 function 名要找（用 Recipe 6 / `Explore` 加精确 grep 更快）
-
 ---
 
-### Recipe 12: LLM-as-judge eval（structured PASS / FAIL）
+### Recipe 12: 大批量测试结果自动化评审 (LLM-as-judge)
 
-**场景**：跑了 100 个 test case，要评每个 output 是否符合 spec，不想人工看
+**场景**：运行完大批量测试用例，想让 LLM 自动评审模型输出是否符合 spec。
 
 **Subagent**：`general-purpose`
 
@@ -269,13 +243,11 @@ Output as structured JSON: {"case_id": "...", "verdict": "PASS|FAIL",
 "reason": "..."}.
 ```
 
-**何时不用**：< 5 个 case（自己看更快）；evaluation 涉及主观判断（LLM judge 不可靠）
-
 ---
 
-### Recipe 13: UI component design / accessibility audit
+### Recipe 13: UI 组件与无障碍 (Accessibility) 专项设计评审
 
-**场景**：写了一个 React component，想确认 ARIA + keyboard nav + responsive 都做对
+**场景**：新写了一个交互复杂的 React 组件，要评估其无障碍与响应式指标。
 
 **Subagent**：`frontend-developer`
 
@@ -285,82 +257,63 @@ Audit <component-file> for: (1) ARIA roles + labels (screen reader
 compatibility), (2) keyboard navigation (tab order, Enter / Esc / arrows
 behavior), (3) responsive breakpoints (mobile 360px / tablet 768px /
 desktop 1280px), (4) color contrast (WCAG AA), (5) touch target size
-(≥ 44px). Report per-category findings + fixes.
+(>= 44px). Report per-category findings + fixes.
 ```
-
-**何时不用**：纯后端 / CLI 工具（没有 UI 可 audit）
 
 ---
 
-### Recipe 14: 问 Claude Code feature 怎么用
+### Recipe 14: 查询 Antigravity CLI 的功能使用指南
 
-**场景**：忘了 hooks 怎么设、忘了 slash command 的 frontmatter 字段，想查文件
+**场景**：忘记了 Hooks 如何配置，或者不确定某种 slash command 的用法。
 
-**Subagent**：`claude-code-guide`
+**Subagent**：`antigravity-guide`
 
 **Prompt 模板**：
 ```
-How do I <specific Claude Code feature question, e.g., "configure a
+How do I <specific Antigravity CLI feature question, e.g., "configure a
 PreToolUse hook to block dangerous bash commands">? Show: (1) minimum
 config in settings.json, (2) example hook script (Python or shell),
 (3) 1 common gotcha, (4) where in the official docs to read more.
 ```
 
-**何时不用**：你已经写过几次（直接看自己 `~/.claude/settings.json` 范例更快）
-
 ---
 
-### Recipe 15: 写 React form validation 逻辑
+### Recipe 15: 编写复杂的 React 表单校验逻辑
 
-**场景**：要做一个 sign-up form，要 email format / password strength / real-time validation
+**场景**：需要开发一个包含复杂校验的注册表单组件。
 
 **Subagent**：`frontend-developer`
 
 **Prompt 模板**：
 ```
 Implement a React sign-up form with: (1) email format validation
-(real-time, debounce 300ms), (2) password strength meter (≥ 8 chars,
+(real-time, debounce 300ms), (2) password strength meter (>= 8 chars,
 mixed case, digit, symbol), (3) inline error messages with ARIA
 live region, (4) submit button disabled until valid. Use <library, e.g.,
 React Hook Form + Zod>. Include: component code, validation schema,
 1 happy-path test, 1 error-path test.
 ```
 
-**何时不用**：非 React stack（用 Vue / Svelte 对应的 subagent，或 `general-purpose`）
-
 ---
 
-## Recipe 索引（按 subagent type 找）
+## Recipe 索引（按 subagent 种类反查）
 
-不确定该用哪个 subagent？从**任务类型**反查：
-
-| Subagent | Recipes |
+| Subagent | 关联 Recipes |
 |---|---|
-| `code-reviewer` | **1**（pre-commit review）/ **4**（cross-locale parity）/ **8**（release security audit）|
-| `Explore` | **2**（new codebase）/ **6**（find symbol）/ **11**（cross-repo similar code）|
-| `Plan` | **3**（refactor plan）/ **9**（blast radius）|
-| `general-purpose` | **5**（fact-check）/ **7**（multi-paper compare）/ **10**（parallel multi-target）/ **12**（LLM-as-judge eval）|
-| `frontend-developer` | **13**（a11y audit）/ **15**（React form）|
-| `claude-code-guide` | **14**（Claude Code feature 查询）|
+| `code-reviewer` | **1**（提交前 review）、**4**（多语言比对）、**8**（发版前安全审计） |
+| `Explore` | **2**（项目结构探索）、**6**（定位 symbol）、**11**（跨库相似代码查找） |
+| `Plan` | **3**（重构计划书）、**9**（影响面 Blast Radius 评估） |
+| `general-purpose` | **5**（fact-check）、**7**（论文横向比对）、**10**（并行多目标审查）、**12**（LLM 自动化裁判） |
+| `frontend-developer` | **13**（无障碍与适配审计）、**15**（React 表单业务开发） |
+| `antigravity-guide` | **14**（CLI 功能与配置查询） |
 
 ---
 
 ## 何时 NOT 该用 subagent
 
-Subagent 不是免费的——每次派遣**会烧 token，也有延迟**。下面 4 种场景**不该用 subagent**，自己跑更划算：
+虽然 Subagent 能实现高度的上下文隔离与任务并行，但在以下场景中**应避免使用**，直接在主会话中运行效率更高：
 
-1. **任务 < 5 分钟可自己完成** — 大材小用；subagent overhead 不划算
-2. **结果需要逐步 user feedback** — subagent 是“派出去、跑完回报一次”，不能中间问你；要逐步确认的任务直接在主 session 跑
-3. **任务需要主 session 的 context memory** — subagent 是**独立 context window**，看不到主 session 前面的对话；要用“我们刚刚讨论的 X...”这种 reference 的任务，不适合
-4. **任务涉及 conversation-level judgment** — 像“这个 architecture 决策该怎么权衡”，需要对话协作，不适合丢给 subagent
-
-> 💡 **判断的快速办法**：如果任务可以用“**写一份完整 brief 给陌生人接手做**”描述清楚 → 适合 subagent；如果需要“**我跟你讨论一下**”→ 留在主 session。
-
----
-
-## 接下来
-
-- **想理解完整理论**（subagent 跟 skill / MCP 的差别、3 种 multi-agent 机制）→ [Stage 5.5](../stages/05-claude-code-ecosystem.zh-Hans.md#55--subagentsclaude-code-原生-multi-agent-机制-2025-新功能)
-- **CLI 日常用法 playbook** → [`tracks/cli/A3-cli-production.md` Playbook 4](../tracks/cli/A3-cli-production.zh-Hans.md#-playbook-4派遣-subagent-跑独立任务)
-- **想看 subagent 在 agent paradigm 体系内的定位** → [`resources/agent-paradigms.md`](./agent-paradigms.zh-Hans.md#subagent--在-agent-runtime-里再-spawn-agent)
-- **词汇快查** → [`resources/glossary.md` § 5. Claude Code 生态 — Subagent](./glossary.zh-Hans.md#subagent子-agent)
+1. **极其简短、数分钟内即可人工或直接处理的任务**：频繁 spawn subagent 会带来启动开销和 Token 浪费。
+2. **需要用户频繁在中间交互确认、提供实时输入反馈的任务**：Subagent 是“全自动派发-最终合并回报”的模式，中途无法进行人机交互。
+3. **需要强依赖当前主会话历史记忆的任务**：Subagent 运行在完全隔离的新 context 空间中，无法读取当前主会话“上面我们刚刚说过的...”等局部上文。
+4. **决策本身偏向宏观系统架构探讨或发散式讨论**：这种场景下需要反复权衡、人机协作沟通，不适合丢给封闭闭环运行的 subagent。

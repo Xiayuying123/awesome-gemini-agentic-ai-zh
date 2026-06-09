@@ -2,7 +2,7 @@
 
 > [繁體中文](./cookbook.md) | [简体中文](./cookbook.zh-Hans.md) | **English**
 
-> Stage 5 (Claude Code Ecosystem) talks about "Concepts" and "Available Tools" with [`mcp-skills-catalog.md`](mcp-skills-catalog.md). This cookbook fills in the gap in between: "**How to build it**". Each recipe is a step-by-step guide + sample code + common pitfalls, designed to be completed in about 30-50 minutes.
+> Stage 5 (Antigravity CLI Ecosystem) talks about "Concepts" and "Available Tools" with [`mcp-skills-catalog.md`](mcp-skills-catalog.md). This cookbook fills in the gap in between: "**How to build it**". Each recipe is a step-by-step guide + sample code + common pitfalls, designed to be completed in about 30-50 minutes.
 >
 > This is not a reference or a tutorial—it's a recipe. Pick the one you need and start cooking.
 
@@ -21,7 +21,7 @@
 
 ## 1. Write Your First Skill
 
-> A Skill is a folder containing `SKILL.md`, which Claude Code discovers automatically upon startup and loads contextually. The minimum viable version can run with as few as 50 lines of code.
+> A Skill is a folder containing `SKILL.md`, which Antigravity CLI discovers automatically upon startup and loads contextually. The minimum viable version can run with as few as 50 lines of code.
 
 ### Why
 
@@ -101,7 +101,7 @@ When the user wants Python imports cleaned up:
 #### Step 3: Test
 
 ```bash
-# Restart Claude Code (to re-discover skills)
+# Restart Antigravity CLI (to re-discover skills)
 # Provide a trigger phrase in the conversation
 # e.g., "Help me organize the imports in this Python code."
 # Observe if Claude follows the steps in SKILL.md
@@ -136,21 +136,21 @@ You can then use tools like promptfoo for batch testing.
 
 ### Further Reading
 
-- See [Stage 5.3](../stages/05-claude-code-ecosystem.en.md#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem) for a detailed explanation of Skill anatomy.
+- See [Stage 5.3](../stages/05-gemini-skills-ecosystem.en.md#53--skills-claude-codes-behavior-layer--the-most-critical-layer-of-the-claude-code-ecosystem) for a detailed explanation of Skill anatomy.
 - Refer to the official skill templates in [`anthropics/skills`](https://github.com/anthropics/skills) (for docx / xlsx / pptx, etc.) for examples.
-- Package multiple skills into a plugin → [Stage 5.4](../stages/05-claude-code-ecosystem.en.md#54--plugins--marketplaces)
+- Package multiple skills into a plugin → [Stage 5.4](../stages/05-gemini-skills-ecosystem.en.md#54--plugins--marketplaces)
 
 ---
 
 ## 2. Write Your First MCP Server
 
-> An MCP server is a standalone process that provides tools / resources / prompts to an LLM host (Claude Desktop / Claude Code). The minimal runnable version is less than 50 lines of Python.
+> An MCP server is a standalone process that provides tools / resources / prompts to an LLM host (Claude Desktop / Antigravity CLI). The minimal runnable version is less than 50 lines of Python.
 
 ### Why
 
 - Skills are for Claude's "role + rules"; MCPs are for Claude's "**external functions**".
 - Skills cannot read files or call APIs; MCPs can (any tool you can script).
-- Skills only run within Claude Code; MCPs can be used by any LLM host (including custom agents).
+- Skills only run within Antigravity CLI; MCPs can be used by any LLM host (including custom agents).
 
 ### Steps
 
@@ -221,7 +221,7 @@ if __name__ == "__main__":
 }
 ```
 
-**Claude Code**: Use the `claude mcp add` command:
+**Antigravity CLI**: Use the `claude mcp add` command:
 
 ```bash
 claude mcp add hello-mcp python /absolute/path/to/server.py
@@ -245,9 +245,9 @@ Claude replies (with a tool call icon): Echo: hello world
 
 ### Further Reading
 
-- See [Stage 5.2](../stages/05-claude-code-ecosystem.en.md#52--mcp-model-context-protocol--foundation) for a full introduction to MCP.
+- See [Stage 5.2](../stages/05-gemini-skills-ecosystem.en.md#52--mcp-model-context-protocol--foundation) for a full introduction to MCP.
 - Refer to the official examples in [`modelcontextprotocol/servers`](https://github.com/modelcontextprotocol/servers) (e.g., filesystem, github, sqlite, time).
-- For production servers, see [Stage 5.2 "Practice: MCP in production"](../stages/05-claude-code-ecosystem.en.md#52--mcp-model-context-protocol--foundation) and the `~/.claude/skills/` examples in [`anthropics/claude-code`](https://github.com/anthropics/claude-code).
+- For production servers, see [Stage 5.2 "Practice: MCP in production"](../stages/05-gemini-skills-ecosystem.en.md#52--mcp-model-context-protocol--foundation) and the `~/.claude/skills/` examples in [`anthropics/claude-code`](https://github.com/anthropics/claude-code).
 
 ---
 
@@ -278,7 +278,7 @@ git clone https://github.com/anthropics/skills.git ~/.claude/skills/anthropic-sk
 
 Alternatively, use `claude plugin install` if it's packaged as a plugin.
 
-#### Step 2: Restart Claude Code
+#### Step 2: Restart Antigravity CLI
 
 - `skills/docx/` → Read/write DOCX files
 - `skills/xlsx/` → Read/write Excel files
@@ -335,7 +335,7 @@ and write each into separate markdown sections in ./notes/research-summary.md.
 
 ## 4. NotebookLM Workflow
 
-> NotebookLM is Google's RAG-on-your-docs tool. **Claude Code does not have official NotebookLM integration**, but there are two mature community solutions.
+> NotebookLM is Google's RAG-on-your-docs tool. **Antigravity CLI does not have official NotebookLM integration**, but there are two mature community solutions.
 
 ### Why
 
@@ -344,7 +344,7 @@ NotebookLM's strengths:
 - Provides Q&A with citations (each answer links to the source document and page number).
 - Generates summaries, mind maps, or podcast-style audio overviews.
 
-Its weakness: It's used via the NotebookLM web interface, disconnecting it from your other workflows (Claude Code, Obsidian, Zotero).
+Its weakness: It's used via the NotebookLM web interface, disconnecting it from your other workflows (Antigravity CLI, Obsidian, Zotero).
 
 Two solutions bridge this gap:
 1. **PleasePrompto/notebooklm-skill** (Skill, browser automation)
@@ -354,7 +354,7 @@ Two solutions bridge this gap:
 
 | Scenario | Choose This | Why |
 |---|---|---|
-| Occasionally query NotebookLM from Claude Code | `PleasePrompto/notebooklm-skill` | Single prompt in Claude Code to run; simple setup. |
+| Occasionally query NotebookLM from Antigravity CLI | `PleasePrompto/notebooklm-skill` | Single prompt in Antigravity CLI to run; simple setup. |
 | Batch operations (e.g., create 100 notebooks, import documents in bulk) | `teng-lin/notebooklm-py` | Python API for programmatic execution. |
 | Avoid breaking due to Google policy changes | (Wait for an official Google API) | Both solutions are unofficial and subject to breaking changes. |
 
@@ -420,7 +420,7 @@ print(answer.citations)
 
 ## 5. Zotero Workflow
 
-> Zotero manages your literature. With [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills), Claude Code can directly search, add, categorize, and tag references.
+> Zotero manages your literature. With [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills), Antigravity CLI can directly search, add, categorize, and tag references.
 
 ### Why
 
@@ -429,14 +429,14 @@ Classic pain points in the research workflow:
 - "Give me summaries of all papers discussing transformers." — Requires manual selection, export, then feeding to an LLM.
 - "What tags should I add to this paper?" — Manual process.
 
-`zotero-skills` turns these into single prompts within Claude Code.
+`zotero-skills` turns these into single prompts within Antigravity CLI.
 
 ### Difference from zotero-gpt
 
 | Tool | Role | Best For |
 |---|---|---|
 | [`MuiseDestiny/zotero-gpt`](https://github.com/MuiseDestiny/zotero-gpt) | Zotero plugin (chat **inside** Zotero) | Asking LLM questions while reading papers, without switching windows. |
-| [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | Claude Code skill (operates Zotero from **outside**) | Primarily using Claude Code for paper writing / literature review. |
+| [`WenyuChiou/zotero-skills`](https://github.com/WenyuChiou/zotero-skills) | Antigravity CLI skill (operates Zotero from **outside**) | Primarily using Antigravity CLI for paper writing / literature review. |
 
 They are complementary and not mutually exclusive; you can install both.
 
@@ -505,7 +505,7 @@ and export any missing BibTeX entries as a .bib file for me.
 
 ### Why
 
-Stage 1 teaches local LLM runtimes such as Ollama / llama.cpp / vLLM. Stage 5 teaches the Claude Code, MCP, Skills, and Plugins ecosystem. The common misunderstanding between them: **Claude Code is not a local LLM runner**. Claude Code requires Anthropic OAuth / API credentials; it cannot directly switch its model endpoint to Ollama or another local endpoint.
+Stage 1 teaches local LLM runtimes such as Ollama / llama.cpp / vLLM. Stage 5 teaches the Antigravity CLI, MCP, Skills, and Plugins ecosystem. The common misunderstanding between them: **Antigravity CLI is not a local LLM runner**. Antigravity CLI requires Anthropic OAuth / API credentials; it cannot directly switch its model endpoint to Ollama or another local endpoint.
 
 If your goal is "local LLM + CLI agent", choose a CLI that supports BYO LLM instead. **OpenCode / goose / Aider / Hermes Agent** can connect to an OpenAI-compatible endpoint or an Ollama provider. This recipe gives you a short path to validate the model, the agent, and one real task.
 
@@ -575,9 +575,9 @@ Watch three things:
 - **Quality**: 3B / 7B models usually trail Claude on reasoning, long context, and complex code.
 - **Cost**: token cost is `$0`, but you spend local RAM / VRAM and power.
 
-#### Step 4: Compare with Claude Code (5 minutes)
+#### Step 4: Compare with Antigravity CLI (5 minutes)
 
-| Dimension | Claude Code | OpenCode + Ollama |
+| Dimension | Antigravity CLI | OpenCode + Ollama |
 |---|---|---|
 | LLM | Anthropic hosted | Local model |
 | Cost | Subscription or per-token | `$0` token cost |
@@ -586,11 +586,11 @@ Watch three things:
 | Reasoning ceiling | Stronger with Claude 4.5+ | Depends on the local model |
 | Best use case | Complex codebases, long context, reliable reasoning | Private files, offline demos, low-cost repetition |
 
-### Important Limitation: Claude Code Cannot Directly Use a Local LLM
+### Important Limitation: Antigravity CLI Cannot Directly Use a Local LLM
 
-Claude Code currently requires Anthropic OAuth / API credentials and has no official setting for replacing its model with Ollama or a local endpoint. You may see proxy or API-shim experiments online, but that is not the official supported path; stability and compatibility are yours to validate.
+Antigravity CLI currently requires Anthropic OAuth / API credentials and has no official setting for replacing its model with Ollama or a local endpoint. You may see proxy or API-shim experiments online, but that is not the official supported path; stability and compatibility are yours to validate.
 
-For local LLM work, treat "Claude Code" and "BYO-LLM CLI agents" as separate tools: use Claude Code when you need Claude's quality; use OpenCode / goose / Aider / Hermes for local, offline, privacy-sensitive, or low-cost experiments.
+For local LLM work, treat "Antigravity CLI" and "BYO-LLM CLI agents" as separate tools: use Antigravity CLI when you need Claude's quality; use OpenCode / goose / Aider / Hermes for local, offline, privacy-sensitive, or low-cost experiments.
 
 ### Common Pitfalls
 
@@ -611,7 +611,7 @@ For local LLM work, treat "Claude Code" and "BYO-LLM CLI agents" as separate too
 
 ## Can't Find the Recipe You Need?
 
-- See [Stage 5](../stages/05-claude-code-ecosystem.md) for the full concept.
+- See [Stage 5](../stages/05-gemini-skills-ecosystem.md) for the full concept.
 - See [`mcp-skills-catalog.md`](mcp-skills-catalog.en.md) for a comprehensive list of tools.
 - See [`schema-design-cheatsheet.md`](schema-design-cheatsheet.en.md) for details on writing tool schemas.
 - See [`cli-agents-guide.md`](cli-agents-guide.en.md) for a comparison of 7 popular CLI agents.

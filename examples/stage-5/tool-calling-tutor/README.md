@@ -2,11 +2,11 @@
   <strong>繁體中文</strong> | <a href="./README.zh-Hans.md">简体中文</a> | <a href="./README.en.md">English</a>
 </div>
 
-# tool-calling-tutor — Claude Code skill
+# tool-calling-tutor — Antigravity CLI skill
 
 > Skill 用途：當你卡在 tool calling（LLM 不呼叫、args 錯、ReAct loop 跑不停、schema 不知道怎麼寫），自動跳出來幫你 4-symptom 診斷 + 5-step 修法走查。
 
-對應 [Stage 3 — Tool Use & Agent 入門](../../../stages/03-tool-use-and-hello-agent.md)，同時是 [Stage 5 — Claude Code Ecosystem](../../../stages/05-claude-code-ecosystem.md) 5.3 的**自帶 skill 範例**。
+對應 [Stage 3 — Tool Use & Agent 入門](../../../stages/03-tool-use-and-hello-agent.md)，同時是 [Stage 5 — Antigravity CLI Ecosystem](../../../stages/05-gemini-skills-ecosystem.md) 5.3 的**自帶 skill 範例**。
 
 ## 為什麼這個 skill 存在
 
@@ -23,7 +23,7 @@ Tool calling 是整個 curriculum 最陡的學習曲線——schema 設計、SDK
 
 ## 雙重用途
 
-1. **學習者用**：安裝後當 personal debug 助手。當你 prompt Claude Code「為什麼 LLM 不呼叫我的 tool」、skill 自動載入、走 4-symptom 診斷。
+1. **學習者用**：安裝後當 personal debug 助手。當你 prompt Antigravity CLI「為什麼 LLM 不呼叫我的 tool」、skill 自動載入、走 4-symptom 診斷。
 2. **Stage 5 5.3 meta-example**：學 SKILL.md 怎麼寫的時候，直接看這份。包含完整 frontmatter（含 trigger phrases + Do NOT use for）、`references/` 設計、`evals/evals.json` 範例。
 
 ## 怎麼安裝（30 秒）
@@ -49,7 +49,7 @@ cp SKILL.md references/ evals/ .claude/skills/tool-calling-tutor/
 
 ### 驗證安裝
 
-重啟 Claude Code、然後 prompt：
+重啟 Antigravity CLI、然後 prompt：
 
 ```
 為什麼 LLM 不呼叫我的 tool？

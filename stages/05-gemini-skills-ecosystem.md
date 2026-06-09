@@ -1,59 +1,59 @@
-# Stage 5 — Claude Code 生態系（Claude Code Ecosystem）⭐⭐
+# Stage 5 — Antigravity CLI 生態系（Antigravity CLI Ecosystem）⭐⭐
 
-> **繁體中文** | [简体中文](./05-claude-code-ecosystem.zh-Hans.md) | [English](./05-claude-code-ecosystem.en.md)
+> **繁體中文** | [简体中文](./05-gemini-skills-ecosystem.zh-Hans.md) | [English](./05-gemini-skills-ecosystem.en.md)
 
 ⏱ **時間估算**：3-4 週（約 15-25 小時）
 
-> 🚪 **進入條件**（共用 hub、依 track 不同）：**Track A（CLI Power User）** 從 A1-A2 過來、會用 Python + 跑過基本 CLI 即可、從 5.1/5.2 起步；**Track B（Agent Builder）** 建議先完成 [Stage 3](03-tool-use-and-hello-agent.md)（tool use）+ [Stage 4](04-agent-frameworks.md)（agent frameworks）再進、把整個 stage 當「Claude Code 內部怎麼運作」深讀。不確定走哪條 → 看下面 📌 的兩軌說明。
+> 🚪 **進入條件**（共用 hub、依 track 不同）：**Track A（CLI Power User）** 從 A1-A2 過來、會用 Python + 跑過基本 CLI 即可、從 5.1/5.2 起步；**Track B（Agent Builder）** 建議先完成 [Stage 3](03-tool-use-and-hello-agent.md)（tool use）+ [Stage 4](04-agent-frameworks.md)（agent frameworks）再進、把整個 stage 當「Antigravity CLI 內部怎麼運作」深讀。不確定走哪條 → 看下面 📌 的兩軌說明。
 
 > 💡 整個 stage 圍繞 4 個關鍵詞（**MCP / Skills / Plugins / Marketplace**）展開 → 不熟先翻 [`resources/glossary.md` 5](../resources/glossary.md#5-claude-code-生態)。
 
 **👥 共用 hub**：本 stage 是 Track A（CLI Power User）+ Track B（Agent Builder）兩條路徑的共用中心。Stage 5 跟 [Stage 8 — Agent Interfaces](08-agent-interfaces.md) 是 curriculum 的兩個 hub。
 
 > 📌 **這個 stage 兩條軌都用**：
-> - **Track A（CLI Power User）**：A2 用 [5.1（Claude Code 基礎）](#51--claude-code-基礎)；A3 用 [5.2（MCP）](#52--mcpmodel-context-protocol-基礎) + 選擇性用到 [5.3（Skills）](#53--skillsclaude-code-的行為層-claude-code-生態最關鍵的一層) 跟 [5.4（Plugins）](#54--plugins-與-marketplaces)（A3 的 動手練習 CLI-12 會教把 CLAUDE.md 跟 commands 打包成 plugin）。讀的角度是「**怎麼用 Claude Code 把工作做好**」
-> - **Track B（Agent Builder）**：把整個 stage 當「**Claude Code 內部怎麼運作**」的深度學習，從 5.1 完整走到 5.4
+> - **Track A（CLI Power User）**：A2 用 [5.1（Antigravity CLI 基礎）](#51--claude-code-基礎)；A3 用 [5.2（MCP）](#52--mcpmodel-context-protocol-基礎) + 選擇性用到 [5.3（Skills）](#53--skillsclaude-code-的行為層-claude-code-生態最關鍵的一層) 跟 [5.4（Plugins）](#54--plugins-與-marketplaces)（A3 的 動手練習 CLI-12 會教把 GEMINI.md 跟 commands 打包成 plugin）。讀的角度是「**怎麼用 Antigravity CLI 把工作做好**」
+> - **Track B（Agent Builder）**：把整個 stage 當「**Antigravity CLI 內部怎麼運作**」的深度學習，從 5.1 完整走到 5.4
 
-> 🗺️ **Claude Code 屬於哪種 agent 型態**？→ [`resources/agent-paradigms.md`](../resources/agent-paradigms.md) Type 1（IDE-coupled）+ Type 2（Terminal pair-programmer）；想看完整 5 種 paradigm 對照也從這份開始。
+> 🗺️ **Antigravity CLI 屬於哪種 agent 型態**？→ [`resources/agent-paradigms.md`](../resources/agent-paradigms.md) Type 1（IDE-coupled）+ Type 2（Terminal pair-programmer）；想看完整 5 種 paradigm 對照也從這份開始。
 
-> ⚠️ **想用本機 LLM？這個 stage 不是那條路線。** Claude Code 需要 Anthropic API / OAuth，不能直接改接 Ollama 或本機 endpoint。離線、隱私資料或不想用 API 額度時，請看 [`resources/cookbook.md` Recipe 6](../resources/cookbook.md#6-本機-llm--cli-agent-快速-walkthrough)，用 OpenCode / goose / Aider / Hermes 這類支援 BYO LLM 的 CLI agent。
+> ⚠️ **想用本機 LLM？這個 stage 不是那條路線。** Antigravity CLI 需要 Anthropic API / OAuth，不能直接改接 Ollama 或本機 endpoint。離線、隱私資料或不想用 API 額度時，請看 [`resources/cookbook.md` Recipe 6](../resources/cookbook.md#6-本機-llm--cli-agent-快速-walkthrough)，用 OpenCode / goose / Aider / Hermes 這類支援 BYO LLM 的 CLI agent。
 
-> 📋 **本章組成**：6 個子章（5.1 基礎 / 5.2 MCP / 5.3 Skills / 5.4 Plugins / 5.5 Subagents / 5.6 Claude Code Source 解剖），每個子章都有「學習目標 → 必修閱讀 → 動手練習 → 精選 Projects」 → 章末 自我檢查。**注意**：Harness Engineering（Agent 執行系統設計）的**學科級概念**在 [Stage 7](07-multi-agent-production.md) 系統整理；本章 5.6 則把 Claude Code 當成案例，觀察一個成熟 agent 工具如何處理工具、記憶、設定、權限與執行流程
+> 📋 **本章組成**：6 個子章（5.1 基礎 / 5.2 MCP / 5.3 Skills / 5.4 Plugins / 5.5 Subagents / 5.6 Antigravity CLI Source 解剖），每個子章都有「學習目標 → 必修閱讀 → 動手練習 → 精選 Projects」 → 章末 自我檢查。**注意**：Harness Engineering（Agent 執行系統設計）的**學科級概念**在 [Stage 7](07-multi-agent-production.md) 系統整理；本章 5.6 則把 Antigravity CLI 當成案例，觀察一個成熟 agent 工具如何處理工具、記憶、設定、權限與執行流程
 > 🔑 **關鍵名詞**：見 [`resources/glossary.md` 5](../resources/glossary.md#5-claude-code-生態)
 
 ## Stack 一覽
 
 由上往下，每一層都建立在底下那一層上：
 
-![Claude Code Ecosystem Stack](../resources/diagrams/stage5-stack.png)
+![Antigravity CLI Ecosystem Stack](../resources/diagrams/stage5-stack.png)
 
 每一層各自加上一種能力：
 - **API + SDK**：用程式存取 LLM
 - **Tool Use**：讓 LLM 呼叫你定義的 function
 - **MCP**：標準化協定，讓任何 LLM host 都能使用任何 tool server
-- **Skills**：Claude Code 的行為包，可以封裝 MCP tool
+- **Skills**：Antigravity CLI 的行為包，可以封裝 MCP tool
 - **Plugins**：把 Skills、hooks、commands、MCP 設定打包成一個單位發佈
 
 這個階段有 4 個子章節，**請按順序做**——每一節都建立在前一節之上。
 
 ```
-5.1 Claude Code 基礎 3-5 天 （安裝、slash commands、CLAUDE.md）
+5.1 Antigravity CLI 基礎 3-5 天 （安裝、slash commands、GEMINI.md）
 5.2 MCP — 協定層 5-7 天 （寫你的第一個 MCP server）
 5.3 Skills — 行為層 5-7 天 （寫你的第一個 SKILL.md）
 5.4 Plugins 與 Marketplaces 5-7 天 （打包並發佈）
 ```
 
-跑完這個階段，你會能擴充 Claude Code、寫自己的 MCP server、發佈一個 plugin marketplace。
+跑完這個階段，你會能擴充 Antigravity CLI、寫自己的 MCP server、發佈一個 plugin marketplace。
 
 ---
 
 ## 🗺️ 7-Layer Architecture Map（先看這張圖、再讀 5.1-5.6）
 
-> 📋 **這節是什麼**：把 Claude Code 的 7 個 primitive（MCP / Skills / Plugins / Subagents / Hooks / Slash commands / CLI）對應到 **7 個架構層 + 3 個工程學 discipline**——進 5.1-5.6 之前看一次知道接下來在學什麼層、學完回頭看是 synthesis。**分層是教學選擇、不是 absolute 真理**。
+> 📋 **這節是什麼**：把 Antigravity CLI 的 7 個 primitive（MCP / Skills / Plugins / Subagents / Hooks / Slash commands / CLI）對應到 **7 個架構層 + 3 個工程學 discipline**——進 5.1-5.6 之前看一次知道接下來在學什麼層、學完回頭看是 synthesis。**分層是教學選擇、不是 absolute 真理**。
 
-![Claude Code 7-Layer Architecture Map](../resources/diagrams/claude-architecture-map.png)
+![Antigravity CLI 7-Layer Architecture Map](../resources/diagrams/claude-architecture-map.png)
 
-> 📊 **上圖**：Claude Code 7 個架構層 + 3 個工程學 discipline 整合視圖。
+> 📊 **上圖**：Antigravity CLI 7 個架構層 + 3 個工程學 discipline 整合視圖。
 
 ### 每層 1 句白話 + Claude 的版本
 
@@ -82,9 +82,9 @@
 
 ### 跨 CLI vendor mini-comparison（2026-05 snapshot）
 
-只有 Claude Code 有**完整 7-layer stack**；其他 CLI 大多停在 single-agent + 簡化版：
+只有 Antigravity CLI 有**完整 7-layer stack**；其他 CLI 大多停在 single-agent + 簡化版：
 
-| Layer | Claude Code | OpenAI Codex | Gemini CLI |
+| Layer | Antigravity CLI | OpenAI Codex | Gemini CLI |
 |---|---|---|---|
 | L5 Coordination（multi-agent）| ✅ Subagents | ❌ single-agent | ❌ |
 | L3 Control Plane（hooks）| ✅ Hooks | ❌ | ❌ |
@@ -95,11 +95,11 @@
 
 ---
 
-## 5.1 — Claude Code 基礎
+## 5.1 — Antigravity CLI 基礎
 
-### Claude Code 是什麼（先定位）
+### Antigravity CLI 是什麼（先定位）
 
-**Claude Code = 跑在你 terminal 內的 Claude agent**——有完整 file system / shell / git / subprocess access、可以**自主完成多步驟工作**（讀檔 → 改檔 → 跑 test → commit → 發 PR）。
+**Antigravity CLI = 跑在你 terminal 內的 Claude agent**——有完整 file system / shell / git / subprocess access、可以**自主完成多步驟工作**（讀檔 → 改檔 → 跑 test → commit → 發 PR）。
 
 跟其他 Claude 介面差別：
 
@@ -108,64 +108,64 @@
 | **claude.ai**（web） | 瀏覽器 | 純對話 + 上傳檔案、無 file system 操作 | 偶爾聊一下、ask 一個問題 |
 | **Claude API**（programmatic） | 你的 server / script | LLM call、自己包 agent loop | 寫 production system |
 | **Claude Agent SDK** | 你的 Python / TS 環境 | 完整 agent runtime + tool use + 多 session | 寫 production agent system |
-| **Claude Code**（**本節**） | 你的 terminal | **完整 OS-level agent**（file / shell / git / subprocess）+ skill / plugin / subagent 生態 | **日常工作主力工具** |
+| **Antigravity CLI**（**本節**） | 你的 terminal | **完整 OS-level agent**（file / shell / git / subprocess）+ skill / plugin / subagent 生態 | **日常工作主力工具** |
 
-進 5.2-5.6 之前你會在這節學到 **4 個 Claude Code 核心結構**：CLAUDE.md（記憶層）/ slash commands（控制層）/ `~/.claude/` 目錄（設定層）/ settings.json（行為層）。
+進 5.2-5.6 之前你會在這節學到 **4 個 Antigravity CLI 核心結構**：GEMINI.md（記憶層）/ slash commands（控制層）/ `~/.claude/` 目錄（設定層）/ settings.json（行為層）。
 
 ### 學習目標
 
 完成本節後你會：
-- 講得出 Claude Code 跟 claude.ai / API / SDK 各自的角色（**「為什麼用 CLI 不用 web」**）
-- 安裝 Claude Code、配置認證、跑第一個有 file access 的 session
-- 用 8-10 個常用 slash command 控制 Claude Code 行為
-- 寫一份 project-level `CLAUDE.md` 設定 baseline 行為
+- 講得出 Antigravity CLI 跟 claude.ai / API / SDK 各自的角色（**「為什麼用 CLI 不用 web」**）
+- 安裝 Antigravity CLI、配置認證、跑第一個有 file access 的 session
+- 用 8-10 個常用 slash command 控制 Antigravity CLI 行為
+- 寫一份 project-level `GEMINI.md` 設定 baseline 行為
 - 認得 `~/.claude/` 目錄結構（skills / agents / plugins / settings.json 各放哪）
 
 ### 必修閱讀
-1. [**Anthropic — Claude Code Quickstart**](https://docs.claude.com/en/docs/claude-code/quickstart) — 官方安裝指南
-2. [**Anthropic — CLAUDE.md best practices**](https://docs.claude.com/en/docs/claude-code/memory) — 怎麼寫專案 memory
+1. [**Anthropic — Antigravity CLI Quickstart**](https://docs.claude.com/en/docs/claude-code/quickstart) — 官方安裝指南
+2. [**Anthropic — GEMINI.md best practices**](https://docs.claude.com/en/docs/claude-code/memory) — 怎麼寫專案 memory
 3. [**Anthropic — Slash Commands**](https://docs.claude.com/en/docs/claude-code/slash-commands) — 官方完整 slash command 列表
 4. [**Anthropic — Settings**](https://docs.claude.com/en/docs/claude-code/settings) — `settings.json` 完整 schema + env var
 5. [**KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh**](https://github.com/KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh) — 簡中入門指南
 
-> 🛠️ **要寫好 CLAUDE.md？** 先看 [Stage 7.5 核心 Harness Engineering 原則（多 source）](07.5-advanced-agentic-concepts.md#-跨概念-harness-engineering-原則多-source-整理) 建概念、再用下面 2 個 prompt 動手。
+> 🛠️ **要寫好 GEMINI.md？** 先看 [Stage 7.5 核心 Harness Engineering 原則（多 source）](07.5-advanced-agentic-concepts.md#-跨概念-harness-engineering-原則多-source-整理) 建概念、再用下面 2 個 prompt 動手。
 
-### 📋 CLAUDE.md 設計 prompts（依 5 原則）
+### 📋 GEMINI.md 設計 prompts（依 5 原則）
 
-寫 / 改 CLAUDE.md 時直接複製貼上：
+寫 / 改 GEMINI.md 時直接複製貼上：
 
-#### Prompt 1 — Audit 你現有的 CLAUDE.md
+#### Prompt 1 — Audit 你現有的 GEMINI.md
 
 ```
-我有一個 CLAUDE.md（在 [貼路徑]），請依下面 5 個 harness engineering 原則 audit：
+我有一個 GEMINI.md（在 [貼路徑]），請依下面 5 個 harness engineering 原則 audit：
 
 1. Legibility — 用 markdown header 分區嗎？conventions 寫具體（"2-space indent"）還是模糊（"format properly"）？
 2. Progressive Disclosure — < 200 行嗎？有用 `@-import` 或 `.claude/rules/<topic>.md` 拆分嗎？
-3. System of Record — CLAUDE.md 是否當 entry map、實際內容指向 `docs/` + `.coord/`？還是把所有規則塞同一檔？
+3. System of Record — GEMINI.md 是否當 entry map、實際內容指向 `docs/` + `.coord/`？還是把所有規則塞同一檔？
 4. Taste Invariants — 規則可驗證嗎（"run `make lint` before commit"）？還是「follow best practices」這種空話？
 5. Transparency — 有要求 agent show planning step 嗎？還是預期它默默做完？
 
 每條給 PASS / FAIL / PARTIAL + 原因 + 改進建議。總分 X/5、最該先修哪條。
 ```
 
-#### Prompt 2 — 生成新的 CLAUDE.md（依 5 原則）
+#### Prompt 2 — 生成新的 GEMINI.md（依 5 原則）
 
 ```
-我要為一個 [描述專案，例如：Python data analysis monorepo / 學術論文 repo / Next.js app] 寫 CLAUDE.md。請依下面 5 個 harness engineering 原則生成：
+我要為一個 [描述專案，例如：Python data analysis monorepo / 學術論文 repo / Next.js app] 寫 GEMINI.md。請依下面 5 個 harness engineering 原則生成：
 
 - **< 200 行**
 - 當 **entry map**，把實際 conventions 用 `@-import` 引外部 docs 或 `.claude/rules/<topic>.md`
 - 每條規則**可驗證**（不要「follow best practices」這種空話）
 - 加 **1-2 個 transparency rule**（例如「edit > 50 lines 前先 show plan」）
-- 標明哪些內容該放 CLAUDE.md、哪些該分到 `.claude/rules/<topic>.md`
+- 標明哪些內容該放 GEMINI.md、哪些該分到 `.claude/rules/<topic>.md`
 
 輸出：
-1. 完整 CLAUDE.md 內容
+1. 完整 GEMINI.md 內容
 2. 建議的 `.claude/rules/` 目錄切法（topic 列表）
 3. 1 個示範 `.claude/rules/<topic>.md`（任選一個 topic）
 ```
 
-→ **建議流程**：寫 CLAUDE.md 前用 Prompt 2 生成、寫完用 Prompt 1 audit。
+→ **建議流程**：寫 GEMINI.md 前用 Prompt 2 生成、寫完用 Prompt 1 audit。
 
 ### 常用 slash commands（10 個必學）
 
@@ -190,7 +190,7 @@
 ~/.claude/ ← 全域 user-level
 ├── settings.json ← 全域行為（env / hooks / permissions / model 預設）
 ├── settings.local.json ← 機器特定（不入 git）
-├── CLAUDE.md ← 全域 baseline（每個 session 都載入）
+├── GEMINI.md ← 全域 baseline（每個 session 都載入）
 ├── skills/<name>/SKILL.md ← user-level skills（5.3）
 ├── agents/<name>.md ← user-level subagents（5.5）
 ├── plugins/ ← 已安裝的 plugin（5.4）
@@ -204,14 +204,14 @@
 ├── commands/<name>.md ← project-level slash command
 └── hooks/ ← project-level hook
 
-<project-root>/CLAUDE.md ← project baseline（每個 session 都載入）
+<project-root>/GEMINI.md ← project baseline（每個 session 都載入）
 ```
 
 **優先順序**（衝突時誰贏）：project > user > built-in default。
 
 ### 動手練習
 - **練習 1：第一個 session** — 安裝、認證、`cd` 到 repo、跑 `claude` → 問「summarize this codebase」→ 觀察怎麼讀檔
-- **練習 2：CLAUDE.md** — 寫 repo 根目錄 CLAUDE.md（role / context / 不能做的事 / 怎麼做事 / 常用指令），對照「沒 CLAUDE.md」跟「有 CLAUDE.md」的行為差別
+- **練習 2：GEMINI.md** — 寫 repo 根目錄 GEMINI.md（role / context / 不能做的事 / 怎麼做事 / 常用指令），對照「沒 GEMINI.md」跟「有 GEMINI.md」的行為差別
 - **練習 3：5 個 slash commands** — 在一個 session 內依序用 `/help` `/plan` `/compact` `/model` `/agents`，觀察各自做什麼
 - **練習 4：目錄探索** — `ls ~/.claude/` + `cat ~/.claude/settings.json`、看自己 user-level 設定長什麼樣
 
@@ -219,8 +219,8 @@
 
 | Project | ⭐ | 適合誰 | 為什麼推薦 / 備註 |
 |---|---|---|---|
-| [anthropics/claude-code](https://github.com/anthropics/claude-code) ⭐ 官方 | ⭐⭐⭐⭐⭐ | 追蹤新版本 / 看 release notes / 回報 bug | Claude Code 官方 repo、issues + releases + inline 範例 |
-| [Anthropic — Claude Code 官方文件](https://docs.claude.com/en/docs/claude-code/overview) | ⭐⭐⭐⭐⭐ | 任何 reference 查詢 | **真正的 canonical reference**——上面 5 條必修閱讀都從這裡來 |
+| [anthropics/claude-code](https://github.com/anthropics/claude-code) ⭐ 官方 | ⭐⭐⭐⭐⭐ | 追蹤新版本 / 看 release notes / 回報 bug | Antigravity CLI 官方 repo、issues + releases + inline 範例 |
+| [Anthropic — Antigravity CLI 官方文件](https://docs.claude.com/en/docs/claude-code/overview) | ⭐⭐⭐⭐⭐ | 任何 reference 查詢 | **真正的 canonical reference**——上面 5 條必修閱讀都從這裡來 |
 | [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | ⭐⭐⭐⭐ | 想看社群有什麼（slash commands / skills / hooks 範例）| 較廣泛的資源清單（目前正在重整）|
 | [KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh](https://github.com/KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh) | ⭐⭐⭐⭐ | 中文讀者要逐步教學 | 簡中入門導讀 |
 
@@ -253,7 +253,7 @@
 
 ### 學習目標
 - 解釋 MCP 的三個抽象（Tools、Resources、Prompts）
-- 把現成的 MCP server 接上 Claude Desktop 或 Claude Code
+- 把現成的 MCP server 接上 Claude Desktop 或 Antigravity CLI
 - 用 Python 寫一個最小的 MCP server，提供 1-2 個 tool
 - 區分 MCP server vs Tool Use vs Skills vs Plugins
 
@@ -264,7 +264,7 @@
 
 ### 動手練習
 - **練習：MCP client** — 安裝 `modelcontextprotocol/servers/filesystem`，從 Claude Desktop 連上去。看著 Claude 讀你的檔案。
-- **練習：MCP server** — 寫一個 Python MCP server，提供一個 tool（例如「換算溫度」）。從 Claude Code 連過去。**step-by-step 怎麼做** → [`resources/cookbook.md` 2](../resources/cookbook.md#2-寫你的第一個-mcp-server)
+- **練習：MCP server** — 寫一個 Python MCP server，提供一個 tool（例如「換算溫度」）。從 Antigravity CLI 連過去。**step-by-step 怎麼做** → [`resources/cookbook.md` 2](../resources/cookbook.md#2-寫你的第一個-mcp-server)
 - **練習：MCP in production** — 在同一個 Claude session 裡同時連 2-3 個 MCP server，看它們互相搭配。
 
 ### 精選 Projects（spec / SDK / 範本參考）
@@ -281,11 +281,11 @@
 | [punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) | ⭐⭐⭐⭐ | 跟 wong2 交叉比對 | 另一份 MCP server 目錄、組織方式不同、通常更新更即時 |
 | [github/github-mcp-server](https://github.com/github/github-mcp-server) | ⭐⭐⭐⭐ | 想看實際上線的 MCP server source | GitHub 官方維護、真正 production 在跑的範例 |
 | [21st-dev/magic-mcp](https://github.com/21st-dev/magic-mcp) | ⭐⭐⭐ | 做完練習 2 找靈感 | 會生成 UI 元件的非平凡 MCP server、★ 4.8k+、NOASSERTION。**看 MCP 不只能做資料抓取** |
-| [yamadashy/repomix](https://github.com/yamadashy/repomix) | ⭐⭐⭐⭐⭐ | 把整個 codebase 餵給 LLM | ★ 24k+ MIT、把 repo packed 成 AI-friendly 單一檔案、含 MCP server mode + tree-sitter 壓縮（省 70% token）+ secretlint 過濾密鑰。**daily-driver 工具，搭 Claude Code / Codex 用** |
+| [yamadashy/repomix](https://github.com/yamadashy/repomix) | ⭐⭐⭐⭐⭐ | 把整個 codebase 餵給 LLM | ★ 24k+ MIT、把 repo packed 成 AI-friendly 單一檔案、含 MCP server mode + tree-sitter 壓縮（省 70% token）+ secretlint 過濾密鑰。**daily-driver 工具，搭 Antigravity CLI / Codex 用** |
 
 ---
 
-## 5.3 — Skills（Claude Code 的行為層）⭐ Claude Code 生態最關鍵的一層
+## 5.3 — Skills（Antigravity CLI 的行為層）⭐ Antigravity CLI 生態最關鍵的一層
 
 ### Skill 是什麼（先定位）
 
@@ -334,15 +334,15 @@ Skill = **一個 markdown 檔**（`.claude/skills/<name>/SKILL.md`），告訴 C
 
 → **建議流程**：先 `/skill skill-creator` 拿乾淨骨架 → 用 Prompt 2 填內容 → 寫完用 Prompt 1 audit。
 
-**核心 mental model**：你發現自己「**每次都要打同樣的 prompt 教 Claude 怎麼做某件事**」→ 把它寫成 skill、下次就不用了。Claude Code 生態裡 **skill 是 power user 跟一般使用者的分水嶺**——熟練 skill 寫作的人能把 1 個小時的工作壓到 5 分鐘。
+**核心 mental model**：你發現自己「**每次都要打同樣的 prompt 教 Claude 怎麼做某件事**」→ 把它寫成 skill、下次就不用了。Antigravity CLI 生態裡 **skill 是 power user 跟一般使用者的分水嶺**——熟練 skill 寫作的人能把 1 個小時的工作壓到 5 分鐘。
 
-### Skill vs CLAUDE.md vs MCP vs Plugin vs Subagent — 一張表分清楚
+### Skill vs GEMINI.md vs MCP vs Plugin vs Subagent — 一張表分清楚
 
 各層常被搞混。**一行對照**：
 
 | 元件 | 是什麼 | 何時用 | 觸發方式 | 範例 |
 |---|---|---|---|---|
-| **CLAUDE.md**（5.1） | repo / project 的 baseline 行為 | repo-wide convention（「用 type hint」、「commit 訊息規範」）| **每個 session 都載入**、不分情境 | 你 repo 根目錄的 CLAUDE.md |
+| **GEMINI.md**（5.1） | repo / project 的 baseline 行為 | repo-wide convention（「用 type hint」、「commit 訊息規範」）| **每個 session 都載入**、不分情境 | 你 repo 根目錄的 GEMINI.md |
 | **MCP server**（5.2） | 提供 tool / data 的 protocol server | 想讓 Claude 能存取**外部資源**（API / DB / 檔案系統） | server 啟動後、任何時候都能呼叫 | `github` MCP / `postgres` MCP |
 | **Skill**（**本節**） | **特定情境的行為包** | 想設定「**遇到 X 情境 → 走 Y 流程**」 | **description 匹配自動載入** | `skill-vetter`（裝 skill 前檢查）/ `pdf`（處理 PDF） |
 | **Plugin**（5.4） | 把 skills + commands + MCP + hooks 打包散佈 | 想 share / install **一整套** 設定 | `/plugin install <name>@<marketplace>` | `engineering` bundle / `finance` bundle |
@@ -350,7 +350,7 @@ Skill = **一個 markdown 檔**（`.claude/skills/<name>/SKILL.md`），告訴 C
 
 **怎麼選**：
 
-- 一句話設定 → 寫進 `CLAUDE.md`
+- 一句話設定 → 寫進 `GEMINI.md`
 - 多步驟流程、某情境才用 → 寫 **Skill**（本節主題）
 - 需要存取外部資源（API / DB） → 寫 **MCP server**
 - Skill 跑起來太大、會吃光主 session window → 改成 **Subagent**
@@ -396,7 +396,7 @@ Skill = **一個 markdown 檔**（`.claude/skills/<name>/SKILL.md`），告訴 C
 | **📊 資料分析** | `data-analyst` / `visualization-expert` | community | SQL / pandas / chart 選型 |
 | **⚙ 權限 / 設定整理** | `update-config` / `fewer-permission-prompts` | claude-plugins-official | hooks / permissions / env var 管理 |
 | **🔁 自我改進** | `self-improving-agent` | community | 捕捉 learning / error / correction、agent 持續改進 |
-| **🌐 通用 / fallback** | `general-purpose` | Claude Code 內建 | 複雜開放任務、未涵蓋情境的 default 入口 |
+| **🌐 通用 / fallback** | `general-purpose` | Antigravity CLI 內建 | 複雜開放任務、未涵蓋情境的 default 入口 |
 
 **建議入手順序**：
 1. **第一個必裝**：`skill-vetter`（裝其他 skill 前先用它檢查）
@@ -412,13 +412,13 @@ Skill = **一個 markdown 檔**（`.claude/skills/<name>/SKILL.md`），告訴 C
 | Project | ⭐ | 適合誰 | 為什麼推薦 / 備註 |
 |---|---|---|---|
 | [anthropics/skills](https://github.com/anthropics/skills) ⭐ 官方 spec | ⭐⭐⭐⭐⭐ | 寫自己 SKILL.md 前先讀 | Anthropic 官方 Skills repo：`spec/`（frontmatter 標準）+ `template/` 起手範本 + `skills/` 含 pdf / docx / xlsx / pptx / skill-creator / skill-vetter 等 reference 實作。★ 144k+。**SKILL.md 結構範本參考**。Agent Skills 更廣義標準另見 [agentskills.io](https://agentskills.io) |
-| [anthropics/claude-code](https://github.com/anthropics/claude-code) | ⭐⭐⭐⭐ | 追蹤新功能、看 release notes | Claude Code 主 repo、含 issues / releases / inline skill 範例。本 stage 學 Skill 重點看上一個 repo、這個排第二 |
+| [anthropics/claude-code](https://github.com/anthropics/claude-code) | ⭐⭐⭐⭐ | 追蹤新功能、看 release notes | Antigravity CLI 主 repo、含 issues / releases / inline skill 範例。本 stage 學 Skill 重點看上一個 repo、這個排第二 |
 | [mattpocock/skills](https://github.com/mattpocock/skills) | ⭐⭐⭐⭐ | 想看「真實工程師日常 SKILL.md」 | Matt Pocock（TypeScript 社群知名教學者）公開自己工作真實在用的 `.claude/` 目錄。每個 SKILL.md **10-50 行極短**、不過度工程化。**對照 over-engineered 200 行 skill 特別有參考價值**（★ 120k+、MIT）|
 | [obra/superpowers](https://github.com/obra/superpowers) | ⭐⭐⭐⭐ | power user setup、學進階寫法 | 20+ 實戰 skill（TDD、debugging、合作模式）+ `/brainstorm` / `/write-plan` / `/execute-plan` 命令 + skills-search tool |
 | [wshobson/agents](https://github.com/wshobson/agents) | ⭐⭐⭐⭐ | 中階：學 skill + subagent 組合 | 把 skills + subagents 組合做 multi-agent 編排。**從單一 SKILL.md 進化到 agent-as-skill 組合 pattern** 的範例（★ 35k+、MIT） |
 | [travisvn/awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills) | ⭐⭐⭐⭐ | 自己寫前先找有沒有現成的 | 社群 Claude Skills 精選目錄 |
-| [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | ⭐⭐⭐ | 跨工具視角 | 1000+ agent skill、相容 Claude Code / Codex / Gemini CLI / Cursor（★ 24k+、MIT）|
-| [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) | ⭐⭐⭐ | 找特定領域 skill 範例 | 232+ Claude Code skill、跨 engineering / marketing / product / compliance |
+| [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | ⭐⭐⭐ | 跨工具視角 | 1000+ agent skill、相容 Antigravity CLI / Codex / Gemini CLI / Cursor（★ 24k+、MIT）|
+| [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) | ⭐⭐⭐ | 找特定領域 skill 範例 | 232+ Antigravity CLI skill、跨 engineering / marketing / product / compliance |
 
 ---
 
@@ -496,7 +496,7 @@ Plugin
 | [anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins) | ⭐⭐⭐⭐⭐ | 想看「多 vertical bundle」型 marketplace | **18 個領域 plugin bundle**（finance / engineering / sales / legal / marketing / HR / customer-support / data / design / operations / product / productivity / bio-research / enterprise-search / pdf-viewer / small-business / cowork-plugin-management / partner-built）。Anthropic 自家 knowledge worker 場景範本 |
 | [obra/superpowers-marketplace](https://github.com/obra/superpowers-marketplace) | ⭐⭐⭐⭐ | 想做「我策展、別人寫」型 marketplace | **最簡 marketplace template**——repo 只有 `marketplace.json` + README、plugin 本體放外部 repo。curator-only pattern 最小範本（★ 1k+、MIT）|
 | [trailofbits/skills-curated](https://github.com/trailofbits/skills-curated) | ⭐⭐⭐ | 在意供應鏈安全的 reviewer / 團隊 | Trail of Bits 維護的 **security-vetted** marketplace、每個 skill 都經審查、README 寫清楚標準。**示範 marketplace 不只是清單、也是信任機制**（★ 431、CC-BY-SA-4.0）|
-| [rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit) | ⭐⭐⭐ | 想逛社群有什麼 | 社群最大 Claude Code agents / skills / hooks / templates 目錄。涵蓋 use case 廣 |
+| [rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit) | ⭐⭐⭐ | 想逛社群有什麼 | 社群最大 Antigravity CLI agents / skills / hooks / templates 目錄。涵蓋 use case 廣 |
 | [anthropics/life-sciences](https://github.com/anthropics/life-sciences) | ⭐⭐⭐ | 要做特定領域 marketplace（醫療、金融、法律、教育等） | Anthropic 自家**領域特化 marketplace** 範例（生物 / 健康科學）、展示 `marketplace.json` 為單一 vertical 量身設計。**payload 偏生科 MCP server、marketplace.json 結構才是學習重點**（★ 420）|
 | [anthropics/claude-for-legal](https://github.com/anthropics/claude-for-legal) | ⭐⭐⭐⭐ | 想看完整 vertical plugin suite（含 skills + agents + MCP + scheduled agents）| **Anthropic 官方法律 vertical 範例**（★ 7.9k+ Apache-2.0）—— 10 個法律 plugin（commercial / corporate / litigation / privacy / employment / IP / law-student）+ 100+ skills + 20+ MCP connectors + scheduled agents + subagent delegation。**不必懂法律**——是學「**vertical plugin suite 怎麼設計**」的最佳教材：系統 prompt 怎麼寫、accountability surface 怎麼擺、`orchestrate.py` event loop 怎麼跑 |
 
@@ -504,7 +504,7 @@ Plugin
 
 ---
 
-## 5.5 — Subagents（Claude Code 原生 multi-agent 機制）⭐ 2025 新功能
+## 5.5 — Subagents（Antigravity CLI 原生 multi-agent 機制）⭐ 2025 新功能
 
 到這裡為止你學了 MCP（工具層）/ Skills（行為層）/ Plugins（散佈層）。**Subagents 是 orchestration 層**——讓主 Claude session spawn 出有獨立 context 的子 agent、跑特定任務、回報結果。
 
@@ -517,20 +517,20 @@ Plugin
 | 維度 | Framework path (Stage 4) | Claude Subagent path（本節） |
 |---|---|---|
 | 啟動方式 | `pip install crewai` + Python code | 寫一個 `.claude/agents/<name>.md` 即可 |
-| Runtime | 你自己的 Python process | Claude Code 內建 Task tool |
+| Runtime | 你自己的 Python process | Antigravity CLI 內建 Task tool |
 | Context isolation | framework 自己管 | **天生** 各 subagent 獨立 window |
-| Provider lock-in | 中等（多 framework 支援 multi-LLM） | **強**（綁 Claude Code） |
-| 適合 | 跨 LLM provider 的 production system | 已 commit Claude Code 的工程團隊 |
+| Provider lock-in | 中等（多 framework 支援 multi-LLM） | **強**（綁 Antigravity CLI） |
+| 適合 | 跨 LLM provider 的 production system | 已 commit Antigravity CLI 的工程團隊 |
 | 學習曲線 | 高（框架抽象 + async） | 低（寫 markdown）|
 
 ### 各家 CLI / SDK 的 multi-agent 機制現況（2025 後段）
 
-很多人以為 multi-agent CLI 是 Anthropic / OpenAI / Google 三家標配——但實際上目前只有 **Claude Code 有完整 native multi-agent stack**。Codex CLI / Gemini CLI / Cursor 都還是 single-agent，要 multi-agent 得自己用 SDK 或 framework 寫。
+很多人以為 multi-agent CLI 是 Anthropic / OpenAI / Google 三家標配——但實際上目前只有 **Antigravity CLI 有完整 native multi-agent stack**。Codex CLI / Gemini CLI / Cursor 都還是 single-agent，要 multi-agent 得自己用 SDK 或 framework 寫。
 
 | 平台 | Subagent | Agent team | Background agent | 機制 |
 |---|:---:|:---:|:---:|---|
-| **Claude Code**（CLI） | ✅ | ✅ | ✅ | `.claude/agents/<name>.md` + Task tool（subagent）+ [agent teams](https://docs.claude.com/en/docs/claude-code/agent-teams) + [agent view / background](https://docs.claude.com/en/docs/claude-code/agent-view) |
-| **OpenAI Codex CLI** | ❌ | ❌ | ❌ | `AGENTS.md` 只是 **single-agent context file**（類似 CLAUDE.md），**不是 subagent 系統** |
+| **Antigravity CLI**（CLI） | ✅ | ✅ | ✅ | `.claude/agents/<name>.md` + Task tool（subagent）+ [agent teams](https://docs.claude.com/en/docs/claude-code/agent-teams) + [agent view / background](https://docs.claude.com/en/docs/claude-code/agent-view) |
+| **OpenAI Codex CLI** | ❌ | ❌ | ❌ | `AGENTS.md` 只是 **single-agent context file**（類似 GEMINI.md），**不是 subagent 系統** |
 | **Google Gemini CLI** | ❌ | ❌ | ❌ | `GEMINI.md` 只是 context；無 subagent / multi-agent feature |
 | **Cursor**（IDE-coupled） | ❌ | ❌ | ❌ | 單一 Cursor Agent；queued messages 是 sequential、非 parallel |
 | **OpenAI Agents SDK**<br>（programmatic、非 CLI） | ⚠️ Handoffs + agents-as-tools | ❌ | ❌ | 純 Python SDK、不是 CLI；handoff pattern 接近 Claude subagent 但要寫 code |
@@ -538,19 +538,19 @@ Plugin
 
 **現況解讀**：
 
-- 想用 **CLI** 玩 multi-agent → 目前只有 Claude Code 有 native 支援（**本節主題**）
+- 想用 **CLI** 玩 multi-agent → 目前只有 Antigravity CLI 有 native 支援（**本節主題**）
 - 想 **跨 provider / 跨 LLM** → 走 Stage 4 framework path
 - 想 **OpenAI 生態 + 多 agent** → 用 OpenAI Agents SDK 寫 handoff pattern（programmatic、非 CLI）
 - 想 **完全自己控** → 走 [Stage 5.6 Harness Internals](#56--claude-code-source-解剖reference-harness-implementation-track-b-必看)（讀 SDK source、自己 wire 多 agent）
 
-→ 本節剩下內容都聚焦在 **Claude Code subagent**。其他平台的進展請追蹤各家 changelog（Codex / Gemini / Cursor 都還在 single-agent + MCP 階段、可能 2026 後段才會跟進）。
+→ 本節剩下內容都聚焦在 **Antigravity CLI subagent**。其他平台的進展請追蹤各家 changelog（Codex / Gemini / Cursor 都還在 single-agent + MCP 階段、可能 2026 後段才會跟進）。
 
-### 怎麼派遣 Claude Code 的 3 種 multi-agent 機制（具體 syntax）
+### 怎麼派遣 Antigravity CLI 的 3 種 multi-agent 機制（具體 syntax）
 
 | 機制 | 何時用 | 派遣方式 |
 |---|---|---|
 | **Subagent**<br>（穩定版） | delegate 大 context 任務（讀整個 codebase / 整理 logs）給 isolated context worker、結果回主 session | (1) 寫 `.claude/agents/<name>.md`（frontmatter `name` + `description` + `tools` + 可選 `model`）<br>(2) Claude 看 description **自動 delegate**；或 `/agents` 手動列表 |
-| **Agent team**<br>（已有正式 docs、仍需 opt-in flag） | 多 worker 之間要**互相溝通**、challenge 彼此（debate / peer review / 多角度探索） | (1) **啟用**（仍需 opt-in）：`settings.json` 加 `"env": {"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"}`、需 Claude Code v2.1.32+<br>(2) 自然語言派遣：`Create an agent team to explore X from different angles: one on UX, one on architecture, one playing devil's advocate`<br>(3) 跟 teammate 對話：`Shift+Down` 切換、直接輸入訊息<br>(4) 收尾：`Clean up the team` |
+| **Agent team**<br>（已有正式 docs、仍需 opt-in flag） | 多 worker 之間要**互相溝通**、challenge 彼此（debate / peer review / 多角度探索） | (1) **啟用**（仍需 opt-in）：`settings.json` 加 `"env": {"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"}`、需 Antigravity CLI v2.1.32+<br>(2) 自然語言派遣：`Create an agent team to explore X from different angles: one on UX, one on architecture, one playing devil's advocate`<br>(3) 跟 teammate 對話：`Shift+Down` 切換、直接輸入訊息<br>(4) 收尾：`Clean up the team` |
 | **Background agent**<br>（research preview） | 多個**獨立任務**各自背景跑、單一介面監控（同時 3 個 PR review） | (1) shell 派遣：`claude --bg "investigate the flaky test"`（需 v2.1.139+）<br>(2) 從現有 session 背景化：`/bg`<br>(3) 監控：`claude agents`（agent view 介面）<br>(4) 操作：`claude attach <id>` / `claude logs <id>` / `claude stop <id>` |
 
 **3 個機制怎麼選**：
@@ -565,19 +565,19 @@ Plugin
 
 > 💡 **先解釋一下名詞**：**subagent** = 主 Claude session spawn 出來的「子 Claude」——有自己的 context window（一次能記住的對話量、有上限）、跑完回報結果。**派遣（dispatch）**就是叫 subagent 去做事、像派任務給同事。
 
-很多人以為要用 subagent 都得自己寫一個——其實 **Claude Code 內建一批 subagent、開箱即用**。下表列三種來源：
+很多人以為要用 subagent 都得自己寫一個——其實 **Antigravity CLI 內建一批 subagent、開箱即用**。下表列三種來源：
 
 | 來源 | 範例 subagent | 何時用 | 需要做什麼 |
 |---|---|---|---|
-| **Claude Code 內建** | `general-purpose` / `code-reviewer` / `Explore` / `Plan` / `frontend-developer` / `claude-code-guide` / `statusline-setup` | 一般任務都先看內建有沒有合的 | **什麼都不用做、直接呼叫** |
+| **Antigravity CLI 內建** | `general-purpose` / `code-reviewer` / `Explore` / `Plan` / `frontend-developer` / `claude-code-guide` / `statusline-setup` | 一般任務都先看內建有沒有合的 | **什麼都不用做、直接呼叫** |
 | **plugin / marketplace** | `obra/superpowers` 內含的 skill agent、`wshobson/agents` 的多 subagent 組合 | 內建不夠用時 | 裝 plugin / marketplace（[Stage 5.4](#54--plugins-與-marketplaces)）|
 | **自己寫的** | 你公司流程 specific 的 reviewer / domain expert | 上面都不符合時 | 寫 `.claude/agents/<name>.md`（範例見下面 details 區塊）|
 
-> 🔍 **想知道你的 Claude Code 現在有哪些 subagent 可用？** 終端機跑 `/agents` 一指令列表（內建 + plugin + 自訂全部）。
+> 🔍 **想知道你的 Antigravity CLI 現在有哪些 subagent 可用？** 終端機跑 `/agents` 一指令列表（內建 + plugin + 自訂全部）。
 
 ### 怎麼選哪一個 subagent？（decision table）
 
-對應上面 7 個 Claude Code 內建 subagent、下表是「**遇到 X 任務、用 Y subagent**」對照（這叫 **decision table**——「要 X 用 Y」的快速對照、不用想自己會選）：
+對應上面 7 個 Antigravity CLI 內建 subagent、下表是「**遇到 X 任務、用 Y subagent**」對照（這叫 **decision table**——「要 X 用 Y」的快速對照、不用想自己會選）：
 
 | 你要做的事 | 用哪個內建 subagent | 為什麼 |
 |---|---|---|
@@ -586,7 +586,7 @@ Plugin
 | Review staged diff / 安全審查 / 發 commit 前檢查 | `code-reviewer` | 結構化輸出 PASS/FAIL + 具體 fix |
 | 寫 / 改 UI component / 處理 accessibility（無障礙設計）| `frontend-developer` | React / 響應式 / a11y（accessibility 縮寫、視障 / 鍵盤使用者也能用的設計）領域知識 |
 | 多步驟研究、不確定任務該歸哪類 | `general-purpose` | 通用、可 web search、適合 fallback |
-| 問 Claude Code 自己的 feature 怎麼用 | `claude-code-guide` | hooks（工具執行前 / 後的攔截腳本、見下方 Gotcha #5）/ slash command（`/` 開頭的指令）/ MCP 等問題 |
+| 問 Antigravity CLI 自己的 feature 怎麼用 | `claude-code-guide` | hooks（工具執行前 / 後的攔截腳本、見下方 Gotcha #5）/ slash command（`/` 開頭的指令）/ MCP 等問題 |
 | 上面都不符合 | 自己寫 `.claude/agents/<name>.md` | 客製或公司 specific 流程 |
 
 **5 個常見情境的 mini cookbook**（完整 15 個 recipe 見下面）：
@@ -702,7 +702,7 @@ You are a senior code reviewer. When invoked:
 3. Output: PASS / list of specific issues with file:line references
 ```
 
-主 session 之後輸入「review my changes」，Claude 看到 description 匹配、自動透過 Task tool（Claude Code 內部派遣機制、你不用直接呼叫）spawn 這個 subagent 跑、回主 session 一段摘要。
+主 session 之後輸入「review my changes」，Claude 看到 description 匹配、自動透過 Task tool（Antigravity CLI 內部派遣機制、你不用直接呼叫）spawn 這個 subagent 跑、回主 session 一段摘要。
 
 </details>
 
@@ -720,7 +720,7 @@ You are a senior code reviewer. When invoked:
 
 ### 必修閱讀
 
-1. [**Anthropic — Claude Code Subagents 官方文件**](https://docs.claude.com/en/docs/claude-code/sub-agents) ⭐ — `.claude/agents/` 結構、Task tool 介面、最佳實踐
+1. [**Anthropic — Antigravity CLI Subagents 官方文件**](https://docs.claude.com/en/docs/claude-code/sub-agents) ⭐ — `.claude/agents/` 結構、Task tool 介面、最佳實踐
 2. [**Anthropic — Building Effective Agents orchestrator-workers**](https://www.anthropic.com/engineering/building-effective-agents) — Anthropic 自己對 orchestrator pattern 的看法（理論 + 實例）
 3. [**Anthropic Cookbook — `customer_service_agent`**](https://github.com/anthropics/claude-cookbooks/tree/main/tool_use) — canonical multi-agent orchestration 範例（chapter-length 深度教材；notebook 在 `tool_use/customer_service_agent.ipynb`）
 
@@ -745,7 +745,7 @@ You are a senior code reviewer. When invoked:
 
 > 💡 **Subagent 雖然強、不要無腦用**：每個 subagent invoke 都是一個新的 Claude inference call、有 token cost + latency。**簡單 query 用 skill（行為 prompt）即可、不必 spawn subagent**。Subagent 的甜蜜點是：(1) 任務 context 大、會吃光主 session 的 window（譬如 read 整個 codebase），(2) 任務跟主 session 邏輯獨立、隔離 context 有助 main flow，(3) 多 subagent 平行（research / write / critic）能省 wall-clock 時間。
 
-> 🔗 **相關進階機制**（Claude Code 官方、本 stage 不深入講）：
+> 🔗 **相關進階機制**（Antigravity CLI 官方、本 stage 不深入講）：
 > - **[Agent teams](https://docs.claude.com/en/docs/claude-code/agent-teams)** — 多 sessions 之間互相溝通（reviewer agent ↔ implementer agent 來回交流）
 > - **[Background agents / agent view](https://docs.claude.com/en/docs/claude-code/agent-view)** — 多 session 背景跑、單一介面監控（一次 spawn N 個 PR review 同時跑）
 >
@@ -753,25 +753,25 @@ You are a senior code reviewer. When invoked:
 
 ---
 
-## 5.6 — Claude Code Source 解剖（reference harness implementation）⭐ Track B 必看
+## 5.6 — Antigravity CLI Source 解剖（reference harness implementation）⭐ Track B 必看
 
-> **本節定位**：本節**不是** harness engineering 的學科級概念教學——學科級的定義 / **8 個核心元件** / prompt→context→harness 三層工程分工 是 **[Stage 7 Harness Engineering](07-multi-agent-production.md#-harness-engineering--production-agent-runtime-的工程設計--本-stage-核心概念)** 在講。**本節是 case study**——拿 Claude Code（一個被廣泛使用的參考實作）的 source code 來解剖、把 Stage 7 列的 8 個元件**中前 6 個 runtime-internal 元件**（Eval / Cost-Latency 兩個是跨層議題、不在 source 主 loop）**在實作裡找到對應位置**。
+> **本節定位**：本節**不是** harness engineering 的學科級概念教學——學科級的定義 / **8 個核心元件** / prompt→context→harness 三層工程分工 是 **[Stage 7 Harness Engineering](07-multi-agent-production.md#-harness-engineering--production-agent-runtime-的工程設計--本-stage-核心概念)** 在講。**本節是 case study**——拿 Antigravity CLI（一個被廣泛使用的參考實作）的 source code 來解剖、把 Stage 7 列的 8 個元件**中前 6 個 runtime-internal 元件**（Eval / Cost-Latency 兩個是跨層議題、不在 source 主 loop）**在實作裡找到對應位置**。
 
 ### 學習目標
 
 完成本節後你會：
 - 看得懂 `claude-agent-sdk-python` source 的 main loop（不是逐行、是抓得到主幹）
 - 在 source 裡標出 [Stage 7 列的 8 個 harness 元件](07-multi-agent-production.md#-harness-engineering--production-agent-runtime-的工程設計--本-stage-核心概念)**中**前 6 個 runtime-internal 元件（agent loop / tool registry（agent 可呼叫工具的清單 + 介面定義） / context manager / safety layer / retry / telemetry）各自的 file:line。Stage 7 列的第 7 個 Eval 是外掛、第 8 個 Cost / Latency 是 cross-cutting、不在 source 主 loop 內、不在本練習範圍
-- 講得出 Claude Code 的 agent loop 跟 Stage 3 練習 3 from-scratch ReAct 差在哪——上線部署的 agent 多了哪些東西
+- 講得出 Antigravity CLI 的 agent loop 跟 Stage 3 練習 3 from-scratch ReAct 差在哪——上線部署的 agent 多了哪些東西
 
-> **學科級概念在哪**：harness engineering 是什麼 / framework vs harness 差別 / prompt→context→harness 三層工程分工 → 全部見 **[Stage 7 Harness Engineering](07-multi-agent-production.md#-harness-engineering--production-agent-runtime-的工程設計--本-stage-核心概念)**。本節只負責 Claude Code source 的 case study。
+> **學科級概念在哪**：harness engineering 是什麼 / framework vs harness 差別 / prompt→context→harness 三層工程分工 → 全部見 **[Stage 7 Harness Engineering](07-multi-agent-production.md#-harness-engineering--production-agent-runtime-的工程設計--本-stage-核心概念)**。本節只負責 Antigravity CLI source 的 case study。
 
 ### 📚 必修閱讀
 
 1. [**Anthropic — Building Effective Agents**](https://www.anthropic.com/engineering/building-effective-agents) ⭐ — orchestrator / worker / handoff / reflection 等 pattern 的 canonical reference
-2. [**anthropics/claude-agent-sdk-python**](https://github.com/anthropics/claude-agent-sdk-python) — Claude Code 官方 Python SDK 的 source；**重點 file：`src/claude_agent_sdk/_internal/client.py`**（main loop 在這）+ `query.py`（單回合 API）
+2. [**anthropics/claude-agent-sdk-python**](https://github.com/anthropics/claude-agent-sdk-python) — Antigravity CLI 官方 Python SDK 的 source；**重點 file：`src/claude_agent_sdk/_internal/client.py`**（main loop 在這）+ `query.py`（單回合 API）
 3. [**ai-boost/awesome-harness-engineering**](https://github.com/ai-boost/awesome-harness-engineering) ⭐（★ 1.7k+） — community curation：harness pattern / eval / memory / observability 整合
-4. [**ZhangHanDong/harness-engineering-from-cc-to-ai-coding**](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding) — 中文圈最完整的 Claude Code 內部解讀
+4. [**ZhangHanDong/harness-engineering-from-cc-to-ai-coding**](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding) — 中文圈最完整的 Antigravity CLI 內部解讀
 
 ### 🛠 動手練習 — 解剖 agent loop（閱讀題，非寫 code）
 
@@ -787,7 +787,7 @@ You are a senior code reviewer. When invoked:
    - (d) **Safety layer**：tool 執行前有沒有 permission gate / sandboxing
    - (e) **Retry / recovery**：tool fail 時怎麼處理（exception vs LLM 自己看 error 反思）
    - (f) **Telemetry**：metrics / logging / token counting 接在哪
-4. **寫一段 80-150 字摘要**：「Claude Code 的 agent loop 跟你 Stage 3 練習 3 from-scratch ReAct 差在哪」。重點不是「Claude Code 比較複雜」這種廢話，是**講得出多了哪些東西、為什麼那些是上線部署必須有的**
+4. **寫一段 80-150 字摘要**：「Antigravity CLI 的 agent loop 跟你 Stage 3 練習 3 from-scratch ReAct 差在哪」。重點不是「Antigravity CLI 比較複雜」這種廢話，是**講得出多了哪些東西、為什麼那些是上線部署必須有的**
 
 **交付物**：一段筆記（寫在自己的 obsidian / notion / `.md` 都行），不必交。但**講不出來你就還沒懂**——這是進 Stage 7 production deploy 之前的必要 mental model。
 
@@ -799,23 +799,23 @@ You are a senior code reviewer. When invoked:
 
 | Project | ⭐ | 適合誰 | 為什麼推薦 / 備註 |
 |---|---|---|---|
-| [anthropics/claude-agent-sdk-python](https://github.com/anthropics/claude-agent-sdk-python) | ⭐⭐⭐⭐⭐ | 所有 Track B 學習者、想搞清楚「Claude Code 內部怎麼跑」 | **canonical Python harness、本節練習就是讀這個 repo**。後面 Stage 7 deploy 也會 import |
-| [ZhangHanDong/harness-engineering-from-cc-to-ai-coding](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding) | ⭐⭐⭐⭐ | 中文 reader 想看「為什麼 Claude Code 這樣設計」 | 中文圈最完整 CC 內部解讀（harness 概念 → CC 實作 → 跟其他 AI coding tool 對比）。**配合 SDK source 互補看**——一個告訴你「怎麼做」、一個告訴你「為什麼這麼做」 |
+| [anthropics/claude-agent-sdk-python](https://github.com/anthropics/claude-agent-sdk-python) | ⭐⭐⭐⭐⭐ | 所有 Track B 學習者、想搞清楚「Antigravity CLI 內部怎麼跑」 | **canonical Python harness、本節練習就是讀這個 repo**。後面 Stage 7 deploy 也會 import |
+| [ZhangHanDong/harness-engineering-from-cc-to-ai-coding](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding) | ⭐⭐⭐⭐ | 中文 reader 想看「為什麼 Antigravity CLI 這樣設計」 | 中文圈最完整 CC 內部解讀（harness 概念 → CC 實作 → 跟其他 AI coding tool 對比）。**配合 SDK source 互補看**——一個告訴你「怎麼做」、一個告訴你「為什麼這麼做」 |
 | [ai-boost/awesome-harness-engineering](https://github.com/ai-boost/awesome-harness-engineering) | ⭐⭐⭐⭐ | 5.6 讀完想擴大視野 | community curation：30+ harness / eval / memory / observability / MCP project（★ 1.7k+）。**廣度資源庫、非教學**——挑感興趣的 sub-topic 鑽進去 |
 | [wshobson/agents](https://github.com/wshobson/agents) | ⭐⭐⭐⭐ | 寫完 5.5 自己的 subagent 後想看實際在用的範本 | 50+ subagent definition 的 ergonomic 設計（description / tool list / system prompt 分層）。**讀 source 比讀文件學得多**。在 5.5 已介紹、本節 cross-ref |
 
-> 💡 **本節跟 Stage 7 的差別**：本節學「Claude Code 這個 harness 怎麼跑」（具體 reference）；Stage 7 學「production harness 一般要有什麼」（抽象 pattern）。**先具體後抽象**、看完本節再進 Stage 7 會輕鬆很多。
+> 💡 **本節跟 Stage 7 的差別**：本節學「Antigravity CLI 這個 harness 怎麼跑」（具體 reference）；Stage 7 學「production harness 一般要有什麼」（抽象 pattern）。**先具體後抽象**、看完本節再進 Stage 7 會輕鬆很多。
 
 ---
 
-## 5.7 — SDK：把 Claude Code 拆開來自己組 ⭐ Track B 可選、production 才需要
+## 5.7 — SDK：把 Antigravity CLI 拆開來自己組 ⭐ Track B 可選、production 才需要
 
 > 🎯 **這節是給誰看的**：99% 的人讀完 5.1-5.6 已經夠用，**只在你想做 CLI 做不到的事**才往下走。Stage 5.6 叫你讀 SDK source 是為了理解 harness 內部；這節是為了讓你**會用 SDK** 包成自己的服務。
 
-### 1 個比喻把 SDK / CLI / `CLAUDE.md` 分清楚
+### 1 個比喻把 SDK / CLI / `GEMINI.md` 分清楚
 
 - **CLI**（`claude` / `codex` / 等）= 一台**現成的車子**，點一下就能上路
-- 改 `CLAUDE.md` / `AGENTS.md` / 加 hooks / 寫 skills = **調車子的性能**，讓它開得更順、更貼你工作習慣 —— 一樣是這台車
+- 改 `GEMINI.md` / `AGENTS.md` / 加 hooks / 寫 skills = **調車子的性能**，讓它開得更順、更貼你工作習慣 —— 一樣是這台車
 - **SDK**（`claude-agent-sdk-python` / `openai-agents-python`）= **把車子從引擎開始重造一台** —— 用 Python / TS 控制 agent loop、tool dispatch、memory 怎麼接
 
 **99% 的學習者天花板停在「調車」就夠了。** 只在「調車怎麼調都到不了你要的場景」時，才需要爬到 SDK。
@@ -823,7 +823,7 @@ You are a senior code reviewer. When invoked:
 ### 階梯式三層 —— 你現在在哪？
 
 1. **第 1 層 直接用 CLI** —— 90% 的個人 + 團隊使用情境。看 5.1
-2. **第 2 層 CLI + 自訂** —— 寫 `CLAUDE.md`、加 hooks、自己寫 skill、套 plugin。看 5.1-5.4。**多數人停在這層、且夠用**
+2. **第 2 層 CLI + 自訂** —— 寫 `GEMINI.md`、加 hooks、自己寫 skill、套 plugin。看 5.1-5.4。**多數人停在這層、且夠用**
 3. **第 3 層 SDK** —— 把 agent 嵌進你的應用。這節在教
 
 ### 什麼時候才需要爬到第 3 層
@@ -849,7 +849,7 @@ async for msg in query(prompt="用 git status 看當前狀態"):
 
 ### vs CLI / vs 自訂 對照表（看完上面再看這張）
 
-| | CLI（claude / codex） | CLI + 自訂（改 CLAUDE.md / hooks） | SDK |
+| | CLI（claude / codex） | CLI + 自訂（改 GEMINI.md / hooks） | SDK |
 |---|---|---|---|
 | 嵌進你的 app | ❌ | ❌ | ✅ |
 | cron / 排程跑 | ⚠️ 勉強（`-p` flag） | ⚠️ 同左 | ✅ |
@@ -865,8 +865,8 @@ async for msg in query(prompt="用 git status 看當前狀態"):
 |---|---|---|
 | 出品 | Anthropic 官方 | OpenAI 官方 |
 | 模型 | Claude（Opus / Sonnet / Haiku） | OpenAI 系列 + 其他 |
-| 強項 | 跟 Claude Code 一致的 tool / skill / hook 抽象 | handoff / agents-as-tools 模式、2026-04 內建 sandbox |
-| 適合 | 已在用 Claude Code 想嵌服務的人 | 已 commit OpenAI 生態的人 |
+| 強項 | 跟 Antigravity CLI 一致的 tool / skill / hook 抽象 | handoff / agents-as-tools 模式、2026-04 內建 sandbox |
+| 適合 | 已在用 Antigravity CLI 想嵌服務的人 | 已 commit OpenAI 生態的人 |
 
 兩個都 MIT 授權、API 設計乾淨，**重點是你的下游選哪家模型**。
 
@@ -883,7 +883,7 @@ async for msg in query(prompt="用 git status 看當前狀態"):
 ## ✅ 進入 Stage 6 前的自我檢查
 
 你能不能：
-- [ ] 安裝 Claude Code 並使用 5 個不同的 slash command
+- [ ] 安裝 Antigravity CLI 並使用 5 個不同的 slash command
 - [ ] 在同一個 Claude session 裡接 2 個 MCP server
 - [ ] 用 Python 寫自己的 MCP server，提供 1 個能用的 tool
 - [ ] 寫一份能在特定觸發詞自動載入的 `SKILL.md`

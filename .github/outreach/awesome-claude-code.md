@@ -11,11 +11,11 @@
 > PR an entry into. **Don't open a PR.** Open an **issue** instead, parking
 > the proposal for when the new TOC lands.
 
-**Why this target**: We already cite their list in our README's "Related projects" section (and in zh-Hans / zh-TW counterparts). Reciprocal listing is natural. They're the canonical Claude Code awesome-list with ★43k.
+**Why this target**: We already cite their list in our README's "Related projects" section (and in zh-Hans / zh-TW counterparts). Reciprocal listing is natural. They're the canonical Antigravity CLI awesome-list with ★43k.
 
-**Pitch angle**: We're a **structured learning roadmap** complement to their flat catalog. Stage 5 of our roadmap is dedicated to the Claude Code ecosystem (MCP, Skills, Plugins).
+**Pitch angle**: We're a **structured learning roadmap** complement to their flat catalog. Stage 5 of our roadmap is dedicated to the Antigravity CLI ecosystem (MCP, Skills, Plugins).
 
-**Their counter-value**: Reciprocal cross-link; their readers get a learning order; we get exposure to Claude Code power users.
+**Their counter-value**: Reciprocal cross-link; their readers get a learning order; we get exposure to Antigravity CLI power users.
 
 ---
 
@@ -24,7 +24,7 @@
 ```
 For folks browsing @hesreallyhim's awesome-claude-code list — just published
 an 8-stage trilingual learning roadmap that walks Stage 0 (foundations) → Stage 5
-(Claude Code: MCP / Skills / Plugins) → Stage 8 (production).
+(Antigravity CLI: MCP / Skills / Plugins) → Stage 8 (production).
 
 ★525 week 1 · 240+ curated projects · zh-TW / zh-Hans / en
 🔗 github.com/WenyuChiou/awesome-agentic-ai-zh
@@ -46,7 +46,7 @@ Wanted to surface a proposal for when you're ready:
 
 I maintain [awesome-agentic-ai-zh](https://github.com/WenyuChiou/awesome-agentic-ai-zh)
 — a trilingual (zh-TW canonical · zh-Hans · English) 8-stage learning roadmap
-for agentic AI. **Stage 5 is dedicated entirely to the Claude Code ecosystem**
+for agentic AI. **Stage 5 is dedicated entirely to the Antigravity CLI ecosystem**
 (MCP, Skills, Plugins, Hello-World walkthroughs, 62-entry integration catalog
 by use case).
 
@@ -62,7 +62,7 @@ Two questions for the new TOC design:
    — happy to drop this. No follow-up needed in that case.
 
 No urgency. Reply when the new TOC is done. Thanks for maintaining this list
-— it's a public good for the Claude Code community.
+— it's a public good for the Antigravity CLI community.
 
 Stats for credibility (week 1): 6,869 views / 3,185 unique visitors / 1,099
 clones / 408 unique cloners / 50 forks / 3 community contributors. MIT,
@@ -76,7 +76,7 @@ trilingual translation discipline, CI lint on every PR.
 ```
 Hey @hesreallyhim — your awesome-claude-code list is already in our README's
 "Related projects". Built a complement: a trilingual (zh-TW / zh-Hans / en)
-8-stage learning roadmap, with Stage 5 dedicated to Claude Code (MCP, Skills,
+8-stage learning roadmap, with Stage 5 dedicated to Antigravity CLI (MCP, Skills,
 Plugins, walkthroughs, 62 integrations grouped by use case).
 
 ★525 in week 1, MIT licensed. If a reciprocal link in awesome-claude-code's

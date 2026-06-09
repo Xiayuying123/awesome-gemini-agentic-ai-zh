@@ -24,13 +24,13 @@ After this stop, the CLI is no longer just your personal tool — it's part of y
 ## 📌 Learning Goals
 
 - Connect 1-3 MCP servers to your CLI (Slack / Gmail / internal API / DB)
-- Set up GitHub Actions to auto-run Claude Code (PR review, release notes, etc.)
+- Set up GitHub Actions to auto-run Antigravity CLI (PR review, release notes, etc.)
 - Add observability (trace, cost, latency) to CLI workflows
 - Plan a cost budget — know roughly what a big task costs in tokens
 
 ## 📚 Required Reading
 
-1. [**Stage 5.2 — MCP (Model Context Protocol)**](../../stages/05-claude-code-ecosystem.en.md#52--mcp-model-context-protocol--foundation) — MCP concept and basics
+1. [**Stage 5.2 — MCP (Model Context Protocol)**](../../stages/05-gemini-skills-ecosystem.en.md#52--mcp-model-context-protocol--foundation) — MCP concept and basics
 2. [**Anthropic — Prompt Caching**](https://www.anthropic.com/news/prompt-caching) — can significantly reduce repeated context cost under cache-eligible conditions (unchanged context, ≤5-minute reuse window, etc.); actual savings depend on the workflow, so use the official article's conditions as the reference
 3. [**Stage 7 — Observability section**](../../stages/07-multi-agent-production.en.md#exercise-3-observability) — langfuse / Helicone / weave
 4. [**`resources/cli-agents-guide.en.md`** "Common pitfalls"](../../resources/cli-agents-guide.en.md) — most common production issues with CLIs
@@ -38,7 +38,7 @@ After this stop, the CLI is no longer just your personal tool — it's part of y
 ## 🛠 Hands-on Exercises
 
 ### Exercise CLI-9: MCP server connected to CLI
-Following [Stage 5.2 Exercise: MCP client](../../stages/05-claude-code-ecosystem.en.md#hands-on-exercises), connect at least one useful MCP server to your CLI:
+Following [Stage 5.2 Exercise: MCP client](../../stages/05-gemini-skills-ecosystem.en.md#hands-on-exercises), connect at least one useful MCP server to your CLI:
 - `filesystem` server → let the CLI read files outside its default scope
 - `github` server → let it read PRs / issues directly
 - Custom server → connect your internal API / DB
@@ -48,7 +48,7 @@ Success: in a CLI conversation, ask "does my PR have conflicts?" and have the CL
 ### Exercise CLI-10: GitHub Actions + CLI
 Write `.github/workflows/cli-review.yml`:
 - Trigger: PR opened / synchronize
-- Run: in the GH Actions runner, execute Claude Code (or Codex), feed it `git diff` + your `.claude/commands/review.md`
+- Run: in the GH Actions runner, execute Antigravity CLI (or Codex), feed it `git diff` + your `.claude/commands/review.md`
 - Output: PR comment
 
 Success: open a new PR, see a review comment within 1-2 minutes.
@@ -62,8 +62,8 @@ Run a daily task. **Predict** the token usage first, then actually run it and ch
 - Observe: which sub-task consumes the most tokens? Are you sending unnecessary long context?
 
 ### Exercise CLI-12: Skill / plugin team sharing
-Package your `.claude/commands/` and `CLAUDE.md` into a plugin, publish to internal marketplace or GitHub. Teammates `claude plugin install` and get the same workflow.
-- Skill / plugin details in [Stage 5.3 + 5.4](../../stages/05-claude-code-ecosystem.en.md)
+Package your `.claude/commands/` and `GEMINI.md` into a plugin, publish to internal marketplace or GitHub. Teammates `claude plugin install` and get the same workflow.
+- Skill / plugin details in [Stage 5.3 + 5.4](../../stages/05-gemini-skills-ecosystem.en.md)
 - Template: [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official)
 
 ## 🧭 Advanced Concepts in Daily CLI Work (7 Playbooks) 🆕
@@ -81,8 +81,8 @@ Track A users are **already using** [Stage 7.5 advanced concepts](../../stages/0
 
   | Source | Link |
   |---|---|
-  | HumanLayer | [Writing a good CLAUDE.md](https://www.humanlayer.dev/blog/writing-a-good-claude-md) |
-  | Anthropic | [How Anthropic teams use Claude Code (PDF)](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf) |
+  | HumanLayer | [Writing a good GEMINI.md](https://www.humanlayer.dev/blog/writing-a-good-claude-md) |
+  | Anthropic | [How Anthropic teams use Antigravity CLI (PDF)](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf) |
   | Internal | [Stage 7.5 🧭 work boundary stack](../../stages/07.5-advanced-agentic-concepts.en.md#-concept-map-spine-the-four-layer-work-boundary) |
 
 ### 📋 Playbook 2: Multi-agent parallel runs, results conflict
@@ -109,21 +109,21 @@ Track A users are **already using** [Stage 7.5 advanced concepts](../../stages/0
   |---|---|
   | Hamel Husain | [LLM-as-a-Judge: Complete Guide](https://hamel.dev/blog/posts/llm-judge/) |
   | Hamel Husain | [Your AI Product Needs Evals](https://hamel.dev/blog/posts/evals/) |
-  | Simon Willison | [Sub-agents in Claude Code](https://simonwillison.net/2025/Oct/11/sub-agents/) |
+  | Simon Willison | [Sub-agents in Antigravity CLI](https://simonwillison.net/2025/Oct/11/sub-agents/) |
 
 ### 📋 Playbook 4: Dispatching subagents for independent tasks
 
-> 💡 **First time hearing about subagents?** In one sentence: **a subagent is a “child Claude” spawned from the main Claude session**. It has its own isolated context and reports back when done. **Dispatch** means asking the subagent to do work, like assigning a task to a teammate. Full concept → [Stage 5.5](../../stages/05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature).
+> 💡 **First time hearing about subagents?** In one sentence: **a subagent is a “child Claude” spawned from the main Claude session**. It has its own isolated context and reports back when done. **Dispatch** means asking the subagent to do work, like assigning a task to a teammate. Full concept → [Stage 5.5](../../stages/05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature).
 
 - **When**: before committing a large change / entering an unfamiliar repo / running an LLM-as-judge auto-eval / applying the same review to 4 targets
-- **Do**: invoke Claude Code **built-in** subagents (no custom file required):
+- **Do**: invoke Antigravity CLI **built-in** subagents (no custom file required):
   - `code-reviewer` — review staged diff, find bugs + security issues
   - `Explore` — read-only codebase search, find entry points / symbols
   - `Plan` — design a step-by-step implementation plan
   - `general-purpose` — fallback when you are unsure which one to use, or for multi-step research
 - **Concepts**: Hierarchical Task Decomposition + Context Isolation · 📊 See [concept-cluster](../../resources/diagrams/concept-cluster.en.png), Service × orchestration cluster
 - **Read more**:
-  - [Stage 5.5 Subagents](../../stages/05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature) (full theory + decision table)
+  - [Stage 5.5 Subagents](../../stages/05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature) (full theory + decision table)
   - [`resources/subagent-cookbook.en.md`](../../resources/subagent-cookbook.en.md) (**15 recipes** with copy-paste prompt templates)
 
 ---
@@ -137,9 +137,9 @@ Track A users are **already using** [Stage 7.5 advanced concepts](../../stages/0
 
   | Source | Link |
   |---|---|
-  | Anthropic | [How Anthropic teams use Claude Code (PDF)](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf) |
+  | Anthropic | [How Anthropic teams use Antigravity CLI (PDF)](https://www-cdn.anthropic.com/58284b19e702b49db9302d5b6f135ad8871e7658.pdf) |
   | Anthropic Engineering | [Equipping Agents with Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) |
-  | Internal | [Stage 5.5 Subagents](../../stages/05-claude-code-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature) + Exercise CLI-10 |
+  | Internal | [Stage 5.5 Subagents](../../stages/05-gemini-skills-ecosystem.en.md#55--subagents-claude-codes-native-multi-agent-mechanism--2025-new-feature) + Exercise CLI-10 |
 
 ### 📋 Playbook 6: Controlling cost
 
@@ -156,14 +156,14 @@ Track A users are **already using** [Stage 7.5 advanced concepts](../../stages/0
 
 ### 📋 Playbook 7: Hardening workflow, preventing drift
 
-- **When**: You wrote rules in `CLAUDE.md` / `SKILL.md` but nobody enforces them, or you added a preset YAML and do not know whether it actually works
-- **Do**: Intentionally break one rule and run the acceptance gate to see whether it catches it (chaos test); treat `docs/` as the single source of truth and keep `CLAUDE.md` as an entry map only
+- **When**: You wrote rules in `GEMINI.md` / `SKILL.md` but nobody enforces them, or you added a preset YAML and do not know whether it actually works
+- **Do**: Intentionally break one rule and run the acceptance gate to see whether it catches it (chaos test); treat `docs/` as the single source of truth and keep `GEMINI.md` as an entry map only
 - **Concepts**: Failure Injection + System of Record · 📊 See [failure-lifecycle](../../resources/diagrams/failure-lifecycle.en.png) (the F11-F14 evolution loop)
 - **Read more**:
 
   | Source | Link |
   |---|---|
-  | HumanLayer | [Writing a good CLAUDE.md](https://www.humanlayer.dev/blog/writing-a-good-claude-md) |
+  | HumanLayer | [Writing a good GEMINI.md](https://www.humanlayer.dev/blog/writing-a-good-claude-md) |
   | agent-collab-skills | [observed-failure-modes.md](https://github.com/WenyuChiou/agent-collab-skills/blob/main/docs/observed-failure-modes.md) |
   | Internal | [Stage 7.5 🔁 failure-mode lifecycle](../../stages/07.5-advanced-agentic-concepts.en.md#-failure-mode-lifecycle-how-industry-agent-failures-evolved-into-best-practice) |
 
@@ -179,7 +179,7 @@ Track A users are **already using** [Stage 7.5 advanced concepts](../../stages/0
 
 #### [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) ⭐⭐⭐⭐⭐
 ★ 85k+ — Official reference servers. filesystem, github, sqlite, git, time, fetch, memory, sequential-thinking.
-> See [Stage 5.2](../../stages/05-claude-code-ecosystem.en.md#52--mcp-model-context-protocol--foundation).
+> See [Stage 5.2](../../stages/05-gemini-skills-ecosystem.en.md#52--mcp-model-context-protocol--foundation).
 
 #### [wong2/awesome-mcp-servers](https://github.com/wong2/awesome-mcp-servers)
 Community MCP server catalog. 150+ servers categorized.
@@ -226,7 +226,7 @@ Can you:
 - [ ] Have at least 1 MCP server connected to your daily CLI
 - [ ] Have at least 1 CI workflow auto-running a CLI agent
 - [ ] State the rough token / cost / latency for some specific task you run
-- [ ] Packaged your CLAUDE.md / commands at least once (even just for yourself)
+- [ ] Packaged your GEMINI.md / commands at least once (even just for yourself)
 - [ ] Know which tasks deserve observability and which don't
 
 If yes → **Track A complete**. We recommend continuing to [**Stage 8 — Agent Interfaces**](../../stages/08-agent-interfaces.en.md) (**a shared hub for both tracks**: Computer Use / Browser Use / Code Sandbox, ~1-2 weeks from the Track A angle), or pick a [specialized branch](../../README.en.md#️-learning-map-two-tracks) and continue (researcher / developer / teacher / knowledge-worker / everyday-users).
@@ -240,11 +240,11 @@ After Track A you're a CLI power user. Next phase choices:
 1. **Deepen CLI workflow** (keep refining your setup)
    - Subscribe to Anthropic / OpenAI changelogs
    - Quarterly review of [`resources/cli-agents-guide.en.md`](../../resources/cli-agents-guide.en.md) for new tools
-   - Share CLAUDE.md / skills with your team
+   - Share GEMINI.md / skills with your team
 
 2. **Cross to Track B** (learn to write your own agent)
    - Stage 3-4: tool use + frameworks
-   - Stage 5: deep dive into Claude Code internals
+   - Stage 5: deep dive into Antigravity CLI internals
    - Stage 7: write your own multi-agent system
 
 3. **Walk a specialized branch** (apply CLI to a specific domain)
