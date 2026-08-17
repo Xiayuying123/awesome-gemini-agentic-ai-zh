@@ -28,37 +28,37 @@ Connect Antigravity CLI (or any other CLI agent) to the apps you already use, wi
 
 ### Notes / Knowledge Base
 
-- [**MarkusPfundstein/mcp-obsidian**](https://github.com/MarkusPfundstein/mcp-obsidian) ★ 3.9k+ — Obsidian REST API plugin lets the LLM read/write your vault
+- [**MarkusPfundstein/mcp-obsidian**](https://github.com/MarkusPfundstein/mcp-obsidian) ★ 4.3k+ — Obsidian REST API plugin lets the LLM read/write your vault
 - [**makenotion/notion-mcp-server**](https://github.com/makenotion/notion-mcp-server) ★ 4.4k+ — Notion **official** MCP, query/create pages, manipulate databases
-- [**PleasePrompto/notebooklm-skill**](https://github.com/PleasePrompto/notebooklm-skill) ★ 6.6k+ — NotebookLM Skill, citation-backed answers from your uploaded docs
-- [**teng-lin/notebooklm-py**](https://github.com/teng-lin/notebooklm-py) ★ 15k+ — unofficial NotebookLM Python API + CLI, plays well with Antigravity CLI / Codex
+- [**PleasePrompto/notebooklm-skill**](https://github.com/PleasePrompto/notebooklm-skill) ★ 7.6k+ — NotebookLM Skill, citation-backed answers from your uploaded docs
+- [**teng-lin/notebooklm-py**](https://github.com/teng-lin/notebooklm-py) ★ 18k+ — unofficial NotebookLM Python API + CLI, plays well with Antigravity CLI / Codex
 
 ### Office Documents (Word / Excel / PowerPoint / PDF)
 
-- [**anthropics/skills**](https://github.com/anthropics/skills) ★ 144k+ — Anthropic **official** Skills with built-in docx / xlsx / pptx / pdf processing
-- [**tfriedel/claude-office-skills**](https://github.com/tfriedel/claude-office-skills) ★ 725 — Office skills with automation workflows on top of the official ones
+- [**anthropics/skills**](https://github.com/anthropics/skills) ★ 169k+ — Anthropic **official** Skills with built-in docx / xlsx / pptx / pdf processing
+- [**tfriedel/claude-office-skills**](https://github.com/tfriedel/claude-office-skills) ★ 811 — Office skills with automation workflows on top of the official ones
 
 ### Google Workspace (Gmail / Docs / Drive / Calendar)
 
-- [**taylorwilsdon/google_workspace_mcp**](https://github.com/taylorwilsdon/google_workspace_mcp) ★ 2.6k+ — full Workspace stack (Gmail, Calendar, Docs, Sheets, Slides, Drive) in one server
+- [**taylorwilsdon/google_workspace_mcp**](https://github.com/taylorwilsdon/google_workspace_mcp) ★ 3k+ — full Workspace stack (Gmail, Calendar, Docs, Sheets, Slides, Drive) in one server
 
 ### Dev Collaboration
 
-- [**github/github-mcp-server**](https://github.com/github/github-mcp-server) ★ 29k+ — GitHub **official** MCP for issues / PRs / repos
-- [**atlassian/atlassian-mcp-server**](https://github.com/atlassian/atlassian-mcp-server) ★ 723 — Atlassian **official** Remote MCP (Jira, Confluence)
+- [**github/github-mcp-server**](https://github.com/github/github-mcp-server) ★ 32k+ — GitHub **official** MCP for issues / PRs / repos
+- [**atlassian/atlassian-mcp-server**](https://github.com/atlassian/atlassian-mcp-server) ★ 967 — Atlassian **official** Remote MCP (Jira, Confluence)
 - [**jerhadf/linear-mcp-server**](https://github.com/jerhadf/linear-mcp-server) ★ 340+ — Linear MCP
 - [**korotovsky/slack-mcp-server**](https://github.com/korotovsky/slack-mcp-server) ★ 1.7k+ — Slack MCP, works without admin permissions
 
 ### Research Workflow (by the repo maintainer)
 
-- [**WenyuChiou/ai-research-skills**](https://github.com/WenyuChiou/ai-research-skills) ★ 93 — 14 research-workflow skills as a 5-plugin marketplace
-- [**WenyuChiou/research-hub**](https://github.com/WenyuChiou/research-hub) ★ 24 — Zotero + Obsidian + NotebookLM integration workspace
-- [**WenyuChiou/zotero-skills**](https://github.com/WenyuChiou/zotero-skills) ★ 25 — Zotero CLI skill
+- [**WenyuChiou/ai-research-skills**](https://github.com/WenyuChiou/ai-research-skills) ★ 208 — 14 research-workflow skills as a 5-plugin marketplace
+- [**WenyuChiou/research-hub**](https://github.com/WenyuChiou/research-hub) ★ 49 — Zotero + Obsidian + NotebookLM integration workspace
+- [**WenyuChiou/zotero-skills**](https://github.com/WenyuChiou/zotero-skills) ★ 49 — Zotero CLI skill
 - [**WenyuChiou/codex-delegate**](https://github.com/WenyuChiou/codex-delegate) ★ 57 + [**gemini-delegate-skill**](https://github.com/WenyuChiou/gemini-delegate-skill) ★ 34 — multi-LLM delegation pair
 
 ### Chinese-language Ecosystem
 
-- [**leemysw/feishu-docx**](https://github.com/leemysw/feishu-docx) ★ 209 — Feishu (Lark) docs / sheet / bitable ↔ Markdown with Claude Skills support
+- [**leemysw/feishu-docx**](https://github.com/leemysw/feishu-docx) ★ 247 — Feishu (Lark) docs / sheet / bitable ↔ Markdown with Claude Skills support
 
 > The above is just the highlights. **Full 62-entry catalog by category** (incl. databases, browser automation, Figma, Excalidraw, Cloudflare, Stripe, academic-writing / multi-LLM delegation, etc.) lives in [`resources/mcp-skills-catalog.en.md`](resources/mcp-skills-catalog.en.md).
 

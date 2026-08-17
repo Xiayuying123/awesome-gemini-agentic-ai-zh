@@ -212,30 +212,30 @@ README 跟各 stage 会频繁提到这三个 Antigravity CLI 生态的关键词�
 
 **笔记 / 知识库**
 
-- [**MarkusPfundstein/mcp-obsidian**](https://github.com/MarkusPfundstein/mcp-obsidian) ★ 3.9k+ — 通过 Obsidian REST API plugin 让 LLM 读写你的 Obsidian vault
+- [**MarkusPfundstein/mcp-obsidian**](https://github.com/MarkusPfundstein/mcp-obsidian) ★ 4.3k+ — 通过 Obsidian REST API plugin 让 LLM 读写你的 Obsidian vault
 - [**makenotion/notion-mcp-server**](https://github.com/makenotion/notion-mcp-server) ★ 4.4k+ — Notion **官方** MCP server，可查询／创建 page、database
-- [**PleasePrompto/notebooklm-skill**](https://github.com/PleasePrompto/notebooklm-skill) ★ 6.6k+ — NotebookLM Skill（浏览器自动化），用 Antigravity CLI 直接查你 NotebookLM 里的文件，回答带 citation
-- [**teng-lin/notebooklm-py**](https://github.com/teng-lin/notebooklm-py) ★ 15k+ — 非官方 NotebookLM Python API + CLI，支持 Antigravity CLI / Codex 等 agent 集成
+- [**PleasePrompto/notebooklm-skill**](https://github.com/PleasePrompto/notebooklm-skill) ★ 7.6k+ — NotebookLM Skill（浏览器自动化），用 Antigravity CLI 直接查你 NotebookLM 里的文件，回答带 citation
+- [**teng-lin/notebooklm-py**](https://github.com/teng-lin/notebooklm-py) ★ 18k+ — 非官方 NotebookLM Python API + CLI，支持 Antigravity CLI / Codex 等 agent 集成
 
 **办公文件（Word / Excel / PowerPoint / PDF）**
 
-- [**anthropics/skills**](https://github.com/anthropics/skills) ★ 144k+ — Anthropic **官方** Skills 集合，docx / xlsx / pptx / pdf 处理直接内置
-- [**tfriedel/claude-office-skills**](https://github.com/tfriedel/claude-office-skills) ★ 725 — 增强版 Office skills（PPTX/DOCX/XLSX/PDF），含自动化 workflow
+- [**anthropics/skills**](https://github.com/anthropics/skills) ★ 169k+ — Anthropic **官方** Skills 集合，docx / xlsx / pptx / pdf 处理直接内置
+- [**tfriedel/claude-office-skills**](https://github.com/tfriedel/claude-office-skills) ★ 811 — 增强版 Office skills（PPTX/DOCX/XLSX/PDF），含自动化 workflow
 
 **Google Workspace（Gmail / Docs / Drive / Calendar）**
 
-- [**taylorwilsdon/google_workspace_mcp**](https://github.com/taylorwilsdon/google_workspace_mcp) ★ 2.6k+ — 一个 server 包整套 Google Workspace（Gmail、Calendar、Docs、Sheets、Slides、Drive）
+- [**taylorwilsdon/google_workspace_mcp**](https://github.com/taylorwilsdon/google_workspace_mcp) ★ 3k+ — 一个 server 包整套 Google Workspace（Gmail、Calendar、Docs、Sheets、Slides、Drive）
 
 **开发协作**
 
-- [**github/github-mcp-server**](https://github.com/github/github-mcp-server) ★ 29k+ — GitHub **官方** MCP，issue / PR / repo 操作
-- [**atlassian/atlassian-mcp-server**](https://github.com/atlassian/atlassian-mcp-server) ★ 723 — Atlassian **官方** Remote MCP（Jira、Confluence）
+- [**github/github-mcp-server**](https://github.com/github/github-mcp-server) ★ 32k+ — GitHub **官方** MCP，issue / PR / repo 操作
+- [**atlassian/atlassian-mcp-server**](https://github.com/atlassian/atlassian-mcp-server) ★ 967 — Atlassian **官方** Remote MCP（Jira、Confluence）
 - [**jerhadf/linear-mcp-server**](https://github.com/jerhadf/linear-mcp-server) ★ 340+ — Linear MCP server
 - [**korotovsky/slack-mcp-server**](https://github.com/korotovsky/slack-mcp-server) ★ 1.7k+ — Slack MCP，无 admin 权限也能用
 
 **中文圈常用**
 
-- [**leemysw/feishu-docx**](https://github.com/leemysw/feishu-docx) ★ 209 — 飞书（Lark）docs / sheet / bitable ↔ Markdown，含 Claude Skills 支持
+- [**leemysw/feishu-docx**](https://github.com/leemysw/feishu-docx) ★ 247 — 飞书（Lark）docs / sheet / bitable ↔ Markdown，含 Claude Skills 支持
 
 > 上面只是 highlight。**完整 62 个集成**（含数据库、浏览器自动化、Figma、Excalidraw、Cloudflare、Stripe…）：[`resources/mcp-skills-catalog.zh-Hans.md`](resources/mcp-skills-catalog.zh-Hans.md)。
 

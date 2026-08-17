@@ -18,12 +18,12 @@
 | 工具 | 提供者 | License | 主推 LLM | 认证 / 计费 | Stars |
 |---|---|---|---|---|---|
 | [Antigravity CLI](https://antigravity.google) | Google（官方） | Apache-2.0 | Gemini 系列 | Google Cloud 凭据或 Gemini API key | ★ 110k+ |
-| [Claude Code](https://github.com/anthropics/claude-code) | Anthropic（官方） | NOASSERTION | Claude | Claude 订阅 **或** Anthropic Console API key | ★ 120k+ |
-| [Codex](https://github.com/openai/codex) | OpenAI（官方） | Apache-2.0 | GPT 系列 | ChatGPT 账号登录 **或** OpenAI API key | ★ 80k+ |
-| [OpenCode](https://github.com/sst/opencode) | 社群（repo 已迁至 `anomalyco/opencode`） | MIT | 任意（多 provider） | BYO API key 或 OpenCode Zen 内建 hosted | ★ 155k+ |
-| [goose](https://github.com/block/goose) | Agentic AI Foundation（repo 已迁至 `aaif-goose/goose`） | Apache-2.0 | 15+ provider（含 Ollama） | BYO API key 或既有 ACP 订阅 | ★ 43k+ |
+| [Claude Code](https://github.com/anthropics/claude-code) | Anthropic（官方） | NOASSERTION | Claude | Claude 订阅 **或** Anthropic Console API key | ★ 141k+ |
+| [Codex](https://github.com/openai/codex) | OpenAI（官方） | Apache-2.0 | GPT 系列 | ChatGPT 账号登录 **或** OpenAI API key | ★ 106k+ |
+| [OpenCode](https://github.com/sst/opencode) | 社群（repo 已迁至 `anomalyco/opencode`） | MIT | 任意（多 provider） | BYO API key 或 OpenCode Zen 内建 hosted | ★ 198k+ |
+| [goose](https://github.com/block/goose) | Agentic AI Foundation（repo 已迁至 `aaif-goose/goose`） | Apache-2.0 | 15+ provider（含 Ollama） | BYO API key 或既有 ACP 订阅 | ★ 52k+ |
 | [Aider](https://github.com/Aider-AI/aider) | Aider-AI（社群） | Apache-2.0 | BYO API key | ★ 44k+ |
-| [Hermes Agent](https://github.com/NousResearch/hermes-agent) | Nous Research | MIT | 多模型接入 | BYO API key（多 provider） | ★ 175k+ |
+| [Hermes Agent](https://github.com/NousResearch/hermes-agent) | Nous Research | MIT | 多模型接入 | BYO API key（多 provider） | ★ 231k+ |
 
 ---
 

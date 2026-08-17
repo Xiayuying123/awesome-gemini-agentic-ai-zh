@@ -425,7 +425,7 @@ text = msg.content[0].text
 |---|---|---|---|---|
 | **學術 / 教學風 guide**<br>（先看這個） | [dair-ai/Prompt-Engineering-Guide](https://github.com/dair-ai/Prompt-Engineering-Guide) | ⭐⭐⭐⭐⭐ | 當參考書、需要某技巧再來查 | 從基礎到進階（CoT / ToT / ReAct / RAG）端到端，★ 74k+、MIT |
 | | [PromptingGuide.ai](https://www.promptingguide.ai/) | ⭐⭐⭐⭐ | 手機閱讀、想要可跑範例 | 跟 dair-ai GitHub 同樣內容、做成網站 + 可跑範例 |
-| | [NirDiamant/Prompt_Engineering](https://github.com/NirDiamant/Prompt_Engineering) | ⭐⭐⭐⭐ | 偏好「邊跑邊學」 | 22 種技巧（zero-shot → CoT → ReAct → constitutional）獨立 notebook，★ 7k+。比 dair-ai 更動手（⚠️ NOASSERTION 自訂條款、研究/非商用為主）|
+| | [NirDiamant/Prompt_Engineering](https://github.com/NirDiamant/Prompt_Engineering) | ⭐⭐⭐⭐ | 偏好「邊跑邊學」 | 22 種技巧（zero-shot → CoT → ReAct → constitutional）獨立 notebook，★ 7.8k+。比 dair-ai 更動手（⚠️ NOASSERTION 自訂條款、研究/非商用為主）|
 | **官方 cookbook** | [Anthropic Cookbook — Prompt patterns](https://github.com/anthropics/claude-cookbooks) | ⭐⭐⭐⭐⭐ | Claude 進階 prompting（含 prompt caching / multimodal）| Stage 1 已介紹、本 stage 重點看 `misc/prompt_caching.ipynb` 跟 `multimodal/` |
 | | [GoogleCloudPlatform/generative-ai](https://github.com/GoogleCloudPlatform/generative-ai) | ⭐⭐⭐ | 用 Google 技術棧（PaLM / Gemini）| Google Cloud 的 prompting cookbook、跨廠商觀點 |
 | **靈感 collection**<br>（找模式、不要照抄）| [f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) | ⭐⭐⭐ | 卡關時找靈感 | 上百個「Act as a [角色]...」prompt，★ 162k+、CC0。**把模式拿出來改寫、不要照抄** |
@@ -462,7 +462,7 @@ LLM-powered system 的工程實踐分成 **3 層 stack**（不是 1 次 call vs 
 延伸閱讀（不必修、未來想深挖時看）：
 
 - [`Meirtz/Awesome-Context-Engineering`](https://github.com/Meirtz/Awesome-Context-Engineering)（★ 3k+）——從 prompt engineering 一路推到 production agent 的 survey
-- [`Windy3f3f3f3f/how-claude-code-works`](https://github.com/Windy3f3f3f3f/how-claude-code-works)（★ 2.4k+）——Antigravity CLI 內部解析，含 context engineering 章節
+- [`Windy3f3f3f3f/how-claude-code-works`](https://github.com/Windy3f3f3f3f/how-claude-code-works)（★ 3.5k+）——Antigravity CLI 內部解析，含 context engineering 章節
 
 ## ✅ 進 Stage 3 前的自我檢查
 
